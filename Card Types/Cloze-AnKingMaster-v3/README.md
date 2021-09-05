@@ -2,6 +2,11 @@
   <br>
 2021***: Initial Release
 
+## TODO
+- [ ] upload changes made over time
+- [ ] upload 2 card type video links
+- [ ] instructions on features including wikipedia, c to reveal tags, alt+# to reveal things, H for hint hotkeys, how to reveal hints automatically, etc
+
 
 <b>Please consider checking out our:</b>
 <br>
