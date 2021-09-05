@@ -10,6 +10,9 @@
 
 ****Caveats: The template is currently set up to only incrementally reveal 'rect1'. You can add 'rect2' occlusions if you want, but they will not go through the incremental reveal process.
 
+### Screen recording
+<img src="/screenshots/IO one by one.gif">
+
 <b>Changelog:</b>
   <br>
 2021-09-05: Initial Release on <a href="https://www.reddit.com/r/Anki/comments/pia8e5/how_to_incrementally_reveal_an_image_occlusion/?utm_source=share&utm_medium=ios_app&utm_name=iossmf">reddit</a>
