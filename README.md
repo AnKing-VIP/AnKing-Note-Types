@@ -1,17 +1,3 @@
-<b>This add-on was funded by the Anki Palace. Please consider supporting our work using the links below so we can continue to fund add-on projects like this.</b>
-
-You must be on Anki *** to use this add-on
-
-*** Add-on description
-
-<div><b>Screenshots</b></div>
-<img src="https://raw.githubusercontent.com/ankipalace/anki-field-autocomplete/master/screenshots/dropdown.gif?raw=true">
-  <br>
-  <br>
-
-<b>Problems, Bugs, Errors, Improvements</b>
-If you find a serious bug, please submit it on <a href="https://github.com/ankipalace/" rel="nofollow">Github</a> or email us at ankingmed@gmail.com. Please remember that we are not coders and thus may not be able to provide support.
-
 <b>Changelog:</b>
   <br>
 2021***: Initial Release
