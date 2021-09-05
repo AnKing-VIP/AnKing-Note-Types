@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="AnKing">
+        <file>AnKingSmall.png</file>
+        <file>Facebook.png</file>
+        <file>Instagram.png</file>
+        <file>Patreon.png</file>
+        <file>TheAnKing.png</file>
+        <file>YouTube.png</file>
+        <file>AnkiPalace_horizontal.png</file>
+        <file>AnkiPalace_vertical.png</file>
+        <file>AnkiPalace_no_text.png</file>
+    </qresource>
+</RCC>   

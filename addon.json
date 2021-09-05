@@ -1,0 +1,13 @@
+{
+    "display_name": "",
+    "module_name": "addon_name",
+    "repo_name": "",
+    "ankiweb_id": "",
+    "author": "",
+    "conflicts": [],
+    "targets": [
+        "anki21"
+    ],
+    "min_anki_version" : "2.1.45",
+    "max_tested_anki_version" : "2.1.46"
+}

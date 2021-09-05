@@ -1,0 +1,14 @@
+# required for building
+aab==0.1.5b6
+PyQt5==5.15.4
+PyQt5-Qt5==5.15.2
+PyQt5-sip==12.9.0
+PyQtWebEngine==5.15.4
+PyQtWebEngine-Qt5==5.15.2
+
+# code analysis
+anki
+aqt
+
+# formatting
+autopep8==1.5.7
