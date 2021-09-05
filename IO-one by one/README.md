@@ -14,6 +14,12 @@
   <br>
 2021-09-05: Initial Release on <a href="https://www.reddit.com/r/Anki/comments/pia8e5/how_to_incrementally_reveal_an_image_occlusion/?utm_source=share&utm_medium=ios_app&utm_name=iossmf">reddit</a>
 
+## TODO
+- [ ] Make it so the incremental review is on the backside of the note type, not the front (I found that I accidentally flipped it with the space bar multiple times)
+- [ ] Make it so there’s a hotkey that can open them incrementally (i.e. hitting the letter ‘n’)
+- [ ] Making it customizable a tad like my anking note types have been :tada:
+- [ ] Make it so any can be clicked, but the red box is an incremental process
+
 
 <b>Please consider checking out our:</b>
 <br>
