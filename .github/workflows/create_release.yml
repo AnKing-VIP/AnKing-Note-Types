@@ -1,0 +1,27 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      file_name:
+        description: apkg file name
+        required: true
+        
+jobs:
+  create-release:
+    name: ${{ github.event.inputs.file_name }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with: 
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Create github release
+        uses: svenstaro/upload-release-action@2.2.1
+        with:
+          repo_token: ${{ github.token }}
+          file: Apkg/${{ github.event.inputs.file_name }}
+          release_name: ${{ github.event.inputs.file_name }}
+          tag: ${{ github.event.inputs.file_name }}
