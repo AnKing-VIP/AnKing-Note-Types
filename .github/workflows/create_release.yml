@@ -12,7 +12,7 @@ on:
         
 jobs:
   create-release:
-    name: ${{ github.event.inputs.file_name }}--NoteType_${{ github.event.inputs.version }}.apkg
+    name: ${{ github.event.inputs.file_name }}
     runs-on: ubuntu-latest
 
     steps:
