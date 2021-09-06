@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       file_name:
-        description: apkg file name (without extension)
+        description: apkg file name (use _ for space. No extension)
         required: true
       version:
         description: version string (eg. v6.1)
