@@ -7,7 +7,7 @@ on:
         description: apkg file name (without extension)
         required: true
       version:
-        description: version string (eg. 6.1)
+        description: version string (eg. v6.1)
         required: true
         
 jobs:
