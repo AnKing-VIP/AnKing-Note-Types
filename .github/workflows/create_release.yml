@@ -6,6 +6,9 @@ on:
       file_name:
         description: apkg file name
         required: true
+      version:
+        description: version string (eg. addon_name-v6.1)
+        required: true
         
 jobs:
   create-release:
