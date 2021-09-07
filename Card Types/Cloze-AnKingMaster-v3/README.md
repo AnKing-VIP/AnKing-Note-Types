@@ -1,11 +1,31 @@
-<b>Changelog:</b>
-  <br>
-2021***: Initial Release
+## How to Use & Customize This Note Type
+- <a href="https://www.youtube.com/watch?v=HgKDRTTTnh4&t=37s">This video</a> goes over how to customize the card styling (including basic html/css)
+- <a href="https://www.youtube.com/watch?v=4Q6Ll5k412U&t=1s">This video</a> goes into specifics of the AnKingMaster-v2+ updates to the card styling
+
+## Features
+- countdown timer on front template (can turn off)
+- clickable tags (can turn off or adjust for compatibility with No Distractions add-on) - toggle on/off with 'c'
+- Editable fields
+- Wikipedia with 'w'
+- Field shortcuts and/or hint hotkeys add-on (need Refocous Cards when Reviewing add-on unless on Anki 2.1.36+)
+- Auto scroll to hint that is opened (can be toggled off)
+- Auto open hints
+- TTS 
+- Med Shamim styling available
+- Images will zoom with click (used to be hover)
+- Highlight any tags containing the word "xxxyyyzzz"
+
+## Changelog:
+AnKingMaster-v1 notetype was introduced to provide the same note for all cards in the AnKing Overhaul Deck for Step 1 and Step 2. It combined fields from the AnKingMed and AnKingSketchy Note Types
+AnKingMaster-v2 note type added the Physeo and Pixorize fields
+AnKingMaster-v3 note type added the OME field
+
+2021-09-03: Initial Release on Github
 
 ## TODO
 - [ ] upload changes made over time
-- [ ] upload 2 card type video links
-- [ ] instructions on features including wikipedia, c to reveal tags, alt+# to reveal things, H for hint hotkeys, how to reveal hints automatically, etc
+- [X] upload 2 card type video links
+- [X] instructions on features including wikipedia, c to reveal tags, alt+# to reveal things, H for hint hotkeys, how to reveal hints automatically, etc
 
 
 <b>Please consider checking out our:</b>
