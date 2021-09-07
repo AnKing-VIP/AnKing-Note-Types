@@ -10,6 +10,7 @@
 - Field shortcuts and/or hint hotkeys add-on (need Refocous Cards when Reviewing add-on unless on Anki 2.1.36+)
 - Auto scroll to hint that is opened (can be toggled off)
 - Auto open hints
+  -  <img src="/screenshots/auto-open-hint.jpg">
 - TTS 
 - Med Shamim styling available
 - Images will zoom with click (used to be hover)
