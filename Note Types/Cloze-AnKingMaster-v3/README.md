@@ -3,10 +3,47 @@
 - <a href="https://www.youtube.com/watch?v=4Q6Ll5k412U&t=1s">This video</a> goes into specifics of the AnKingMaster-v2+ updates to the card styling
 
 ## Features
-- countdown timer on front template (can turn off)
-- clickable tags (can turn off or adjust for compatibility with No Distractions add-on) - toggle on/off with 'c'
-- Editable fields
-- Wikipedia with 'w'
+- <b>Invisible countdown timer</b> on the front
+  <details><summary>Set timer length <i>(on front template)</i></summary>
+    <p>
+
+    ```
+    //############## TIMER CONFIGURATION START ##############
+    //Set Timer Length
+    var minutes = 0
+    var seconds = 9
+    //############## TIMER CONFIGURATION END ##############
+    ```
+    </p>
+  </details>
+  <details><summary>Turn timer off <i>(in styling)</i></summary>
+    <p>
+
+    ```
+    /* TIMER ON/OFF */
+    .timer { display: block; } /* 'none' or 'block' */
+    ```
+    </p>
+  </details>
+- <b>Clickable tags</b> (must have <a href="">Clickable Tags</a> add-on installed for them to be clickable, but they will still display without the add-on)
+  <details><summary>Turn on/off by default and adjust for compatibility with No Distractions add-on <i>(in styling)</i></summary>
+    <p>
+
+    ```
+    /* TAGS ON/OFF DESKTOP & MOBILE*/
+       #tags-container { display: none; }  /* ‘none’ or ‘block’ */
+    .mobile #tags-container { display: none; } /* ‘none’ or ‘block’ */
+    /* MOVE TAGS UP FOR 'NO-DISTRACTIONS' ADD-ON */
+    #tags-container{ padding-bottom: 0px; } /* 0 normal, 55 to move up */
+    ```
+    </p>
+  </details>
+  
+    - toggle on/off with the shortcut `c`
+
+- <b>Editable fields</b> - (For use with the <a href="">Edit Field During Review (Cloze)</a> add-on)
+- <b>Wikipedia searches in reviewer</b>
+  - Highlight text and then use the shortcut `w` (if nothing shows up, it's because your search returned no results in wikipedia)
 - Field shortcuts and/or hint hotkeys add-on (need Refocous Cards when Reviewing add-on unless on Anki 2.1.36+)
 - Auto scroll to hint that is opened (can be toggled off)
 - Auto open hints:
