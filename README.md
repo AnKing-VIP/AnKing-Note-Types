@@ -1,6 +1,7 @@
 # AnKing Note Types
 For simplicity and ease-of-use, I have uploaded all of my note types here. This will allow for better tracking of changes and better tutorials.
 
+**Open the Note Types Folder. Each Folder has it's own README file that explains the note**
 
 
 
