@@ -1,6 +1,6 @@
 <b>Instructions:</b>
 1. Download Closet For Anki addon (272311064), close out of anki, restart anki
-2. Download card template here: <a href="https://github.com/AnKingMed/AnKing-Note-Types/blob/master/Apkg/IO-one_by_one.apkg">Incremental Image Occlusion</a>
+2. Download card template here: <a href="https://github.com/AnKingMed/AnKing-Note-Types/blob/master/Apkg/IO-one_by_one.apkg">IO-one by one</a>
 3. When creating the new I/O card, make sure you are using the note template called 'Closet'. Paste your image into the 'block' field.
 4. Click the icon that looks like a blue box in a box. The image should outline with a red dotted border when you click that button.
 5. Holding the Alt key, draw your occlusions in the order you want them revealed. You want each occlusion to say 'rect1' inside of it. If you forget to hold Alt and get a rectangle with 'rect2', you can right click that occlusion and 'change label' to rect1. If you need to delete a rectangle completely, hold shift while clicking on that box.
