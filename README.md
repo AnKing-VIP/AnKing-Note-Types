@@ -2,6 +2,8 @@
 For simplicity and ease-of-use, I have uploaded all of my note types here. This will allow for better tracking of changes and better tutorials.
 
 
+
+
 ***
 
 <b>Please consider checking out our:</b>
