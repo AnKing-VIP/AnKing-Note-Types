@@ -157,6 +157,7 @@
                     let rects = document.querySelectorAll(".closet-rect.is-active")
                     for (let rect of rects) {
                         rect.addEventListener("click", reveal)
+                        rect.addEventListener("touchstart", reveal)
                     }
                     if (!globalThis.AnKingIOListening) {
                         document.addEventListener("keydown", (event) => {
@@ -186,6 +187,7 @@
                     }
                     for (let button of buttons) {
                         button.addEventListener("click", toggle)
+                        button.addEventListener("touchstart", toggle)
                     }
                 }
             })
@@ -197,6 +199,7 @@
             function activate(rect) {
                 rect.classList.add("is-highlighted")
                 rect.addEventListener("click", incrementalReveal)
+                rect.addEventListener("touchstart", incrementalReveal)
             }
 
             function incrementalReveal() {
