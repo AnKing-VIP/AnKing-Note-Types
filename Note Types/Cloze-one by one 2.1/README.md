@@ -1,3 +1,6 @@
+## Example
+<p align="center"><img src="https://raw.githubusercontent.com/AnKingMed/AnKing-Note-Types/master/screenshots/Cloze-one%20by%20one.gif?raw=true" style="width:700px;"></p>
+
 <b>Changelog:</b>
   <br>
 2021***: Initial Release
