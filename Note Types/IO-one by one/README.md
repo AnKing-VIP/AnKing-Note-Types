@@ -9,7 +9,7 @@
 7. When reviewing, you will see all boxes occluded at once, however the first box will be highlighted. Click or use `n` to reveal a box, and the subsequent box will become highlighted. Use `c` to reveal all at once. Continue until all boxes are revealed. You can use `h` (requires the "Hint Hotkeys" add-on instealled) or click to reveal the buttons. Use `'` to reveal all buttons at once.
 
 ### Screen recording
-<img src="/screenshots/IO one by one.gif">
+<img src="/screenshots/IO one by one new.gif">
 
 <b>Changelog:</b>
   <br>
