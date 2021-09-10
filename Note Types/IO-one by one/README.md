@@ -18,10 +18,11 @@
 ## TODO
 - [X] Make it so the incremental review is on the backside of the note type, not the front (I found that I accidentally flipped it with the space bar multiple times)
 - [X] Make it so there’s a hotkey that can open them incrementally (i.e. hitting the letter ‘n’)
-- [ ] Making it customizable a tad like my anking note types have been :tada:
+- [ ] Making it customizable a tad like my anking note types have been :tada: (Nick cleanup code)
 - [X] Make it so any can be clicked, but the red box is an incremental process
 - [ ] Add feature to put the occlusions back after revealing all of them
 - [ ] Fix on mobile (add a button?)
+- [ ] Fix reveal code shortcuts to keycodes so there are more options
 
 
 <b>Please consider checking out our:</b>
