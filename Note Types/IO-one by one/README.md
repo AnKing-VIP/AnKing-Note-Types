@@ -21,6 +21,7 @@
 - [ ] Making it customizable a tad like my anking note types have been :tada:
 - [X] Make it so any can be clicked, but the red box is an incremental process
 - [ ] Add feature to put the occlusions back after revealing all of them
+- [ ] Fix on mobile (add a button?)
 
 
 <b>Please consider checking out our:</b>
