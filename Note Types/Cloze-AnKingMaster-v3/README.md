@@ -44,14 +44,14 @@
 - <b>Editable fields</b> - (For use with the <a href="">Edit Field During Review (Cloze)</a> add-on)
 - <b>Wikipedia searches in reviewer</b>
   - Highlight text and then use the shortcut `w` (if nothing shows up, it's because your search returned no results in wikipedia)
-- Field shortcuts and/or hint hotkeys add-on (need Refocous Cards when Reviewing add-on unless on Anki 2.1.36+)
-- Auto scroll to hint that is opened (can be toggled off)
-- Auto open hints:
+- <b>Field shortcuts and/or hint hotkeys add-on</b> (need Refocous Cards when Reviewing add-on unless on Anki 2.1.36+)
+- <b>Auto scroll to hint that is opened</b> (can be toggled off)
+- <b>Auto open hints</b>:
   -  <img src="/screenshots/Auto-open-hint.jpg" style="width:600px">
-- TTS 
-- Med Shamim styling available
-- Images will zoom with click (used to be hover)
-- Highlight any tags containing the word "xxxyyyzzz"
+- <b>TTS</b>
+- <b>Med Shamim styling available</b>
+- <b>Images will zoom with click (used to be hover)</b>
+- <b>Highlight any tags containing the word "xxxyyyzzz"</b>
 
 ## Changelog:
 AnKingMaster-v1 notetype was introduced to provide the same note for all cards in the AnKing Overhaul Deck for Step 1 and Step 2. It combined fields from the AnKingMed and AnKingSketchy Note Types
