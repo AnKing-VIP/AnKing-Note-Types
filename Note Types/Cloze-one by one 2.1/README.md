@@ -3,7 +3,7 @@
 
 <b>Changelog:</b>
   <br>
-2021***: Initial Release
+2021-08: Initial Release
 
 
 <b>Please consider checking out our:</b>
