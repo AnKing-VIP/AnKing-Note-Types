@@ -23,6 +23,7 @@
 - [ ] Add feature to put the occlusions back after revealing all of them
 - [ ] Fix on mobile (add a button that reveals them so you don't have to type? Remove the ability to tap them?)
 - [ ] Fix reveal code shortcuts to keycodes so there are more options (current method for incremental and reveal all only works on every other card)
+- [ ] Fix reveal code for the clickable tags reveal (similar problem as above)
 
 
 <b>Please consider checking out our:</b>
