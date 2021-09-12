@@ -3,7 +3,7 @@
    //The following two shortcuts are with letters.
     var reveal_incremental = "n";
     var reveal_all = "c";
-    var showhidetags = "g";
+    var showhidetags = "]";
 
     // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
     // The button shortcuts are  Alt  +  the number/letter below
@@ -88,13 +88,13 @@
         }
         
         function showtags() {
-          var xx = document.getElementById("tags-container");
+          var tagContainerShortcut = document.getElementById("tags-container");
         
-            if (xx.style.display 
+            if (tagContainerShortcut.style.display 
         === "none") {
-            xx.style.display = "block";
+            tagContainerShortcut.style.display = "block";
           } else {
-            xx.style.display = 
+            tagContainerShortcut.style.display = 
           "none";
           }
         } 
