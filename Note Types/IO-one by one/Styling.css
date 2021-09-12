@@ -34,13 +34,13 @@ html {
 }
 
 /* TAGS ON/OFF DESKTOP & MOBILE*/
-	 #tags-container { display: none; }  /* ‘none’ or ‘block’ */
+#tags-container { display: none; }  /* ‘none’ or ‘block’ */
 .mobile #tags-container { display: none; } /* ‘none’ or ‘block’ */
 /* MOVE TAGS UP FOR 'NO-DISTRACTIONS' ADD-ON */
 #tags-container{ padding-bottom: 0px; } /* 0 normal, 55 to move up */
 #tags-container { background-color: transparent; }
 
-/* COLORS NM */
+/* COLORS NIGHTMODE */
 .nightMode.card, .night_mode .card {
   --color: #FFFAFA;
   --background-color: #272828;
@@ -69,8 +69,8 @@ i  { color: inherit; }
 }
 
 #front-info img {
-   margin-bottom: 2em;
-   max-width: 150px !important;
+  margin-bottom: 2em;
+  max-width: 150px !important;
 }
 
 /* AnKing Logo */
@@ -94,58 +94,58 @@ a.logo:hover {
 
 /* Front Tooltip */
 .help {
-    position: fixed;
-    top: 18px;
-    right: 18px;
-    text-align: center;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    font-size: 0.8rem;
-    line-height: 26px;
-    cursor: default;
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  text-align: center;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 0.8rem;
+  line-height: 26px;
+  cursor: default;
 }
 .help:before {
-    content: '?';
-    font-weight: bold;
+  content: '?';
+  font-weight: bold;
 }
 .help:hover p {
-    display: block;
-    transform-origin: 100% 0%;
-    -webkit-animation: fadeIn 0.3s ease-in-out;
-    animation: fadeIn 0.3s ease-in-out;
+  display: block;
+  transform-origin: 100% 0%;
+  -webkit-animation: fadeIn 0.3s ease-in-out;
+  animation: fadeIn 0.3s ease-in-out;
 }
 .help p {
-    display: none;
-    text-align: left;
-    background-color: #1E2021;
-    padding: 20px;
-    width: 300px;
-    position: absolute;
-    border-radius: 3px;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-    right: -4px;
-    color: #FFF;
-    font-size: 16px;
-    line-height: 1.4;
+  display: none;
+  text-align: left;
+  background-color: #1E2021;
+  padding: 20px;
+  width: 300px;
+  position: absolute;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  right: -4px;
+  color: #FFF;
+  font-size: 16px;
+  line-height: 1.4;
 }
 .help p:before {
-    position: absolute;
-    content: '';
-    width: 0;
-    height: 0;
-    border: 6px solid transparent;
-    border-bottom-color: #1E2021;
-    right: 10px;
-    top: -12px;
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-bottom-color: #1E2021;
+  right: 10px;
+  top: -12px;
 }
 .help-tip p:after {
-    width: 100%;
-    height: 40px;
-    content: '';
-    position: absolute;
-    top: -40px;
-    left: 0;
+  width: 100%;
+  height: 40px;
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 0;
 }
 @-webkit-keyframes fadeIn {
     0% { 
@@ -167,25 +167,6 @@ a.logo:hover {
   margin-bottom: 1em;
 }
 
-.extra-btn {
-  margin-top: 1em;
-}
-.extra-btn ~ div {
-  margin-top: 0.5em;
-  font-size: .85rem;
-}
-.extra-btn.uncollapsed {
-  display: inline-block;
-  background: #ababab;
-  color: black!important;
-  font-weight: bold;
-  width: 50%;
-}
-
-.hidden {
-  display: none;
-}
-
 img {
   max-height: var(--img-max-height);
   max-width: var(--img-max-width);
@@ -193,9 +174,9 @@ img {
 
 /* Incremental reveal: Closet rects */
 .closet-rect.is-active.is-back rect {
-   fill: var(--rect-bg);
-   stroke: var(--rect-border);
-   cursor: pointer;
+  fill: var(--rect-bg);
+  stroke: var(--rect-border);
+  cursor: pointer;
 }
 .closet-rect.is-active.is-back.is-highlighted rect {
    fill: var(--active-rect-bg);
@@ -208,32 +189,32 @@ img {
 /* TAGS */
 /* Container To Fix Tags At Bottom Of Screen */
 #tags-container{
-position: fixed;
-bottom: .5px;
-width: 100%;
-line-height: .45rem;
-margin-left: -15px;
+  position: fixed;
+  bottom: .5px;
+  width: 100%;
+  line-height: .45rem;
+  margin-left: -15px;
 }
 
 /* Clickable Tags (need to download the add-on) */
 kbd {
- font-family: Arial Greek, Arial; 
- display: inline-block;
- letter-spacing: .1px;
- font-weight: bold;
- font-size: 10px !important;
- text-shadow: none !important;
- padding: 0.05rem 0.1rem !important;
- margin: 1px -3px !important;
- border-radius: 4px;
- border-width: 1.5px !important;
- border-style: solid;
- background-color: transparent !important;
- box-shadow: none !important;
- opacity: 0.5;
- vertical-align: middle !important;
- line-height: auto!important;
- height: auto!important;
+  font-family: Arial Greek, Arial; 
+  display: inline-block;
+  letter-spacing: .1px;
+  font-weight: bold;
+  font-size: 10px !important;
+  text-shadow: none !important;
+  padding: 0.05rem 0.1rem !important;
+  margin: 1px -3px !important;
+  border-radius: 4px;
+  border-width: 1.5px !important;
+  border-style: solid;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  opacity: 0.5;
+  vertical-align: middle !important;
+  line-height: auto!important;
+  height: auto!important;
 }
 
 /* Tag Becomes More Visible On Hover */
@@ -252,8 +233,16 @@ kbd:nth-of-type(9n+0) { border-color: #9E9E9E; color: #9E9E9E!important; }
 kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
 
 /* Tag Mobile Adjustments */
-.mobile kbd { opacity: .9; margin: 1px !important; display: inline-block; font-size: 10px !important; }
-.mobile #tags-container {line-height:0.6rem; margin-left: 0px; }
+.mobile kbd { 
+  opacity: .9; 
+  margin: 1px !important; 
+  display: inline-block; 
+  font-size: 10px !important; 
+}
+.mobile #tags-container {
+  line-height:0.6rem; 
+  margin-left: 0px; 
+}
 
 .button-ln {
   outline: 0;
@@ -308,3 +297,10 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   color: #363638 !important;
   cursor: default;
   }
+
+.button-revealed {
+  background:#ababab!important; 
+  color:black!important; 
+  font-weight:bold; 
+  width:50%!important;
+}

@@ -26,31 +26,31 @@
 <div class="io">{{Image}}</div>
 
 <!-- EXTRA FIELD -->
-{{#Extra}}<a href="#" class="hint" id="hint-ar" onclick="this.style.display='none'; myFunction('button-ar', 'hint-ar', 'button-ar'); return false;">
+{{#Extra}}<a href="#" class="hint" id="hint-ar" onclick="this.style.display='none'; RevealButton('button-ar', 'hint-ar', 'button-ar'); return false;">
     <button class="button-ar"><img src="_Anking_v3.png"> Extra</button></a>{{/Extra}}
 
 <div id="button-ar" class="generalclass" style="display:none;">
-{{#Extra}}<button onclick="document.getElementById('hint-ar').style.display='inline-block'; myFunction('button-ar', 'hint-ar', 'button-ar')" class="button-ar" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_Anking_v3.png"> Extra</button>
+{{#Extra}}<button onclick="document.getElementById('hint-ar').style.display='inline-block'; RevealButton('button-ar', 'hint-ar', 'button-ar')" class="button-ar button-revealed"><img src="_Anking_v3.png"> Extra</button>
     <br>
     <div class="hints" id="additional">{{edit:Extra}}</div>
 {{/Extra}}</div>
 
 <!-- PERSONAL NOTES FIELD -->
-{{#Personal Notes}}<a href="#" class="hint" id="hint-ln" onclick="this.style.display='none'; myFunction('button-ln', 'hint-ln', 'button-ln'); return false;">
+{{#Personal Notes}}<a href="#" class="hint" id="hint-ln" onclick="this.style.display='none'; RevealButton('button-ln', 'hint-ln', 'button-ln'); return false;">
         <button class="button-ln"><img src="_Anking_v3.png"> Personal Notes</button></a>{{/Personal Notes}}
 
 <div id="button-ln" class="generalclass" style="display:none;">
-    {{#Personal Notes}}<button onclick="document.getElementById('hint-ln').style.display='inline-block'; myFunction('button-ln', 'hint-ln', 'button-ln')" class="button-ln" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_Anking_v3.png"> Personal Notes</button>
+    {{#Personal Notes}}<button onclick="document.getElementById('hint-ln').style.display='inline-block'; RevealButton('button-ln', 'hint-ln', 'button-ln')" class="button-ln button-revealed"><img src="_Anking_v3.png"> Personal Notes</button>
         <br>
         <div class="hints" id="lecture">{{edit:Personal Notes}}</div>
     {{/Personal Notes}}</div>
 
 <!-- MISSED QUESTIONS FIELD -->
-{{#Missed Questions}}<a href="#" class="hint" id="hint-mq" onclick="this.style.display='none'; myFunction('button-mq', 'hint-mq', 'button-mq'); return false;">
+{{#Missed Questions}}<a href="#" class="hint" id="hint-mq" onclick="this.style.display='none'; RevealButton('button-mq', 'hint-mq', 'button-mq'); return false;">
         <button class="button-mq"><img src="_Anking_v3.png"> Missed Questions</button></a>{{/Missed Questions}}
 
 <div id="button-mq" class="generalclass" style="display:none;">
-    {{#Missed Questions}}<button onclick="document.getElementById('hint-mq').style.display='inline-block'; myFunction('button-mq', 'hint-mq', 'button-mq')" class="button-mq" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_Anking_v3.png"> Missed Questions</button>
+    {{#Missed Questions}}<button onclick="document.getElementById('hint-mq').style.display='inline-block'; RevealButton('button-mq', 'hint-mq', 'button-mq')" class="button-mq button-revealed"><img src="_Anking_v3.png"> Missed Questions</button>
         <br>
         <div class="hints" id="missed">{{edit:Missed Questions}}</div>
     {{/Missed Questions}}</div>
@@ -110,7 +110,7 @@
 
 <script>
     //HINT REVEALS
-    function myFunction(divid, id, divid) {
+    function RevealButton(divid, id, divid) {
     var x = document.getElementById(divid), y = document.getElementById(id), z = document.getElementById(divid);
     if (x.style.display == "none")
     {
@@ -129,16 +129,16 @@
       document.onkeydown = function(evt) {
        evt = evt || window.event;
           if (evt.altKey && evt.keyCode == personalnotes) {
-              myFunction('button-ln', 'hint-ln', 'button-ln')}  
+              RevealButton('button-ln', 'hint-ln', 'button-ln')}  
           if (evt.altKey && evt.keyCode == missedQ) {
-              myFunction('button-mq', 'hint-mq', 'button-mq')}
+              RevealButton('button-mq', 'hint-mq', 'button-mq')}
           if (evt.altKey && evt.keyCode == extra) {
-              myFunction('button-ar', 'hint-ar', 'button-ar')}
+              RevealButton('button-ar', 'hint-ar', 'button-ar')}
       
           if (evt.keyCode == OpenCloseAll) {
-          try{myFunction('button-mq', 'hint-mq', 'button-mq');}
-          finally{try{myFunction('button-ln', 'hint-ln', 'button-ln');}
-          finally{myFunction('button-ar', 'hint-ar', 'button-ar');}}
+          try{RevealButton('button-mq', 'hint-mq', 'button-mq');}
+          finally{try{RevealButton('button-ln', 'hint-ln', 'button-ln');}
+          finally{RevealButton('button-ar', 'hint-ar', 'button-ar');}}
           }
       }
 </script>
