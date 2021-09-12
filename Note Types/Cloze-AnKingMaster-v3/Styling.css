@@ -144,6 +144,15 @@ padding-bottom: 1em;
 #firstaid img:active, #sketchy img:active, #pixorize img:active, #physeo img:active, #additional img:active { transform:scale(1.5); }
 .mobile #extra img:active, .mobile #lecture img:active, .mobile #missed img:active, .mobile #pathoma img:active, .mobile #bnb img:active, .mobile #firstaid img:active, .mobile #sketchy img:active, .mobile #pixorize img:active, .mobile #physeo img:active, .mobile #additional img:active { transform:scale(1.0); }
 
+/* AnKing Image */
+#pic {
+  height:50px;
+  border:0;
+  position:fixed;
+  bottom:10px;
+  right:10px;
+}
+
 /* Cloze format */
 .cloze { font-weight: bold; }
 
@@ -413,6 +422,12 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   color: #363638 !important;
   cursor: default;
   }
+.banner-ome {
+  max-width:300px; 
+  display:block; 
+  margin-left:auto; 
+  margin-right: auto;
+}
 
 .button-ar {
   outline: 0;
@@ -431,6 +446,13 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   color: #363638 !important;
   cursor: default;
   }
+
+.button-revealed {
+  background:#ababab!important; 
+  color:black!important; 
+  font-weight:bold; 
+  width:50%!important;
+}
 
 
 .mobile .button-ln,  .mobile .button-mq,  .mobile .button-pat,  .mobile .button-bb,  .mobile .button-fa,  .mobile .button-sketchy,  .mobile .button-pixorize,  .mobile .button-physeo, .mobile .button-ome, .mobile .button-ar { font-size: 18px; padding: 9px 7px; }
