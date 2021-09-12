@@ -1,7 +1,7 @@
 <b>Instructions:</b>
 1. Download Closet For Anki addon (272311064), close out of anki, restart anki
 2. Download card template here: <a href="https://github.com/AnKingMed/AnKing-Note-Types/blob/master/Apkg/IO-one_by_one.apkg">IO-one by one</a>
-3. When creating the new I/O card, make sure you are using the note template called 'IO-one by one'. Paste your image into the 'image' field.
+3. When creating the new I/O card, make sure you are using the note template called `IO-one by one`. Paste your image into the 'image' field.
 4. Click the icon in the toolbar that looks like a blue/red box in a box. The image should outline with a red dotted border when you click that button.
 5. Draw your occlusions in the order you want them revealed. You want each occlusion to say 'rect1' inside of it. If you need to delete a rectangle completely, hold shift while clicking on that box.
 6. Once you have all of your occlusions made, right click on the image (don't right click over an occlusion though) and select 'accept occlusions'
@@ -9,17 +9,20 @@
 7. When reviewing, you will see all boxes occluded at once, however the first box will be highlighted. Click or use `n` to reveal a box, and the subsequent box will become highlighted. Use `c` to reveal all at once. Continue until all boxes are revealed. You can use `h` (requires the "Hint Hotkeys" add-on instealled) or click to reveal the buttons. Use `'` to reveal all buttons at once.
 
 ### Screen recording
-<img src="/screenshots/IO one by one.gif">
+<img src="/screenshots/IO one by one new.gif">
 
 <b>Changelog:</b>
   <br>
 2021-09-05: Initial Release on <a href="https://www.reddit.com/r/Anki/comments/pia8e5/how_to_incrementally_reveal_an_image_occlusion/?utm_source=share&utm_medium=ios_app&utm_name=iossmf">reddit</a>
 
 ## TODO
-- [ ] Make it so the incremental review is on the backside of the note type, not the front (I found that I accidentally flipped it with the space bar multiple times)
-- [ ] Make it so there’s a hotkey that can open them incrementally (i.e. hitting the letter ‘n’)
-- [ ] Making it customizable a tad like my anking note types have been :tada:
-- [ ] Make it so any can be clicked, but the red box is an incremental process
+- [X] Make it so the incremental review is on the backside of the note type, not the front (I found that I accidentally flipped it with the space bar multiple times)
+- [X] Make it so there’s a hotkey that can open them incrementally (i.e. hitting the letter ‘n’)
+- [ ] Making it customizable a tad like my anking note types have been :tada: (Nick cleanup code)
+- [X] Make it so any can be clicked, but the red box is an incremental process
+- [ ] Add feature to put the occlusions back after revealing all of them
+- [ ] Fix on mobile (add a button?)
+- [ ] Fix reveal code shortcuts to keycodes so there are more options
 
 
 <b>Please consider checking out our:</b>
