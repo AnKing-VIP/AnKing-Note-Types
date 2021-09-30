@@ -304,3 +304,13 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   font-weight:bold; 
   width:50%!important;
 }
+
+.dummy-btn {
+	background: none !important;
+	color: inherit !important;
+	border: none !important;
+	padding: 0 !important;
+	font: inherit !important;
+	cursor: inherit !important;
+	outline: inherit !important;
+}
