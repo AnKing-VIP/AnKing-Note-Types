@@ -165,11 +165,11 @@
 
                     if (!globalThis.AnKingIOListening) {
                         document.addEventListener("keydown", (event) => {
-                            if (event.key == "n") {
+                            if (event.key == reveal_incremental) {
                                 let active = document.querySelector(".closet-rect.is-highlighted")
                                 if (active) incrementalReveal.call(active)
                             }
-                            else if (event.key == "g") {
+                            else if (event.key == reveal_all) {
                                 for (let rect of rects) {
                                     incrementalReveal.call(rect)
                                 }
