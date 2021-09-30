@@ -3,7 +3,7 @@
    //The following two shortcuts are with letters.
     var reveal_incremental = "n";
     var reveal_all = "c";
-    var showhidetags = "]";
+    var showhidetags = "g";
 
     // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
     // The button shortcuts are  Alt  +  the number/letter below
@@ -26,32 +26,35 @@
 <button class="dummy-btn"><div class="io">{{Image}}</div></button>
 <br>
 
+<button id="reset-btn" hidden>Reset</button>
+<br>
+
 <!-- EXTRA FIELD -->
-{{#Extra}}<a href="#" class="hint" id="hint-ar" onclick="this.style.display='none'; RevealButton('button-ar', 'hint-ar', 'button-ar'); return false;">
+{{#Extra}}<a href="#" class="hint" id="hint-ar" onclick="this.style.display='none'; myFunction('button-ar', 'hint-ar', 'button-ar'); return false;">
     <button class="button-ar"><img src="_Anking_v3.png"> Extra</button></a>{{/Extra}}
 
 <div id="button-ar" class="generalclass" style="display:none;">
-{{#Extra}}<button onclick="document.getElementById('hint-ar').style.display='inline-block'; RevealButton('button-ar', 'hint-ar', 'button-ar')" class="button-ar button-revealed"><img src="_Anking_v3.png"> Extra</button>
+{{#Extra}}<button onclick="document.getElementById('hint-ar').style.display='inline-block'; myFunction('button-ar', 'hint-ar', 'button-ar')" class="button-ar" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_Anking_v3.png"> Extra</button>
     <br>
     <div class="hints" id="additional">{{edit:Extra}}</div>
 {{/Extra}}</div>
 
 <!-- PERSONAL NOTES FIELD -->
-{{#Personal Notes}}<a href="#" class="hint" id="hint-ln" onclick="this.style.display='none'; RevealButton('button-ln', 'hint-ln', 'button-ln'); return false;">
+{{#Personal Notes}}<a href="#" class="hint" id="hint-ln" onclick="this.style.display='none'; myFunction('button-ln', 'hint-ln', 'button-ln'); return false;">
         <button class="button-ln"><img src="_Anking_v3.png"> Personal Notes</button></a>{{/Personal Notes}}
 
 <div id="button-ln" class="generalclass" style="display:none;">
-    {{#Personal Notes}}<button onclick="document.getElementById('hint-ln').style.display='inline-block'; RevealButton('button-ln', 'hint-ln', 'button-ln')" class="button-ln button-revealed"><img src="_Anking_v3.png"> Personal Notes</button>
+    {{#Personal Notes}}<button onclick="document.getElementById('hint-ln').style.display='inline-block'; myFunction('button-ln', 'hint-ln', 'button-ln')" class="button-ln" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_Anking_v3.png"> Personal Notes</button>
         <br>
         <div class="hints" id="lecture">{{edit:Personal Notes}}</div>
     {{/Personal Notes}}</div>
 
 <!-- MISSED QUESTIONS FIELD -->
-{{#Missed Questions}}<a href="#" class="hint" id="hint-mq" onclick="this.style.display='none'; RevealButton('button-mq', 'hint-mq', 'button-mq'); return false;">
+{{#Missed Questions}}<a href="#" class="hint" id="hint-mq" onclick="this.style.display='none'; myFunction('button-mq', 'hint-mq', 'button-mq'); return false;">
         <button class="button-mq"><img src="_Anking_v3.png"> Missed Questions</button></a>{{/Missed Questions}}
 
 <div id="button-mq" class="generalclass" style="display:none;">
-    {{#Missed Questions}}<button onclick="document.getElementById('hint-mq').style.display='inline-block'; RevealButton('button-mq', 'hint-mq', 'button-mq')" class="button-mq button-revealed"><img src="_Anking_v3.png"> Missed Questions</button>
+    {{#Missed Questions}}<button onclick="document.getElementById('hint-mq').style.display='inline-block'; myFunction('button-mq', 'hint-mq', 'button-mq')" class="button-mq" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_Anking_v3.png"> Missed Questions</button>
         <br>
         <div class="hints" id="missed">{{edit:Missed Questions}}</div>
     {{/Missed Questions}}</div>
@@ -89,13 +92,13 @@
         }
         
         function showtags() {
-          var tagContainerShortcut = document.getElementById("tags-container");
+          var xx = document.getElementById("tags-container");
         
-            if (tagContainerShortcut.style.display 
+            if (xx.style.display 
         === "none") {
-            tagContainerShortcut.style.display = "block";
+            xx.style.display = "block";
           } else {
-            tagContainerShortcut.style.display = 
+            xx.style.display = 
           "none";
           }
         } 
@@ -111,7 +114,7 @@
 
 <script>
     //HINT REVEALS
-    function RevealButton(divid, id, divid) {
+    function myFunction(divid, id, divid) {
     var x = document.getElementById(divid), y = document.getElementById(id), z = document.getElementById(divid);
     if (x.style.display == "none")
     {
@@ -130,16 +133,16 @@
       document.onkeydown = function(evt) {
        evt = evt || window.event;
           if (evt.altKey && evt.keyCode == personalnotes) {
-              RevealButton('button-ln', 'hint-ln', 'button-ln')}  
+              myFunction('button-ln', 'hint-ln', 'button-ln')}  
           if (evt.altKey && evt.keyCode == missedQ) {
-              RevealButton('button-mq', 'hint-mq', 'button-mq')}
+              myFunction('button-mq', 'hint-mq', 'button-mq')}
           if (evt.altKey && evt.keyCode == extra) {
-              RevealButton('button-ar', 'hint-ar', 'button-ar')}
+              myFunction('button-ar', 'hint-ar', 'button-ar')}
       
           if (evt.keyCode == OpenCloseAll) {
-          try{RevealButton('button-mq', 'hint-mq', 'button-mq');}
-          finally{try{RevealButton('button-ln', 'hint-ln', 'button-ln');}
-          finally{RevealButton('button-ar', 'hint-ar', 'button-ar');}}
+          try{myFunction('button-mq', 'hint-mq', 'button-mq');}
+          finally{try{myFunction('button-ln', 'hint-ln', 'button-ln');}
+          finally{myFunction('button-ar', 'hint-ar', 'button-ar');}}
           }
       }
 </script>
@@ -151,44 +154,28 @@
 
         (function () {
             var observer = new MutationObserver(() => {
-                let rect = document.querySelector(".closet-rect.is-active")
-                if (rect) {
-                    activate(rect)
+                let rects = document.querySelectorAll(".closet-rect.is-active")
+                if (rects.length > 0) {
                     observer.disconnect()
-                    let rects = document.querySelectorAll(".closet-rect.is-active")
                     for (let rect of rects) {
                         rect.addEventListener("click", reveal)
-                        rect.addEventListener("touchstart", reveal)
                     }
+                    activate(rects[0])
+                    document.getElementById("reset-btn").addEventListener("click", reset)
+
                     if (!globalThis.AnKingIOListening) {
                         document.addEventListener("keydown", (event) => {
-                            if (event.key == reveal_incremental) {
+                            if (event.key == "n") {
                                 let active = document.querySelector(".closet-rect.is-highlighted")
                                 if (active) incrementalReveal.call(active)
                             }
-                            else if (event.key ==  reveal_all) {
+                            else if (event.key == "g") {
                                 for (let rect of rects) {
                                     incrementalReveal.call(rect)
                                 }
                             }
                         })
                         globalThis.AnKingIOListening = true
-                    }
-                    let buttons = document.getElementsByClassName("extra-btn")
-
-                    function toggle() {
-                        if (!this.classList.contains("uncollapsed")) {
-                            this.nextElementSibling.classList.remove("hidden")
-                            this.classList.add("uncollapsed")
-                        }
-                        else {
-                            this.nextElementSibling.classList.add("hidden")
-                            this.classList.remove("uncollapsed")
-                        }
-                    }
-                    for (let button of buttons) {
-                        button.addEventListener("click", toggle)
-                        button.addEventListener("touchstart", toggle)
                     }
                 }
             })
@@ -198,9 +185,8 @@
             })
 
             function activate(rect) {
-                rect.classList.add("is-highlighted")
                 rect.addEventListener("click", incrementalReveal)
-                rect.addEventListener("touchstart", incrementalReveal)
+                rect.classList.add("is-highlighted")
             }
 
             function incrementalReveal() {
@@ -212,14 +198,22 @@
                     }
                     if (!next.classList.contains("revealed")) activate(next)
                 }
-                else {
-                    document.getElementById("extra-content").classList.remove("hidden")
-                }
             }
 
             function reveal() {
+                document.getElementById("reset-btn").removeAttribute("hidden")
                 this.classList.remove("is-highlighted")
                 this.classList.add("revealed")
+            }
+
+            function reset() {
+                let rects = document.querySelectorAll(".closet-rect.is-active")
+                for (let rect of rects) {
+                    rect.classList.remove("revealed")
+                    rect.classList.remove("is-highlighted")
+                }
+                activate(rects[0])
+                document.getElementById("reset-btn").hidden = true
             }
         })()
     </script>
