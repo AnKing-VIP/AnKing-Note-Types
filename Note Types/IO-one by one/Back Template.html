@@ -100,6 +100,7 @@
 
         function toggleTags() {
             var tags = document.getElementById("tags-container");
+            if(!tags) return
             if (tags.style.display === "none") {
                 tags.style.display = "block";
             } else {
@@ -123,6 +124,7 @@
         //HINT REVEALS
         function toggleHint(btn_id, hint_id) {
             var button = document.getElementById(btn_id), hint = document.getElementById(hint_id)
+            if(!button) return
             if (button.style.display == "none") {
                 button.style.display = "block"; hint.style.display = "none";
             }
