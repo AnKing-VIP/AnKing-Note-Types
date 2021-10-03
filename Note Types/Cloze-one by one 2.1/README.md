@@ -16,6 +16,8 @@ Features I think would be nice to have are:
 - [ ] he added buttons for mobile but my card type actually just works fine with tapping the blocks so no need for that
 - [ ] can see the hint before the block hides the cloze
 - [X] he added a lot of other features that are cool, but really not that necessary
+- [ ] Add personal notes and missed questions fields (copy code from IO-one by one once it is finished being updated by Jakub).
+- [ ] Update Tag script with updates Jakub is making to IO-one by one
 
 
 <b>Please consider checking out our:</b>
