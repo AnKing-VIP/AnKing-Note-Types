@@ -20,10 +20,12 @@
 - [X] Make it so there’s a hotkey that can open them incrementally (i.e. hitting the letter ‘n’)
 - [X] Making it customizable a tad like my anking note types have been :tada: (Nick cleanup code)
 - [X] Make it so any can be clicked, but the red box is an incremental process
-- [ ] Add feature to put the occlusions back after revealing all of them
-- [ ] Fix on mobile (add a button that reveals them so you don't have to type? Remove the ability to tap them?)
-- [ ] Fix reveal code shortcuts to keycodes so there are more options (current method for incremental and reveal all only works on every other card)
-- [ ] Fix reveal code for the clickable tags reveal (similar problem as above)
+- [X] Fix on mobile (add a button that reveals them so you don't have to type? Remove the ability to tap them?)
+- [X] Fix reveal code shortcuts to keycodes so there are more options (current method for incremental and reveal all only works on every other card)
+- [X] Fix reveal code for the clickable tags reveal (similar problem as above)
+- [ ] Add feature to put the occlusions back after revealing all of them.  Need to update for mobile. Add back reset button?
+- [ ] scroll to hint scrolls when closing button instead of opening
+- [ ] Simple way to auto-reveal buttons instead of complicated method. (Make a variable and set to true/false and if true auto trigger opening the field or something like that?)
 
 
 <b>Please consider checking out our:</b>
