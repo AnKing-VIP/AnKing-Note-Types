@@ -26,6 +26,7 @@
 - [ ] Add feature to put the occlusions back after revealing all of them.  Need to update for mobile. Add back reset button?
 - [ ] scroll to hint scrolls when closing button instead of opening
 - [ ] Simple way to auto-reveal buttons instead of complicated method. (Make a variable and set to true/false and if true auto trigger opening the field or something like that?)
+- [ ] Remove css styling from buttons and put in the .button-revealed css (from AnKingMasterv3 note type)
 
 
 <b>Please consider checking out our:</b>
