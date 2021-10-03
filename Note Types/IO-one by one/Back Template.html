@@ -1,19 +1,23 @@
 <script>
-    // ##############  HINT REVEAL SHORTCUTS  ##############
-   //The following two shortcuts are with letters.
-    var reveal_incremental = "n";
-    var reveal_all = "c";
-    var showhidetags = "g";
-
+    // ##############  OCCLUSION SHORTCUTS  ##############
     // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
-    // The button shortcuts are  Alt  +  the number/letter below
-    // All buttons will also open with "H" if using the Hint Hotkeys add-on 
-    var extra = '49';
-    var personalnotes = '50';
-    var missedQ = '51';
-    var OpenCloseAll = '222';
+    var RevealIncremental = "78"; // n
+    var ToggleAll = "67"; // c
 
-	var ScrollToHint = true;
+    // ##############  TAG SHORTCUT  ##############
+    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
+    var ToggleTags = "71"; // g
+
+    // ##############  HINT SHORTCUTS  ##############
+    // The button shortcuts are  Alt + the number/letter the keycode stands for
+    // All buttons will also open with "H" if using the Hint Hotkeys add-on 
+    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
+    var Extra = '49'; // alt + 1
+    var PersonalNotes = '50'; // alt + 2
+    var MissedQ = '51'; // alt + 3
+    var OpenCloseAll = '222'; // '
+
+    var ScrollToHint = true;
 
     //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
     var tagID = "XXXYYYZZZ"
@@ -21,162 +25,203 @@
 
 
 <div id="extras" hidden>{{I0}}</div>
-
 <div class="header">{{Header}}</div>
-<button class="dummy-btn"><div class="io">{{Image}}</div></button>
-<br>
-
-<button id="reset-btn" hidden>Reset</button>
-<br>
+<div class="io">{{Image}}</div>
 
 <!-- EXTRA FIELD -->
-{{#Extra}}<a href="#" class="hint" id="hint-ar" onclick="this.style.display='none'; myFunction('button-ar', 'hint-ar', 'button-ar'); return false;">
-    <button class="button-ar"><img src="_Anking_v3.png"> Extra</button></a>{{/Extra}}
+{{#Extra}}<a href="#" class="hint" id="hint-ar" onclick="toggleHint('button-ar', 'hint-ar')">
+    <button class="button-ar"><img src="_Anking_v3.png"> Extra</button></a>
+{{/Extra}}
 
 <div id="button-ar" class="generalclass" style="display:none;">
-{{#Extra}}<button onclick="document.getElementById('hint-ar').style.display='inline-block'; myFunction('button-ar', 'hint-ar', 'button-ar')" class="button-ar" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_Anking_v3.png"> Extra</button>
+    {{#Extra}}<button onclick="toggleHint('button-ar', 'hint-ar')" class="button-ar"
+        style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img
+            src="_Anking_v3.png"> Extra</button>
     <br>
     <div class="hints" id="additional">{{edit:Extra}}</div>
-{{/Extra}}</div>
-
-<!-- PERSONAL NOTES FIELD -->
-{{#Personal Notes}}<a href="#" class="hint" id="hint-ln" onclick="this.style.display='none'; myFunction('button-ln', 'hint-ln', 'button-ln'); return false;">
-        <button class="button-ln"><img src="_Anking_v3.png"> Personal Notes</button></a>{{/Personal Notes}}
-
-<div id="button-ln" class="generalclass" style="display:none;">
-    {{#Personal Notes}}<button onclick="document.getElementById('hint-ln').style.display='inline-block'; myFunction('button-ln', 'hint-ln', 'button-ln')" class="button-ln" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_Anking_v3.png"> Personal Notes</button>
-        <br>
-        <div class="hints" id="lecture">{{edit:Personal Notes}}</div>
-    {{/Personal Notes}}</div>
-
-<!-- MISSED QUESTIONS FIELD -->
-{{#Missed Questions}}<a href="#" class="hint" id="hint-mq" onclick="this.style.display='none'; myFunction('button-mq', 'hint-mq', 'button-mq'); return false;">
-        <button class="button-mq"><img src="_Anking_v3.png"> Missed Questions</button></a>{{/Missed Questions}}
-
-<div id="button-mq" class="generalclass" style="display:none;">
-    {{#Missed Questions}}<button onclick="document.getElementById('hint-mq').style.display='inline-block'; myFunction('button-mq', 'hint-mq', 'button-mq')" class="button-mq" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_Anking_v3.png"> Missed Questions</button>
-        <br>
-        <div class="hints" id="missed">{{edit:Missed Questions}}</div>
-    {{/Missed Questions}}</div>
-
-
-
-
+    {{/Extra}}
 </div>
 
+<!-- PERSONAL NOTES FIELD -->
+{{#Personal Notes}}<a href="#" class="hint" id="hint-ln" onclick="toggleHint('button-ln', 'hint-ln');">
+    <button class="button-ln"><img src="_Anking_v3.png"> Personal Notes</button></a>
+{{/Personal Notes}}
+
+<div id="button-ln" class="generalclass" style="display:none;">
+    {{#Personal Notes}}<button onclick="toggleHint('button-ln', 'hint-ln')" class="button-ln"
+        style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img
+            src="_Anking_v3.png"> Personal Notes</button>
+    <br>
+    <div class="hints" id="lecture">{{edit:Personal Notes}}</div>
+    {{/Personal Notes}}
+</div>
+
+<!-- MISSED QUESTIONS FIELD -->
+{{#Missed Questions}}<a href="#" class="hint" id="hint-mq" onclick="toggleHint('button-mq', 'hint-mq');">
+    <button class="button-mq"><img src="_Anking_v3.png"> Missed Questions</button></a>
+{{/Missed Questions}}
+
+<div id="button-mq" class="generalclass" style="display:none;">
+    {{#Missed Questions}}<button onclick="toggleHint('button-mq', 'hint-mq')" class="button-mq"
+        style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img
+            src="_Anking_v3.png"> Missed Questions</button>
+    <br>
+    <div class="hints" id="missed">{{edit:Missed Questions}}</div>
+    {{/Missed Questions}}
+</div>
+
+
 <a class="logo" href="https://www.ankingmed.com">
-   <img src="_AnKingRound.png" alt="The AnKing">
+    <img src="_AnKingRound.png" alt="The AnKing">
 </a>
 
 <div id="anki-am" data-name="Assets by ASSET MANAGER" data-version="2.1">
 
-{{#Tags}}
+    {{#Tags}}
     <div id="tags-container">{{clickable::Tags}}</div>
     <script>
         var tagContainer = document.getElementById("tags-container")
         if (tagContainer.childElementCount == 0) {
-         var tagList= tagContainer.innerHTML.split(" ");
-         var kbdList = [];
-         var newTagContent = document.createElement("div");
-        
-         for (var i = 0; i < tagList.length;  i++) {
-          var newTag = document.createElement("kbd");
-          newTag.innerHTML = tagList[i];
-          newTagContent.append(newTag)
-         }
-         tagContainer.innerHTML = newTagContent.innerHTML;
-         tagContainer.style.cursor = "default";
+            var tagList = tagContainer.innerHTML.split(" ");
+            var kbdList = [];
+            var newTagContent = document.createElement("div");
+
+            for (var i = 0; i < tagList.length; i++) {
+                var newTag = document.createElement("kbd");
+                newTag.innerHTML = tagList[i];
+                newTagContent.append(newTag)
+            }
+            tagContainer.innerHTML = newTagContent.innerHTML;
+            tagContainer.style.cursor = "default";
         }
         if (tagContainer.innerHTML.indexOf(tagID) != -1) {
-        tagContainer.style.backgroundColor = "rgba(251,11,11,.15)";
+            tagContainer.style.backgroundColor = "rgba(251,11,11,.15)";
         }
-        
-        function showtags() {
-          var xx = document.getElementById("tags-container");
-        
-            if (xx.style.display 
-        === "none") {
-            xx.style.display = "block";
-          } else {
-            xx.style.display = 
-          "none";
-          }
-        } 
-        document.addEventListener('keyup', function(e) {
-            if(e.key == showhidetags){
-             showtags();
+
+        function toggleTags() {
+            var tags = document.getElementById("tags-container");
+            if(!tags) return
+            if (tags.style.display === "none") {
+                tags.style.display = "block";
+            } else {
+                tags.style.display = "none";
             }
-        });
-        
-        
-    </script>
-{{/Tags}}
-
-<script>
-    //HINT REVEALS
-    function myFunction(divid, id, divid) {
-    var x = document.getElementById(divid), y = document.getElementById(id), z = document.getElementById(divid);
-    if (x.style.display == "none")
-    {
-    x.style.display = "block"; y.style.display = "none"; z.scrollToId;
-    }
-        else {
-          x.style.display = "none"; y.style.display = "inline-block";
         }
-    if (ScrollToHint){
-	z.scrollIntoView({
-      behavior: "smooth", //"auto" for instant scrolling
-      block: "start",
-      inline: "nearest"
-    }); }
-      }
-      document.onkeydown = function(evt) {
-       evt = evt || window.event;
-          if (evt.altKey && evt.keyCode == personalnotes) {
-              myFunction('button-ln', 'hint-ln', 'button-ln')}  
-          if (evt.altKey && evt.keyCode == missedQ) {
-              myFunction('button-mq', 'hint-mq', 'button-mq')}
-          if (evt.altKey && evt.keyCode == extra) {
-              myFunction('button-ar', 'hint-ar', 'button-ar')}
-      
-          if (evt.keyCode == OpenCloseAll) {
-          try{myFunction('button-mq', 'hint-mq', 'button-mq');}
-          finally{try{myFunction('button-ln', 'hint-ln', 'button-ln');}
-          finally{myFunction('button-ar', 'hint-ar', 'button-ar');}}
-          }
-      }
-</script>
+        if (!globalThis.ToggleTagsListening) {
+            globalThis.ToggleTagsListening = true
+            document.addEventListener('keydown', function (evt) {
+                if (evt.repeat) return
+                evt = evt || window.event
+                if (evt.keyCode == ToggleTags) {
+                    toggleTags();
+                }
+            });
+        }
+    </script>
+    {{/Tags}}
 
+    <script>
+        //HINT REVEALS
+        function toggleHint(btn_id, hint_id) {
+            var button = document.getElementById(btn_id), hint = document.getElementById(hint_id)
+            if(!button) return
+            if (button.style.display == "none") {
+                button.style.display = "block"; hint.style.display = "none";
+            }
+            else {
+                button.style.display = "none"; hint.style.display = "inline-block";
+            }
+            if (ScrollToHint) {
+                hint.scrollIntoView({
+                    behavior: "smooth", // "auto" for instant scrolling
+                    block: "start",
+                    inline: "nearest"
+                });
+            }
+        }
+
+        if (!globalThis.ToggleHintsListening) {
+            globalThis.ToggleHintsListening = true
+            document.addEventListener("keydown", (evt) => {
+                if (evt.repeat) return
+                if (evt.altKey && evt.keyCode == PersonalNotes) {
+                    toggleHint('button-ln', 'hint-ln')
+                }
+                if (evt.altKey && evt.keyCode == MissedQ) {
+                    toggleHint('button-mq', 'hint-mq')
+                }
+                if (evt.altKey && evt.keyCode == Extra) {
+                    toggleHint('button-ar', 'hint-ar')
+                }
+                if (evt.keyCode == OpenCloseAll) {
+                    try { toggleHint('button-mq', 'hint-mq'); }
+                    finally {
+                        try { toggleHint('button-ln', 'hint-ln'); }
+                        finally { toggleHint('button-ar', 'hint-ar'); }
+                    }
+                }
+            })
+        }
+    </script>
 
 
     <script data-name="Incremental IO" data-version="v0.1">
         /* Script by Matthias Metelka @kleinerpirat */
 
-        (function () {
+        function setupIncrementalIO() {
             var observer = new MutationObserver(() => {
-                let rects = document.querySelectorAll(".closet-rect.is-active")
-                if (rects.length > 0) {
+                let rect = document.querySelector(".closet-rect.is-active")
+                if (rect) {
+                    activate(rect)
                     observer.disconnect()
-                    for (let rect of rects) {
+                    globalThis.AnkingIORects = document.querySelectorAll(".closet-rect.is-active")
+                    for (let rect of globalThis.AnkingIORects) {
                         rect.addEventListener("click", reveal)
                     }
-                    activate(rects[0])
-                    document.getElementById("reset-btn").addEventListener("click", reset)
-
                     if (!globalThis.AnKingIOListening) {
-                        document.addEventListener("keydown", (event) => {
-                            if (event.key == reveal_incremental) {
+                        document.addEventListener("keydown", (evt) => {
+                            if (evt.repeat) return
+                            evt = evt || window.event
+                            if (evt.keyCode == RevealIncremental) {
                                 let active = document.querySelector(".closet-rect.is-highlighted")
                                 if (active) incrementalReveal.call(active)
                             }
-                            else if (event.key == reveal_all) {
-                                for (let rect of rects) {
-                                    incrementalReveal.call(rect)
+                            else if (evt.keyCode == ToggleAll) {
+                                let allRevealed = true
+                                for (let rect of globalThis.AnkingIORects) {
+                                    if (!rect.classList.contains("revealed")) allRevealed = false
+                                }
+                                if (allRevealed) {
+                                    for (let rect of globalThis.AnkingIORects) {
+                                        hide.call(rect)
+                                        let newActiveRect = document.querySelector(".closet-rect.is-active")
+                                        activate(newActiveRect)
+                                    }
+                                } else {
+                                    for (let rect of globalThis.AnkingIORects) {
+                                        reveal.call(rect)
+                                    }
                                 }
                             }
                         })
                         globalThis.AnKingIOListening = true
                     }
+
+                    let buttons = document.getElementsByClassName("extra-btn")
+                    function toggle() {
+                        if (!this.classList.contains("uncollapsed")) {
+                            this.nextElementSibling.classList.remove("hidden")
+                            this.classList.add("uncollapsed")
+                        }
+                        else {
+                            this.nextElementSibling.classList.add("hidden")
+                            this.classList.remove("uncollapsed")
+                        }
+                    }
+                    for (let button of buttons) {
+                        button.addEventListener("click", toggle)
+                    }
+
                 }
             })
             observer.observe(document.getElementById("qa"), {
@@ -185,8 +230,8 @@
             })
 
             function activate(rect) {
-                rect.addEventListener("click", incrementalReveal)
                 rect.classList.add("is-highlighted")
+                rect.addEventListener("click", incrementalReveal)
             }
 
             function incrementalReveal() {
@@ -198,33 +243,31 @@
                     }
                     if (!next.classList.contains("revealed")) activate(next)
                 }
+                else if (document.getElementById("extra-content")) {
+                    document.getElementById("extra-content").classList.remove("hidden")
+                }
             }
 
             function reveal() {
-                document.getElementById("reset-btn").removeAttribute("hidden")
                 this.classList.remove("is-highlighted")
                 this.classList.add("revealed")
             }
 
-            function reset() {
-                let rects = document.querySelectorAll(".closet-rect.is-active")
-                for (let rect of rects) {
-                    rect.classList.remove("revealed")
-                    rect.classList.remove("is-highlighted")
-                }
-                activate(rects[0])
-                document.getElementById("reset-btn").hidden = true
+            function hide() {
+                this.classList.remove("revealed")
             }
-        })()
+        }
+        setupIncrementalIO()
+
     </script>
+
     <script data-name="Closet Setup" data-version="v0.1">
         function closetUserLogic(closet, preset, chooseMemory) {
-                const elements = closet.template.anki.getQaChildNodes();
+            const elements = closet.template.anki.getQaChildNodes();
             const memory = chooseMemory("closet__1");
             const filterManager = closet.FilterManager.make(preset, memory.map);
 
             const output = [[elements, memory, filterManager]];
-
 
             filterManager.install(
                 closet.recipes.shuffle({ tagname: "mix" }),
@@ -242,7 +285,6 @@
                     tagname: "sort",
                     defaultBehavior: closet.flashcard.behaviors.Show,
                 }),
-
                 closet.browser.recipes.rect({
                     tagname: "rect",
                     defaultBehavior: closet.flashcard.behaviors.Hide,
@@ -280,4 +322,3 @@
         }
     </script>
 </div>
-
