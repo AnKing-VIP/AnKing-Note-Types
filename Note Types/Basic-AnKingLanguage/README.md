@@ -8,6 +8,10 @@
 2021-09: Initial Release on Github
 
 ## TODO
+- [ ] Change to other style of buttons? Unsure if I want to do this yet. If not, update the script so that it's not 3 repeats of the same script
+- [ ] Update tags script with Jakub fix
+- [ ] Test this note type out with the google translate addon
+- [ ] clean up bottom of styling, combine definitions, example, alt
 
 
 <b>Please consider checking out our:</b>
