@@ -38,6 +38,7 @@
 
 <!-- EXTRA FIELD -->
 {{#Extra}}
+<a id="link-ar" href="#" onclick="toggleHint('button-ar', 'hint-ar', 'link-ar')"></a>
 <button id="button-ar" class="button" onclick="toggleHint('button-ar', 'hint-ar')">
     <img src="_Anking_v3.png">
     Extra
@@ -50,7 +51,8 @@
 
 <!-- PERSONAL NOTES FIELD -->
 {{#Personal Notes}} 
-<button id="button-ln" class="button" onclick="toggleHint('button-ln', 'hint-ln')">
+<a id="link-ln" href="#" onclick="toggleHint('button-ln', 'hint-ln', 'link-ln')"></a>
+<button id="button-ln" class="button" onclick="toggleHint('button-ln', 'hint-ln')" >
     <img src="_Anking_v3.png">
     Personal Notes
 </button>
@@ -62,6 +64,7 @@
 
 <!-- MISSED QUESTIONS FIELD -->
 {{#Missed Questions}}
+<a id="link-mq" href="#" onclick="toggleHint('button-mq', 'hint-mq', 'link-mq')"></a>
 <button id="button-mq" class="button" onclick="toggleHint('button-mq', 'hint-mq')">
     <img src="_Anking_v3.png">
     Missed Questions
@@ -123,14 +126,16 @@
 
     <script>
         //HINT REVEALS
-        function toggleHint(btn_id, hint_id) {
+        function toggleHint(btn_id, hint_id, link_id) {
             var button = document.getElementById(btn_id)
             var hint = document.getElementById(hint_id)
+            var link = document.getElementById(link_id)
             if (!button) return
             if (hint.style.display == "none") {
                 button.classList.add("expanded-button")
                 hint.style.display = "block"
-                if (ScrollToHint) {
+                link.style.display = "none"
+                if (ScrollToButton) {
                     hint.scrollIntoView({
                         behavior: "smooth", // "auto" for instant scrolling
                         block: "start",
@@ -141,33 +146,34 @@
                 button.classList.remove("expanded-button")
                 hint.style.display = "none"
             }
-            return false
         }
         
-        if(ShowExtra) toggleHint('button-ar', 'hint-ar')
-        if(ShowPersonalNotes) toggleHint('button-ln', 'hint-ln')
-        if(ShowMissedQuestions) toggleHint('button-mq', 'hint-mq')
+        if(ShowExtra) toggleHint('button-ar', 'hint-ar', 'link-ar')
+        if(ShowPersonalNotes) toggleHint('button-ln', 'hint-ln', 'link-ln')
+        if(ShowMissedQuestions) toggleHint('button-mq', 'hint-mq', 'link-mq')
 
         if (!globalThis.ToggleHintsListening) {
             globalThis.ToggleHintsListening = true
             document.addEventListener("keydown", (evt) => {
                 if (evt.repeat) return
                 if (evt.altKey && evt.keyCode == PersonalNotes) {
-                    toggleHint('button-ln', 'hint-ln')
+                    toggleHint('button-ln', 'hint-ln', 'link-ln')
                 }
                 if (evt.altKey && evt.keyCode == MissedQ) {
-                    toggleHint('button-mq', 'hint-mq')
+                    toggleHint('button-mq', 'hint-mq', 'link-mq')
                 }
                 if (evt.altKey && evt.keyCode == Extra) {
-                    toggleHint('button-ar', 'hint-ar')
+                    toggleHint('button-ar', 'hint-ar', 'link-ar')
                 }
-                if (evt.keyCode == ToggleAllHints) {
-                    try { toggleHint('button-mq', 'hint-mq'); }
+                if (evt.keyCode == ToggleAllButtons) {
+                    try { toggleHint('button-mq', 'hint-mq', 'link-mq'); }
                     finally {
-                        try { toggleHint('button-ln', 'hint-ln'); }
-                        finally { toggleHint('button-ar', 'hint-ar'); }
+                        try { toggleHint('button-ln', 'hint-ln', 'link-ln'); }
+                        finally { toggleHint('button-ar', 'hint-ar', 'link-ar'); }
                     }
                 }
+                console.log("here")
+                return false
             })
         }
     </script>
