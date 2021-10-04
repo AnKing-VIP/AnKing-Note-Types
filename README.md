@@ -3,7 +3,8 @@ For simplicity and ease-of-use, I have uploaded all of my note types here. This 
 
 **Open the Note Types Folder. Each Folder has it's own README file that explains the note**
 
-
+## TODO
+- [ ] Github action doesn't work with repeat because asset name is the same
 
 ***
 
