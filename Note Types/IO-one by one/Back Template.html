@@ -8,7 +8,7 @@
     // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
     var ToggleTags = "71"; // g
 
-    // ##############  HINT SHORTCUTS  ##############
+    // ##############  HINT SETTINGS  ##############
     // The button shortcuts are  Alt + the number/letter the keycode stands for
     // All buttons will also open with "H" if using the Hint Hotkeys add-on 
     // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
@@ -18,6 +18,11 @@
     var ToggleAllHints = '222'; // '
 
     var ScrollToHint = true;
+
+    // change values from false to true to have the fields revealed from the start
+    var ShowExtra = false;
+    var ShowPersonalNotes = false;
+    var ShowMissedQuestions = false;
 
     //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
     var tagID = "XXXYYYZZZ"
@@ -138,6 +143,10 @@
             }
             return false
         }
+        
+        if(ShowExtra) toggleHint('button-ar', 'hint-ar')
+        if(ShowPersonalNotes) toggleHint('button-ln', 'hint-ln')
+        if(ShowMissedQuestions) toggleHint('button-mq', 'hint-mq')
 
         if (!globalThis.ToggleHintsListening) {
             globalThis.ToggleHintsListening = true
