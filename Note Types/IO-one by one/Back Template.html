@@ -27,6 +27,9 @@
 <div id="extras" hidden>{{I0}}</div>
 <div class="header">{{Header}}</div>
 <div class="io">{{Image}}</div>
+<button id="reveal-next-btn">Reveal Next</button>
+<button id="toggle-all-btn">Toggle All</button>
+<br>
 
 <!-- EXTRA FIELD -->
 {{#Extra}}<a href="#" class="hint" id="hint-ar" onclick="toggleHint('button-ar', 'hint-ar')">
@@ -170,6 +173,9 @@
 
         function setupIncrementalIO() {
             var observer = new MutationObserver(() => {
+                document.getElementById("toggle-all-btn").addEventListener("click", toggleAll)
+                document.getElementById("reveal-next-btn").addEventListener("click", toggleNext)
+
                 let rect = document.querySelector(".closet-rect.is-active")
                 if (rect) {
                     activate(rect)
@@ -183,25 +189,10 @@
                             if (evt.repeat) return
                             evt = evt || window.event
                             if (evt.keyCode == RevealIncremental) {
-                                let active = document.querySelector(".closet-rect.is-highlighted")
-                                if (active) incrementalReveal.call(active)
+                                toggleNext()
                             }
                             else if (evt.keyCode == ToggleAll) {
-                                let allRevealed = true
-                                for (let rect of globalThis.AnkingIORects) {
-                                    if (!rect.classList.contains("revealed")) allRevealed = false
-                                }
-                                if (allRevealed) {
-                                    for (let rect of globalThis.AnkingIORects) {
-                                        hide.call(rect)
-                                        let newActiveRect = document.querySelector(".closet-rect.is-active")
-                                        activate(newActiveRect)
-                                    }
-                                } else {
-                                    for (let rect of globalThis.AnkingIORects) {
-                                        reveal.call(rect)
-                                    }
-                                }
+                                toggleAll()
                             }
                         })
                         globalThis.AnKingIOListening = true
@@ -229,9 +220,29 @@
                 subtree: true
             })
 
-            function activate(rect) {
-                rect.classList.add("is-highlighted")
-                rect.addEventListener("click", incrementalReveal)
+
+            function toggleNext(){
+                console.log("here")
+                let active = document.querySelector(".closet-rect.is-highlighted")
+                if (active) incrementalReveal.call(active)
+            }
+
+            function toggleAll() {
+                let allRevealed = true
+                for (let rect of globalThis.AnkingIORects) {
+                    if (!rect.classList.contains("revealed")) allRevealed = false
+                }
+                if (allRevealed) {
+                    for (let rect of globalThis.AnkingIORects) {
+                        hide.call(rect)
+                        let newActiveRect = document.querySelector(".closet-rect.is-active")
+                        activate(newActiveRect)
+                    }
+                } else {
+                    for (let rect of globalThis.AnkingIORects) {
+                        reveal.call(rect)
+                    }
+                }
             }
 
             function incrementalReveal() {
@@ -256,6 +267,12 @@
             function hide() {
                 this.classList.remove("revealed")
             }
+
+            function activate(rect) {
+                rect.classList.add("is-highlighted")
+                rect.addEventListener("click", incrementalReveal)
+            }
+            
         }
         setupIncrementalIO()
 
