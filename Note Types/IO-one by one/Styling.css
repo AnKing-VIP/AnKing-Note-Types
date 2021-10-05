@@ -295,6 +295,11 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   margin-left: 0px;
 }
 
+.mobile .btn-spacer {
+  display: block;
+  height: 10px;
+}
+
 .button-general {
   outline: 0;
   border-radius: 0.12em;
@@ -305,6 +310,7 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   font-size: 9.5px;
   background-color: #424242;
   color: #AFAFAF !important;
+  margin-top: 8px;
 }
 .mobile .button-general { 
   font-size: 18px; padding: 9px 7px; 
