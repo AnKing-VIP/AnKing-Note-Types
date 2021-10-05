@@ -1,4 +1,5 @@
 ## How to Use & Customize This Note Type
+- This note type is designed to use with the <a href="https://ankiweb.net/shared/info/1536291224">Google Translate Add-on</a>
 - <a href="https://www.youtube.com/watch?v=HgKDRTTTnh4&t=37s">This video</a> goes over how to customize card styling (including basic html/css)
 - <a href="https://www.youtube.com/watch?v=4Q6Ll5k412U&t=1s">This video</a> goes into specifics of the AnKingMaster-v2+ updates to the card styling which is somewhat similar to this card
 
