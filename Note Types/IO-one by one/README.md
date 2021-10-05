@@ -9,12 +9,13 @@
 7. When reviewing, you will see all boxes occluded at once, however the first box will be highlighted. Click or use `n` to reveal a box, and the subsequent box will become highlighted. Use `c` to reveal all at once. Continue until all boxes are revealed. You can use `h` (requires the "Hint Hotkeys" add-on instealled) or click to reveal the buttons. Use `'` to reveal all buttons at once.
 
 ## Screen recordings
-## Card creation
-<img src="/screenshots/Creating IO one by one.gif">
-## Function
-<img src="/screenshots/IO one by one new.gif">
+### Card creation
+<img src="/screenshots/Creating IO one by one.gif" style="width:600px;">
 
-### Changelog:
+### Function
+<img src="/screenshots/IO one by one new.gif" style="width:600px;">
+
+## Changelog:
 2021-09-05: Initial Release on <a href="https://www.reddit.com/r/Anki/comments/pia8e5/how_to_incrementally_reveal_an_image_occlusion/?utm_source=share&utm_medium=ios_app&utm_name=iossmf">reddit</a>
 
 ## TODO
