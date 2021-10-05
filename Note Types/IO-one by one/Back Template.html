@@ -39,8 +39,8 @@
 
 <!-- EXTRA FIELD -->
 {{#Extra}}
-<a id=link-ex" href="#" class="hint" onclick="toggleHint('button-ex', 'hint-ex', link-ex')"></a>
-<button id="button-ex" class="button-general" onclick="toggleHint('button-ex', 'hint-ex')">
+<a id="link-ex" href="#" class="hint" onclick="toggleHint('button-ex', 'hint-ex', 'link-ex')"></a>
+<button id="button-ex" class="button-general" onclick="toggleHint('button-ex', 'hint-ex', 'link-ex')">
     <img src="_Anking_v3.png">
     Extra
 </button>
@@ -53,7 +53,7 @@
 <!-- PERSONAL NOTES FIELD -->
 {{#Personal Notes}} 
 <a id="link-ln" href="#" class="hint" onclick="toggleHint('button-ln', 'hint-ln', 'link-ln')"></a>
-<button id="button-ln" class="button-general" onclick="toggleHint('button-ln', 'hint-ln')" >
+<button id="button-ln" class="button-general" onclick="toggleHint('button-ln', 'hint-ln', 'link-ln')" >
     <img src="_Anking_v3.png">
     Personal Notes
 </button>
@@ -66,7 +66,7 @@
 <!-- MISSED QUESTIONS FIELD -->
 {{#Missed Questions}}
 <a id="link-mq" href="#" class="hint" onclick="toggleHint('button-mq', 'hint-mq', 'link-mq')"></a>
-<button id="button-mq" class="button-general" onclick="toggleHint('button-mq', 'hint-mq')">
+<button id="button-mq" class="button-general" onclick="toggleHint('button-mq', 'hint-mq', 'link-mq')">
     <img src="_Anking_v3.png">
     Missed Questions
 </button>
@@ -149,8 +149,7 @@
             }
         }
         
-        if(ShowExtra) toggleHint('button-ex
-    ', 'hint-ex', link-ex')
+        if(ShowExtra) toggleHint('button-ex', 'hint-ex', 'link-ex')
         if(ShowPersonalNotes) toggleHint('button-ln', 'hint-ln', 'link-ln')
         if(ShowMissedQuestions) toggleHint('button-mq', 'hint-mq', 'link-mq')
 
@@ -165,15 +164,13 @@
                     toggleHint('button-mq', 'hint-mq', 'link-mq')
                 }
                 if (evt.altKey && evt.keyCode == Extra) {
-                    toggleHint('button-ex
-                ', 'hint-ex', link-ex')
+                    toggleHint('button-ex', 'hint-ex', 'link-ex')
                 }
                 if (evt.keyCode == ToggleAllButtons) {
                     try { toggleHint('button-mq', 'hint-mq', 'link-mq'); }
                     finally {
                         try { toggleHint('button-ln', 'hint-ln', 'link-ln'); }
-                        finally { toggleHint('button-ex
-                    ', 'hint-ex', link-ex'); }
+                        finally { toggleHint('button-ex', 'hint-ex', 'link-ex'); }
                     }
                 }
                 console.log("here")
