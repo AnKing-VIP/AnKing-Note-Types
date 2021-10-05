@@ -33,8 +33,8 @@
 <div class="header">{{Header}}</div>
 <button class="dummy-btn"><div class="io">{{Image}}</div></button>
 <br>
-<button id="reveal-next-btn" class="button-general">Reveal Next</button>
-<button id="toggle-all-btn" class="button-general">Toggle All</button>
+<button id="button-reveal-next" class="button-general">Reveal Next</button>
+<button id="button-toggle-all" class="button-general">Toggle All</button>
 <br>
 
 <!-- EXTRA FIELD -->
@@ -184,8 +184,8 @@
 
         function setupIncrementalIO() {
             var observer = new MutationObserver(() => {
-                document.getElementById("toggle-all-btn").addEventListener("click", toggleAll)
-                document.getElementById("reveal-next-btn").addEventListener("click", toggleNext)
+                document.getElementById("button-toggle-all").addEventListener("click", toggleAll)
+                document.getElementById("button-reveal-next").addEventListener("click", toggleNext)
 
                 let rect = document.querySelector(".closet-rect.is-active")
                 if (rect) {
