@@ -299,7 +299,7 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   display: inline-block;
   font-size: 9.5px;
   background-color: #424242;
-  color: #AFAFAF;
+  color: #AFAFAF !important;
 }
 .mobile .button-general { 
   font-size: 18px; padding: 9px 7px; 
@@ -309,40 +309,29 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   display: block;
   margin: auto;
   margin-top: 10px;
-  background: #ababab;
-  color: black !important;
   font-weight: bold;
   width: 50% !important;
 }
 
-.button-general:hover {
+html:not(.mobile) .button-general:hover {
   color: #363638;
   cursor: default;
+  background-color: #746f6f !important;
 }
 
-#button-ex {
-  background-color: #424242;
-  color: #AFAFAF !important;
-}
-
-#button-ex:hover {
+html:not(.mobile) #button-ex:hover{
   background-color: #E9E9E9 !important;
 }
 
-#button-ln {
-  color: #AFAFAF !important;
-}
-
-#button-ln:hover {
+html:not(.mobile) #button-ln:hover{
   background-color: #746f6f !important;
 }
 
 #button-mq {
-  background-color: #424242;
   color: #c26165 !important;
 }
 
-#button-mq:hover {
+html:not(.mobile) #button-mq:hover{
   background-color: #FA8072 !important;
 }
 
@@ -354,20 +343,4 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
 	font: inherit !important;
 	cursor: inherit !important;
 	outline: inherit !important;
-}
-
-#reveal-next-btn {
-  color: #AFAFAF !important;
-}
-
-#reveal-next-btn:hover {
-  background-color: #746f6f !important;
-}
-
-#toggle-all-btn {
-  color: #AFAFAF !important;
-}
-
-#toggle-all-btn:hover {
-  background-color: #746f6f !important;
 }
