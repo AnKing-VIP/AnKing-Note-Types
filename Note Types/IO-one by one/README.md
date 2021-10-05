@@ -29,8 +29,6 @@
 - [X] Add feature to put the occlusions back after revealing all of them.  Need to update for mobile. Add back reset button?
 - [X] scroll to hint not working (scrolls when closing button instead of opening)
 - [X] Simple way to auto-reveal buttons instead of complicated method. (Make a variable and set to true/false and if true auto trigger opening the field or something like that?)
-- [ ] Fix button revealed style
-- [ ] Fix styling within buttons
      ```
     var showLecture = true;
     if (showLecture == true){
@@ -38,7 +36,7 @@
     }
     ```
 - [X] Remove css styling from buttons (i.e. `style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"`) and put in the .button-revealed css (from AnKingMasterv3 note type)
-
+- [ ] Fix button revealed style
 
 <b>Please consider checking out our:</b>
 <br>
