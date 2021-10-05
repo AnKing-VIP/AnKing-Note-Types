@@ -338,10 +338,10 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   margin-top: 10px;
   font-weight: bold;
   width: 50% !important;
-  background:#ababab!important; 
-  color:black!important; 
+  background:#ababab !important; 
+  color:black !important; 
   font-weight:bold; 
-  width:50%!important;
+  width:50% !important;
 }
 
 html:not(.mobile) .button-general:hover {
@@ -358,7 +358,7 @@ html:not(.mobile) #button-ln:hover{
   background-color: #E9E9E9 !important;
 }
 
-#button-mq {
+#button-mq:not(.expanded-button) {
   color: #c26165 !important;
 }
 
