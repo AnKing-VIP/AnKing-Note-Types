@@ -52,7 +52,7 @@ html {
   background-color: transparent;
 }
 
-/* HINT REVEAL COLOR */
+/* HINT REVEAL STYLING */
 .hints { 
   color: #4297F9;
   font-size: .85rem;
@@ -63,12 +63,14 @@ html {
 #missed-questions { 
   color: red;
 }
+
 /* COLORS NIGHTMODE */
 .nightMode.card,
 .night_mode .card {
   --color: #FFFAFA;
   --background-color: #272828;
 }
+
 /* NM HINT REVEAL COLOR */
 .nightMode .hints, .night_mode .hints { 
   color: cyan;
