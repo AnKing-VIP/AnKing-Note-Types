@@ -31,15 +31,16 @@
 
 <div id="extras" hidden>{{I0}}</div>
 <div class="header">{{Header}}</div>
-<div class="io">{{Image}}</div>
-<button id="reveal-next-btn" class="button">Reveal Next</button>
-<button id="toggle-all-btn" class="button">Toggle All</button>
+<button class="dummy-btn"><div class="io">{{Image}}</div></button>
+<br>
+<button id="reveal-next-btn" class="button-general">Reveal Next</button>
+<button id="toggle-all-btn" class="button-general">Toggle All</button>
 <br>
 
 <!-- EXTRA FIELD -->
 {{#Extra}}
-<a id="link-ar" href="#" onclick="toggleHint('button-ar', 'hint-ar', 'link-ar')"></a>
-<button id="button-ar" class="button" onclick="toggleHint('button-ar', 'hint-ar')">
+<a id="link-ar" href="#" class="hint" onclick="toggleHint('button-ar', 'hint-ar', 'link-ar')"></a>
+<button id="button-ar" class="button-general" onclick="toggleHint('button-ar', 'hint-ar')">
     <img src="_Anking_v3.png">
     Extra
 </button>
@@ -51,8 +52,8 @@
 
 <!-- PERSONAL NOTES FIELD -->
 {{#Personal Notes}} 
-<a id="link-ln" href="#" onclick="toggleHint('button-ln', 'hint-ln', 'link-ln')"></a>
-<button id="button-ln" class="button" onclick="toggleHint('button-ln', 'hint-ln')" >
+<a id="link-ln" href="#" class="hint" onclick="toggleHint('button-ln', 'hint-ln', 'link-ln')"></a>
+<button id="button-ln" class="button-general" onclick="toggleHint('button-ln', 'hint-ln')" >
     <img src="_Anking_v3.png">
     Personal Notes
 </button>
@@ -64,8 +65,8 @@
 
 <!-- MISSED QUESTIONS FIELD -->
 {{#Missed Questions}}
-<a id="link-mq" href="#" onclick="toggleHint('button-mq', 'hint-mq', 'link-mq')"></a>
-<button id="button-mq" class="button" onclick="toggleHint('button-mq', 'hint-mq')">
+<a id="link-mq" href="#" class="hint" onclick="toggleHint('button-mq', 'hint-mq', 'link-mq')"></a>
+<button id="button-mq" class="button-general" onclick="toggleHint('button-mq', 'hint-mq')">
     <img src="_Anking_v3.png">
     Missed Questions
 </button>
