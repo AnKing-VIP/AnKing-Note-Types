@@ -39,7 +39,6 @@ html {
   display: none; /* ‘none’ or ‘block’ */
 }
 
-
 .mobile #tags-container {
   display: none; /* ‘none’ or ‘block’ */
 }
@@ -53,11 +52,26 @@ html {
   background-color: transparent;
 }
 
+/* HINT REVEAL COLOR */
+.hints { 
+  color: #4297F9;
+  font-size: .85rem;
+  font-style: italic; 
+}
+
+/* Missed Questions Reveal Color */
+#missed-questions { 
+  color: red;
+}
 /* COLORS NIGHTMODE */
 .nightMode.card,
 .night_mode .card {
   --color: #FFFAFA;
   --background-color: #272828;
+}
+/* NM HINT REVEAL COLOR */
+.nightMode .hints, .night_mode .hints { 
+  color: cyan;
 }
 
 /* COLOR ACCENTS FOR BOLD-ITALICS-UNDERLINE*/
