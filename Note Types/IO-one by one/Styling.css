@@ -92,6 +92,11 @@ i {
   font-size: 20px;
 }
 
+.mobile #front-info {
+  width: 90vw;
+  font-size: 4.5vw;
+}
+
 #front-info img {
   margin-bottom: 2em;
   max-width: 150px !important;
