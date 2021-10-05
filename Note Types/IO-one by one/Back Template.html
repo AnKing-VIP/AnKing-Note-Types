@@ -173,7 +173,6 @@
                         finally { toggleHint('button-ex', 'hint-ex', 'link-ex'); }
                     }
                 }
-                console.log("here")
                 return false
             })
         }
@@ -246,9 +245,9 @@
                 if (allRevealed) {
                     for (let rect of globalThis.AnkingIORects) {
                         hide.call(rect)
-                        let newActiveRect = document.querySelector(".closet-rect.is-active")
-                        activate(newActiveRect)
                     }
+                    let newActiveRect = document.querySelector(".closet-rect.is-active")
+                    activate(newActiveRect)
                 } else {
                     for (let rect of globalThis.AnkingIORects) {
                         reveal.call(rect)
@@ -277,6 +276,7 @@
 
             function hide() {
                 this.classList.remove("revealed")
+                this.removeEventListener("click", incrementalReveal)
             }
 
             function activate(rect) {
