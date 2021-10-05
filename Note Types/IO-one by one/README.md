@@ -6,7 +6,7 @@
 5. Draw your occlusions in the order you want them revealed. You want each occlusion to say 'rect1' inside of it. If you need to delete a rectangle completely, hold shift while clicking on that box.
 6. Once you have all of your occlusions made, right click on the image (don't right click over an occlusion though) and select 'accept occlusions'
 - You will see the 'I0' field auto populate. At that point you are good to add the card by clicking "Add" at the bottom
-7. When reviewing, you will see all boxes occluded at once, however the first box will be highlighted. Click or use `n` to reveal a box, and the subsequent box will become highlighted. Use `c` to reveal all at once. Continue until all boxes are revealed. You can use `h` (requires the "Hint Hotkeys" add-on instealled) or click to reveal the buttons. Use `'` to reveal all buttons at once.
+7. When reviewing, you will see all boxes occluded at once, however the first box will be highlighted. Click or use `n` to reveal a box, and the subsequent box will become highlighted. Use `,` to reveal all at once. Continue until all boxes are revealed. You can use `h` (requires the "Hint Hotkeys" add-on instealled) or click to reveal the buttons. Use `'` to reveal all buttons at once. _(These shortcuts can all be customized)_
 
 ## Screen recordings
 ### Card creation
