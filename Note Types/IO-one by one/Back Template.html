@@ -2,22 +2,27 @@
     // ##############  OCCLUSION SHORTCUTS  ##############
     // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
     var RevealIncremental = "78"; // n
-    var ToggleAll = "188"; // ,
+    var ToggleAllOcclusions = "188"; // ,
 
     // ##############  TAG SHORTCUT  ##############
     // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
     var ToggleTags = "67"; // c
 
-    // ##############  HINT SHORTCUTS  ##############
+    // ##############  BUTTON SETTINGS  ##############
     // The button shortcuts are  Alt + the number/letter the keycode stands for
     // All buttons will also open with "H" if using the Hint Hotkeys add-on 
     // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
     var Extra = '49'; // alt + 1
     var PersonalNotes = '50'; // alt + 2
     var MissedQ = '51'; // alt + 3
-    var OpenCloseAll = '222'; // '
+    var ToggleAllButtons = '222'; // '
 
-    var ScrollToHint = true;
+    var ScrollToButton = true;
+
+    // change values from false to true to have the fields revealed from the start
+    var ShowExtra = false;
+    var ShowPersonalNotes = false;
+    var ShowMissedQuestions = false;
 
     //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
     var tagID = "XXXYYYZZZ"
@@ -27,48 +32,47 @@
 <div id="extras" hidden>{{I0}}</div>
 <div class="header">{{Header}}</div>
 <div class="io">{{Image}}</div>
+<button id="reveal-next-btn" class="button">Reveal Next</button>
+<button id="toggle-all-btn" class="button">Toggle All</button>
+<br>
 
 <!-- EXTRA FIELD -->
-{{#Extra}}<a href="#" class="hint" id="hint-ar" onclick="toggleHint('button-ar', 'hint-ar')">
-    <button class="button-ar"><img src="_Anking_v3.png"> Extra</button></a>
+{{#Extra}}
+<a id="link-ar" href="#" onclick="toggleHint('button-ar', 'hint-ar', 'link-ar')"></a>
+<button id="button-ar" class="button" onclick="toggleHint('button-ar', 'hint-ar')">
+    <img src="_Anking_v3.png">
+    Extra
+</button>
+<div id="hint-ar" style="display:none;">
+    <div id="extra">{{edit:Extra}}</div>
+</div>
 {{/Extra}}
 
-<div id="button-ar" class="generalclass" style="display:none;">
-    {{#Extra}}<button onclick="toggleHint('button-ar', 'hint-ar')" class="button-ar"
-        style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img
-            src="_Anking_v3.png"> Extra</button>
-    <br>
-    <div class="hints" id="additional">{{edit:Extra}}</div>
-    {{/Extra}}
-</div>
 
 <!-- PERSONAL NOTES FIELD -->
-{{#Personal Notes}}<a href="#" class="hint" id="hint-ln" onclick="toggleHint('button-ln', 'hint-ln');">
-    <button class="button-ln"><img src="_Anking_v3.png"> Personal Notes</button></a>
+{{#Personal Notes}} 
+<a id="link-ln" href="#" onclick="toggleHint('button-ln', 'hint-ln', 'link-ln')"></a>
+<button id="button-ln" class="button" onclick="toggleHint('button-ln', 'hint-ln')" >
+    <img src="_Anking_v3.png">
+    Personal Notes
+</button>
+<div id="hint-ln" style="display:none;">
+    <div id="personal-notes">{{edit:Personal Notes}}</div>
+</div>
 {{/Personal Notes}}
 
-<div id="button-ln" class="generalclass" style="display:none;">
-    {{#Personal Notes}}<button onclick="toggleHint('button-ln', 'hint-ln')" class="button-ln"
-        style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img
-            src="_Anking_v3.png"> Personal Notes</button>
-    <br>
-    <div class="hints" id="lecture">{{edit:Personal Notes}}</div>
-    {{/Personal Notes}}
-</div>
 
 <!-- MISSED QUESTIONS FIELD -->
-{{#Missed Questions}}<a href="#" class="hint" id="hint-mq" onclick="toggleHint('button-mq', 'hint-mq');">
-    <button class="button-mq"><img src="_Anking_v3.png"> Missed Questions</button></a>
-{{/Missed Questions}}
-
-<div id="button-mq" class="generalclass" style="display:none;">
-    {{#Missed Questions}}<button onclick="toggleHint('button-mq', 'hint-mq')" class="button-mq"
-        style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img
-            src="_Anking_v3.png"> Missed Questions</button>
-    <br>
-    <div class="hints" id="missed">{{edit:Missed Questions}}</div>
-    {{/Missed Questions}}
+{{#Missed Questions}}
+<a id="link-mq" href="#" onclick="toggleHint('button-mq', 'hint-mq', 'link-mq')"></a>
+<button id="button-mq" class="button" onclick="toggleHint('button-mq', 'hint-mq')">
+    <img src="_Anking_v3.png">
+    Missed Questions
+</button>
+<div id="hint-mq" style="display:none;">
+    <div id="missed-questions">{{edit:Missed Questions}}</div>
 </div>
+{{/Missed Questions}}
 
 
 <a class="logo" href="https://www.ankingmed.com">
@@ -100,7 +104,7 @@
 
         function toggleTags() {
             var tags = document.getElementById("tags-container");
-            if(!tags) return
+            if (!tags) return
             if (tags.style.display === "none") {
                 tags.style.display = "block";
             } else {
@@ -122,44 +126,54 @@
 
     <script>
         //HINT REVEALS
-        function toggleHint(btn_id, hint_id) {
-            var button = document.getElementById(btn_id), hint = document.getElementById(hint_id)
-            if(!button) return
-            if (button.style.display == "none") {
-                button.style.display = "block"; hint.style.display = "none";
-            }
-            else {
-                button.style.display = "none"; hint.style.display = "inline-block";
-            }
-            if (ScrollToHint) {
-                hint.scrollIntoView({
-                    behavior: "smooth", // "auto" for instant scrolling
-                    block: "start",
-                    inline: "nearest"
-                });
+        function toggleHint(btn_id, hint_id, link_id) {
+            var button = document.getElementById(btn_id)
+            var hint = document.getElementById(hint_id)
+            var link = document.getElementById(link_id)
+            if (!button) return
+            if (hint.style.display == "none") {
+                button.classList.add("expanded-button")
+                hint.style.display = "block"
+                link.style.display = "none"
+                if (ScrollToButton) {
+                    hint.scrollIntoView({
+                        behavior: "smooth", // "auto" for instant scrolling
+                        block: "start",
+                        inline: "nearest"
+                    });
+                }
+            } else {
+                button.classList.remove("expanded-button")
+                hint.style.display = "none"
             }
         }
+        
+        if(ShowExtra) toggleHint('button-ar', 'hint-ar', 'link-ar')
+        if(ShowPersonalNotes) toggleHint('button-ln', 'hint-ln', 'link-ln')
+        if(ShowMissedQuestions) toggleHint('button-mq', 'hint-mq', 'link-mq')
 
         if (!globalThis.ToggleHintsListening) {
             globalThis.ToggleHintsListening = true
             document.addEventListener("keydown", (evt) => {
                 if (evt.repeat) return
                 if (evt.altKey && evt.keyCode == PersonalNotes) {
-                    toggleHint('button-ln', 'hint-ln')
+                    toggleHint('button-ln', 'hint-ln', 'link-ln')
                 }
                 if (evt.altKey && evt.keyCode == MissedQ) {
-                    toggleHint('button-mq', 'hint-mq')
+                    toggleHint('button-mq', 'hint-mq', 'link-mq')
                 }
                 if (evt.altKey && evt.keyCode == Extra) {
-                    toggleHint('button-ar', 'hint-ar')
+                    toggleHint('button-ar', 'hint-ar', 'link-ar')
                 }
-                if (evt.keyCode == OpenCloseAll) {
-                    try { toggleHint('button-mq', 'hint-mq'); }
+                if (evt.keyCode == ToggleAllButtons) {
+                    try { toggleHint('button-mq', 'hint-mq', 'link-mq'); }
                     finally {
-                        try { toggleHint('button-ln', 'hint-ln'); }
-                        finally { toggleHint('button-ar', 'hint-ar'); }
+                        try { toggleHint('button-ln', 'hint-ln', 'link-ln'); }
+                        finally { toggleHint('button-ar', 'hint-ar', 'link-ar'); }
                     }
                 }
+                console.log("here")
+                return false
             })
         }
     </script>
@@ -170,6 +184,9 @@
 
         function setupIncrementalIO() {
             var observer = new MutationObserver(() => {
+                document.getElementById("toggle-all-btn").addEventListener("click", toggleAll)
+                document.getElementById("reveal-next-btn").addEventListener("click", toggleNext)
+
                 let rect = document.querySelector(".closet-rect.is-active")
                 if (rect) {
                     activate(rect)
@@ -183,25 +200,10 @@
                             if (evt.repeat) return
                             evt = evt || window.event
                             if (evt.keyCode == RevealIncremental) {
-                                let active = document.querySelector(".closet-rect.is-highlighted")
-                                if (active) incrementalReveal.call(active)
+                                toggleNext()
                             }
-                            else if (evt.keyCode == ToggleAll) {
-                                let allRevealed = true
-                                for (let rect of globalThis.AnkingIORects) {
-                                    if (!rect.classList.contains("revealed")) allRevealed = false
-                                }
-                                if (allRevealed) {
-                                    for (let rect of globalThis.AnkingIORects) {
-                                        hide.call(rect)
-                                        let newActiveRect = document.querySelector(".closet-rect.is-active")
-                                        activate(newActiveRect)
-                                    }
-                                } else {
-                                    for (let rect of globalThis.AnkingIORects) {
-                                        reveal.call(rect)
-                                    }
-                                }
+                            else if (evt.keyCode == ToggleAllOcclusions) {
+                                toggleAll()
                             }
                         })
                         globalThis.AnKingIOListening = true
@@ -229,9 +231,28 @@
                 subtree: true
             })
 
-            function activate(rect) {
-                rect.classList.add("is-highlighted")
-                rect.addEventListener("click", incrementalReveal)
+
+            function toggleNext() {
+                let active = document.querySelector(".closet-rect.is-highlighted")
+                if (active) incrementalReveal.call(active)
+            }
+
+            function toggleAll() {
+                let allRevealed = true
+                for (let rect of globalThis.AnkingIORects) {
+                    if (!rect.classList.contains("revealed")) allRevealed = false
+                }
+                if (allRevealed) {
+                    for (let rect of globalThis.AnkingIORects) {
+                        hide.call(rect)
+                        let newActiveRect = document.querySelector(".closet-rect.is-active")
+                        activate(newActiveRect)
+                    }
+                } else {
+                    for (let rect of globalThis.AnkingIORects) {
+                        reveal.call(rect)
+                    }
+                }
             }
 
             function incrementalReveal() {
@@ -256,6 +277,12 @@
             function hide() {
                 this.classList.remove("revealed")
             }
+
+            function activate(rect) {
+                rect.classList.add("is-highlighted")
+                rect.addEventListener("click", incrementalReveal)
+            }
+
         }
         setupIncrementalIO()
 
@@ -297,8 +324,8 @@
             globalThis.ankiPlatform === "desktop"
                 ? ""
                 : globalThis.AnkiDroidJS
-                ? "https://appassets.androidplatform.net"
-                : ".";
+                    ? "https://appassets.androidplatform.net"
+                    : ".";
 
         var closetPromise = import(`${getAnkiPrefix()}/__closet-0.5.3.js`);
         closetPromise
