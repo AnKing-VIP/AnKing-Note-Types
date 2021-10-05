@@ -331,7 +331,7 @@ kbd:nth-of-type(10n+0) {
   margin-left: 0px;
 }
 
-.button {
+.button-general {
   outline: 0;
   border-radius: 0.12em;
   border: 1px solid #525253 !important;
@@ -339,7 +339,9 @@ kbd:nth-of-type(10n+0) {
   text-align: center;
   display: inline-block;
   font-size: 9.5px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  %box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #424242;
+  color: #AFAFAF;
 }
 
 .expanded-button {
@@ -352,8 +354,8 @@ kbd:nth-of-type(10n+0) {
   width: 50% !important;
 }
 
-.button:hover {
-  color: #363638 !important;
+.button-general:hover {
+  color: #363638;
   cursor: default;
 }
 
@@ -382,3 +384,31 @@ kbd:nth-of-type(10n+0) {
 #button-mq:hover {
   background-color: #FA8072 !important;
 }
+
+.dummy-btn {
+	background: none !important;
+	color: inherit !important;
+	border: none !important;
+	padding: 0 !important;
+	font: inherit !important;
+	cursor: inherit !important;
+	outline: inherit !important;
+}
+
+#reveal-next-btn {
+  color: #AFAFAF !important;
+}
+
+#reveal-next-btn:hover {
+  background-color: #746f6f !important;
+}
+
+#toggle-all-btn {
+  color: #AFAFAF !important;
+}
+
+#toggle-all-btn:hover {
+  background-color: #746f6f !important;
+}
+
+.mobile .button-general { font-size: 18px; padding: 9px 7px; }
