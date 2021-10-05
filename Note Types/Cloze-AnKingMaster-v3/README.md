@@ -4,7 +4,7 @@
 
 ## Features
 - <b>Invisible countdown timer</b> on the front
-  <details><summary>Set timer length <i>(on front template)</i></summary>
+  <details><summary>Set timer length <i>(Front template)</i></summary>
     <p>
 
     ```
@@ -16,7 +16,7 @@
     ```
     </p>
   </details>
-  <details><summary>Turn timer off <i>(in styling)</i></summary>
+  <details><summary>Turn timer off <i>(Styling)</i></summary>
     <p>
 
     ```
@@ -25,8 +25,9 @@
     ```
     </p>
   </details>
+
 - <b>Clickable tags</b> (must have <a href="">Clickable Tags</a> add-on installed for them to be clickable, but they will still display without the add-on)
-  <details><summary>Turn on/off by default and adjust for compatibility with No Distractions add-on <i>(in styling)</i></summary>
+  <details><summary>Turn on/off by default and adjust for compatibility with No Distractions add-on <i>(Styling)</i></summary>
     <p>
 
     ```
@@ -38,30 +39,175 @@
     ```
     </p>
   </details>
-  
-    - toggle on/off with the shortcut `c`
+  <details><summary>Toggle on/off with shortcut <i>(Back template)</i></summary>
+    <p>
+
+    Default is `c`
+    ```
+    // ##############  TAG SHORTCUT  ##############
+    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
+    var ToggleTags = "67"; // c
+    ```
+    </p>
+  </details>
 
 - <b>Editable fields</b> - (For use with the <a href="">Edit Field During Review (Cloze)</a> add-on)
+  <details><summary>To enable editable fields <i>(Back template)</i></summary>
+    <p>
+
+    1. Make sure that the correct add-on is installed (NOT `Edit Field During Review`)
+    2. The config of `Edit Field During Review (Cloze)` allows for click to edit or ctrl+click to edit
+    3. In order to make a field editable, change `{{Personal Notes}}` to `{{edit:Personal Notes}}`. 
+    <u>For cloze fields:</u>
+    Change `<div class="editcloze">{{cloze:Text}}</div>` to `<div class="editcloze">{{edit:cloze:Text}}</div>`
+    Do NOT change `<div class="clozefield">{{cloze:Text}}</div>` (This is set for mobile to avoid errors)
+
+    </p>
+  </details>
 - <b>Wikipedia searches in reviewer</b>
   - Highlight text and then use the shortcut `w` (if nothing shows up, it's because your search returned no results in wikipedia)
 - <b>Field shortcuts and/or hint hotkeys add-on</b> (need Refocous Cards when Reviewing add-on unless on Anki 2.1.36+)
-- <b>Auto scroll to hint that is opened</b> (can be toggled off)
+  - The Hint Hotkeys add-on will open buttons with `h`
+  <details><summary>Individual shortcuts can be customized <i>(Back template)</i></summary>
+    <p>
+
+    ```
+    // ##############  BUTTON REVEAL SHORTCUTS  ##############
+    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
+    // The shortcuts are  Alt  +  the number/letter below
+    // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
+
+    var lecturenotes = '49'; // alt + 1
+    var missedQ = '50'; // alt + 2
+    var pathoma = '51'; // alt + 3
+    var bnb = '52'; // alt + 4
+    var firstaid = '53'; // alt + 5
+    var sketchy = '54'; // alt + 6
+    var pixorize = '55'; // alt + 7
+    var physeo = '56'; // alt + 8
+	  var ome= '112'; // alt + f1
+    var additional = '57'; // alt + 9
+    var OpenCloseAll = '222'; // '
+    ```
+    </p>
+  </details>
+- <b>Auto scroll to button that is opened</b> (can be toggled off)
+  <details><summary>Turn on/off by default and adjust for compatibility with No Distractions add-on <i>(in styling)</i></summary>
+    <p>
+
+    Change `true` to `false` to turn off the auto scroll
+    ```
+    var ScrollToButton = true;
+    ```
+    </p>
+  </details>
 - <b>Auto open hints</b>:
-  -  <img src="/screenshots/Auto-open-hint.jpg" style="width:600px">
-- <b>TTS</b>
-- <b>Med Shamim styling available</b>
-- <b>Images will zoom with click (used to be hover)</b>
-- <b>Highlight any tags containing the word "xxxyyyzzz"</b>
+    <details><summary>Version 10 <i>(Back template)</i></summary>
+    <p>
+
+    <img src="/screenshots/Auto-open-hint.jpg" style="width:600px">
+    </p>
+  </details>
+  <details><summary>Version 11 <i>(Back template)</i></summary>
+    <p>
+
+    ```
+    // change values from false to true to have the fields revealed from the start
+    var ShowLectureNotes = false;
+    var ShowMissedQuestions = false;
+    var ShowPathoma = false;
+    var ShowBoards = false;
+    var ShowFirstAid = false;
+    var ShowSketchy = false;
+    var ShowPixorize = false;
+    var ShowPhyseo = false;
+    var ShowFirstAid = false;
+    var ShowOME = false;
+    var ShowAdditional = false;
+    ```
+    </p>
+  </details>
+- <b>TTS</b> - watch <a href="https://www.youtube.com/watch?v=5QFDrY7PDUk&t=4s">this video</a> for more details
+  <details><summary>How to enable <i>(Front and back template)</i></summary>
+    <p>
+
+    ## Front template:
+    ```
+    <!-- ##############  Text-to-speech  ##############
+    replace the arrows/dashes from the statement below with double brackets-->
+
+    <!--tts en_US voices=Apple_Samantha speed=1.4:cloze:Text-->
+    ```
+    <u>change to look like:</u>
+    ```
+    <!-- ##############  Text-to-speech  ##############
+    replace the arrows/dashes from the statement below with double brackets-->
+
+    {{tts en_US voices=Apple_Samantha speed=1.4:cloze:Text}}
+    ```
+    ## Back template:
+    ```
+    <!-- ##############  TEXT-TO-SPEECH ##############
+    replace the arrows/dashes from the statement below with double brackets-->
+
+    <!--tts en_US voices=Apple_Samantha speed=1.4:cloze-only:Text-->
+    ```
+    <u>change to look like:</u>
+    ```
+    <!-- ##############  TEXT-TO-SPEECH ##############
+    replace the arrows/dashes from the statement below with double brackets-->
+
+    {{tts en_US voices=Apple_Samantha speed=1.4:cloze-only:Text}}
+    ```
+    </p>
+  </details>
+- <b>Med Shamim styling available</b> <a href="/Note Types/Cloze-AnKingMaster-v3/Shamim Customize styling.css">here</a>
+  <details><summary>Replace the customizable portion with the contents of the link above <i>(in styling)</i></summary>
+    <p>
+
+    <u>The customizable portion begins and ends as shown below:</u>
+    ```
+    /*~~~~~~~~USER CUSTOMIZATION START~~~~~~~~~*/
+    ...
+    contents
+    ...
+    /* ~~~~~~~~END CUSTOMIZATION~~~~~~~~ */
+    ```
+    </p>
+  </details>
+- <b>Images will zoom with click (or hover)</b>
+  <details><summary>Change the transform scale or method <i>(Back Template)</i></summary>
+    <p>
+
+    `active` will cause images to zoom on click. `hover` will cause images to zoom on hover 
+    ```
+    /*Image hover zoom*/
+    #extra img:active, #lecture img:active, #missed img:active, #pathoma img:active, #bnb img:active { transform:scale(1.2); }
+    #firstaid img:active, #sketchy img:active, #pixorize img:active, #physeo img:active, #additional img:active { transform:scale(1.5); }
+    ```
+    </p>
+  </details>
+- <b>Highlight all tags with a red background when there is a tag containing the text "xxxyyyzzz"</b>
+  <details><summary>Change tagID <i>(Front and Back Template)</i></summary>
+    <p>
+
+    ```
+    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+    var tagID = "XXXYYYZZZ"
+    ```
+    </p>
+  </details>
 
 ## Changelog:
-AnKingMaster-v1 notetype was introduced to provide the same note for all cards in the AnKing Overhaul Deck for Step 1 and Step 2. It combined fields from the AnKingMed and AnKingSketchy Note Types
-AnKingMaster-v2 note type added the Physeo and Pixorize fields
-AnKingMaster-v3 note type added the OME field
+<b>AnKingMaster-v1</b> notetype was introduced to provide the same note for all cards in the AnKing Overhaul Deck for Step 1 and Step 2. It combined fields from the AnKingMed and AnKingSketchy Note Types
+<b>AnKingMaster-v2</b> note type added the Physeo and Pixorize fields
+<b>AnKingMaster-v3</b> note type added the OME field
+Detailed changelog over time has been noted <a href="https://www.ankipalace.com/deck-updates-log">here</a>
 
 2021-09-03: Initial Release on Github
 
 ## TODO
-- [ ] upload changes made over time
+- [x] upload changes made over time
 - [X] upload 2 card type video links
 - [X] instructions on features including wikipedia, c to reveal tags, alt+# to reveal things, H for hint hotkeys, how to reveal hints automatically, etc
 - [ ] Update buttons script and html to new version
