@@ -359,12 +359,12 @@ kbd:nth-of-type(10n+0) {
   cursor: default;
 }
 
-#button-ar {
+#button-ex {
   background-color: #424242;
   color: #AFAFAF !important;
 }
 
-#button-ar:hover {
+#button-ex:hover {
   background-color: #E9E9E9 !important;
 }
 

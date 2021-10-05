@@ -39,12 +39,12 @@
 
 <!-- EXTRA FIELD -->
 {{#Extra}}
-<a id="link-ar" href="#" class="hint" onclick="toggleHint('button-ar', 'hint-ar', 'link-ar')"></a>
-<button id="button-ar" class="button-general" onclick="toggleHint('button-ar', 'hint-ar')">
+<a id=link-ex" href="#" class="hint" onclick="toggleHint('button-ex', 'hint-ex', link-ex')"></a>
+<button id="button-ex" class="button-general" onclick="toggleHint('button-ex', 'hint-ex')">
     <img src="_Anking_v3.png">
     Extra
 </button>
-<div id="hint-ar" style="display:none;">
+<div id="hint-ex" style="display:none;">
     <div id="extra">{{edit:Extra}}</div>
 </div>
 {{/Extra}}
@@ -149,7 +149,8 @@
             }
         }
         
-        if(ShowExtra) toggleHint('button-ar', 'hint-ar', 'link-ar')
+        if(ShowExtra) toggleHint('button-ex
+    ', 'hint-ex', link-ex')
         if(ShowPersonalNotes) toggleHint('button-ln', 'hint-ln', 'link-ln')
         if(ShowMissedQuestions) toggleHint('button-mq', 'hint-mq', 'link-mq')
 
@@ -164,13 +165,15 @@
                     toggleHint('button-mq', 'hint-mq', 'link-mq')
                 }
                 if (evt.altKey && evt.keyCode == Extra) {
-                    toggleHint('button-ar', 'hint-ar', 'link-ar')
+                    toggleHint('button-ex
+                ', 'hint-ex', link-ex')
                 }
                 if (evt.keyCode == ToggleAllButtons) {
                     try { toggleHint('button-mq', 'hint-mq', 'link-mq'); }
                     finally {
                         try { toggleHint('button-ln', 'hint-ln', 'link-ln'); }
-                        finally { toggleHint('button-ar', 'hint-ar', 'link-ar'); }
+                        finally { toggleHint('button-ex
+                    ', 'hint-ex', link-ex'); }
                     }
                 }
                 console.log("here")
