@@ -329,7 +329,7 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
 }
 
 html:not(.mobile) .button-general:hover {
-  color: #363638;
+  color: #363638 !important;
   cursor: default;
   background-color: #746f6f !important;
 }
@@ -339,7 +339,7 @@ html:not(.mobile) #button-ex:hover{
 }
 
 html:not(.mobile) #button-ln:hover{
-  background-color: #746f6f !important;
+  background-color: #E9E9E9 !important;
 }
 
 #button-mq {
@@ -348,6 +348,7 @@ html:not(.mobile) #button-ln:hover{
 
 html:not(.mobile) #button-mq:hover{
   background-color: #FA8072 !important;
+  color: black!important;
 }
 
 .dummy-btn {
