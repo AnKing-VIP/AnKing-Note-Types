@@ -26,16 +26,16 @@
 - [X] Fix on mobile (add a button that reveals them so you don't have to type? Remove the ability to tap them?)
 - [X] Fix reveal code shortcuts to keycodes so there are more options (current method for incremental and reveal all only works on every other card)
 - [X] Fix reveal code for the clickable tags reveal (similar problem as above)
-- [ ] Add feature to put the occlusions back after revealing all of them.  Need to update for mobile. Add back reset button?
-- [ ] scroll to hint not working (scrolls when closing button instead of opening)
-- [ ] Simple way to auto-reveal buttons instead of complicated method. (Make a variable and set to true/false and if true auto trigger opening the field or something like that?)
+- [X] Add feature to put the occlusions back after revealing all of them.  Need to update for mobile. Add back reset button?
+- [X] scroll to hint not working (scrolls when closing button instead of opening)
+- [X] Simple way to auto-reveal buttons instead of complicated method. (Make a variable and set to true/false and if true auto trigger opening the field or something like that?)
      ```
     var showLecture = true;
     if (showLecture == true){
       toggleHint('button-ln', 'hint-ln');
     }
     ```
-- [ ] Remove css styling from buttons (i.e. `style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"`) and put in the .button-revealed css (from AnKingMasterv3 note type)
+- [X] Remove css styling from buttons (i.e. `style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"`) and put in the .button-revealed css (from AnKingMasterv3 note type)
 
 
 <b>Please consider checking out our:</b>
