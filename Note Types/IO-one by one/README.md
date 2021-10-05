@@ -1,4 +1,4 @@
-<b>Instructions:</b>
+## Instructions:
 1. Download Closet For Anki addon (272311064), close out of anki, restart anki
 2. Download card template here: <a href="https://github.com/AnKingMed/AnKing-Note-Types/blob/master/Apkg/IO-one_by_one.apkg">IO-one by one</a>
 3. When creating the new I/O card, make sure you are using the note template called `IO-one by one`. Paste your image into the 'image' field.
@@ -8,11 +8,13 @@
 - You will see the 'I0' field auto populate. At that point you are good to add the card by clicking "Add" at the bottom
 7. When reviewing, you will see all boxes occluded at once, however the first box will be highlighted. Click or use `n` to reveal a box, and the subsequent box will become highlighted. Use `c` to reveal all at once. Continue until all boxes are revealed. You can use `h` (requires the "Hint Hotkeys" add-on instealled) or click to reveal the buttons. Use `'` to reveal all buttons at once.
 
-### Screen recording
+## Screen recordings
+## Card creation
+<img src="/screenshots/Creating IO one by one.gif">
+## Function
 <img src="/screenshots/IO one by one new.gif">
 
-<b>Changelog:</b>
-  <br>
+### Changelog:
 2021-09-05: Initial Release on <a href="https://www.reddit.com/r/Anki/comments/pia8e5/how_to_incrementally_reveal_an_image_occlusion/?utm_source=share&utm_medium=ios_app&utm_name=iossmf">reddit</a>
 
 ## TODO
