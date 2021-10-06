@@ -7,11 +7,6 @@ replace the arrows/dashes from the statement below with double brackets-->
 <!--tts en_US voices=Apple_Samantha speed=1.4:cloze:Text-->
 
 
-<script>
-    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
-    var tagID = "XXXYYYZZZ"
-</script>
-
 
 <div class="timer" id="s2"></div>
 <script>
@@ -76,8 +71,8 @@ replace the arrows/dashes from the statement below with double brackets-->
          tagContainer.innerHTML = newTagContent.innerHTML;
          tagContainer.style.cursor = "default";
         }
-        if (tagContainer.innerHTML.indexOf(tagID) != -1) {
-        tagContainer.style.backgroundColor = "rgba(251,11,11,.2)";
+        if (tagContainer.innerHTML.indexOf("Missed") != -1) {
+        tagContainer.style.backgroundColor = "";
         } else {
         tagContainer.style.display = "none";
         }

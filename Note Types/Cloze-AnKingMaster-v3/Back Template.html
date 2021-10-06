@@ -26,7 +26,7 @@
 			-change below (not above) to  "edit:cloze:Text" for editable field, 
 				but be sure to have the correct add-on installed-->
 
-<div class="editcloze">{{cloze:Text}}</div>
+<div class="editcloze">{{edit:cloze:Text}}</div>
 
 
 <!-- ##############  TEXT-TO-SPEECH ##############
@@ -42,47 +42,47 @@ replace the arrows/dashes from the statement below with double brackets-->
 For instructions on how to show a field automatically,  visit www.ankingmed.com/faq and type "show hint" into the search bar -->
 
 <!-- OME AUTO OPEN FIELD -->
-<div class="banner-ome">{{#OME}}{{OME}}{{/OME}}</div>
+<div style="max-width:300px; display:block; margin-left:auto; margin-right: auto;">{{#OME}}{{OME}}{{/OME}}</div>
 
 <!-- LECTURE NOTES FIELD -->
-{{#Lecture Notes}}<a href="#" class="hint" id="hint-ln" onclick="this.style.display='none'; RevealButton('button-ln', 'hint-ln', 'button-ln'); return false;">
+{{#Lecture Notes}}<a href="#" class="hint" id="hint-ln" onclick="this.style.display='none'; myFunction('button-ln', 'hint-ln', 'button-ln'); return false;">
         <button class="button-ln"><img src="_Anking_v3.png"> Lecture Notes</button></a>{{/Lecture Notes}}
 
 <div id="button-ln" class="generalclass" style="display:none;">
-    {{#Lecture Notes}}<button onclick="document.getElementById('hint-ln').style.display='inline-block'; RevealButton('button-ln', 'hint-ln', 'button-ln')" class="button-ln button-revealed"><img src="_Anking_v3.png"> Lecture Notes</button>
+    {{#Lecture Notes}}<button onclick="document.getElementById('hint-ln').style.display='inline-block'; myFunction('button-ln', 'hint-ln', 'button-ln')" class="button-ln" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_Anking_v3.png"> Lecture Notes</button>
         <br>
         <div class="hints" id="lecture">{{edit:Lecture Notes}}</div>
     {{/Lecture Notes}}</div>
 
 
 <!-- MISSED QUESTIONS FIELD -->
-{{#Missed Questions}}<a href="#" class="hint" id="hint-mq" onclick="this.style.display='none'; RevealButton('button-mq', 'hint-mq', 'button-mq'); return false;">
+{{#Missed Questions}}<a href="#" class="hint" id="hint-mq" onclick="this.style.display='none'; myFunction('button-mq', 'hint-mq', 'button-mq'); return false;">
         <button class="button-mq"><img src="_Anking_v3.png"> Missed Questions</button></a>{{/Missed Questions}}
 
 <div id="button-mq" class="generalclass" style="display:none;">
-    {{#Missed Questions}}<button onclick="document.getElementById('hint-mq').style.display='inline-block'; RevealButton('button-mq', 'hint-mq', 'button-mq')" class="button-mq button-revealed"><img src="_Anking_v3.png"> Missed Questions</button>
+    {{#Missed Questions}}<button onclick="document.getElementById('hint-mq').style.display='inline-block'; myFunction('button-mq', 'hint-mq', 'button-mq')" class="button-mq" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_Anking_v3.png"> Missed Questions</button>
         <br>
         <div class="hints" id="missed">{{edit:Missed Questions}}</div>
     {{/Missed Questions}}</div>
 
 
 <!-- PATHOMA FIELD -->
-{{#Pathoma}}<a href="#" class="hint" id="hint-pat" onclick="this.style.display='none'; RevealButton('button-pat', 'hint-pat', 'button-pat'); return false;">
+{{#Pathoma}}<a href="#" class="hint" id="hint-pat" onclick="this.style.display='none'; myFunction('button-pat', 'hint-pat', 'button-pat'); return false;">
         <button class="button-pat"><img src="_pathoma.icon.png"></button></a>{{/Pathoma}}
 
 <div id="button-pat" class="generalclass" style="display:none;">
-    {{#Pathoma}}<button onclick="document.getElementById('hint-pat').style.display='inline-block'; RevealButton('button-pat', 'hint-pat', 'button-pat')" class="button-pat button-revealed"><img src="_pathoma.icon.png"></button>
+    {{#Pathoma}}<button onclick="document.getElementById('hint-pat').style.display='inline-block'; myFunction('button-pat', 'hint-pat', 'button-pat')" class="button-pat" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_pathoma.icon.png"></button>
         <br>
         <div class="hints" id="pathoma">{{edit:Pathoma}}</div>
     {{/Pathoma}}</div>
 
 
 <!-- BOARDS AND BEYOND FIELD -->
-{{#Boards and Beyond}}<a href="#" class="hint" id="hint-bb" onclick="this.style.display='none'; RevealButton('button-bb', 'hint-bb', 'button-bb'); return false;">
+{{#Boards and Beyond}}<a href="#" class="hint" id="hint-bb" onclick="this.style.display='none'; myFunction('button-bb', 'hint-bb', 'button-bb'); return false;">
         <button class="button-bb"><img src="_b&b.icon.png"> Boards and Beyond</button></a>{{/Boards and Beyond}}
 
 <div id="button-bb" class="generalclass" style="display:none;">
-    {{#Boards and Beyond}}<button onclick="document.getElementById('hint-bb').style.display='inline-block'; RevealButton('button-bb', 'hint-bb', 'button-bb')" class="button-bb button-revealed"><img src="_b&b.icon.png"> Boards and Beyond</button>
+    {{#Boards and Beyond}}<button onclick="document.getElementById('hint-bb').style.display='inline-block'; myFunction('button-bb', 'hint-bb', 'button-bb')" class="button-bb" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_b&b.icon.png"> Boards and Beyond</button>
         <br>
         <div class="hints" id="bnb">{{edit:Boards and Beyond}}</div>
     {{/Boards and Beyond}}</div>
@@ -96,65 +96,65 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
 
 
 <!-- FIRST AID FIELD -->
-{{#First Aid}}<a href="#" class="hint" id="hint-fa" onclick="this.style.display='none'; RevealButton('button-fa', 'hint-fa', 'button-fa'); return false;">
+{{#First Aid}}<a href="#" class="hint" id="hint-fa" onclick="this.style.display='none'; myFunction('button-fa', 'hint-fa', 'button-fa'); return false;">
         <button class="button-fa"><img src="_first-aid.icon_v2.1.png">First Aid</button></a>{{/First Aid}}
 
 <div id="button-fa" class="generalclass" style="display:none;">
-    {{#First Aid}}<button onclick="document.getElementById('hint-fa').style.display='inline-block'; RevealButton('button-fa', 'hint-fa', 'button-fa')" class="button-fa button-revealed"><img src="_first-aid.icon_v2.1.png">First Aid</button>
+    {{#First Aid}}<button onclick="document.getElementById('hint-fa').style.display='inline-block'; myFunction('button-fa', 'hint-fa', 'button-fa')" class="button-fa" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_first-aid.icon_v2.1.png">First Aid</button>
         <div class="hints" id="firstaid">{{edit:First Aid}}</div>
     {{/First Aid}}</div>
 
 
 <!-- SKETCHY FIELD -->
-{{#Sketchy}}<a href="#" class="hint" id="hint-sketchy" onclick="this.style.display='none'; RevealButton('button-sketchy', 'hint-sketchy', 'button-sketchy'); return false;">
+{{#Sketchy}}<a href="#" class="hint" id="hint-sketchy" onclick="this.style.display='none'; myFunction('button-sketchy', 'hint-sketchy', 'button-sketchy'); return false;">
         <button class="button-sketchy"><img src="_sketchy.icon.png"> Sketchy</button></a>{{/Sketchy}}
 
 <div id="button-sketchy" class="generalclass" style="display:none;">
-    {{#Sketchy}}<button onclick="document.getElementById('hint-sketchy').style.display='inline-block'; RevealButton('button-sketchy', 'hint-sketchy', 'button-sketchy')" class="button-sketchy button-revealed"><img src="_sketchy.icon.png"> Sketchy</button>
+    {{#Sketchy}}<button onclick="document.getElementById('hint-sketchy').style.display='inline-block'; myFunction('button-sketchy', 'hint-sketchy', 'button-sketchy')" class="button-sketchy" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_sketchy.icon.png"> Sketchy</button>
         <br>
         <div class="hints" id="sketchy">{{edit:Sketchy}}</div>
     {{/Sketchy}}</div>
 
 
 <!-- PIXORIZE FIELD -->
-{{#Pixorize}}<a href="#" class="hint" id="hint-pixorize" onclick="this.style.display='none'; RevealButton('button-pixorize', 'hint-pixorize', 'button-pixorize'); return false;">
+{{#Pixorize}}<a href="#" class="hint" id="hint-pixorize" onclick="this.style.display='none'; myFunction('button-pixorize', 'hint-pixorize', 'button-pixorize'); return false;">
         <button class="button-pixorize"><img src="_pixorize.png"> Pixorize</button></a>{{/Pixorize}}
 
 <div id="button-pixorize" class="generalclass" style="display:none;">
-    {{#Pixorize}}<button onclick="document.getElementById('hint-pixorize').style.display='inline-block'; RevealButton('button-pixorize', 'hint-pixorize', 'button-pixorize')" class="button-pixorize button-revealed"><img src="_pixorize.png"> Pixorize</button>
+    {{#Pixorize}}<button onclick="document.getElementById('hint-pixorize').style.display='inline-block'; myFunction('button-pixorize', 'hint-pixorize', 'button-pixorize')" class="button-pixorize" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_pixorize.png"> Pixorize</button>
         <br>
         <div class="hints" id="pixorize">{{edit:Pixorize}}</div>
     {{/Pixorize}}</div>
 
 
 <!-- PHYSEO FIELD -->
-{{#Physeo}}<a href="#" class="hint" id="hint-physeo" onclick="this.style.display='none'; RevealButton('button-physeo', 'hint-physeo', 'button-physeo'); return false;">
+{{#Physeo}}<a href="#" class="hint" id="hint-physeo" onclick="this.style.display='none'; myFunction('button-physeo', 'hint-physeo', 'button-physeo'); return false;">
         <button class="button-physeo"><img src="_physeologo.icon.png"></button></a>{{/Physeo}}
 
 <div id="button-physeo" class="generalclass" style="display:none;">
-    {{#Physeo}}<button onclick="document.getElementById('hint-physeo').style.display='inline-block'; RevealButton('button-physeo', 'hint-physeo', 'button-physeo')" class="button-physeo button-revealed"><img src="_physeologo.icon.png"></button>
+    {{#Physeo}}<button onclick="document.getElementById('hint-physeo').style.display='inline-block'; myFunction('button-physeo', 'hint-physeo', 'button-physeo')" class="button-physeo" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_physeologo.icon.png"></button>
         <br>
         <div class="hints" id="physeo">{{edit:Physeo}}</div>
     {{/Physeo}}</div>
 
 
 <!-- OME FIELD (CLOSED BY DEFAULT) 
-{{#OME}}<a href="#" class="hint" id="hint-ome" onclick="this.style.display='none'; RevealButton('button-ome', 'hint-ome', 'button-ome'); return false;">
+{{#OME}}<a href="#" class="hint" id="hint-ome" onclick="this.style.display='none'; myFunction('button-ome', 'hint-ome', 'button-ome'); return false;">
     <button class="button-ome"><img src="_omelogo.icon.png"> OnlineMedEd</button></a>{{/OME}}
 
 <div id="button-ome" class="generalclass" style="display:none;">
-{{#OME}}<button onclick="document.getElementById('hint-ome').style.display='inline-block'; RevealButton('button-ome', 'hint-ome', 'button-ome')" class="button-ome button-revealed"><img src="_omelogo.icon.png"> OnlineMedEd</button>
+{{#OME}}<button onclick="document.getElementById('hint-ome').style.display='inline-block'; myFunction('button-ome', 'hint-ome', 'button-ome')" class="button-ome" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_omelogo.icon.png"> OnlineMedEd</button>
     <br>
     <div class="hints" id="ome">{{edit:OME}}</div>
 {{/OME}}</div>
 -->
 
 <!-- ADDITIONAL RESOURCES FIELD -->
-{{#Additional Resources}}<a href="#" class="hint" id="hint-ar" onclick="this.style.display='none'; RevealButton('button-ar', 'hint-ar', 'button-ar'); return false;">
+{{#Additional Resources}}<a href="#" class="hint" id="hint-ar" onclick="this.style.display='none'; myFunction('button-ar', 'hint-ar', 'button-ar'); return false;">
         <button class="button-ar"><img src="_Anking_v3.png"> Additional Resources</button></a>{{/Additional Resources}}
 
 <div id="button-ar" class="generalclass" style="display:none;">
-    {{#Additional Resources}}<button onclick="document.getElementById('hint-ar').style.display='inline-block'; RevealButton('button-ar', 'hint-ar', 'button-ar')" class="button-ar button-revealed><img src="_Anking_v3.png"> Additional Resources</button>
+    {{#Additional Resources}}<button onclick="document.getElementById('hint-ar').style.display='inline-block'; myFunction('button-ar', 'hint-ar', 'button-ar')" class="button-ar" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_Anking_v3.png"> Additional Resources</button>
         <br>
         <div class="hints" id="additional">{{edit:Additional Resources}}</div>
     {{/Additional Resources}}</div>
@@ -166,7 +166,7 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
 
 <script>
     //HINT REVEALS
-    function RevealButton(divid, id, divid) {
+    function myFunction(divid, id, divid) {
     var x = document.getElementById(divid), y = document.getElementById(id), z = document.getElementById(divid);
     if (x.style.display == "none")
     {
@@ -185,37 +185,37 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
       document.onkeydown = function(evt) {
        evt = evt || window.event;
           if (evt.altKey && evt.keyCode == lecturenotes) {
-              RevealButton('button-ln', 'hint-ln', 'button-ln')}  
+              myFunction('button-ln', 'hint-ln', 'button-ln')}  
           if (evt.altKey && evt.keyCode == missedQ) {
-              RevealButton('button-mq', 'hint-mq', 'button-mq')}
+              myFunction('button-mq', 'hint-mq', 'button-mq')}
           if (evt.altKey && evt.keyCode == pathoma) {
-              RevealButton('button-pat', 'hint-pat', 'button-pat')}
+              myFunction('button-pat', 'hint-pat', 'button-pat')}
           if (evt.altKey && evt.keyCode == bnb) {
-              RevealButton('button-bb', 'hint-bb', 'button-bb')}
+              myFunction('button-bb', 'hint-bb', 'button-bb')}
           if (evt.altKey && evt.keyCode == firstaid) {
-              RevealButton('button-fa', 'hint-fa', 'button-fa')}
+              myFunction('button-fa', 'hint-fa', 'button-fa')}
           if (evt.altKey && evt.keyCode == sketchy) {
-              RevealButton('button-sketchy', 'hint-sketchy', 'button-sketchy')}
+              myFunction('button-sketchy', 'hint-sketchy', 'button-sketchy')}
           if (evt.altKey && evt.keyCode == pixorize) {
-              RevealButton('button-pixorize', 'hint-pixorize', 'button-pixorize')}
+              myFunction('button-pixorize', 'hint-pixorize', 'button-pixorize')}
           if (evt.altKey && evt.keyCode == physeo) {
-              RevealButton('button-physeo', 'hint-physeo', 'button-physeo')}
+              myFunction('button-physeo', 'hint-physeo', 'button-physeo')}
 		  if (evt.altKey && evt.keyCode == ome) {
-              RevealButton('button-ome', 'hint-ome', 'button-ome')}
+              myFunction('button-ome', 'hint-ome', 'button-ome')}
           if (evt.altKey && evt.keyCode == additional) {
-              RevealButton('button-ar', 'hint-ar', 'button-ar')}
+              myFunction('button-ar', 'hint-ar', 'button-ar')}
       
           if (evt.keyCode == OpenCloseAll) {
-          try{RevealButton('button-ar', 'hint-ar', 'button-ar');}
-          finally{try{RevealButton('button-ome', 'hint-ome', 'button-ome');}
-          finally{try{RevealButton('button-physeo', 'hint-physeo', 'button-physeo');}
-          finally{try{RevealButton('button-pixorize', 'hint-pixorize', 'button-pixorize');}
-          finally{try{RevealButton('button-sketchy', 'hint-sketchy', 'button-sketchy');}
-          finally{try{RevealButton('button-fa', 'hint-fa', 'button-fa');}
-          finally{try{RevealButton('button-bb', 'hint-bb', 'button-bb');}
-          finally{try{RevealButton('button-pat', 'hint-pat', 'button-pat');}
-          finally{try{RevealButton('button-mq', 'hint-mq', 'button-mq');}
-          finally{RevealButton('button-ln', 'hint-ln', 'button-ln');}}}}}}}}}
+          try{myFunction('button-ar', 'hint-ar', 'button-ar');}
+          finally{try{myFunction('button-ome', 'hint-ome', 'button-ome');}
+          finally{try{myFunction('button-physeo', 'hint-physeo', 'button-physeo');}
+          finally{try{myFunction('button-pixorize', 'hint-pixorize', 'button-pixorize');}
+          finally{try{myFunction('button-sketchy', 'hint-sketchy', 'button-sketchy');}
+          finally{try{myFunction('button-fa', 'hint-fa', 'button-fa');}
+          finally{try{myFunction('button-bb', 'hint-bb', 'button-bb');}
+          finally{try{myFunction('button-pat', 'hint-pat', 'button-pat');}
+          finally{try{myFunction('button-mq', 'hint-mq', 'button-mq');}
+          finally{myFunction('button-ln', 'hint-ln', 'button-ln');}}}}}}}}}
           }
       }
 </script>
@@ -251,13 +251,13 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
         }
         
         function showtags() {
-          var tagContainerShortcut = document.getElementById("tags-container");
+          var xx = document.getElementById("tags-container");
         
-            if (tagContainerShortcut.style.display 
+            if (xx.style.display 
         === "none") {
-            tagContainerShortcut.style.display = "block";
+            xx.style.display = "block";
           } else {
-            tagContainerShortcut.style.display = 
+            xx.style.display = 
           "none";
           }
         } 
@@ -271,8 +271,9 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
     </script>
 {{/Tags}}
 
-<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
-
+<div id="pic"><a href="https://www.ankingmed.com">
+        <img src="_AnKingRound.png" alt="The AnKing" style="height:50px;border:0;position:fixed;bottom:10px;right:10px;">
+    </a></div>
 
 
 
