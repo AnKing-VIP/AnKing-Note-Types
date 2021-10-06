@@ -1,0 +1,371 @@
+<script>
+  // ##############  HINT REVEAL SHORTCUTS  ##############
+  // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
+  // The shortcuts are  Alt  +  the number/letter below
+  // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
+
+  var lecturenotes = '49';
+  var missedQ = '50';
+  var textbook = '51';
+  var additional = '52';
+  var OpenCloseAll = '222';
+
+var ScrollToHint = false;
+</script>
+
+
+<div class="clozefield">{{cloze:Text}}</div>
+
+<!-- ##############  EDIT CLOZE DURING REVIEW  ##############
+    -change below (not above) to  "edit:cloze:Text" for editable field, 
+      but be sure to have the correct add-on installed-->
+
+<div class="editcloze">{{cloze:Text}}</div>
+
+
+<!-- ##############  TEXT-TO-SPEECH ##############
+replace the arrows/dashes from the statement below with double brackets-->
+
+<!--tts en_US voices=Apple_Samantha speed=1.4:cloze-only:Text-->
+
+
+<hr>
+
+
+<!-- ##############  SHOW HINTS AUTOMATICALLY  ##############
+For instructions on how to show a field automatically,  visit www.ankingmed.com/faq and type "show hint" into the search bar -->
+
+<!-- PERSONAL NOTES FIELD -->
+{{#Personal Notes}}<a href="#" class="hint" id="hint-ln" onclick="this.style.display='none'; myFunction('button-ln', 'hint-ln', 'button-ln'); return false;">
+      <button class="button-ln"><img src="_Anking_v3.png"> Personal Notes</button></a>{{/Personal Notes}}
+
+<div id="button-ln" class="generalclass" style="display:none;">
+  {{#Personal Notes}}<button onclick="document.getElementById('hint-ln').style.display='inline-block'; myFunction('button-ln', 'hint-ln', 'button-ln')" class="button-ln" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_Anking_v3.png"> Lecture Notes</button>
+      <br>
+      <div class="hints" id="lecture">{{edit:Personal Notes}}</div>
+  {{/Personal Notes}}</div>
+
+
+<!-- MISSED QUESTIONS FIELD -->
+{{#Missed Questions}}<a href="#" class="hint" id="hint-mq" onclick="this.style.display='none'; myFunction('button-mq', 'hint-mq', 'button-mq'); return false;">
+      <button class="button-mq"><img src="_Anking_v3.png"> Missed Questions</button></a>{{/Missed Questions}}
+
+<div id="button-mq" class="generalclass" style="display:none;">
+  {{#Missed Questions}}<button onclick="document.getElementById('hint-mq').style.display='inline-block'; myFunction('button-mq', 'hint-mq', 'button-mq')" class="button-mq" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_Anking_v3.png"> Missed Questions</button>
+      <br>
+      <div class="hints" id="missed">{{edit:Missed Questions}}</div>
+  {{/Missed Questions}}</div>
+
+
+<!-- EXTRA FIELD -->
+<p></p>{{#Extra}}
+  <div id="extra">{{edit:Extra}}</div>
+{{/Extra}}<br>
+<div id="testscroll"></div>
+
+
+<!-- Textbook FIELD -->
+{{#Textbook}}<a href="#" class="hint" id="hint-textbook" onclick="this.style.display='none'; myFunction('button-textbook', 'hint-textbook', 'button-textbook'); return false;">
+      <button class="button-textbook"><img src="_dermki.png"> Textbook</button></a>{{/Textbook}}
+
+<div id="button-textbook" class="generalclass" style="display:none;">
+  {{#Textbook}}<button onclick="document.getElementById('hint-textbook').style.display='inline-block'; myFunction('button-textbook', 'hint-textbook', 'button-textbook')" class="button-textbook" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_dermki.png"> Textbook</button>
+      <br>
+      <div class="hints" id="textbook">{{edit:Textbook}}  </div>{{/Textbook}}</div>
+
+<!-- ADDITIONAL RESOURCES FIELD -->
+{{#Additional Resources}}<a href="#" class="hint" id="hint-ar" onclick="this.style.display='none'; myFunction('button-ar', 'hint-ar', 'button-ar'); return false;">
+      <button class="button-ar"><img src="_dermki.png"> Additional Resources</button></a>{{/Additional Resources}}
+
+<div id="button-ar" class="generalclass" style="display:none;">
+  {{#Additional Resources}}<button onclick="document.getElementById('hint-ar').style.display='inline-block'; myFunction('button-ar', 'hint-ar', 'button-ar')" class="button-ar" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_dermki.png"> Additional Resources</button>
+      <br>
+      <div class="hints" id="additional">{{edit:Additional Resources}}</div>
+  {{/Additional Resources}}</div>
+
+
+
+
+
+
+<script>
+  //HINT REVEALS
+  function myFunction(divid, id, divid) {
+  var x = document.getElementById(divid), y = document.getElementById(id), z = document.getElementById(divid);
+  if (x.style.display == "none")
+  {
+  x.style.display = "block"; y.style.display = "none"; z.scrollToId;
+  }
+      else {
+        x.style.display = "none"; y.style.display = "inline-block";
+      }
+  if (ScrollToHint){
+z.scrollIntoView({
+    behavior: "smooth", //"auto" for instant scrolling
+    block: "start",
+    inline: "nearest"
+  }); }
+    }
+    document.addEventListener('keydown', function(evt) {
+        if (evt.altKey && evt.keyCode == lecturenotes) {
+            myFunction('button-ln', 'hint-ln', 'button-ln')}  
+        if (evt.altKey && evt.keyCode == missedQ) {
+            myFunction('button-mq', 'hint-mq', 'button-mq')}
+        if (evt.altKey && evt.keyCode == textbook) {
+            myFunction('button-textbook', 'hint-textbook', 'button-textbook')}
+        if (evt.altKey && evt.keyCode == additional) {
+            myFunction('button-ar', 'hint-ar', 'button-ar')}
+    
+        if (evt.keyCode == OpenCloseAll) {
+        try{myFunction('button-ar', 'hint-ar', 'button-ar');}
+        finally{try{myFunction('button-textbook', 'hint-textbook', 'button-textbook');}
+        finally{try{myFunction('button-mq', 'hint-mq', 'button-mq');}
+        finally{myFunction('button-ln', 'hint-ln', 'button-ln');}}}
+        }
+    })
+</script>
+
+
+<br>
+<br>
+
+<script>
+  //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+  var tagID
+</script>
+
+{{#Tags}}
+  <div id="tags-container">{{clickable::Tags}}</div>
+  <script>
+      var tagContainer = document.getElementById("tags-container")
+      if (tagContainer.childElementCount == 0) {
+       var tagList= tagContainer.innerHTML.split(" ");
+       var kbdList = [];
+       var newTagContent = document.createElement("div");
+      
+       for (var i = 0; i < tagList.length;  i++) {
+        var newTag = document.createElement("kbd");
+        newTag.innerHTML = tagList[i];
+        newTagContent.append(newTag)
+       }
+       tagContainer.innerHTML = newTagContent.innerHTML;
+       tagContainer.style.cursor = "default";
+      }
+      if (tagContainer.innerHTML.indexOf(tagID) != -1) {
+      tagContainer.style.backgroundColor = "";
+      }
+      
+      function showtags() {
+        var xx = document.getElementById("tags-container");
+      
+          if (xx.style.display 
+      === "none") {
+          xx.style.display = "block";
+        } else {
+          xx.style.display = 
+        "none";
+        }
+      } 
+      document.addEventListener('keyup', function(e) {
+          if(e.key =="c"){
+           showtags();
+          }
+      });
+      
+      
+  </script>
+{{/Tags}}
+
+<div id="pic"><a href="https://www.ankingmed.com">
+      <img src="_AnKingRound.png" alt="The AnKing" style="height:50px;border:0;position:fixed;bottom:10px;right:10px;">
+  </a></div>
+
+
+
+
+<!-- WIKIPEDIA SEARCHES -->
+<div id="popup-container">
+  <button id="close-popup-btn" onclick="closePopup(true)">&times;</button>
+  <a id="open-wiki-btn" href="">&#8618;</a>
+  <div id="tc"></div>
+  <div id="fadebottom_v"></div>
+  <div id="ic"><img id="popup-image"></div>
+</div>
+<style>
+  #tc {
+      color: #222222;
+      position: absolute;
+      top: 16px;
+      margin: 0px;
+      left: 15px;
+      text-decoration: none;
+      height: 320px;
+      overflow: hidden;
+      overflow-y: scroll;
+      white-space: pre-wrap;
+      width: 300px;
+  }
+
+  #tc p {
+      margin: 0px;
+  }
+
+  #tc::-webkit-scrollbar {
+      display: none;
+  }
+
+  #fadebottom_v {
+      height: 30px;
+      width: 300px;
+      background: -webkit-linear-gradient(270deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 1));
+      z-index: 111;
+      position: absolute;
+      bottom: 0px;
+      left: 15px;
+  }
+
+  #hc {
+      color: #666;
+      font-weight: bold;
+  }
+
+  #ic {
+      right: 0px;
+      top: 30px;
+      position: absolute;
+  }
+
+  #ic img {
+      width: 160px;
+      height: auto;
+      object-fit: cover;
+      overflow: hidden;
+  }
+
+  #popup-image {
+      width: 140px;
+      height: auto;
+  }
+
+  #popup-container {
+      background: #fff;
+      position: absolute;
+      bottom: 30px;
+      right: 10px;
+      z-index: 110;
+      -webkit-box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+      padding: 0;
+      display: none;
+      font-size: 17px;
+      line-height: 20px;
+      border-radius: 2px;
+      width: 480px;
+      height: 340px;
+      overflow: hidden;
+      font-family: Arial;
+      text-align: left;
+      border: 1px solid #d0d0d0;
+      border-radius: 5px;
+  }
+
+  #close-popup-btn {
+      position: absolute;
+      top: 1px;
+      right: 5px;
+      width: 32px;
+      height: 32px;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 20px;
+      outline: none;
+      text-align: right;
+      z-index: 112;
+  }
+
+  #open-wiki-btn {
+      position: absolute;
+      top: 10px;
+      right: 30px;
+      width: 15px;
+      height: 32px;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      text-decoration: none;
+      color: #222222;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 17px;
+      outline: none;
+      text-align: left;
+      z-index: 112;
+  }
+</style>
+
+<script>
+  function getSummaryFor(word) {
+    word = word.replace(/^[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+|[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+$/g, "");
+         var pc = document.getElementById("popup-container");
+       var hc = document.getElementById("hc");
+        var tc = document.getElementById("tc");
+        var ic = document.getElementById("ic");
+        var imgelem = document.getElementById("popup-image");
+           imgelem.src = "";
+        var shortsum ="";
+    fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + word).then(function(response) {return response.json();}).then(function(response) {
+       shortsum = response.description;
+     shortsum = shortsum.replace(/(Disambiguation.*)/g, "Disambiguation");
+        tc.innerHTML = "<span id='hc'>" +capfl(shortsum) + "</span>" +"\n" +response.extract_html + "\n";
+    tc.style.width = "420px";
+        if (response.extract_html && !response.extract.endsWith("to:")){
+            pc.style.display = "block";
+        document.getElementById("open-wiki-btn").href = response.content_urls.desktop.page;
+        }else{pc.style.display = "none";}
+        if (!response.thumbnail.source || response.type ==="disambiguation"){
+             tc.style.width = "420px";
+        }else{tc.style.width="300px";imgelem.src = response.thumbnail.source;}
+      }).catch(function(error) {console.log(error);});}
+      
+      function closePopup(deselectAlso=false){
+        pcc.style.display = 'none';
+        if (deselectAlso){clearSelection();}
+      }
+      var pcc = document.getElementById("popup-container");
+      var prevSel = "";
+      document.addEventListener('click', function() {
+          var currentSelection = getSelectionText();
+          if (currentSelection !==""){prevSel = currentSelection;}
+          if (currentSelection && !mustClickW ){
+    getSummaryFor(currentSelection);
+           }else{closePopup();}
+      });
+      document.addEventListener('keyup', function(e) {
+          if(e.key =="w"){
+          if(pcc.style.display ==="block"){closePopup();}else{getSummaryFor(prevSel);}
+          }
+      });
+      function getSelectionText() {
+          var text = "";
+          if (window.getSelection) {
+    text = window.getSelection().toString();
+          } else if (document.selection && document.selection.type != "Control") { text = document.selection.createRange().text;}
+          return text;
+      }
+      function capfl(s) {
+          return s.charAt(0).toUpperCase() + s.slice(1);
+      }
+      function clearSelection(){
+       if (window.getSelection) {window.getSelection().removeAllRanges();}
+       else if (document.selection) {document.selection.empty();}
+      }
+      
+      //CUSTOMIZATION
+      //this is a variable controlling whether user must click the "w" key to open the popup.
+      //if set to true: user must select text, then click the "w" key to open wikipedia popup. Clicking "w" key again will close the popup. 
+      //if set to false: user only needs to select text. popup will open automatically. Clicking "w" is an alternative but not obligatory way of opening/closing the popup in this mode.
+      //BELOW SET to true or to false. 
+      var mustClickW = true;
+      //END CUSTOMIZATION
+</script>
