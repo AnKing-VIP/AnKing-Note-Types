@@ -1,139 +1,218 @@
-<div style="font-size:20px;color:#F2E48E;font-family:Times;font-style:italic;letter-spacing:-2px;position:fixed;bottom:50px;left:5px;opacity:.9;"><div class="editcloze">{{info-Factor:}}</div><span id="countdown2"></span>
+<script>
+    // ##############  HINT REVEAL SHORTCUTS  ##############
+    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
+    // The shortcuts are  Alt  +  the number/letter below
+    // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
+    var ButtonShortcuts = {
+        "Personal Notes" : '49',
+        "Missed Questions" : '50',
+    }
+
+    var ToggleAllButtons = '222'
+
+    var ButtonAutoReveal = {
+        "Personal Notes" : false,
+        "Missed Questions" : false,
+    }
+
+    var ScrollToButton = true;
+
+
+    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+    var tagID = "XXXYYYZZZ"
+
+</script>
+
+<div
+    style="font-size:20px;color:#F2E48E;font-family:Times;font-style:italic;letter-spacing:-2px;position:fixed;bottom:50px;left:5px;opacity:.9;">
+    <div class="editcloze">{{info-Factor:}}</div><span id="countdown2"></span>
     <script>
-        var dateText= 'June 18 2021';
+        var dateText = 'June 18 2021';
         var now = new Date().getTime();
-        var targetDate= new Date(dateText).getTime();
-        var dist = targetDate- now;
-        var days = ((dist / (1000 * 60 * 60 * 24))/30).toFixed(1);
+        var targetDate = new Date(dateText).getTime();
+        var dist = targetDate - now;
+        var days = ((dist / (1000 * 60 * 60 * 24)) / 30).toFixed(1);
         document.getElementById('countdown2').innerHTML = days;
     </script>m (<span id="countdown"></span>
     <script>
         var now = new Date().getTime();
-        var targetDate= new Date(dateText).getTime();
-        var dist = targetDate- now;
+        var targetDate = new Date(dateText).getTime();
+        var dist = targetDate - now;
         var days = Math.ceil(dist / (1000 * 60 * 60 * 24));
         document.getElementById('countdown').innerHTML = days;
     </script>)
-<br><span id="countdown3"></span>
+    <br><span id="countdown3"></span>
     <script>
-        var dateText2= 'June 18 2021';
+        var dateText2 = 'June 18 2021';
         var now2 = new Date().getTime();
-        var targetDate2= new Date(dateText2).getTime();
-        var dist2 = targetDate2- now2;
-        var days2 = ((dist2 / (1000 * 60 * 60 * 24))/30).toFixed(1);
+        var targetDate2 = new Date(dateText2).getTime();
+        var dist2 = targetDate2 - now2;
+        var days2 = ((dist2 / (1000 * 60 * 60 * 24)) / 30).toFixed(1);
         document.getElementById('countdown3').innerHTML = days2;
     </script>m (<span id="countdown4"></span>
     <script>
         var now2 = new Date().getTime();
-        var targetDate2= new Date(dateText2).getTime();
-        var dist2 = targetDate2- now2;
+        var targetDate2 = new Date(dateText2).getTime();
+        var dist2 = targetDate2 - now2;
         var days2 = Math.ceil(dist2 / (1000 * 60 * 60 * 24));
         document.getElementById('countdown4').innerHTML = days2;
     </script>)
 </div>
-    
-    <script>
-    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
-    var tagID = "XXXYYYZZZ"
-    </script>
 
 <div class=clozefield>{{edit:cloze:Text}}</div>
 <div class=editcloze>{{edit:cloze:Text}}</div>
 
 <hr>
 
-<!-- Personal Notes FIELD -->
-  {{#Personal Notes}}<a href="#" class="hint" id="hint-ln" onclick="this.style.display='none'; myFunction('button-ln', 'hint-ln', 'button-ln'); return false;">
-  <button class="button-ln"><img src="_Anking_v3.png"> Personal Notes</button></a>{{/Personal Notes}}
 
-  <div id="button-ln" class="generalclass" style="display:none;">
-  {{#Personal Notes}}<button onclick="document.getElementById('hint-ln').style.display='inline-block'; myFunction('button-ln', 'hint-ln', 'button-ln')" class="button-ln" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_Anking_v3.png"> Personal Notes</button>
-  <br><div class=hints id=notes>{{edit:Personal Notes}}</div>{{/Personal Notes}}</div>
+<hint-button field-name="Personal Notes" short="ln" hint-id="notes"></hint-button>
+<div id="dummy-ln" style="display: none;">{{edit:Personal Notes}}</div>
 
-
-<!-- MISSED QUESTIONS FIELD --> 
-  {{#Missed Questions}}<a href="#" class="hint" id="hint-mq" onclick="this.style.display='none'; myFunction('button-mq', 'hint-mq', 'button-mq'); return false;">
-  <button class="button-mq"><img src="_Anking_v3.png"> Missed Questions</button></a>{{/Missed Questions}}
-
-
-  <div id="button-mq" class="generalclass"  style="display:none;">
-  {{#Missed Questions}}<button onclick="document.getElementById('hint-mq').style.display='inline-block'; myFunction('button-mq', 'hint-mq', 'button-mq')" class="button-mq" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_Anking_v3.png"> Missed Questions</button>
-  <br><div class=hints id=missed>{{edit:Missed Questions}}</div>{{/Missed Questions}}</div>
-
+<hint-button field-name="Missed Questions" short="mq" hint-id="missed"></hint-button>
+<div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>
 
 <br></br>
 {{#Extra}}<div id=extra>{{edit:Extra}}</div>{{/Extra}}
 
 
 <script>
-//HINT REVEALS
-function myFunction(divid, id, divid) {
-var x = document.getElementById(divid), y = document.getElementById(id), z = document.getElementById(divid);
-if (x.style.display == "none")
-{
-x.style.display = "block"; y.style.display = "none"; z.scrollToId;
-}
-    else {
-      x.style.display = "none"; y.style.display = "inline-block";
+    function defineHintButton() {
+        class HintButton extends HTMLElement {
+            constructor() {
+                super();
+
+                var fieldName = this.getAttribute("field-name")
+
+                // adding the strings together this way to prevent Anki from thinking that a field should be inserted here
+                var fieldString = '{' + '{' + fieldName + '}}'
+                var short = this.getAttribute("short")
+                var hintId = this.getAttribute("hint-id")
+                this.innerHTML = `
+                        <a id="link-${short}" href="#" class="hint"></a>
+                        <button id="button-${short}" class="button-general">
+                            <img src="_Anking_v3.png">
+                            ${fieldName}
+                        </button>
+                        <div id="${hintId}" class="hints" style="display:none;">
+                        </div>
+                    `
+
+                this.button = document.getElementById(`button-${short}`)
+                this.link = document.getElementById(`link-${short}`)
+                this.hint = document.getElementById(hintId)
+
+                // moves the field content from the dummy to this
+                var dummy = document.getElementById(`dummy-${short}`)
+                var content = dummy.innerHTML
+
+                // hide this if the field is empty
+                if (dummy.innerHTML == "" ||
+                    (dummy.lastChild.nodeName == "SCRIPT" && dummy.firstChild.getAttribute("contenteditable") && dummy.firstChild.innerHTML == "")) {
+                    this.remove()
+                    return
+                }
+
+                // ... this also runs script tags, this makes it compatible with the Edit Field during Review add-on
+                setInnerHTML(this.hint, content)
+
+
+                this.button.onclick = () => this.toggle()
+
+                // the link is needed so that this works with the Hint Hotkey add-on
+                this.link.onclick = () => this.toggle()
+
+                if (ButtonAutoReveal[fieldName]) {
+                    this.toggle()
+                }
+
+                document.addEventListener("keydown", (evt) => {
+                    if (evt.repeat) return
+                    if (evt.altKey && evt.keyCode == ButtonShortcuts[fieldName]) this.toggle()
+                    if (evt.keyCode == ToggleAllButtons) this.toggle()
+                    return false
+                })
+            }
+
+            toggle() {
+                if (!this.button) return
+                if (this.hint.style.display == "none") {
+                    this.button.classList.add("expanded-button")
+                    this.hint.style.display = "block"
+                    this.link.style.display = "none"
+                    if (ScrollToButton) {
+                        this.hint.scrollIntoView({
+                            behavior: "smooth", // "auto" for instant scrolling
+                            block: "start",
+                            inline: "nearest"
+                        });
+                    }
+                } else {
+                    this.button.classList.remove("expanded-button")
+                    this.hint.style.display = "none"
+                    this.link.style.display = ""
+                }
+            }
+
+        }
+        try {
+            customElements.define('hint-button', HintButton)
+        } catch (DOMException) { }
     }
-z.scrollIntoView({
-  behavior: "smooth", //"auto" for instant scrolling
-  block: "start",
-  inline: "nearest"
-}); 
-  }
-      document.onkeydown = function(evt) {
-       evt = evt || window.event;
-      if (evt.altKey && evt.keyCode == 49) {
-          myFunction('button-ln', 'hint-ln', 'button-ln')}  
-      if (evt.altKey && evt.keyCode == 50) {
-          myFunction('button-mq', 'hint-mq', 'button-mq')}
-  
-      if (evt.keyCode == 222) {
-      try{myFunction('button-mq', 'hint-mq', 'button-mq');}
-      finally{myFunction('button-ln', 'hint-ln', 'button-ln');}
-      }
-  }
-  </script>
+
+    defineHintButton()
+
+    function setInnerHTML(elm, html) {
+        elm.innerHTML = html;
+        Array.from(elm.querySelectorAll("script")).forEach(oldScript => {
+            const newScript = document.createElement("script");
+            Array.from(oldScript.attributes)
+                .forEach(attr => newScript.setAttribute(attr.name, attr.value));
+            newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+        });
+    }
+
+
+</script>
 
 
 {{#Tags}}
 <div id="tags-container">{{clickable::Tags}}</div>
 <script>
-var tagContainer = document.getElementById("tags-container")
-if (tagContainer.childElementCount == 0) {
- var tagList= tagContainer.innerHTML.split(" ");
- var kbdList = [];
- var newTagContent = document.createElement("div");
+    var tagContainer = document.getElementById("tags-container")
+    if (tagContainer.childElementCount == 0) {
+        var tagList = tagContainer.innerHTML.split(" ");
+        var kbdList = [];
+        var newTagContent = document.createElement("div");
 
- for (var i = 0; i < tagList.length;  i++) {
-  var newTag = document.createElement("kbd");
-  newTag.innerHTML = tagList[i];
-  newTagContent.append(newTag)
- }
- tagContainer.innerHTML = newTagContent.innerHTML;
- tagContainer.style.cursor = "default";
-}
-if (tagContainer.innerHTML.indexOf(tagID) != -1) {
-tagContainer.style.backgroundColor = "rgba(251,11,11,.15)";
-}
-
-function showtags() {
-  var xx = document.getElementById("tags-container");
-
-    if (xx.style.display 
-=== "none") {
-    xx.style.display = "block";
-  } else {
-    xx.style.display = 
-  "none";
-  }
-} 
-document.addEventListener('keyup', function(e) {
-    if(e.key =="c"){
-	 showtags();
+        for (var i = 0; i < tagList.length; i++) {
+            var newTag = document.createElement("kbd");
+            newTag.innerHTML = tagList[i];
+            newTagContent.append(newTag)
+        }
+        tagContainer.innerHTML = newTagContent.innerHTML;
+        tagContainer.style.cursor = "default";
     }
-});
+    if (tagContainer.innerHTML.indexOf(tagID) != -1) {
+        tagContainer.style.backgroundColor = "rgba(251,11,11,.15)";
+    }
+
+    function showtags() {
+        var xx = document.getElementById("tags-container");
+
+        if (xx.style.display
+            === "none") {
+            xx.style.display = "block";
+        } else {
+            xx.style.display =
+                "none";
+        }
+    }
+    document.addEventListener('keyup', function (e) {
+        if (e.key == "c") {
+            showtags();
+        }
+    });
 
 
 </script>
@@ -141,182 +220,194 @@ document.addEventListener('keyup', function(e) {
 
 
 <div id=pic><a href="https://www.ankingmed.com">
-<img src="_AnKingRound.png" alt="The AnKing" style=height:50px;border:0;position:fixed;bottom:10px;right:10px;">
-</a></div>
+        <img src="_AnKingRound.png" alt="The AnKing" style=height:50px;border:0;position:fixed;bottom:10px;right:10px;">
+    </a></div>
 
 
 <!-- WIKIPEDIA SEARCHES -->
 <div id="popup-container">
     <button id="close-popup-btn" onclick="closePopup(true)">&times;</button>
     <a id="open-wiki-btn" href="">&#8618;</a>
-    <div id="tc"></div> <div id="fadebottom_v"></div>
+    <div id="tc"></div>
+    <div id="fadebottom_v"></div>
     <div id="ic"><img id="popup-image"></div>
-  </div>
+</div>
 <style>
-#tc {
-color: #222222;
-position:absolute;
-top: 16px;
-margin:0px;
-left:15px;
-text-decoration: none;
-height:320px;
-overflow:hidden;
-overflow-y:scroll;
-white-space:pre-wrap;
-width: 300px;
-}
-#tc p{
-margin:0px;
-}
-#tc::-webkit-scrollbar{
-display:none;
-} 
-#fadebottom_v {
-height: 30px;
-width: 300px;
-background: -webkit-linear-gradient(270deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 1));
-z-index: 111;
-position:absolute;
-bottom:0px;
-left:15px;
-}
-#hc{
-color: #666;  
-font-weight: bold;
-}
-#ic {
-right:0px;
-top:30px;
-position:absolute;
-}
-#ic img{
-width: 160px;
-height:auto;
-object-fit: cover;
-overflow:hidden;
-}
-#popup-image {
-width: 140px;
-height: auto;
-}
-#popup-container {
-background: #fff;
-position: absolute;
-bottom:30px;
-right:10px;
-z-index: 110;
--webkit-box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
-box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
-padding: 0;
-display: none;
-font-size: 17px;
-line-height: 20px;
-border-radius: 2px;
-width: 480px;
-height:340px;
-overflow:hidden;
-font-family: Arial;
-text-align:left;
-border: 1px solid #d0d0d0;
-border-radius: 5px;
-}
-#close-popup-btn{
-position:absolute;
-top: 1px;
-right:5px;
-width: 32px;
-height: 32px;
-background: none;
-border: 0;
-cursor: pointer;
-font-family: 'Josefin Sans', sans-serif;
-font-size: 20px;
-outline: none;
-text-align:right;
-z-index:112;
-}
-#open-wiki-btn{
-position:absolute;
-top: 10px;
-right:30px;
-width: 15px;
-height: 32px;
-background: none;
-border: 0;
-cursor: pointer;
-text-decoration: none;
-color:#222222;
-font-family: 'Josefin Sans', sans-serif;
-font-size: 17px;
-outline: none;
-text-align: left;
-z-index:112;
-}
+    #tc {
+        color: #222222;
+        position: absolute;
+        top: 16px;
+        margin: 0px;
+        left: 15px;
+        text-decoration: none;
+        height: 320px;
+        overflow: hidden;
+        overflow-y: scroll;
+        white-space: pre-wrap;
+        width: 300px;
+    }
+
+    #tc p {
+        margin: 0px;
+    }
+
+    #tc::-webkit-scrollbar {
+        display: none;
+    }
+
+    #fadebottom_v {
+        height: 30px;
+        width: 300px;
+        background: -webkit-linear-gradient(270deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 1));
+        z-index: 111;
+        position: absolute;
+        bottom: 0px;
+        left: 15px;
+    }
+
+    #hc {
+        color: #666;
+        font-weight: bold;
+    }
+
+    #ic {
+        right: 0px;
+        top: 30px;
+        position: absolute;
+    }
+
+    #ic img {
+        width: 160px;
+        height: auto;
+        object-fit: cover;
+        overflow: hidden;
+    }
+
+    #popup-image {
+        width: 140px;
+        height: auto;
+    }
+
+    #popup-container {
+        background: #fff;
+        position: absolute;
+        bottom: 30px;
+        right: 10px;
+        z-index: 110;
+        -webkit-box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+        padding: 0;
+        display: none;
+        font-size: 17px;
+        line-height: 20px;
+        border-radius: 2px;
+        width: 480px;
+        height: 340px;
+        overflow: hidden;
+        font-family: Arial;
+        text-align: left;
+        border: 1px solid #d0d0d0;
+        border-radius: 5px;
+    }
+
+    #close-popup-btn {
+        position: absolute;
+        top: 1px;
+        right: 5px;
+        width: 32px;
+        height: 32px;
+        background: none;
+        border: 0;
+        cursor: pointer;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 20px;
+        outline: none;
+        text-align: right;
+        z-index: 112;
+    }
+
+    #open-wiki-btn {
+        position: absolute;
+        top: 10px;
+        right: 30px;
+        width: 15px;
+        height: 32px;
+        background: none;
+        border: 0;
+        cursor: pointer;
+        text-decoration: none;
+        color: #222222;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 17px;
+        outline: none;
+        text-align: left;
+        z-index: 112;
+    }
 </style>
 
 <script>
     function getSummaryFor(word) {
-      word = word.replace(/^[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+|[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+$/g, "");
-           var pc = document.getElementById("popup-container");
-         var hc = document.getElementById("hc");
-          var tc = document.getElementById("tc");
-          var ic = document.getElementById("ic");
-          var imgelem = document.getElementById("popup-image");
-             imgelem.src = "";
-          var shortsum ="";
-      fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + word).then(function(response) {return response.json();}).then(function(response) {
-         shortsum = response.description;
-       shortsum = shortsum.replace(/(Disambiguation.*)/g, "Disambiguation");
-          tc.innerHTML = "<span id='hc'>" +capfl(shortsum) + "</span>" +"\n" +response.extract_html + "\n";
-      tc.style.width = "420px";
-          if (response.extract_html && !response.extract.endsWith("to:")){
-              pc.style.display = "block";
-          document.getElementById("open-wiki-btn").href = response.content_urls.desktop.page;
-          }else{pc.style.display = "none";}
-          if (!response.thumbnail.source || response.type ==="disambiguation"){
-               tc.style.width = "420px";
-          }else{tc.style.width="300px";imgelem.src = response.thumbnail.source;}
-        }).catch(function(error) {console.log(error);});}
+        word = word.replace(/^[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+|[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+$/g, "");
+        var pc = document.getElementById("popup-container");
+        var hc = document.getElementById("hc");
+        var tc = document.getElementById("tc");
+        var ic = document.getElementById("ic");
+        var imgelem = document.getElementById("popup-image");
+        imgelem.src = "";
+        var shortsum = "";
+        fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + word).then(function (response) { return response.json(); }).then(function (response) {
+            shortsum = response.description;
+            shortsum = shortsum.replace(/(Disambiguation.*)/g, "Disambiguation");
+            tc.innerHTML = "<span id='hc'>" + capfl(shortsum) + "</span>" + "\n" + response.extract_html + "\n";
+            tc.style.width = "420px";
+            if (response.extract_html && !response.extract.endsWith("to:")) {
+                pc.style.display = "block";
+                document.getElementById("open-wiki-btn").href = response.content_urls.desktop.page;
+            } else { pc.style.display = "none"; }
+            if (!response.thumbnail.source || response.type === "disambiguation") {
+                tc.style.width = "420px";
+            } else { tc.style.width = "300px"; imgelem.src = response.thumbnail.source; }
+        }).catch(function (error) { console.log(error); });
+    }
 
-function closePopup(deselectAlso=false){
-pcc.style.display = 'none';
-if (deselectAlso){clearSelection();}
-}
-var pcc = document.getElementById("popup-container");
-var prevSel = "";
-document.addEventListener('click', function() {
-  var currentSelection = getSelectionText();
-  if (currentSelection !==""){prevSel = currentSelection;}
-  if (currentSelection && !mustClickW ){
-      getSummaryFor(currentSelection);
-   }else{closePopup();}
-});
-document.addEventListener('keyup', function(e) {
-  if(e.key =="w"){
-  if(pcc.style.display ==="block"){closePopup();}else{getSummaryFor(prevSel);}
-  }
-});
-function getSelectionText() {
-  var text = "";
-  if (window.getSelection) {
-      text = window.getSelection().toString();
-  } else if (document.selection && document.selection.type != "Control") { text = document.selection.createRange().text;}
-  return text;
-}
-function capfl(s) {
-  return s.charAt(0).toUpperCase() + s.slice(1);
-}
-function clearSelection(){
-if (window.getSelection) {window.getSelection().removeAllRanges();}
-else if (document.selection) {document.selection.empty();}
-}
+    function closePopup(deselectAlso = false) {
+        pcc.style.display = 'none';
+        if (deselectAlso) { clearSelection(); }
+    }
+    var pcc = document.getElementById("popup-container");
+    var prevSel = "";
+    document.addEventListener('click', function () {
+        var currentSelection = getSelectionText();
+        if (currentSelection !== "") { prevSel = currentSelection; }
+        if (currentSelection && !mustClickW) {
+            getSummaryFor(currentSelection);
+        } else { closePopup(); }
+    });
+    document.addEventListener('keyup', function (e) {
+        if (e.key == "w") {
+            if (pcc.style.display === "block") { closePopup(); } else { getSummaryFor(prevSel); }
+        }
+    });
+    function getSelectionText() {
+        var text = "";
+        if (window.getSelection) {
+            text = window.getSelection().toString();
+        } else if (document.selection && document.selection.type != "Control") { text = document.selection.createRange().text; }
+        return text;
+    }
+    function capfl(s) {
+        return s.charAt(0).toUpperCase() + s.slice(1);
+    }
+    function clearSelection() {
+        if (window.getSelection) { window.getSelection().removeAllRanges(); }
+        else if (document.selection) { document.selection.empty(); }
+    }
 
-//CUSTOMIZATION
-//this is a variable controlling whether user must click the "w" key to open the popup.
-//if set to true: user must select text, then click the "w" key to open wikipedia popup. Clicking "w" key again will close the popup. 
-//if set to false: user only needs to select text. popup will open automatically. Clicking "w" is an alternative but not obligatory way of opening/closing the popup in this mode.
-//BELOW SET to true or to false. 
-var mustClickW = true;
+    //CUSTOMIZATION
+    //this is a variable controlling whether user must click the "w" key to open the popup.
+    //if set to true: user must select text, then click the "w" key to open wikipedia popup. Clicking "w" key again will close the popup. 
+    //if set to false: user only needs to select text. popup will open automatically. Clicking "w" is an alternative but not obligatory way of opening/closing the popup in this mode.
+    //BELOW SET to true or to false. 
+    var mustClickW = true;
 //END CUSTOMIZATION
-  </script>
+</script>
