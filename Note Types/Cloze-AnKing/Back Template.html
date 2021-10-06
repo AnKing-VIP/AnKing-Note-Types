@@ -21,6 +21,10 @@
     //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
     var tagID = "XXXYYYZZZ"
 
+    // ##############  TAG SHORTCUT  ##############
+    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
+    var ToggleTags = "67"; // c
+
 </script>
 
 <div
@@ -209,7 +213,7 @@
         }
     }
     document.addEventListener('keyup', function (e) {
-        if (e.key == "c") {
+        if (e.keyCode == ToggleTags) {
             showtags();
         }
     });
