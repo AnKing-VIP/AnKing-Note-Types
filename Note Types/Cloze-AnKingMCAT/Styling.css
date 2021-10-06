@@ -233,10 +233,6 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
 .mnemonics { display: inline-block; } 
 .centerbox {text-align:center;}
 
-/*AMBOSS UNDERLINE
-.amboss-mark { border-bottom: 2px solid rgba(72,74,74,0.2) !important; padding-bottom: .2px; text-decoration: none !important; }
-
-.amboss-mark:hover { border-bottom: rgba(72,74,74,.8) !important; background-color: grey; }*/
 
 /*~~~BUTTON LAYOUT ~~~*/
 
