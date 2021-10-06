@@ -136,10 +136,6 @@ img {
   background-color: #D1CFCE;
 }
 
-#tags-container {
-  background-color: transparent;
-}
-
 /*TIMER COUNTDOWN COLOR*/
 .timer {
   color: transparent;
@@ -153,11 +149,6 @@ img {
 /* "EXTRA" FIELD COLOR */
 #extra {
   color: navy;
-}
-
-/* HINT COLOR*/
-a[href="#"] {
-  color: blue;
 }
 
 /* HINT REVEAL COLOR */
@@ -275,16 +266,7 @@ html {
   min-width: 30%;
 }
 
-.mobile #extra img,
-.mobile #lecture img,
-.mobile #missed img,
-.mobile #pathoma img,
-.mobile #bnb img,
-.mobile #firstaid img,
-.mobile #sketchy img,
-.mobile #pixorize,
-.mobile #physeo img,
-.mobile #additional img {
+.mobile .hints img {
   max-width: 100% !important;
 }
 
@@ -373,16 +355,7 @@ html {
   transform: scale(1.5);
 }
 
-.mobile #extra img:active,
-.mobile #lecture img:active,
-.mobile #missed img:active,
-.mobile #pathoma img:active,
-.mobile #bnb img:active,
-.mobile #firstaid img:active,
-.mobile #sketchy img:active,
-.mobile #pixorize img:active,
-.mobile #physeo img:active,
-.mobile #additional img:active {
+.mobile .hints img:active {
   transform: scale(1.0);
 }
 
@@ -471,7 +444,9 @@ a[href="#"] {
   width: 100%;
   line-height: .45rem;
   margin-left: -15px;
+  background-color: transparent;
 }
+
 
 /* Clickable Tags (need to download the add-on) */
 kbd {
