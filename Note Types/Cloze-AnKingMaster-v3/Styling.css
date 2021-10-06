@@ -572,190 +572,7 @@ kbd:nth-of-type(10n+0) {
   text-align: center;
 }
 
-/*AMBOSS UNDERLINE
-.amboss-mark { border-bottom: 2px solid rgba(72,74,74,0.2) !important; padding-bottom: .2px; text-decoration: none !important; }
-
-.amboss-mark:hover { border-bottom: rgba(72,74,74,.8) !important; background-color: grey; }*/
-
-/*~~~BUTTON LAYOUT ~~~*/
-
-.button-ln {
-  outline: 0;
-  background-color: #424242;
-  border-radius: 0.12em;
-  border: 1px solid #525253 !important;
-  color: #AFAFAF !important;
-  padding: 5px 5px;
-  text-align: center;
-  display: inline-block;
-  font-size: 9.5px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.button-ln:hover {
-  background-color: #E9E9E9 !important;
-  color: #363638 !important;
-  cursor: default;
-}
-
-
-.button-mq {
-  outline: 0;
-  background-color: #424242;
-  border-radius: 0.12em;
-  border: 1px solid #525253 !important;
-  color: #c26165 !important;
-  padding: 5px 5px;
-  text-align: center;
-  display: inline-block;
-  font-size: 9.5px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.button-mq:hover {
-  background-color: #FA8072 !important;
-  color: #363638 !important;
-  cursor: default;
-}
-
-
-.button-pat {
-  outline: 0;
-  background-color: #424242;
-  border-radius: 0.12em;
-  border: 1px solid #525253 !important;
-  color: #AFAFAF !important;
-  padding: 5px 5px;
-  text-align: center;
-  display: inline-block;
-  font-size: 9.5px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.button-pat:hover {
-  background-color: #EABCE4 !important;
-  color: #363638 !important;
-  cursor: default;
-}
-
-
-.button-bb {
-  outline: 0;
-  background-color: #424242;
-  border-radius: 0.12em;
-  border: 1px solid #525253 !important;
-  color: #AFAFAF !important;
-  padding: 5px 5px;
-  text-align: center;
-  display: inline-block;
-  font-size: 9.5px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.button-bb:hover {
-  background-color: #47C3F3 !important;
-  color: #363638 !important;
-  cursor: default;
-}
-
-
-.button-fa {
-  outline: 0;
-  background-color: #424242;
-  border-radius: 0.12em;
-  border: 1px solid #525253 !important;
-  color: #AFAFAF !important;
-  padding: 5px 5px;
-  text-align: center;
-  display: inline-block;
-  font-size: 9.5px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.button-fa:hover {
-  background-color: #FFF1B8 !important;
-  color: #363638 !important;
-  cursor: default;
-}
-
-
-.button-sketchy {
-  outline: 0;
-  background-color: #424242;
-  border-radius: 0.12em;
-  border: 1px solid #525253 !important;
-  color: #AFAFAF !important;
-  padding: 5px 5px;
-  text-align: center;
-  display: inline-block;
-  font-size: 9.5px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.button-sketchy:hover {
-  background-color: #7EDEC0 !important;
-  color: #363638 !important;
-  cursor: default;
-}
-
-
-.button-pixorize {
-  outline: 0;
-  background-color: #424242;
-  border-radius: 0.12em;
-  border: 1px solid #525253 !important;
-  color: #AFAFAF !important;
-  padding: 5px 5px;
-  text-align: center;
-  display: inline-block;
-  font-size: 9.5px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.button-pixorize:hover {
-  background-color: #ea8eed !important;
-  color: #363638 !important;
-  cursor: default;
-}
-
-.button-physeo {
-  outline: 0;
-  background-color: #424242;
-  border-radius: 0.12em;
-  border: 1px solid #525253 !important;
-  color: #AFAFAF !important;
-  padding: 5px 5px;
-  text-align: center;
-  display: inline-block;
-  font-size: 9.5px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.button-physeo:hover {
-  background-color: #A1C0C6 !important;
-  color: #363638 !important;
-  cursor: default;
-}
-
-.button-ome {
-  outline: 0;
-  background-color: #424242;
-  border-radius: 0.12em;
-  border: 1px solid #525253 !important;
-  color: #AFAFAF !important;
-  padding: 5px 5px;
-  text-align: center;
-  display: inline-block;
-  font-size: 9.5px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.button-ome:hover {
-  background-color: #47C3F3 !important;
-  color: #363638 !important;
-  cursor: default;
-}
-
+/* OME BANNER */
 .banner-ome {
   max-width: 300px;
   display: block;
@@ -763,26 +580,32 @@ kbd:nth-of-type(10n+0) {
   margin-right: auto;
 }
 
-.button-ar {
+/*~~~BUTTON LAYOUT ~~~*/
+
+.button-general {
   outline: 0;
-  background-color: #424242;
   border-radius: 0.12em;
   border: 1px solid #525253 !important;
-  color: #AFAFAF !important;
   padding: 5px 5px;
   text-align: center;
   display: inline-block;
   font-size: 9.5px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #424242;
+  color: #AFAFAF !important;
+  margin-top: 8px;
 }
 
-.button-ar:hover {
-  background-color: #E9E9E9 !important;
-  color: #363638 !important;
-  cursor: default;
+.mobile .button-general {
+  font-size: 18px;
+  padding: 9px 7px;
 }
 
-.button-revealed {
+.expanded-button {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  font-weight: bold;
+  width: 50% !important;
   background: #ababab !important;
   color: black !important;
   font-weight: bold;
@@ -790,16 +613,42 @@ kbd:nth-of-type(10n+0) {
 }
 
 
-.mobile .button-ln,
-.mobile .button-mq,
-.mobile .button-pat,
-.mobile .button-bb,
-.mobile .button-fa,
-.mobile .button-sketchy,
-.mobile .button-pixorize,
-.mobile .button-physeo,
-.mobile .button-ome,
-.mobile .button-ar {
-  font-size: 18px;
-  padding: 9px 7px;
+#button-mq:not(.expanded-button) {
+  color: #c26165 !important;
+}
+
+
+html:not(.mobile) .button-general:hover {
+  cursor: default;
+  background-color: #E9E9E9 !important;
+  color: #363638 !important;
+}
+
+html:not(.mobile) #button-mq:hover {
+  background-color: #FA8072 !important;
+  color: black !important;
+}
+
+html:not(.mobile) #button-pat:hover {
+  background-color: #EABCE4 !important;
+}
+
+html:not(.mobile) #button-fa:hover {
+  background-color: #FFF1B8 !important;
+}
+
+html:not(.mobile) #button-sketchy:hover {
+  background-color: #7EDEC0 !important;
+}
+
+html:not(.mobile) #button-pixorize:hover {
+  background-color: #ea8eed !important;
+}
+
+html:not(.mobile) #button-physeo:hover {
+  background-color: #A1C0C6 !important;
+}
+
+html:not(.mobile) #button-ome:hover {
+  background-color: #47C3F3 !important;
 }
