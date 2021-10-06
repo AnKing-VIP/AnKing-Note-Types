@@ -22,6 +22,9 @@
 ## Changelog:
 2021-09-05: Initial Release on <a href="https://www.reddit.com/r/Anki/comments/pia8e5/how_to_incrementally_reveal_an_image_occlusion/?utm_source=share&utm_medium=ios_app&utm_name=iossmf">reddit</a>
 
+## Thank you:
+Huge thank you to Phil (u/Ankiphil), RisingOrange & all others who have contributed to this note type
+
 ## TODO
 - [X] Make it so the incremental review is on the backside of the note type, not the front (I found that I accidentally flipped it with the space bar multiple times)
 - [X] Make it so there’s a hotkey that can open them incrementally (i.e. hitting the letter ‘n’)
@@ -42,7 +45,6 @@
 - [X] Remove css styling from buttons (i.e. `style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"`) and put in the .button-revealed css (from AnKingMasterv3 note type)
 - [ ] Fix button revealed style
 - [ ] Update note type on Github and make release. (Add bottom field about our team)
-- [ ] Add thank you to RisingOrange on the readme
 
 <b>Please consider checking out our:</b>
 <br>
