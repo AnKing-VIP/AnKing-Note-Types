@@ -121,14 +121,13 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
                             <img src="_Anking_v3.png">
                             ${fieldName}
                         </button>
-                        <div id="hint-${short}" class="hints" style="display:none;">
-                            <div id="${hintId}"></div>
+                        <div id="${hintId}" class="hints" style="display:none;">
                         </div>
                     `
 
                 this.button = document.getElementById(`button-${short}`)
-                this.hint = document.getElementById(`hint-${short}`)
                 this.link = document.getElementById(`link-${short}`)
+                this.hint = document.getElementById(hintId)
 
                 // moves the field content from the dummy to this
                 var dummy = document.getElementById(`dummy-${short}`)
