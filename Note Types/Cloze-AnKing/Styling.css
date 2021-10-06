@@ -37,15 +37,12 @@
 	.card { color: black; }
 /*BACKGROUND COLOR*/ 
 	.card { background-color: #D1CFCE; }
-	#tags-container { background-color: transparent; }
     /*TIMER COUNTDOWN COLOR*/
  	.timer { color: transparent; }
 /* CLOZE COLOR */
 	.cloze { color: blue; }
 /* "EXTRA" FIELD COLOR */
 	#extra { color: navy; }
-/* HINT COLOR*/
-	a[href="#"] { color: blue; }
 /* HINT REVEAL COLOR */
 	.hints { color: #4297F9; }
    /* Missed Question Reveal Color */
@@ -97,7 +94,7 @@ padding-bottom: 1em;
 /* Details For Images And Image Width */
 .mobile .card img {max-width: 100%!important; }
 .mobile .card {margin: 0ex .3px;}
-.mobile #extra img, .mobile #missed img, .mobile #missed img, {max-width: 100%!important; }
+.mobile #extra img, .mobile #missed img, .mobile #missed img {max-width: 100%!important; }
 
 /* Classes for individual cards */
 .image40 img { width: 40%!important; }
@@ -164,11 +161,12 @@ a[href="#"] {
 /* TAGS */
 /* Container To Fix Tags At Bottom Of Screen */
 #tags-container{
-position: fixed;
-bottom: .5px;
-width: 100%;
-line-height: .45rem;
-margin-left: -15px;
+  position: fixed;
+  bottom: .5px;
+  width: 100%;
+  line-height: .45rem;
+  margin-left: -15px;
+  background-color: transparent; 
 }
 
 /* Clickable Tags (need to download the add-on) */
@@ -210,47 +208,54 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
 .mobile kbd { opacity: .9; margin: 1px !important; display: inline-block; font-size: 10px !important; }
 .mobile #tags-container {line-height:0.6rem; margin-left: 0px; }
 
-/*~~~BUTTON LAYOUT ~~~*/
 
-.button-ln {
+/*~~~BUTTON LAYOUT ~~~*/
+.button-general {
   outline: 0;
-  background-color: #424242; 
-  border-radius: 0.12em; 
+  border-radius: 0.12em;
   border: 1px solid #525253 !important;
-  color: #AFAFAF !important;
   padding: 5px 5px;
   text-align: center;
   display: inline-block;
   font-size: 9.5px;
-  %box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: #424242;
+  color: #AFAFAF !important;
+  margin-top: 8px;
 }
-.button-ln:hover {
+
+.mobile .button-general {
+  font-size: 18px;
+  padding: 9px 7px;
+}
+
+.expanded-button {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  font-weight: bold;
+  width: 50% !important;
+  background: #ababab !important;
+  color: black !important;
+  font-weight: bold;
+  width: 50% !important;
+}
+
+
+#button-mq:not(.expanded-button) {
+  color: #c26165 !important;
+}
+
+html:not(.mobile) .button-general:hover {
+  cursor: default;
   background-color: #E9E9E9 !important;
   color: #363638 !important;
-  cursor: default;
-  }
-
-
-.button-mq {
-  outline: 0;
-  background-color: #424242; 
-  border-radius: 0.12em; 
-  border: 1px solid #525253 !important;
-  color: #c26165 !important;
-  padding: 5px 5px;
-  text-align: center;
-  display: inline-block;
-  font-size: 9.5px;
-  %box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
-.button-mq:hover {
+
+html:not(.mobile) #button-mq:hover {
   background-color: #FA8072 !important;
-  color: #363638 !important;
-  cursor: default;
-  }
+  color: black !important;
+}
 
-
-.mobile .button-ln,  .mobile .button-mq { font-size: 18px; padding: 9px 7px; }
 
 /*Start of style added by resize image add-on. Don't edit directly or the edition will be lost. Edit via the add-on configuration */
 

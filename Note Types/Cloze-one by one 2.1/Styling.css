@@ -177,3 +177,47 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
 /*Start of style added by resize image add-on. Don't edit directly or the edition will be lost. Edit via the add-on configuration */
 
 /*End of style added by resize image add-on*/
+
+
+.button-general {
+  outline: 0;
+  border-radius: 0.12em;
+  border: 1px solid #525253 !important;
+  padding: 5px 5px;
+  text-align: center;
+  display: inline-block;
+  font-size: 9.5px;
+  background-color: #424242;
+  color: #AFAFAF !important;
+  margin-top: 8px;
+}
+.mobile .button-general { 
+  font-size: 18px; padding: 9px 7px; 
+}
+
+.expanded-button {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  font-weight: bold;
+  width: 50% !important;
+  background:#ababab !important; 
+  color:black !important; 
+  font-weight:bold; 
+  width:50% !important;
+}
+
+html:not(.mobile) .button-general:hover {
+  color: #363638 !important;
+  cursor: default;
+  background-color: #E9E9E9 !important;
+}
+
+#button-mq:not(.expanded-button) {
+  color: #c26165 !important;
+}
+
+html:not(.mobile) #button-mq:hover{
+  background-color: #FA8072 !important;
+  color: black!important;
+}

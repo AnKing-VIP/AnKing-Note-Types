@@ -47,7 +47,6 @@
 	.card { color: #D7DEE9; }
 /*BACKGROUND COLOR*/ 
 	.card { background-color: #333B45; }
-	#tags-container { background-color: transparent; }
     /*TIMER COUNTDOWN COLOR*/
  	.timer { color: transparent; }
 /* CLOZE COLOR */
@@ -176,18 +175,19 @@ text-decoration: underline;
 }
 
 /* Details for AnKing hyperlink image */
-#pic { opacity: 0.0; font-size: 16px; font-color: #F2E48E; font-family:Comic Sans!important; font-style:bold;}
+#pic { opacity: 0.0; font-size: 16px; font-family:Comic Sans!important; font-style:bold;}
 #pic:hover { opacity: 1; transition: opacity 0.2s ease; }
 .mobile #pic { display: none; }
 
 /* TAGS */
 /* Container To Fix Tags At Bottom Of Screen */
 #tags-container{
-position: fixed;
-bottom: .5px;
-width: 100%;
-line-height: .45rem;
-margin-left: -15px;
+  position: fixed;
+  bottom: .5px;
+  width: 100%;
+  line-height: .45rem;
+  margin-left: -15px;
+  background-color: transparent;
 }
 
 /* Clickable Tags (need to download the add-on) */
@@ -233,90 +233,61 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
 .mnemonics { display: inline-block; } 
 .centerbox {text-align:center;}
 
-/*AMBOSS UNDERLINE
-.amboss-mark { border-bottom: 2px solid rgba(72,74,74,0.2) !important; padding-bottom: .2px; text-decoration: none !important; }
-
-.amboss-mark:hover { border-bottom: rgba(72,74,74,.8) !important; background-color: grey; }*/
 
 /*~~~BUTTON LAYOUT ~~~*/
 
-.button-ln {
+.button-general {
   outline: 0;
-  background-color: #424242; 
-  border-radius: 0.12em; 
+  border-radius: 0.12em;
   border: 1px solid #525253 !important;
-  color: #AFAFAF !important;
   padding: 5px 5px;
   text-align: center;
   display: inline-block;
   font-size: 9.5px;
-  %box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: #424242;
+  color: #AFAFAF !important;
+  margin-top: 8px;
 }
-.button-ln:hover {
-  background-color: #E9E9E9 !important;
-  color: #363638 !important;
-  cursor: default;
-  }
+
+.mobile .button-general {
+  font-size: 18px;
+  padding: 9px 7px;
+}
+
+.expanded-button {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  font-weight: bold;
+  width: 50% !important;
+  background: #ababab !important;
+  color: black !important;
+  font-weight: bold;
+  width: 50% !important;
+}
 
 
-.button-mq {
-  outline: 0;
-  background-color: #424242; 
-  border-radius: 0.12em; 
-  border: 1px solid #525253 !important;
+#button-mq:not(.expanded-button) {
   color: #c26165 !important;
-  padding: 5px 5px;
-  text-align: center;
-  display: inline-block;
-  font-size: 9.5px;
-  %box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
-.button-mq:hover {
-  background-color: #FA8072 !important;
-  color: #363638 !important;
+
+
+html:not(.mobile) .button-general:hover {
   cursor: default;
-  }
-
-
-.button-pixorize {
-  outline: 0;
-  background-color: #424242; 
-  border-radius: 0.12em; 
-  border: 1px solid #525253 !important;
-  color: #AFAFAF !important;
-  padding: 5px 5px;
-  text-align: center;
-  display: inline-block;
-  font-size: 9.5px;
-  %box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-.button-pixorize:hover {
-  background-color: #ea8eed !important;
-  color: #363638 !important;
-  cursor: default;
-  }
-
-
-.button-ar {
-  outline: 0;
-  background-color: #424242; 
-  border-radius: 0.12em; 
-  border: 1px solid #525253 !important;
-  color: #AFAFAF !important;
-  padding: 5px 5px;
-  text-align: center;
-  display: inline-block;
-  font-size: 9.5px;
-  %box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-.button-ar:hover {
   background-color: #E9E9E9 !important;
   color: #363638 !important;
-  cursor: default;
-  }
+}
+
+html:not(.mobile) #button-mq:hover {
+  background-color: #FA8072 !important;
+  color: black !important;
+}
+
+html:not(.mobile) #button-pixorize:hover {
+  background-color: #ea8eed !important;
+}
 
 
-.mobile .button-ln,  .mobile .button-mq, .mobile .button-pixorize, .mobile .button-ar { font-size: 18px; padding: 9px 7px; }
 
 /* Pixorize Styling */
 

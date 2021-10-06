@@ -33,7 +33,6 @@
 	.card { color: black; }
 /*BACKGROUND COLOR*/ 
 	.card { background-color: #D1CFCE; }
-	#tags-container { background-color: transparent; }
     /*TIMER COUNTDOWN COLOR*/
  	.timer { color: transparent; }
 /* "EXTRA" FIELD COLOR */
@@ -121,7 +120,6 @@ a[href="#"] {
 #pic { 
   opacity: 0.0; 
   font-size: 16px; 
-  font-color: #F2E48E; 
   font-family:Comic Sans!important; 
   font-style:bold; 
   height:50px;
@@ -139,11 +137,12 @@ a[href="#"] {
 /* TAGS */
 /* Container To Fix Tags At Bottom Of Screen */
 #tags-container {
-position: fixed;
-bottom: .5px;
-width: 100%;
-line-height: .45rem;
-margin-left: -15px;
+  position: fixed;
+  bottom: .5px;
+  width: 100%;
+  line-height: .45rem;
+  margin-left: -15px;
+	background-color: transparent;
 }
 
 /* Clickable Tags (need to download the add-on) */
@@ -199,45 +198,57 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
 .mobile .card {--w:100%;}
 .card {--w:0%;}
 
-.button {
+
+/*~~~BUTTON LAYOUT ~~~*/
+
+.button-general {
   outline: 0;
-  background-color: #424242; 
-  border-radius: 0.12em; 
+  border-radius: 0.12em;
   border: 1px solid #525253 !important;
-  color: #AFAFAF !important;
   padding: 5px 5px;
   text-align: center;
   display: inline-block;
   font-size: 9.5px;
-  %box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: #424242;
+  color: #AFAFAF !important;
+  margin-top: 8px;
 }
-.button:hover {
+
+.mobile .button-general {
+  font-size: 18px;
+  padding: 9px 7px;
+}
+
+.expanded-button {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  font-weight: bold;
+  width: 50% !important;
+  background: #ababab !important;
+  color: black !important;
+  font-weight: bold;
+  width: 50% !important;
+}
+
+
+#button-mq:not(.expanded-button) {
+  color: #c26165 !important;
+}
+
+
+html:not(.mobile) .button-general:hover {
+  cursor: default;
   background-color: #E9E9E9 !important;
   color: #363638 !important;
-  cursor: default;
-  }
+}
+
 
 /* EXTRA FIELDS */
 #back { font-size: 1rem;}
 #romanization { font-style: italic; font-size: .5rem; color:grey;}
 
-#definitions {
-  width: 100%;
-  padding: 2px 0;
-  text-align: center;
-  border: 5px solid black;
-  margin-top: 2px;
-  font-size:0.7rem;
-}
-#examples {
-  width: 100%;
-  padding: 2px 0;
-  text-align: center;
-  border: 5px solid black;
-  margin-top: 2px;
-  font-size:0.7rem;
-}
-#alt {
+#definitions, #examples, #alt {
   width: 100%;
   padding: 2px 0;
   text-align: center;

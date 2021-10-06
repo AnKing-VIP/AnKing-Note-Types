@@ -25,7 +25,7 @@
    /*First Aid, Sketchy, Physeo, Additional Resources Font Size*/
 	#firstaid, #sketchy, #pixorize, #physeo, #additional { font-size: 1rem !important; } 
    /*First Aid, Sketchy, Physeo, Additional Resources Font Size on Mobile*/
-	.mobile #firstaid, .mobile #sketchy, .mobile #pixorize,, .mobile #physeo, .mobile #additional { font-size: 20px!important; }
+	.mobile #firstaid, .mobile #sketchy, .mobile #pixorize, .mobile #physeo, .mobile #additional { font-size: 20px!important; }
 
 /*FONT STYLE*/	
 	.card, kbd { font-family: Menlo, baskerville, sans; } /*Step exam's font is Arial Greek*/

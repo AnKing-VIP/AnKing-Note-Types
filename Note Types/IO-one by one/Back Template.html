@@ -12,69 +12,46 @@
     // The button shortcuts are  Alt + the number/letter the keycode stands for
     // All buttons will also open with "H" if using the Hint Hotkeys add-on 
     // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
-    var Extra = '49'; // alt + 1
-    var PersonalNotes = '50'; // alt + 2
-    var MissedQ = '51'; // alt + 3
-    var ToggleAllButtons = '222'; // '
-
-    var ScrollToButton = true;
+    var ButtonShortcuts = {
+        "Extra": '49', // alt + 1
+        "Personal Notes": '50', // alt + 2
+        "Missed Questions": '51', // alt + 3
+    }
 
     // change values from false to true to have the fields revealed from the start
-    var ShowExtra = false;
-    var ShowPersonalNotes = false;
-    var ShowMissedQuestions = false;
+    var ButtonAutoReveal = {
+        "Extra": false,
+        "Personal Notes": false,
+        "Missed Questions": false,
+    }
+
+    var ToggleAllButtons = '222' // '
+    var ScrollToButton = true
 
     //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
     var tagID = "XXXYYYZZZ"
-</script>
 
+</script>
 
 <div id="extras" hidden>{{I0}}</div>
 <div class="header">{{Header}}</div>
-<button class="dummy-btn"><div class="io">{{Image}}</div></button>
+<button class="dummy-btn">
+    <div class="io">{{Image}}</div>
+</button>
 <br>
 <button id="button-reveal-next" class="button-general">Reveal Next</button>
 <button id="button-toggle-all" class="button-general">Toggle All</button>
 <br>
 <div class="btn-spacer" hidden></div>
 
-<!-- EXTRA FIELD -->
-{{#Extra}}
-<a id="link-ex" href="#" class="hint" onclick="toggleHint('button-ex', 'hint-ex', 'link-ex')"></a>
-<button id="button-ex" class="button-general" onclick="toggleHint('button-ex', 'hint-ex', 'link-ex')">
-    <img src="_Anking_v3.png">
-    Extra
-</button>
-<div id="hint-ex" style="display:none;">
-    <div class="hints" id="extra">{{edit:Extra}}</div>
-</div>
-{{/Extra}}
+<hint-button field-name="Extra" short="ex" hint-id="extra"></hint-button>
+<div id="dummy-ex" style="display: none;">{{edit:Extra}}</div>
 
+<hint-button field-name="Personal Notes" short="ln" hint-id="personal-notes"></hint-button>
+<div id="dummy-ln" style="display: none;">{{edit:Personal Notes}}</div>
 
-<!-- PERSONAL NOTES FIELD -->
-{{#Personal Notes}} 
-<a id="link-ln" href="#" class="hint" onclick="toggleHint('button-ln', 'hint-ln', 'link-ln')"></a>
-<button id="button-ln" class="button-general" onclick="toggleHint('button-ln', 'hint-ln', 'link-ln')" >
-    <img src="_Anking_v3.png">
-    Personal Notes
-</button>
-<div id="hint-ln" style="display:none;">
-    <div class="hints" id="personal-notes">{{edit:Personal Notes}}</div>
-</div>
-{{/Personal Notes}}
-
-
-<!-- MISSED QUESTIONS FIELD -->
-{{#Missed Questions}}
-<a id="link-mq" href="#" class="hint" onclick="toggleHint('button-mq', 'hint-mq', 'link-mq')"></a>
-<button id="button-mq" class="button-general" onclick="toggleHint('button-mq', 'hint-mq', 'link-mq')">
-    <img src="_Anking_v3.png">
-    Missed Questions
-</button>
-<div id="hint-mq" style="display:none;">
-    <div class="hints" id="missed-questions">{{edit:Missed Questions}}</div>
-</div>
-{{/Missed Questions}}
+<hint-button field-name="Missed Questions" short="mq" hint-id="missed-questions"></hint-button>
+<div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>
 
 
 <a class="logo" href="https://www.ankingmed.com">
@@ -126,58 +103,105 @@
     </script>
     {{/Tags}}
 
-    <script>
-        //HINT REVEALS
-        function toggleHint(btn_id, hint_id, link_id) {
-            var button = document.getElementById(btn_id)
-            var hint = document.getElementById(hint_id)
-            var link = document.getElementById(link_id)
-            if (!button) return
-            if (hint.style.display == "none") {
-                button.classList.add("expanded-button")
-                hint.style.display = "block"
-                link.style.display = "none"
-                if (ScrollToButton) {
-                    hint.scrollIntoView({
-                        behavior: "smooth", // "auto" for instant scrolling
-                        block: "start",
-                        inline: "nearest"
-                    });
-                }
-            } else {
-                button.classList.remove("expanded-button")
-                hint.style.display = "none"
-                link.style.display = ""
-            }
-        }
-        
-        if(ShowExtra) toggleHint('button-ex', 'hint-ex', 'link-ex')
-        if(ShowPersonalNotes) toggleHint('button-ln', 'hint-ln', 'link-ln')
-        if(ShowMissedQuestions) toggleHint('button-mq', 'hint-mq', 'link-mq')
 
-        if (!globalThis.ToggleHintsListening) {
-            globalThis.ToggleHintsListening = true
-            document.addEventListener("keydown", (evt) => {
-                if (evt.repeat) return
-                if (evt.altKey && evt.keyCode == PersonalNotes) {
-                    toggleHint('button-ln', 'hint-ln', 'link-ln')
+    <script>
+        function defineHintButton() {
+            class HintButton extends HTMLElement {
+                constructor() {
+                    super();
+
+                    var fieldName = this.getAttribute("field-name")
+
+                    // adding the strings together this way to prevent Anki from thinking that a field should be inserted here
+                    var fieldString = '{' + '{' + fieldName + '}}'
+                    var short = this.getAttribute("short")
+                    var hintId = this.getAttribute("hint-id")
+                    this.innerHTML = `
+                        <a id="link-${short}" href="#" class="hint"></a>
+                        <button id="button-${short}" class="button-general">
+                            <img src="_Anking_v3.png">
+                            ${fieldName}
+                        </button>
+                        <div id="${hintId}" class="hints" style="display:none;">
+                        </div>
+                    `
+
+                    this.button = document.getElementById(`button-${short}`)
+                    this.link = document.getElementById(`link-${short}`)
+                    this.hint = document.getElementById(hintId)
+
+                    // moves the field content from the dummy to this
+                    var dummy = document.getElementById(`dummy-${short}`)
+                    var content = dummy.innerHTML
+
+                    // hide this if the field is empty
+                    if (dummy.innerHTML == "" ||
+                        (dummy.lastChild.nodeName == "SCRIPT" && dummy.firstChild.getAttribute("contenteditable") && dummy.firstChild.innerHTML == "")) {
+                        this.remove()
+                        return
+                    }
+
+                    // ... this also runs script tags, this makes it compatible with the Edit Field during Review add-on
+                    setInnerHTML(this.hint, content)
+
+
+                    this.button.onclick = () => this.toggle()
+
+                    // the link is needed so that this works with the Hint Hotkey add-on
+                    this.link.onclick = () => this.toggle()
+
+                    if (ButtonAutoReveal[fieldName]) {
+                        this.toggle()
+                    }
+
+                    document.addEventListener("keydown", (evt) => {
+                        if (evt.repeat) return
+                        if (evt.altKey && evt.keyCode == ButtonShortcuts[fieldName]) this.toggle()
+                        if (evt.keyCode == ToggleAllButtons) this.toggle()
+                        return false
+                    })
                 }
-                if (evt.altKey && evt.keyCode == MissedQ) {
-                    toggleHint('button-mq', 'hint-mq', 'link-mq')
-                }
-                if (evt.altKey && evt.keyCode == Extra) {
-                    toggleHint('button-ex', 'hint-ex', 'link-ex')
-                }
-                if (evt.keyCode == ToggleAllButtons) {
-                    try { toggleHint('button-mq', 'hint-mq', 'link-mq'); }
-                    finally {
-                        try { toggleHint('button-ln', 'hint-ln', 'link-ln'); }
-                        finally { toggleHint('button-ex', 'hint-ex', 'link-ex'); }
+
+                toggle() {
+                    if (!this.button) return
+                    if (this.hint.style.display == "none") {
+                        this.button.classList.add("expanded-button")
+                        this.hint.style.display = "block"
+                        this.link.style.display = "none"
+                        if (ScrollToButton) {
+                            this.hint.scrollIntoView({
+                                behavior: "smooth", // "auto" for instant scrolling
+                                block: "start",
+                                inline: "nearest"
+                            });
+                        }
+                    } else {
+                        this.button.classList.remove("expanded-button")
+                        this.hint.style.display = "none"
+                        this.link.style.display = ""
                     }
                 }
-                return false
-            })
+
+            }
+            try {
+                customElements.define('hint-button', HintButton)
+            } catch (DOMException) { }
         }
+
+        defineHintButton()
+
+        function setInnerHTML(elm, html) {
+            elm.innerHTML = html;
+            Array.from(elm.querySelectorAll("script")).forEach(oldScript => {
+                const newScript = document.createElement("script");
+                Array.from(oldScript.attributes)
+                    .forEach(attr => newScript.setAttribute(attr.name, attr.value));
+                newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+                oldScript.parentNode.replaceChild(newScript, oldScript);
+            });
+        }
+
+
     </script>
 
 
