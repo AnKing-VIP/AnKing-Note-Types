@@ -122,31 +122,31 @@
                             <img src="_Anking_v3.png">
                             ${fieldName}
                         </button>
-                        <div id="hint-${short}" style="display:none;">
-                            <div id="${hintId}"></div>
+                        <div id="${hintId}" class="hints" style="display:none;">
                         </div>
                     `
 
                     this.button = document.getElementById(`button-${short}`)
-                    this.hint = document.getElementById(`hint-${short}`)
                     this.link = document.getElementById(`link-${short}`)
+                    this.hint = document.getElementById(hintId)
 
                     // moves the field content from the dummy to this
                     var dummy = document.getElementById(`dummy-${short}`)
                     var content = dummy.innerHTML
 
                     // hide this if the field is empty
-                    if (dummy.innerHTML == "" || 
+                    if (dummy.innerHTML == "" ||
                         (dummy.lastChild.nodeName == "SCRIPT" && dummy.firstChild.getAttribute("contenteditable") && dummy.firstChild.innerHTML == "")) {
                         this.remove()
                         return
                     }
+
                     // ... this also runs script tags, this makes it compatible with the Edit Field during Review add-on
                     setInnerHTML(this.hint, content)
 
 
                     this.button.onclick = () => this.toggle()
-                    
+
                     // the link is needed so that this works with the Hint Hotkey add-on
                     this.link.onclick = () => this.toggle()
 
