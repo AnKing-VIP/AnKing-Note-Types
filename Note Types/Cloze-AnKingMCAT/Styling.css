@@ -176,7 +176,7 @@ text-decoration: underline;
 }
 
 /* Details for AnKing hyperlink image */
-#pic { opacity: 0.0; font-size: 16px; font-color: #F2E48E; font-family:Comic Sans!important; font-style:bold;}
+#pic { opacity: 0.0; font-size: 16px; font-family:Comic Sans!important; font-style:bold;}
 #pic:hover { opacity: 1; transition: opacity 0.2s ease; }
 .mobile #pic { display: none; }
 
