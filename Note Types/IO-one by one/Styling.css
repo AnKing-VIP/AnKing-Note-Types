@@ -4,8 +4,8 @@
 /* You can choose colors at www.htmlcolorcodes.com */
 
 /*FONT SIZE*/
-/* anything with 'px' will keep a font that size indefinitely, 'rem' is a fraction of this size above and allows all text to change size with the above setting */
-
+/* anything with 'px' will keep a font that size indefinitely, 
+'rem' is a fraction of this size above and allows all text to change size with the above setting */
 /* desktop */
 html {
   font-size: 28px;

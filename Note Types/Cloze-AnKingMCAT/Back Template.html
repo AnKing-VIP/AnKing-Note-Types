@@ -4,13 +4,14 @@
     // The shortcuts are  Alt  +  the number/letter below
     // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
     var ButtonShortcuts = {
-        "Lecture Notes" : '49',
-        "Missed Questions" : '50',
-        "Pixorize" : '51',
-        "Additional Resources" : '52',
+        "Lecture Notes" : '49', // alt + 1
+        "Missed Questions" : '50', // alt + 2
+        "Pixorize" : '51', // alt + 3
+        "Additional Resources" : '52', // alt + 4
     }
-    var ToggleAllButtons = '222'
+    var ToggleAllButtons = '222' // '
 
+    // ##############  SHOW HINTS AUTOMATICALLY  ##############
     var ButtonAutoReveal = {
         "Lecture Notes" : false,
         "Missed Questions" : false,
@@ -19,6 +20,9 @@
     }
 
     var ScrollToButton = true;
+
+    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+    var tagID = "XXXYYYZZZ"
 
     // ##############  TAG SHORTCUT  ##############
     // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
@@ -43,10 +47,7 @@ replace the arrows/dashes from the statement below with double brackets-->
 
 <hr>
 
-
-<!-- ##############  SHOW HINTS AUTOMATICALLY  ##############
-For instructions on how to show a field automatically,  visit www.ankingmed.com/faq and type "show hint" into the search bar -->
-
+<!-- BUTTON FIELDS -->
 <hint-button field-name="Lecture Notes" short="ln" hint-id="lecture-notes"></hint-button>
 <div id="dummy-ln" style="display: none;">{{edit:Lecture Notes}}</div>
 
@@ -57,7 +58,6 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
 <p></p>{{#Extra}}
 <div id="extra">{{edit:Extra}}</div>
 {{/Extra}}<br>
-<div id="testscroll"></div>
 
 <hint-button field-name="Pixorize" short="pixorize" hint-id="pixorize"></hint-button>
 <div id="dummy-pixorize" style="display: none;">{{edit:Pixorize}}</div>
@@ -66,6 +66,10 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
 <div id="dummy-ar" style="display: none;">{{edit:Additional Resources}}</div>
 
 
+<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
+
+
+<!-- TOGGLE BUTTONS -->
 <script>
     function defineHintButton() {
         class HintButton extends HTMLElement {
@@ -167,14 +171,7 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
 </script>
 
 
-<br>
-<br>
-
-<script>
-    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
-    var tagID
-</script>
-
+<!-- CLICKABLE COLORFUL TAGS -->
 {{#Tags}}
 <div id="tags-container">{{clickable::Tags}}</div>
 <script>
@@ -216,13 +213,6 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
 
 </script>
 {{/Tags}}
-
-<div id="pic"><a href="https://www.ankingmed.com">
-        <img src="_AnKingRound.png" alt="The AnKing"
-            style="height:50px;border:0;position:fixed;bottom:10px;right:10px;">
-    </a></div>
-
-
 
 
 <!-- WIKIPEDIA SEARCHES -->

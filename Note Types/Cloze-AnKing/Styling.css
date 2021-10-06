@@ -1,6 +1,8 @@
-/*    ANKING NOTETYPE VERSION 9   */
+/*    CLOZE-ANKING NOTETYPE VERSION 10   */
 
-/*The AnKing wishes you the best of luck! Be sure to check out our youtube channel for all things Anki and Pre-med/Med School related (including how to customize this card type and use these decks):  www.AnKingMed.com    */
+/*The AnKing wishes you the best of luck! Be sure to check out our youtube channel 
+for all things Anki and Pre-med/Med School related 
+(including how to customize this card type and use these decks):  www.AnKingMed.com  */
 
 /*~~~~~~~~USER CUSTOMIZATION START~~~~~~~~~*/
 /* You can choose colors at www.htmlcolorcodes.com */
@@ -18,8 +20,9 @@
      /* DESKTOP */ html 
 	{ font-size: 28px; }
      /* MOBILE */ .mobile
-         { font-size: 28px; }
-		/* NOTE: anything with 'px' will keep a font that size indefinitely, 'rem' is a fraction of this size above and allows all text to change size with the above setting */
+  { font-size: 28px; }
+		/* NOTE: anything with 'px' will keep a font that size indefinitely, 
+    'rem' is a fraction of this size above and allows all text to change size with the above setting */
 
 /*IPAD ADJUSTMENTS
 .ipad .card, .ipad #extra {font-size:28px;}
@@ -29,7 +32,7 @@
 	{ font-size: .85rem; }
 /*FONT STYLE*/	
 	.card, kbd { font-family: Arial Greek, Arial; } /*Step exam's font is Arial Greek*/
-/*MAX IMAGE HEIGHT*/
+/*MAX IMAGE WIDTH*/
 	.card img {max-width: 85%; }
 
 /* ~~COLORS~~ */
@@ -47,8 +50,6 @@
 	.hints { color: #4297F9; }
    /* Missed Question Reveal Color */
 	#missed { color: red; }
-       #missed a[href="#"] { color: red!important; }
-	.nightMode #missed a[href="#"], .night_mode #missed a[href="#"] { color: red!important; }
 
 /* ~~NIGHT MODE COLORS~~ */
 /* NM DEFAULT TEXT COLOR*/ 
@@ -60,8 +61,6 @@
  	.nightMode .cloze, .night_mode .cloze { color: #4297F9!important; }
 /* NM "EXTRA" FIELD COLOR */
 	.nightMode #extra, .night_mode #extra { color: magenta; }
-/* NM HINT COLOR */
-	.nightMode a[href="#"], .night_mode a[href="#"] { color: #4297F9!important; }
 /* NM HINT REVEAL COLOR */
 	.nightMode .hints, .night_mode .hints { color: cyan;}
 
@@ -78,19 +77,29 @@ html { min-height: 100%; display: flex; flex-direction: column; }
 
 /* Formatting For Timer */
 .timer {
-font-size: 20px;
-margin: 12em auto auto auto;
+  font-size: 20px;
+  margin: 12em auto auto auto;
 }
 
 /* Styling For Whole Card*/
 .card {
-text-align: center;
-font-size: 1rem;
-height: 100%;
-margin: 0px 15px;
-flex-grow: 1;
-padding-bottom: 1em;
+  text-align: center;
+  font-size: 1rem;
+  height: 100%;
+  margin: 0px 15px;
+  flex-grow: 1;
+  padding-bottom: 1em;
 }
+
+hr { opacity: .7 }
+
+/* Cloze format */
+.cloze { font-weight: bold; }
+
+/* Adjustments For Cloze Edit In Review On Mobile */
+.clozefield, .mobile .editcloze { display: none; }
+.editcloze, .mobile .clozefield { display:  block; }
+
 /* Details For Images And Image Width */
 .mobile .card img {max-width: 100%!important; }
 .mobile .card {margin: 0ex .3px;}
@@ -115,48 +124,49 @@ padding-bottom: 1em;
 .card {--w:0%;}
 
 /*Max image width for resize images in editor add-on */
-    .card [class^=ui-] img {max-width: 100%!important; }
+  .card [class^=ui-] img {max-width: 100%!important; }
 
 /*Compatibility with resize images in editor add-on */
-    .resizer {min-width: 0%!important; }
-    .mobile .resizer {min-width:100%!important;}
+  .resizer {min-width: 0%!important; }
+  .mobile .resizer {min-width:100%!important;}
 
-/* Cloze format */
-.cloze { font-weight: bold; }
-
-/* Adjustments For Cloze Edit In Review On Mobile */
-.clozefield, .mobile .editcloze { display: none; }
-.editcloze, .mobile .clozefield { display:  block; }
-
-/* BEGIN HINT FIELDS */
-
-/* Hint Link */
-a[href="#"] {
- font-style: italic;
- padding: 0 !important;
- text-decoration: underline;
+/* Fix to make pop-up dictionary images the right size */
+.qtip img {
+  max-width: 95% !important;
+  max-height: 95% !important;
 }
 
+/* BUTTON/HINT FIELDS */
 /* Text When Hint Is Shown*/
 .hints { font-style: italic; }
 
 .hints + #extra { margin-top: 1rem; } /*add spacing between hints and extra field*/
-/* END HINT FIELDS  */
 
 /* EXTRA FIELD */
 #extra { font-style: italic; font-size: 1rem;}
 
-
-/* Fix to make pop-up dictionary images the right size */
-.qtip img {
-   max-width: 95% !important;
-   max-height: 95% !important;
+/* Details for AnKing hyperlink image */
+#pic {
+  opacity: 0.0;
+  font-size: 16px;
+  font-family: Comic Sans !important;
+  font-style: bold;
+  height: 50px;
+  border: 0;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: block;
 }
 
-/* Details for AnKing hyperlink image */
-#pic { opacity: 0.0; }
-#pic:hover { opacity: 1; transition: opacity 0.2s ease; }
-.mobile #pic { display: none; }
+#pic:hover {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.mobile #pic {
+  display: none;
+}
 
 /* TAGS */
 /* Container To Fix Tags At Bottom Of Screen */
@@ -171,22 +181,22 @@ a[href="#"] {
 
 /* Clickable Tags (need to download the add-on) */
 kbd {
- display: inline-block;
- letter-spacing: .2px;
- font-weight: bold;
- font-size: 12px !important;
- text-shadow: none !important;
- padding: 0.05rem 0.1rem !important;
- margin: 1px -3px !important;
- border-radius: 4px;
- border-width: 1.5px !important;
- border-style: solid;
- background-color: transparent !important;
- box-shadow: none !important;
- opacity: 0.5;
- vertical-align: middle;
- line-height: auto!important;
- height: auto!important;
+  display: inline-block;
+  letter-spacing: .2px;
+  font-weight: bold;
+  font-size: 12px !important;
+  text-shadow: none !important;
+  padding: 0.05rem 0.1rem !important;
+  margin: 1px -3px !important;
+  border-radius: 4px;
+  border-width: 1.5px !important;
+  border-style: solid;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  opacity: 0.5;
+  vertical-align: middle;
+  line-height: auto!important;
+  height: auto!important;
 }
 
 /* Tag Becomes More Visible On Hover */
@@ -255,20 +265,3 @@ html:not(.mobile) #button-mq:hover {
   background-color: #FA8072 !important;
   color: black !important;
 }
-
-
-/*Start of style added by resize image add-on. Don't edit directly or the edition will be lost. Edit via the add-on configuration */
-
-/*End of style added by resize image add-on*/
-/* BEGIN WRAPPER CODE justify
-Please do not edit this section directly, this code is generated automatically. Modify config.json instead */
-.leftalign {
-  display: inline-block;
-  text-align: left;
-}
-
-.centeredbox {
-  text-align: center;
-}
-
-/* END WRAPPER CODE */

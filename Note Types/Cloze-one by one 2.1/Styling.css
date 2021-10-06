@@ -32,8 +32,7 @@
 	.card { color: black; }
 /*BACKGROUND COLOR*/ 
 	.card { background-color: #D1CFCE; }
-	#tags-container { background-color: transparent; }
-    /*TIMER COUNTDOWN COLOR*/
+/*TIMER COUNTDOWN COLOR*/
  	.timer { color: transparent; }
 /* CLOZE COLOR */
 	.cloze { color: blue; }
@@ -65,18 +64,18 @@ html { min-height: 100%; display: flex; flex-direction: column; }
 
 /* Formatting For Timer */
 .timer {
-font-size: 20px;
-margin: 12em auto auto auto;
+  font-size: 20px;
+  margin: 12em auto auto auto;
 }
 
 /* Styling For Whole Card*/
 .card {
-text-align: center;
-font-size: 1rem;
-height: 100%;
-margin: 0px 15px;
-flex-grow: 1;
-padding-bottom: 1em;
+  text-align: center;
+  font-size: 1rem;
+  height: 100%;
+  margin: 0px 15px;
+  flex-grow: 1;
+  padding-bottom: 1em;
 }
 /* Details For Images And Image Width */
 .mobile .card img {max-width: 100%!important; }
@@ -98,11 +97,11 @@ padding-bottom: 1em;
 .card {--w:0%;}
 
 /*Max image width for resize images in editor add-on */
-    .card [class^=ui-] img {max-width: 100%!important; }
+.card [class^=ui-] img {max-width: 100%!important; }
 
 /*Compatibility with resize images in editor add-on */
-    .resizer {min-width: 0%!important; }
-    .mobile .resizer {min-width:100%!important;}
+.resizer {min-width: 0%!important; }
+.mobile .resizer {min-width:100%!important;}
 
 /* Cloze format */
 .cloze { font-weight: bold; }
@@ -114,7 +113,6 @@ padding-bottom: 1em;
 /* EXTRA FIELD */
 #extra { font-style: italic; font-size: 1rem;}
 
-
 /* Fix to make pop-up dictionary images the right size */
 .qtip img {
    max-width: 95% !important;
@@ -122,38 +120,57 @@ padding-bottom: 1em;
 }
 
 /* Details for AnKing hyperlink image */
-#pic { opacity: 0.0; }
-#pic:hover { opacity: 1; transition: opacity 0.2s ease; }
-.mobile #pic { display: none; }
+#pic {
+  opacity: 0.0;
+  font-size: 16px;
+  font-family: Comic Sans !important;
+  font-style: bold;
+  height: 50px;
+  border: 0;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: block;
+}
+
+#pic:hover {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.mobile #pic {
+  display: none;
+}
 
 /* TAGS */
 /* Container To Fix Tags At Bottom Of Screen */
 #tags-container{
-position: fixed;
-bottom: .5px;
-width: 100%;
-line-height: .45rem;
-margin-left: -15px;
+  position: fixed;
+  bottom: .5px;
+  width: 100%;
+  line-height: .45rem;
+  margin-left: -15px;
+  background-color: transparent; 
 }
 
 /* Clickable Tags (need to download the add-on) */
 kbd {
- display: inline-block;
- letter-spacing: .2px;
- font-weight: bold;
- font-size: 12px !important;
- text-shadow: none !important;
- padding: 0.05rem 0.1rem !important;
- margin: 1px -3.5px !important;
- border-radius: 4px!important;
- border-width: 1.5px !important;
- border-style: solid;
- background-color: transparent !important;
- box-shadow: none !important;
- opacity: 0.5;
- vertical-align: middle!important;
- line-height: auto!important;
- height: auto!important;
+  display: inline-block;
+  letter-spacing: .2px;
+  font-weight: bold;
+  font-size: 12px !important;
+  text-shadow: none !important;
+  padding: 0.05rem 0.1rem !important;
+  margin: 1px -3.5px !important;
+  border-radius: 4px!important;
+  border-width: 1.5px !important;
+  border-style: solid;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  opacity: 0.5;
+  vertical-align: middle!important;
+  line-height: auto!important;
+  height: auto!important;
 }
 
 /* Tag Becomes More Visible On Hover */
@@ -174,9 +191,6 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
 /* Tag Mobile Adjustments */
 .mobile kbd { opacity: .9; margin: 1px !important; display: inline-block; font-size: 10px !important; }
 .mobile #tags-container {line-height:0.6rem; margin-left: 0px; }
-/*Start of style added by resize image add-on. Don't edit directly or the edition will be lost. Edit via the add-on configuration */
-
-/*End of style added by resize image add-on*/
 
 
 .button-general {

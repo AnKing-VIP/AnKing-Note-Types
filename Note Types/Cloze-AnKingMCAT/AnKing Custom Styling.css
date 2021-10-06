@@ -8,8 +8,6 @@
 .mobile #tags-container { display: none; } /* ‘none’ or ‘block’ */
 /* MOVE TAGS UP FOR 'NO-DISTRACTIONS' ADD-ON */
 #tags-container{ padding-bottom: 0px; } /* 0 normal, 55 to move up */
-/* ANKING IMAGE HYPERLINK ON/OFF */
-	#pic {display: block; } /* 'none' or 'block' */
 /* MNEMONICS CENTER OR LEFT */
 .mnemonics { text-align:left; } 
 
@@ -53,14 +51,10 @@
 	.cloze { color: blue; }
 /* "EXTRA" FIELD COLOR */
 	#extra { color: navy; }
-/* HINT COLOR*/
-	a[href="#"] { color: blue; }
 /* HINT REVEAL COLOR */
 	.hints { color: #4297F9; }
    /* Missed Questions Reveal Color */
 	#missed { color: red; }
-       #missed a[href="#"] { color: red!important; }
-	.nightMode #missed a[href="#"], .night_mode #missed a[href="#"] { color: red!important; }
 
 /* ~~NIGHT MODE COLORS~~ */
 /* NM DEFAULT TEXT COLOR*/ 
@@ -72,8 +66,6 @@
  	.nightMode .cloze, .night_mode .cloze { color: #4297F9!important; }
 /* NM "EXTRA" FIELD COLOR */
 	.nightMode #extra, .night_mode #extra { color: magenta; }
-/* NM HINT COLOR */
-	.nightMode a[href="#"], .night_mode a[href="#"] { color: #4297F9!important; }
 /* NM HINT REVEAL COLOR */
 	.nightMode .hints, .night_mode .hints { color: cyan;}
 

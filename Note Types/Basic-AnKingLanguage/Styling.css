@@ -11,15 +11,14 @@
 .mobile #tags-container { display: block; } /* ‘none’ or ‘block’ */
 /* MOVE TAGS UP FOR 'NO-DISTRACTIONS' ADD-ON */
 #tags-container{ padding-bottom: 0px; } /* 0 normal, 55 to move up */
-/* ANKING IMAGE HYPERLINK ON/OFF */
-	#pic {display: block; } /* 'none' or 'block' */
 
 /*FONT SIZE*/
      /* DESKTOP */ html 
 	{ font-size: 28px; }
      /* MOBILE */ .mobile
-         { font-size: 28px; }
-		/* NOTE: anything with 'px' will keep a font that size indefinitely, 'rem' is a fraction of this size above and allows all text to change size with the above setting */
+  { font-size: 28px; }
+		/* NOTE: anything with 'px' will keep a font that size indefinitely, 
+    'rem' is a fraction of this size above and allows all text to change size with the above setting */
 
 /*HINT FONT SIZE*/ .hints 
 	{ font-size: .85rem; }
@@ -37,8 +36,6 @@
  	.timer { color: transparent; }
 /* "EXTRA" FIELD COLOR */
 	#extra { color: navy; }
-/* HINT COLOR*/
-	a[href="#"] { color: blue; }
 /* HINT REVEAL COLOR */
 	.hints { color: #4297F9; }
 
@@ -51,8 +48,6 @@
 	.nightMode.card, .night_mode .card { background-color: #272828 !important; }
 /* NM "EXTRA" FIELD COLOR */
 	.nightMode #extra, .night_mode #extra { color: magenta; }
-/* NM HINT COLOR */
-	.nightMode a[href="#"], .night_mode a[href="#"] { color: black; }
 /* NM HINT REVEAL COLOR */
 	.nightMode .hints, .night_mode .hints { color: cyan;}
 
@@ -69,20 +64,22 @@ html { min-height: 100%; display: flex; flex-direction: column; }
 
 /* Formatting For Timer */
 .timer {
-font-size: 20px;
-margin: 12em auto auto auto;
+  font-size: 20px;
+  margin: 12em auto auto auto;
 }
 
 /* Styling For Whole Card */
 .card {
-text-align: center;
-font-size: 1rem;
-height: 100%;
-margin: 0px 15px;
-flex-grow: 1;
-padding-bottom: 1em;
+  text-align: center;
+  font-size: 1rem;
+  height: 100%;
+  margin: 0px 15px;
+  flex-grow: 1;
+  padding-bottom: 1em;
 }
+
 .mobile .card { padding-bottom: 5em; }
+
 hr { opacity: .7 }
 
 /* Details For Images And Image Width */
@@ -90,49 +87,44 @@ hr { opacity: .7 }
 .mobile .card {margin: 0ex 0em;}
 
 /*Max image width for resize images in editor add-on */
-  .card [class^=ui-] img {max-width: 100%!important; }
+.card [class^=ui-] img {max-width: 100%!important; }
 
 /*Compatibility with resize images in editor add-on */
-  .resizer {min-width: 0%!important; }
-  .mobile .resizer {min-width:100%!important;}
-
+.resizer {min-width: 0%!important; }
+.mobile .resizer {min-width:100%!important;}
 
 /* BEGIN HINT FIELDS */
-
-/* Hint Link */
-a[href="#"] {
- padding: 0 !important;
-}
-
 /* Text When Hint Is Shown*/
 .hints { font-size:1rem;}
 
-/* END HINT FIELDS  */
-
-
 /* Fix to make pop-up dictionary images the right size */
 .qtip img {
-   max-width: 95% !important;
-   max-height: 95% !important;
+  max-width: 95% !important;
+  max-height: 95% !important;
 }
 
 /* Details for AnKing hyperlink image */
-#pic { 
-  opacity: 0.0; 
-  font-size: 16px; 
-  font-family:Comic Sans!important; 
-  font-style:bold; 
-  height:50px;
-  border:0;
-  position:fixed;
-  bottom:10px;
-  right:10px;
+#pic {
+  opacity: 0.0;
+  font-size: 16px;
+  font-family: Comic Sans !important;
+  font-style: bold;
+  height: 50px;
+  border: 0;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: block;
 }
-#pic:hover { 
-  opacity: 1; 
-  transition: opacity 0.2s ease; 
+
+#pic:hover {
+  opacity: 1;
+  transition: opacity 0.2s ease;
 }
-.mobile #pic { display: none; }
+
+.mobile #pic {
+  display: none;
+}
 
 /* TAGS */
 /* Container To Fix Tags At Bottom Of Screen */

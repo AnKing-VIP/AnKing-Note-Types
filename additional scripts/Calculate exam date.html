@@ -1,0 +1,23 @@
+<div style="font-size:20px;color:#F2E48E;font-family:Times;
+font-style:italic;letter-spacing:-2px;position:fixed;bottom:50px;
+left:5px;opacity:.9;">
+    <div class="editcloze">
+        Ease: {{info-Factor:}}
+    </div>
+    <span id="countdown2"></span>
+    <script>
+        var dateText= 'June 18 2022';
+        var now = new Date().getTime();
+        var targetDate= new Date(dateText).getTime();
+        var dist = targetDate- now;
+        var days = ((dist / (1000 * 60 * 60 * 24))/30).toFixed(1);
+        document.getElementById('countdown2').innerHTML = days;
+    </script>m (<span id="countdown"></span>
+    <script>
+        var now = new Date().getTime();
+        var targetDate= new Date(dateText).getTime();
+        var dist = targetDate- now;
+        var days = Math.ceil(dist / (1000 * 60 * 60 * 24));
+        document.getElementById('countdown').innerHTML = days;
+    </script>d)
+</div>
