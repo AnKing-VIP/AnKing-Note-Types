@@ -266,7 +266,7 @@ html {
   min-width: 30%;
 }
 
-.mobile .hints img {
+.mobile .hints, .mobile #extra img {
   max-width: 100% !important;
 }
 
@@ -355,7 +355,7 @@ html {
   transform: scale(1.5);
 }
 
-.mobile .hints img:active {
+.mobile .hints, .mobile #extra img:active {
   transform: scale(1.0);
 }
 
