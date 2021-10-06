@@ -47,7 +47,6 @@
 	.card { color: #D7DEE9; }
 /*BACKGROUND COLOR*/ 
 	.card { background-color: #333B45; }
-	#tags-container { background-color: transparent; }
     /*TIMER COUNTDOWN COLOR*/
  	.timer { color: transparent; }
 /* CLOZE COLOR */
@@ -183,11 +182,12 @@ text-decoration: underline;
 /* TAGS */
 /* Container To Fix Tags At Bottom Of Screen */
 #tags-container{
-position: fixed;
-bottom: .5px;
-width: 100%;
-line-height: .45rem;
-margin-left: -15px;
+  position: fixed;
+  bottom: .5px;
+  width: 100%;
+  line-height: .45rem;
+  margin-left: -15px;
+  background-color: transparent;
 }
 
 /* Clickable Tags (need to download the add-on) */
