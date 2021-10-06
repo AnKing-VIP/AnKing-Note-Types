@@ -37,15 +37,12 @@
 	.card { color: black; }
 /*BACKGROUND COLOR*/ 
 	.card { background-color: #D1CFCE; }
-	#tags-container { background-color: transparent; }
     /*TIMER COUNTDOWN COLOR*/
  	.timer { color: transparent; }
 /* CLOZE COLOR */
 	.cloze { color: blue; }
 /* "EXTRA" FIELD COLOR */
 	#extra { color: navy; }
-/* HINT COLOR*/
-	a[href="#"] { color: blue; }
 /* HINT REVEAL COLOR */
 	.hints { color: #4297F9; }
    /* Missed Question Reveal Color */
@@ -164,11 +161,12 @@ a[href="#"] {
 /* TAGS */
 /* Container To Fix Tags At Bottom Of Screen */
 #tags-container{
-position: fixed;
-bottom: .5px;
-width: 100%;
-line-height: .45rem;
-margin-left: -15px;
+  position: fixed;
+  bottom: .5px;
+  width: 100%;
+  line-height: .45rem;
+  margin-left: -15px;
+  background-color: transparent; 
 }
 
 /* Clickable Tags (need to download the add-on) */
