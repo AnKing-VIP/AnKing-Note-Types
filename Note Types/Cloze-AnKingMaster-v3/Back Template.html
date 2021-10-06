@@ -31,6 +31,11 @@
     }
 
     var ScrollToButton = true;
+
+    // ##############  TAG SHORTCUT  ##############
+    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
+    var ToggleTags = "67"; // c
+
 </script>
 
 
@@ -132,7 +137,6 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
                 // hide this if the field is empty
                 if (dummy.innerHTML == "" || 
                     (dummy.lastChild.nodeName == "SCRIPT" && dummy.firstChild.getAttribute("contenteditable") && dummy.firstChild.innerHTML == "")) {
-                    console.log("empty")
                     this.remove()
                     return
                 }
@@ -242,7 +246,7 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
           }
         } 
         document.addEventListener('keyup', function(e) {
-            if(e.key =="c"){
+            if(e.keyCode == ToggleTags){
              showtags();
             }
         });
