@@ -248,23 +248,7 @@ html:not(.mobile) .button-general:hover {
 #back { font-size: 1rem;}
 #romanization { font-style: italic; font-size: .5rem; color:grey;}
 
-#definitions {
-  width: 100%;
-  padding: 2px 0;
-  text-align: center;
-  border: 5px solid black;
-  margin-top: 2px;
-  font-size:0.7rem;
-}
-#examples {
-  width: 100%;
-  padding: 2px 0;
-  text-align: center;
-  border: 5px solid black;
-  margin-top: 2px;
-  font-size:0.7rem;
-}
-#alt {
+#definitions, #examples, #alt {
   width: 100%;
   padding: 2px 0;
   text-align: center;
