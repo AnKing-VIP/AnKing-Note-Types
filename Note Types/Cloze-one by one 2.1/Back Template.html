@@ -6,16 +6,16 @@
 
 <script>
 var shortcut = 'n' //Shortcut to reveal cloze
-var clozeHidden = (content) => "_".repeat(content.length) // Hidden cloze
+var clozeHidden = (elem) => "_".repeat(elem.textContent.length) // Hidden cloze
 /* 
 You can replace tha above line with below examples.
 
 - To make it replace all characters with "_" (default):
-var clozeHidden = (content) => "_".repeat(content.length)
+var clozeHidden = (elem) => "_".repeat(elem.textContent().length)
 - To make the it have fixed length:
-var clozeHidden = (content) => "___"
-- To make it a color-filled box:
-var clozeHidden = (content) => `<span style="background-color: blue">${content}</span>`
+var clozeHidden = (elem) => "___"
+- To make it a color-filled box (doesn't hide images):
+var clozeHidden = (elem) => `<span style="background-color: blue">${elem.innerHTML}</span>`
 */
 </script>
 
@@ -40,7 +40,7 @@ let cloze_color = "blue";
 for (let i = 0; i < clozes.length; i++) {
   let cloze = clozes[i]
   cloze.dataset.content = cloze.innerHTML
-  cloze.innerHTML = clozeHidden(cloze.innerHTML)
+  cloze.innerHTML = clozeHidden(cloze)
   cloze.addEventListener("click", (ev) => {
     revealCloze(ev.currentTarget)
   })
