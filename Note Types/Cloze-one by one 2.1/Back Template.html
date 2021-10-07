@@ -2,48 +2,58 @@
 <br>
 {{#Extra}}<div id=extra>{{edit:Extra}}</div>{{/Extra}}
 
+<!-- User Customization Start -->
+
 <script>
-//SHORTCUT TO REVEAL CLOZES
-var shortcut = 'n'
-//SHORTCUT END
+var shortcut = 'n' //Shortcut to reveal cloze
+var clozeHidden = (content) => "_".repeat(content.length) // Hidden cloze
+/* 
+You can replace tha above line with below examples.
+
+- To make it replace all characters with "_" (default):
+var clozeHidden = (content) => "_".repeat(content.length)
+- To make the it have fixed length:
+var clozeHidden = (content) => "___"
+- To make it a color-filled box:
+var clozeHidden = (content) => `<span style="background-color: blue">${content}</span>`
+*/
 </script>
 
+<!-- User Customization End -->
 
 
-<script>
-var clozes = document.getElementsByClassName("cloze");
-var clr = window.getComputedStyle(clozes[0]).color;
-var bg = window.getComputedStyle(clozes[0]).background;
-for (i=1; i<clozes.length; ++i) {
-  clozes[i].style.background = clr;
-  clozes[i].onclick = function() {this.style.background=bg ;}
+<style>
+.cloze[data-content]:hover {
+  cursor: pointer;
 }
-</script>
+</style>
 
 <script>
-    var clozes = [...document.querySelectorAll(".cloze")];
-    if (clozes.length) {
-        const cloze_color = window.getComputedStyle(clozes[0]).color;
-        const cloze_bg_color = window.getComputedStyle(clozes[0]).backgroundColor;
-        clozes.slice(1).forEach((item) => {
-            item.style.backgroundColor = cloze_color;
-            item.addEventListener("click", () => {
-                item.style.backgroundColor = cloze_bg_color;
-            });
-        });
-//USER CUSTOMIZATION event.key 
 
-        document.addEventListener("keyup",  function(e) {
-            if (e.key == shortcut) {
-                clozes.slice(1).some((item) => {
-                    if (item.style.backgroundColor != cloze_bg_color) {
-                        item.style.backgroundColor = cloze_bg_color;
-                        return true;
-                    }
-                })
-            }
-        });
+function revealCloze(elem) {
+  elem.innerHTML = elem.dataset.content
+  delete elem.dataset.content
+}
+
+let clozes = document.getElementsByClassName("cloze")
+let cloze_color = "blue";
+for (let i = 0; i < clozes.length; i++) {
+  let cloze = clozes[i]
+  cloze.dataset.content = cloze.innerHTML
+  cloze.innerHTML = clozeHidden(cloze.innerHTML)
+  cloze.addEventListener("click", (ev) => {
+    revealCloze(ev.currentTarget)
+  })
+}
+
+document.addEventListener("keyup",  function(ev) {
+    if (ev.key == shortcut) {
+      let elem = document.querySelector(".cloze[data-content]")
+      if (elem) {
+        revealCloze(elem)
+      }
     }
+});
 </script>
 
 {{#Tags}}
