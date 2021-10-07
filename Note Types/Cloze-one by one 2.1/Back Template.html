@@ -74,12 +74,12 @@ if (tagContainer.childElementCount == 0) {
 
 
 <!-- WIKIPEDIA SEARCHES -->
-    <div id="popup-container">
-      <button id="close-popup-btn" onclick="closePopup(true)">&times;</button>
-      <a id="open-wiki-btn" href="">&#8618;</a>
-      <div id="tc"></div> <div id="fadebottom_v"></div>
-      <div id="ic"><img id="popup-image"></div>
-    </div>
+<div id="popup-container">
+  <button id="close-popup-btn" onclick="closePopup(true)">&times;</button>
+  <a id="open-wiki-btn" href="">&#8618;</a>
+  <div id="tc"></div> <div id="fadebottom_v"></div>
+  <div id="ic"><img id="popup-image"></div>
+</div>
 <style>
 #tc {
   color: #222222;
@@ -184,33 +184,41 @@ if (tagContainer.childElementCount == 0) {
 </style>
 
 <script>
-      function getSummaryFor(word) {
-	    word = word.replace(/^[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+|[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+$/g, "");
-             var pc = document.getElementById("popup-container");
-   	    var hc = document.getElementById("hc");
-            var tc = document.getElementById("tc");
-            var ic = document.getElementById("ic");
-            var imgelem = document.getElementById("popup-image");
-       	    imgelem.src = "";
-            var shortsum ="";
-        fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + word).then(function(response) {return response.json();}).then(function(response) {
-           shortsum = response.description;
-  	   shortsum = shortsum.replace(/(Disambiguation.*)/g, "Disambiguation");
-            tc.innerHTML = "<span id='hc'>" +capfl(shortsum) + "</span>" +"\n" +response.extract_html + "\n";
-	    tc.style.width = "420px";
-            if (response.extract_html && !response.extract.endsWith("to:")){
-            	pc.style.display = "block";
-	        document.getElementById("open-wiki-btn").href = response.content_urls.desktop.page;
-            }else{pc.style.display = "none";}
-            if (!response.thumbnail.source || response.type ==="disambiguation"){
-                 tc.style.width = "420px";
-            }else{tc.style.width="300px";imgelem.src = response.thumbnail.source;}
-          }).catch(function(error) {console.log(error);});}
+function getSummaryFor(word) {
+  word = word.replace(/^[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+|[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+$/g, "");
+  var pc = document.getElementById("popup-container");
+  var hc = document.getElementById("hc");
+  var tc = document.getElementById("tc");
+  var ic = document.getElementById("ic");
+  var imgelem = document.getElementById("popup-image");
+  imgelem.src = "";
+  var shortsum ="";
+  fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + word)
+    .then(function(response) { return response.json(); })
+    .then(function(response) {
+      shortsum = response.description;
+      shortsum = shortsum.replace(/(Disambiguation.*)/g, "Disambiguation");
+      tc.innerHTML = "<span id='hc'>" +capfl(shortsum) + "</span>" +"\n" +response.extract_html + "\n";
+      tc.style.width = "420px";
+      if (response.extract_html && !response.extract.endsWith("to:")) {
+        pc.style.display = "block";
+        document.getElementById("open-wiki-btn").href = response.content_urls.desktop.page;
+      } else {
+        pc.style.display = "none";
+      }
+      if (!response.thumbnail.source || response.type ==="disambiguation") {
+        tc.style.width = "420px";
+      } else {
+        tc.style.width="300px";imgelem.src = response.thumbnail.source;
+      }
+  }).catch(function(error) { console.log(error); });
+}
 
 function closePopup(deselectAlso=false){
   pcc.style.display = 'none';
   if (deselectAlso){clearSelection();}
 }
+
 var pcc = document.getElementById("popup-container");
 var prevSel = "";
 document.addEventListener('click', function() {
@@ -218,26 +226,37 @@ document.addEventListener('click', function() {
     if (currentSelection !==""){prevSel = currentSelection;}
     if (currentSelection && !mustClickW ){
     	getSummaryFor(currentSelection);
-     }else{closePopup();}
+    } else { 
+       closePopup();
+    }
 });
 document.addEventListener('keyup', function(e) {
-    if(e.key =="w"){
-	if(pcc.style.display ==="block"){closePopup();}else{getSummaryFor(prevSel);}
+  if (e.key =="w") {
+	  if (pcc.style.display ==="block") {
+      closePopup();
+    } else {
+      getSummaryFor(prevSel);
     }
+  }
 });
 function getSelectionText() {
     var text = "";
     if (window.getSelection) {
         text = window.getSelection().toString();
-    } else if (document.selection && document.selection.type != "Control") { text = document.selection.createRange().text;}
+    } else if (document.selection && document.selection.type != "Control") { 
+      text = document.selection.createRange().text;
+    }
     return text;
 }
 function capfl(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
 function clearSelection(){
- if (window.getSelection) {window.getSelection().removeAllRanges();}
- else if (document.selection) {document.selection.empty();}
+ if (window.getSelection) { 
+   window.getSelection().removeAllRanges(); 
+  } else if (document.selection) { 
+   document.selection.empty(); 
+  }
 }
 
 //CUSTOMIZATION
