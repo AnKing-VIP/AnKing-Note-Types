@@ -10,83 +10,79 @@
 /* TIMER ON/OFF */
 .timer { display: block; } /* 'none' or 'block' */
 /* TAGS ON/OFF DESKTOP & MOBILE*/
-	 #tags-container { display: none; }  /* ‘none’ or ‘block’ */
-.mobile #tags-container { display: none; } /* ‘none’ or ‘block’ */
+#tags-container { display: block; } /* ‘none’ or ‘block’ */
+.mobile #tags-container { display: block; } /* ‘none’ or ‘block’ */
 /* MOVE TAGS UP FOR 'NO-DISTRACTIONS' ADD-ON */
 #tags-container{ padding-bottom: 0px; } /* 0 normal, 55 to move up */
-/* ANKING IMAGE HYPERLINK ON/OFF */
-	#pic {display: block; } /* 'none' or 'block' */
-/* MNEMONICS CENTER OR LEFT */
-.mnemonics { text-align:left; } 
 
 /*FONT SIZE*/
-     /* DESKTOP */ html 
-	{ font-size: 28px; }
-     /* MOBILE */ .mobile
-         { font-size: 28px; }
-		/* NOTE: anything with 'px' will keep a font that size indefinitely, 'rem' is a fraction of this size above and allows all text to change size with the above setting */
+/* DESKTOP */ 
+html { font-size: 28px; }
+/* MOBILE */ 
+.mobile { font-size: 28px; }
+/* NOTE: anything with 'px' will keep a font that size indefinitely, 
+'rem' is a fraction of this size above and allows all text to change size with the above setting */
 
 /*IPAD ADJUSTMENTS*/
 .ipad .card, .ipad #extra {font-size:28px;}
 .ipad .hints {font-size:24px;}
 .ipad #textbook, .ipad #additional { font-size: 20px!important; }
 
-/*HINT FONT SIZE*/ .hints 
-	{ font-size: .85rem; }
-   /*First Aid, Sketchy, Physeo, Additional Resources Font Size*/
-	#textbook, #additional { font-size: .6rem !important; } 
-   /*First Aid, Sketchy, Physeo, Additional Resources Font Size on Mobile*/
-  .mobile #textbook, .mobile #additional { font-size: 20px!important; }
+/*HINT FONT SIZE*/
+.hints { font-size: .85rem; }
+/*First Aid, Sketchy, Physeo, Additional Resources Font Size*/
+#textbook, #additional { font-size: .6rem !important; } 
+/*First Aid, Sketchy, Physeo, Additional Resources Font Size on Mobile*/
+.mobile #textbook, .mobile #additional { font-size: 20px!important; }
 
 /*FONT STYLE*/	
-	.card, kbd { font-family: Arial Greek, Arial; } /*Step exam's font is Arial Greek*/
+.card, kbd { font-family: Arial Greek, Arial; } /*Step exam's font is Arial Greek*/
 /*MAX IMAGE HEIGHT*/
-	img {max-height: none; }
- /*MAX IMAGE WIDTH*/
-		#extra img, #lecture img, #missed img {max-width: 85%; }
-	#textbook img, #additional img {max-width: 60%; }
+img { max-height: none; }
+/*MAX IMAGE WIDTH*/
+#extra img, #lecture img, #missed img { max-width: 85%; }
+#textbook img, #additional img { max-width: 60%; }
 
 
 /* ~~COLORS~~ */
 /*DEFAULT TEXT COLOR*/ 
-	.card { color: black; }
+.card { color: black; }
 /*BACKGROUND COLOR*/ 
-	.card { background-color: #D1CFCE; }
-	#tags-container { background-color: transparent; }
-    /*TIMER COUNTDOWN COLOR*/
- 	.timer { color: transparent; }
+.card { background-color: #D1CFCE; }
+#tags-container { background-color: transparent; }
+/*TIMER COUNTDOWN COLOR*/
+.timer { color: transparent; }
 /* CLOZE COLOR */
-	.cloze { color: blue; }
+.cloze { color: blue; }
 /* "EXTRA" FIELD COLOR */
-	#extra { color: navy; }
+#extra { color: navy; }
 /* HINT COLOR*/
-	a[href="#"] { color: blue; }
+a[href="#"] { color: blue; }
 /* HINT REVEAL COLOR */
-	.hints { color: #4297F9; }
-   /* Missed Questions Reveal Color */
-	#missed { color: red; }
-       #missed a[href="#"] { color: red!important; }
-	.nightMode #missed a[href="#"], .night_mode #missed a[href="#"] { color: red!important; }
+.hints { color: #4297F9; }
+/* Missed Questions Reveal Color */
+#missed { color: red; }
+#missed a[href="#"] { color: red!important; }
+.nightMode #missed a[href="#"], .night_mode #missed a[href="#"] { color: red!important; }
 
 /* ~~NIGHT MODE COLORS~~ */
 /* NM DEFAULT TEXT COLOR*/ 
-	.nightMode.card, .night_mode .card
-     { color: #FFFAFA !important; }
+.nightMode.card, .night_mode .card { color: #FFFAFA !important; }
 /* NM BACKGROUND COLOR*/ 
-	.nightMode.card, .night_mode .card { background-color: #272828!important; }
+.nightMode.card, .night_mode .card { background-color: #272828!important; }
 /* NM CLOZE COLOR */
- 	.nightMode .cloze, .night_mode .cloze { color: #4297F9!important; }
+.nightMode .cloze, .night_mode .cloze { color: #4297F9!important; }
 /* NM "EXTRA" FIELD COLOR */
-	.nightMode #extra, .night_mode #extra { color: magenta; }
+.nightMode #extra, .night_mode #extra { color: magenta; }
 /* NM HINT COLOR */
-	.nightMode a[href="#"], .night_mode a[href="#"] { color: #4297F9!important; }
+.nightMode a[href="#"], .night_mode a[href="#"] { color: #4297F9!important; }
 /* NM HINT REVEAL COLOR */
-	.nightMode .hints, .night_mode .hints { color: cyan;}
+.nightMode .hints, .night_mode .hints { color: cyan;}
 
 /* COLOR ACCENTS FOR BOLD-ITALICS-UNDERLINE*/
 b { color: inherit; }
 u { color: inherit; } 
-i  { color: inherit; }
+i { color: inherit; }
 
 /* ~~~~~~~~END CUSTOMIZATION~~~~~~~~ */
 
