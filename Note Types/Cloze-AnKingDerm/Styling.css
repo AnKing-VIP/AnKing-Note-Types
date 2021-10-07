@@ -178,7 +178,7 @@ text-decoration: underline;
 }
 
 /* Details for AnKing hyperlink image */
-#pic { opacity: 0.0; font-size: 16px; font-color: #F2E48E; font-family:Comic Sans!important; font-style:bold;}
+#pic { opacity: 0.0; font-size: 16px; color: #F2E48E; font-family:Comic Sans!important; font-style:bold;}
 #pic:hover { opacity: 1; transition: opacity 0.2s ease; }
 .mobile #pic { display: none; }
 
@@ -252,7 +252,7 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   text-align: center;
   display: inline-block;
   font-size: 9.5px;
-  %box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .button-ln:hover {
   background-color: #E9E9E9 !important;
@@ -271,7 +271,7 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   text-align: center;
   display: inline-block;
   font-size: 9.5px;
-  %box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .button-mq:hover {
   background-color: #FA8072 !important;
@@ -290,7 +290,7 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   text-align: center;
   display: inline-block;
   font-size: 9.5px;
-  %box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .button-textbook:hover {
   background-color: #ea8eed !important;
@@ -309,7 +309,7 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   text-align: center;
   display: inline-block;
   font-size: 9.5px;
-  %box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .button-ar:hover {
   background-color: #E9E9E9 !important;
