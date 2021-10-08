@@ -14,13 +14,39 @@
 
 <!-- User Configuration Start -->
 <script>
+var autoflip = true // auto flip to back if cloze has no hints
 
-var minutes = 0 // Timer length (minutes)
-var seconds = 9 // Timer length (seconds)
+// Timer config (timer length, timer finished message)
+var minutes = 0
+var seconds = 9
 var timeOverMsg = "<span style='color:#CC5B5B'>!<br/>!<br/>!<br/>!<br/>!<br/>!</span>"
-
 </script>
 <!-- User Configuration End -->
+
+
+<script>
+if(autoflip) {
+    let hasHint = false
+    // Check if a cloze has hint
+    let clozes = document.getElementsByClassName("cloze")
+    for(var i = 0; i < clozes.length; i++) {
+        if (clozes[i].innerHTML !== "[...]") {
+            hasHint = true
+        }
+    }
+
+    if (!hasHint) {
+        if (window.pycmd) {
+        pycmd("ans")
+        } else if (window.showAnswer) {
+            showAnswer()
+        }    
+        // AnkiMobile JS API doesn't have one for show answer. 
+        // Best alternative is to use Taps/Swipes to show answer.
+    }
+
+}
+</script>
 
 
 
