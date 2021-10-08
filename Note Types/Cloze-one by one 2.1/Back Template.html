@@ -6,15 +6,18 @@
 
 <script>
 var shortcut = 'n' //Shortcut to reveal cloze
-var clozeHidden = (elem) => "_".repeat(elem.textContent.length) // Hidden cloze
+// What cloze is hidden with
+var clozeHidden = (elem) => "_".repeat(elem.textContent.length)
 /* 
 You can replace tha above line with below examples.
 
-- To make it replace all characters with "_" (default):
-var clozeHidden = (elem) => "_".repeat(elem.textContent().length)
-- To make the it have fixed length:
+- Replace all characters with "_" (default):
+var clozeHidden = (elem) => "_".repeat(elem.textContent.length)
+- Fixed length:
 var clozeHidden = (elem) => "___"
-- To make it a color-filled box (doesn't hide images):
+- Replace all non-whitespace characters with "_":
+var clozeHidden = (elem) => elem.textContent.split(" ").map((x) => "_".repeat(x.length)).join(" ") 
+- Color-filled box (doesn't hide images):
 var clozeHidden = (elem) => `<span style="background-color: blue">${elem.innerHTML}</span>`
 */
 </script>
@@ -55,6 +58,8 @@ document.addEventListener("keyup",  function(ev) {
     }
 });
 </script>
+
+
 
 {{#Tags}}
 <div id="tags-container">{{clickable::Tags}}</div>
