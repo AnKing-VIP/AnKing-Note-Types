@@ -4,30 +4,31 @@
     // The shortcuts are  Alt  +  the number/letter below
     // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
     var ButtonShortcuts = {
-        "Lecture Notes": '49',
-        "Missed Questions": '50',
-        "Pathoma": '51',
-        "Boards and Beyond": '52',
-        "First Aid": '53',
-        "Sketchy": '54',
-        "Pixorize": '55',
-        "Physeo": '56',
-        "OME": '112',
-        "Additional Resources": '57',
+        "Lecture Notes" : '49', // alt + 1
+        "Missed Questions" : '50', // alt + 2
+        "Pathoma" : '51', // alt + 3
+        "Boards and Beyond" : '52', // alt + 4
+        "First Aid" : '53', // alt + 5
+        "Sketchy" : '54', // alt + 6
+        "Pixorize" : '55', // alt + 7
+        "Physeo" : '56', // alt + 8
+        "OME" : '112', // alt + f1
+        "Additional Resources" : '57', // alt + 9
     }
-    var ToggleAllButtons = '222'
+    var ToggleAllButtons = '222' // '
 
+    // ##############  SHOW HINTS AUTOMATICALLY  ##############
     var ButtonAutoReveal = {
-        "Lecture Notes": false,
-        "Missed Questions": false,
-        "Pathoma": false,
-        "Boards and Beyond": false,
-        "First Aid": false,
-        "Sketchy": false,
-        "Pixorize": false,
-        "Physeo": false,
-        "OME": false,
-        "Additional Resources": false,
+        "Lecture Notes" : false,
+        "Missed Questions" : false,
+        "Pathoma" : false,
+        "Boards and Beyond" : false,
+        "First Aid" : false,
+        "Sketchy" : false,
+        "Pixorize" : false,
+        "Physeo" : false,
+        "OME" : false, // not currently a button
+        "Additional Resources" : false,
     }
 
     var ScrollToButton = true;
@@ -36,6 +37,7 @@
     // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
     var ToggleTags = "67"; // c
 
+    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
     var tagID = "XXXYYYZZZ"
 
 </script>
@@ -47,11 +49,11 @@
 			-change below (not above) to  "edit:cloze:Text" for editable field, 
 				but be sure to have the correct add-on installed-->
 
-<div class="editcloze">{{cloze:Text}}</div>
+<div class="editcloze">{{edit:cloze:Text}}</div>
 
 
 <!-- ##############  TEXT-TO-SPEECH ##############
-replace the arrows/dashes from the statement below with double brackets-->
+replace the arrows/dashes from the statement below with double curly brackets-->
 
 <!--tts en_US voices=Apple_Samantha speed=1.4:cloze-only:Text-->
 
@@ -59,13 +61,11 @@ replace the arrows/dashes from the statement below with double brackets-->
 <hr>
 
 
-<!-- ##############  SHOW HINTS AUTOMATICALLY  ##############
-For instructions on how to show a field automatically,  visit www.ankingmed.com/faq and type "show hint" into the search bar -->
-
 <!-- OME AUTO OPEN FIELD -->
 <div class="banner-ome">{{#OME}}{{OME}}{{/OME}}</div>
 
-<hint-button field-name="Lecture Notes" short="ln" hint-id="lecture-notes"></hint-button>
+<!-- BUTTON FIELDS -->
+<hint-button field-name="Lecture Notes" short="ln" hint-id="lecture"></hint-button>
 <div id="dummy-ln" style="display: none;">{{edit:Lecture Notes}}</div>
 
 <hint-button field-name="Missed Questions" short="mq" hint-id="missed"></hint-button>
@@ -77,11 +77,10 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
 <hint-button field-name="Boards and Beyond" short="bb" hint-id="bnb" icon="_b&b.icon.png"></hint-button>
 <div id="dummy-bb" style="display: none;">{{edit:Boards and Beyond}}</div>
 
-<!-- EXTRA FIELD -->
+<!-- Extra field -->
 <p></p>{{#Extra}}
 <div id="extra">{{edit:Extra}}</div>
 {{/Extra}}<br>
-<div id="testscroll"></div>
 
 <hint-button field-name="First Aid" short="fa" hint-id="firstaid" icon="_first-aid.icon_v2.1.png"></hint-button>
 <div id="dummy-fa" style="display: none;">{{edit:First Aid}}</div>
@@ -95,7 +94,7 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
 <hint-button field-name="Physeo" short="physeo" hint-id="physeo" icon="_physeologo.icon.png" no-text></hint-button>
 <div id="dummy-physeo" style="display: none;">{{edit:Physeo}}</div>
 
-<!-- OME FIELD (CLOSED BY DEFAULT) 
+<!-- OME FIELD (DISABLED BY DEFAULT) 
 <hint-button field-name="OME" short="ome" hint-id="ome"></hint-button>
 <div id="dummy-ome" style="display: none;">{{edit:OME}}</div>
 -->
@@ -104,6 +103,10 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
 <div id="dummy-ar" style="display: none;">{{edit:Additional Resources}}</div>
 
 
+<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
+
+
+<!-- TOGGLE BUTTONS -->
 <script>
     function defineHintButton() {
         class HintButton extends HTMLElement {
@@ -212,10 +215,7 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
 </script>
 
 
-<br>
-<br>
-
-
+<!-- CLICKABLE COLORFUL TAGS -->
 {{#Tags}}
 <div id="tags-container">{{clickable::Tags}}</div>
 <script>
@@ -257,11 +257,6 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
 
 </script>
 {{/Tags}}
-
-<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
-
-
-
 
 
 <!-- WIKIPEDIA SEARCHES -->

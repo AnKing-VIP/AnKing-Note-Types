@@ -44,6 +44,7 @@
 <br>
 <div class="btn-spacer" hidden></div>
 
+<!-- TOGGLE HINT BUTTONS -->
 <hint-button field-name="Extra" short="ex" hint-id="extra"></hint-button>
 <div id="dummy-ex" style="display: none;">{{edit:Extra}}</div>
 
@@ -54,12 +55,12 @@
 <div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>
 
 
-<a class="logo" href="https://www.ankingmed.com">
-    <img src="_AnKingRound.png" alt="The AnKing">
-</a>
+<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
+
 
 <div id="anki-am" data-name="Assets by ASSET MANAGER" data-version="2.1">
 
+    <!-- CLICKABLE COLORFUL TAGS -->
     {{#Tags}}
     <div id="tags-container">{{clickable::Tags}}</div>
     <script>
@@ -103,7 +104,7 @@
     </script>
     {{/Tags}}
 
-
+    <!-- TOGGLE BUTTONS -->
     <script>
         function defineHintButton() {
             class HintButton extends HTMLElement {
@@ -211,7 +212,7 @@
 
     </script>
 
-
+    <!-- INCREMENTAL IMAGE OCCLUSION SCRIPT -->
     <script data-name="Incremental IO" data-version="v0.1">
         /* Script by Matthias Metelka @kleinerpirat */
 

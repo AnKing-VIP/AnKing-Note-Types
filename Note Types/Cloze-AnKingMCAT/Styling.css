@@ -14,8 +14,6 @@
 .mobile #tags-container { display: none; } /* ‘none’ or ‘block’ */
 /* MOVE TAGS UP FOR 'NO-DISTRACTIONS' ADD-ON */
 #tags-container{ padding-bottom: 0px; } /* 0 normal, 55 to move up */
-/* ANKING IMAGE HYPERLINK ON/OFF */
-	#pic {display: block; } /* 'none' or 'block' */
 /* MNEMONICS CENTER OR LEFT */
 .mnemonics { text-align:left; } 
 
@@ -23,8 +21,9 @@
      /* DESKTOP */ html 
 	{ font-size: 28px; }
      /* MOBILE */ .mobile
-         { font-size: 28px; }
-		/* NOTE: anything with 'px' will keep a font that size indefinitely, 'rem' is a fraction of this size above and allows all text to change size with the above setting */
+  { font-size: 28px; }
+		/* NOTE: anything with 'px' will keep a font that size indefinitely, 
+    'rem' is a fraction of this size above and allows all text to change size with the above setting */
 
 /*HINT FONT SIZE*/ .hints 
 	{ font-size: .85rem; }
@@ -53,14 +52,10 @@
 	.cloze { color: MediumSeaGreen; }
 /* "EXTRA" FIELD COLOR */
 	#extra { color: #839496; }
-/* HINT COLOR*/
-	a[href="#"] { color: #268bd2; }
 /* HINT REVEAL COLOR */
 	.hints { color: #6c71c4; }
    /* Missed Questions Reveal Color */
 	#missed { color: #dc322f; }
-       #missed a[href="#"] { color: #dc322f!important; }
-	.nightMode #missed a[href="#"], .night_mode #missed a[href="#"] { color: #dc322f!important; }
 
 /* ~~NIGHT MODE COLORS~~ */
 /* NM DEFAULT TEXT COLOR*/ 
@@ -72,8 +67,6 @@
  	.nightMode .cloze, .night_mode .cloze { color: MediumSeaGreen !important; }
 /* NM "EXTRA" FIELD COLOR */
 	.nightMode #extra, .night_mode #extra { color: #839496; }
-/* NM HINT COLOR */
-	.nightMode a[href="#"], .night_mode a[href="#"] { color: #268bd2 !important; }
 /* NM HINT REVEAL COLOR */
 	.nightMode .hints, .night_mode .hints { color: #6c71c4;}
 
@@ -89,20 +82,22 @@ html { min-height: 100%; display: flex; flex-direction: column; }
 
 /* Formatting For Timer */
 .timer {
-font-size: 20px;
-margin: 12em auto auto auto;
+  font-size: 20px;
+  margin: 12em auto auto auto;
 }
 
 /* Styling For Whole Card*/
 .card {
-text-align: center;
-font-size: 1rem;
-height: 100%;
-margin: 0px 15px;
-flex-grow: 1;
-padding-bottom: 1em;
+  text-align: center;
+  font-size: 1rem;
+  height: 100%;
+  margin: 0px 15px;
+  flex-grow: 1;
+  padding-bottom: 1em;
 }
 .mobile .card { padding-bottom: 5em; }
+
+hr { opacity: .7 }
 
 /* Details For IMAGES */
 .mobile .card img {max-width: 100%!important; }
@@ -126,11 +121,11 @@ padding-bottom: 1em;
 .card {--w:0%;}
 
 /*Max image width for resize images in editor add-on */
-    .card [class^=ui-] img {max-width: 100%!important; }
+.card [class^=ui-] img {max-width: 100%!important; }
 
 /*Compatibility with resize images in editor add-on */
-    .resizer {min-width: 0%!important; }
-    .mobile .resizer {min-width:100%!important;}
+.resizer {min-width: 0%!important; }
+.mobile .resizer {min-width:100%!important;}
 
 /*Image hover zoom*/
 #extra img:active, #lecture img:active, #missed img:active { transform:scale(1.2); }
@@ -146,13 +141,6 @@ padding-bottom: 1em;
 
 /* BEGIN HINT FIELDS */
 
-/* Hint Link */
-a[href="#"] {
- font-style: italic;
- padding: 0 !important;
-text-decoration: underline; 
-}
-
 /* Text When Hint Is Shown*/
 .hints { font-style: italic; }
 
@@ -162,7 +150,7 @@ text-decoration: underline;
 
 
 .hints + #extra { margin-top: 1rem; } /*add spacing between hints and extra field*/
-/* END HINT FIELDS  */
+
 
 /* EXTRA FIELD */
 #extra { font-style: italic; font-size: 1rem;}
@@ -175,9 +163,27 @@ text-decoration: underline;
 }
 
 /* Details for AnKing hyperlink image */
-#pic { opacity: 0.0; font-size: 16px; font-family:Comic Sans!important; font-style:bold;}
-#pic:hover { opacity: 1; transition: opacity 0.2s ease; }
-.mobile #pic { display: none; }
+#pic {
+  opacity: 0.0;
+  font-size: 16px;
+  font-family: Comic Sans !important;
+  font-style: bold;
+  height: 50px;
+  border: 0;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: block;
+}
+
+#pic:hover {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.mobile #pic {
+  display: none;
+}
 
 /* TAGS */
 /* Container To Fix Tags At Bottom Of Screen */
@@ -192,22 +198,22 @@ text-decoration: underline;
 
 /* Clickable Tags (need to download the add-on) */
 kbd {
- display: inline-block;
- letter-spacing: .1px;
- font-weight: bold;
- font-size: 10px !important;
- text-shadow: none !important;
- padding: 0.05rem 0.1rem !important;
- margin: 1px -3px !important;
- border-radius: 4px;
- border-width: 1.5px !important;
- border-style: solid;
- background-color: transparent !important;
- box-shadow: none !important;
- opacity: 0.5;
- vertical-align: middle !important;
- line-height: auto!important;
- height: auto!important;
+  display: inline-block;
+  letter-spacing: .1px;
+  font-weight: bold;
+  font-size: 10px !important;
+  text-shadow: none !important;
+  padding: 0.05rem 0.1rem !important;
+  margin: 1px -3px !important;
+  border-radius: 4px;
+  border-width: 1.5px !important;
+  border-style: solid;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  opacity: 0.5;
+  vertical-align: middle !important;
+  line-height: auto!important;
+  height: auto!important;
 }
 
 /* Tag Becomes More Visible On Hover */

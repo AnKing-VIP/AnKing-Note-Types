@@ -1,60 +1,52 @@
 /*    ANKINGMASTER-v3   */
 
-/* The AnKing wishes you the best of luck! Be sure to check out our YouTube channel and Instagram for all things Anki and Med School related (including how to customize this card type and use these decks):  
+/* The AnKing wishes you the best of luck! Be sure to check out our YouTube channel and Instagram
+ for all things Anki and Med School related (including how to customize this card type and use these decks):  
 		www.AnKingMed.com
-			@ankingmed    			*/
+			@ankingmed    			
+*/
 
 /*~~~~~~~~USER CUSTOMIZATION START~~~~~~~~~*/
 /* You can choose colors at www.htmlcolorcodes.com */
 
 /* TIMER ON/OFF */
 .timer {
-  display: block;
+  display: block; /* ‘none’ or ‘block’ */
 }
 
-/* 'none' or 'block' */
 /* TAGS ON/OFF DESKTOP & MOBILE*/
 #tags-container {
-  display: block;
+  display: block; /* ‘none’ or ‘block’ */
 }
 
-/* ‘none’ or ‘block’ */
 .mobile #tags-container {
-  display: none;
+  display: none; /* ‘none’ or ‘block’ */
 }
 
-/* ‘none’ or ‘block’ */
 /* MOVE TAGS UP FOR 'NO-DISTRACTIONS' ADD-ON */
 #tags-container {
-  padding-bottom: 0px;
+  padding-bottom: 0px; /* 0 normal, 55 to move up */
 }
 
-/* 0 normal, 55 to move up */
-/* ANKING IMAGE HYPERLINK ON/OFF */
-#pic {
-  display: block;
-}
-
-/* 'none' or 'block' */
 /* MNEMONICS CENTER OR LEFT */
 .mnemonics {
   text-align: left;
 }
 
-/*FONT SIZE*/
-/* DESKTOP */
+/*FONT SIZE
+NOTE: anything with 'px' will keep a font that size indefinitely, 
+'rem' is a fraction of this size above and allows all text to change size with the above setting */
+/* Desktop */
 html {
   font-size: 28px;
 }
 
-/* MOBILE */
+/* Mobile */
 .mobile {
   font-size: 28px;
 }
 
-/* NOTE: anything with 'px' will keep a font that size indefinitely, 'rem' is a fraction of this size above and allows all text to change size with the above setting */
-
-/*IPAD ADJUSTMENTS*/
+/*IPAD ADJUSTMENTS (currently not applied)
 .ipad .card,
 .ipad #extra {
   font-size: 28px;
@@ -71,8 +63,9 @@ html {
 .ipad #additional {
   font-size: 20px !important;
 }
+*/
 
-/*HINT FONT SIZE*/
+/*REVEALED HINTS FONT SIZE*/
 .hints {
   font-size: .85rem;
 }
@@ -161,15 +154,6 @@ img {
   color: red;
 }
 
-#missed a[href="#"] {
-  color: red !important;
-}
-
-.nightMode #missed a[href="#"],
-.night_mode #missed a[href="#"] {
-  color: red !important;
-}
-
 /* ~~NIGHT MODE COLORS~~ */
 /* NM DEFAULT TEXT COLOR*/
 .nightMode.card,
@@ -193,12 +177,6 @@ img {
 .nightMode #extra,
 .night_mode #extra {
   color: magenta;
-}
-
-/* NM HINT COLOR */
-.nightMode a[href="#"],
-.night_mode a[href="#"] {
-  color: #4297F9 !important;
 }
 
 /* NM HINT REVEAL COLOR */
@@ -251,15 +229,14 @@ html {
 
 .mobile .card {
   padding-bottom: 5em;
+  margin: 0ex .3px;
 }
+
+hr { opacity: .7 }
 
 /* Details For IMAGES */
 .mobile .card img {
   max-width: 100% !important;
-}
-
-.mobile .card {
-  margin: 0ex .3px;
 }
 
 #extra img {
@@ -377,13 +354,6 @@ html {
 
 /* BEGIN HINT FIELDS */
 
-/* Hint Link */
-a[href="#"] {
-  font-style: italic;
-  padding: 0 !important;
-  text-decoration: underline;
-}
-
 /* Text When Hint Is Shown*/
 .hints {
   font-style: italic;
@@ -393,20 +363,16 @@ a[href="#"] {
 /* #firstaid { padding-top: 40px!important; }
 #extra { padding-bottom: 40px!important; } */
 
-
-.hints+#extra {
-  margin-top: 1rem;
-}
-
 /*add spacing between hints and extra field*/
-/* END HINT FIELDS  */
+.hints+#extra {
+  margin-top: 1rem; 
+}
 
 /* EXTRA FIELD */
 #extra {
   font-style: italic;
   font-size: 1rem;
 }
-
 
 /* Fix to make pop-up dictionary images the right size */
 .qtip img {
@@ -425,6 +391,7 @@ a[href="#"] {
   position: fixed;
   bottom: 10px;
   right: 10px;
+  display: block;
 }
 
 #pic:hover {
@@ -475,55 +442,16 @@ kbd:hover {
 }
 
 /* Tag Colors */
-kbd:nth-of-type(1n+0) {
-  border-color: #F44336;
-  color: #F44336 !important;
-}
-
-kbd:nth-of-type(2n+0) {
-  border-color: #9C27B0;
-  color: #9C27B0 !important;
-}
-
-kbd:nth-of-type(3n+0) {
-  border-color: #3F51B5;
-  color: #3F51B5 !important;
-}
-
-kbd:nth-of-type(4n+0) {
-  border-color: #03A9F4;
-  color: #03A9F4 !important;
-}
-
-kbd:nth-of-type(5n+0) {
-  border-color: #009688;
-  color: #009688 !important;
-}
-
-kbd:nth-of-type(6n+0) {
-  border-color: #C0CA33;
-  color: #C0CA33 !important;
-}
-
-kbd:nth-of-type(7n+0) {
-  border-color: #FF9800;
-  color: #FF9800 !important;
-}
-
-kbd:nth-of-type(8n+0) {
-  border-color: #FF5722;
-  color: #FF5722 !important;
-}
-
-kbd:nth-of-type(9n+0) {
-  border-color: #9E9E9E;
-  color: #9E9E9E !important;
-}
-
-kbd:nth-of-type(10n+0) {
-  border-color: #607D8B;
-  color: #607D8B !important;
-}
+kbd:nth-of-type(1n+0) { border-color: #F44336; color: #F44336!important; }
+kbd:nth-of-type(2n+0) { border-color: #9C27B0; color: #9C27B0!important; }
+kbd:nth-of-type(3n+0) { border-color: #3F51B5; color: #3F51B5!important; }
+kbd:nth-of-type(4n+0) { border-color: #03A9F4; color: #03A9F4!important; }
+kbd:nth-of-type(5n+0) { border-color: #009688; color: #009688!important; }
+kbd:nth-of-type(6n+0) { border-color: #C0CA33; color: #C0CA33!important; }
+kbd:nth-of-type(7n+0) { border-color: #FF9800; color: #FF9800!important;}
+kbd:nth-of-type(8n+0) { border-color: #FF5722; color: #FF5722!important; }
+kbd:nth-of-type(9n+0) { border-color: #9E9E9E; color: #9E9E9E!important; }
+kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
 
 /* Tag Mobile Adjustments */
 .mobile kbd {

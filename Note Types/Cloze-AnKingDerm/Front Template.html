@@ -1,4 +1,4 @@
-{{cloze:Text}}
+{{edit:cloze:Text}}
 
 
 <!-- ##############  Text-to-speech  ##############
@@ -11,7 +11,6 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
     var tagID = "XXXYYYZZZ"
 </script>
-
 
 <div class="timer" id="s2"></div>
 <script>
@@ -52,32 +51,27 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
 
-<script>
-    //DONT FADE BETWEEN CARDS
-	qFade=0; if (typeof anki !== 'undefined') anki.qFade=qFade;
-</script>
-
 {{#Tags}}
     <div id="tags-container">{{clickable::Tags}}</div>
     <script>
-        var tagContainer = document.getElementById("tags-container")
-        if (tagContainer.childElementCount == 0) {
-         var tagList= tagContainer.innerHTML.split(" ");
-         var kbdList = [];
-         var newTagContent = document.createElement("div");
-        
-         for (var i = 0; i < tagList.length;  i++) {
-          var newTag = document.createElement("kbd");
-          newTag.innerHTML = tagList[i];
-          newTagContent.append(newTag)
-         }
-         tagContainer.innerHTML = newTagContent.innerHTML;
-         tagContainer.style.cursor = "default";
+    var tagContainer = document.getElementById("tags-container")
+    if (tagContainer.childElementCount == 0) {
+        var tagList= tagContainer.innerHTML.split(" ");
+        var kbdList = [];
+        var newTagContent = document.createElement("div");
+
+        for (var i = 0; i < tagList.length;  i++) {
+        var newTag = document.createElement("kbd");
+        newTag.innerHTML = tagList[i];
+        newTagContent.append(newTag)
         }
-        if (tagContainer.innerHTML.indexOf(tagID) != -1) {
-        tagContainer.style.backgroundColor = "rgba(251,11,11,.2)";
-        } else {
-        tagContainer.style.display = "none";
-        }
-    </script>
+        tagContainer.innerHTML = newTagContent.innerHTML;
+        tagContainer.style.cursor = "default";
+    }
+    if (tagContainer.innerHTML.indexOf(tagID) != -1) {
+    tagContainer.style.backgroundColor = "rgba(251,11,11,.2)";
+    } else {
+    tagContainer.style.display = "none";
+    }
+</script>
 {{/Tags}}

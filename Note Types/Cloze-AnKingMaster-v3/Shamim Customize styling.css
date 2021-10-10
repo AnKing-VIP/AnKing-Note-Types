@@ -8,8 +8,6 @@
 .mobile #tags-container { display: none; } /* ‘none’ or ‘block’ */
 /* MOVE TAGS UP FOR 'NO-DISTRACTIONS' ADD-ON */
 #tags-container{ padding-bottom: 0px; } /* 0 normal, 55 to move up */
-/* ANKING IMAGE HYPERLINK ON/OFF */
-	#pic {display: block; } /* 'none' or 'block' */
 /* MNEMONICS CENTER OR LEFT */
 .mnemonics { text-align:left; } 
 
@@ -17,8 +15,9 @@
      /* DESKTOP */ html 
 	{ font-size: 28px; }
      /* MOBILE */ .mobile
-         { font-size: 28px; }
-		/* NOTE: anything with 'px' will keep a font that size indefinitely, 'rem' is a fraction of this size above and allows all text to change size with the above setting */
+	{ font-size: 28px; }
+		/* NOTE: anything with 'px' will keep a font that size indefinitely, 
+		'rem' is a fraction of this size above and allows all text to change size with the above setting */
 
 /*HINT FONT SIZE*/ .hints 
 	{ font-size: .85rem; }
@@ -32,7 +31,7 @@
 /*MAX IMAGE HEIGHT*/
 	img {max-height: none; }
  /*MAX IMAGE WIDTH*/
-		#extra img, #lecture img, #missed img, #pathoma img, #bnb img {max-width: 85%!important; }
+	#extra img, #lecture img, #missed img, #pathoma img, #bnb img {max-width: 85%!important; }
 	#firstaid img, #sketchy img, #pixorize img, #physeo img, #additional img {max-width: 60%!important; }
 
 
@@ -41,21 +40,16 @@
 	.card { color: #D7DEE9; }
 /*BACKGROUND COLOR*/ 
 	.card { background-color: #333B45; }
-	#tags-container { background-color: transparent; }
     /*TIMER COUNTDOWN COLOR*/
  	.timer { color: transparent; }
 /* CLOZE COLOR */
 	.cloze { color: MediumSeaGreen; }
 /* "EXTRA" FIELD COLOR */
 	#extra { color: #839496; }
-/* HINT COLOR*/
-	a[href="#"] { color: #268bd2; }
 /* HINT REVEAL COLOR */
 	.hints { color: #6c71c4; }
    /* Missed Questions Reveal Color */
 	#missed { color: #dc322f; }
-       #missed a[href="#"] { color: #dc322f!important; }
-	.nightMode #missed a[href="#"], .night_mode #missed a[href="#"] { color: #dc322f!important; }
 
 /* ~~NIGHT MODE COLORS~~ */
 /* NM DEFAULT TEXT COLOR*/ 
@@ -67,8 +61,6 @@
  	.nightMode .cloze, .night_mode .cloze { color: MediumSeaGreen !important; }
 /* NM "EXTRA" FIELD COLOR */
 	.nightMode #extra, .night_mode #extra { color: #839496; }
-/* NM HINT COLOR */
-	.nightMode a[href="#"], .night_mode a[href="#"] { color: #268bd2 !important; }
 /* NM HINT REVEAL COLOR */
 	.nightMode .hints, .night_mode .hints { color: #6c71c4;}
 

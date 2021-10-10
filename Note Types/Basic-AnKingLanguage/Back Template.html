@@ -1,17 +1,17 @@
 <script>
-
   // ##############  HINT REVEAL SHORTCUTS  ##############
   // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
   // The shortcuts are  Alt  +  the number/letter below
   // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
   var ButtonShortcuts = {
-    "Definitions": '49',
-    "Examples": '50',
-    "Alternative Translations": '51',
+    "Definitions": '49', // alt + 1
+    "Examples": '50', // alt + 2
+    "Alternative Translations": '51', // alt + 3
   }
 
-  var ToggleAllButtons = '222'
+  var ToggleAllButtons = '222' // '
 
+  // ##############  SHOW HINTS AUTOMATICALLY  ##############
   var ButtonAutoReveal = {
     "Definitions": false,
     "Examples": false,
@@ -30,15 +30,22 @@
 </script>
 
 
-{{edit:Front}}
+{{edit:FrontSide}}
 
 <hr id=answer>
 
 {{edit:Back}}
+
+<!-- ##############  Text-to-speech  ##############
+replace the arrows/dashes from the statement below with double curly brackets-->
+
+<!--tts en_US voices=Apple_Samantha speed=1.4:Back -->
+
 {{#Romanization}}<div class="hints" id="romanization" href="#">{{Romanization}}</div>{{/Romanization}}
 
 <hr>
 
+<!-- BUTTON FIELDS -->
 <hint-button field-name="Definitions" short="df" hint-id="definitions"></hint-button>
 <div id="dummy-df" style="display: none;">{{edit:Definitions}}</div>
 
@@ -49,6 +56,9 @@
 <div id="dummy-alt" style="display: none;">{{edit:Alternative Translations}}</div>
 
 
+<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
+
+<!-- TOGGLE BUTTONS -->
 <script>
   function defineHintButton() {
     class HintButton extends HTMLElement {
@@ -157,6 +167,7 @@
 </script>
 
 
+<!-- CLICKABLE COLORFUL TAGS -->
 {{#Tags}}
 <div id="tags-container">{{clickable::Tags}}</div>
 <script>
@@ -198,9 +209,6 @@
 
 </script>
 {{/Tags}}
-
-<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
-
 
 
 <!-- WIKIPEDIA SEARCHES -->
