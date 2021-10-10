@@ -117,19 +117,26 @@
                     var fieldString = '{' + '{' + fieldName + '}}'
                     var short = this.getAttribute("short")
                     var hintId = this.getAttribute("hint-id")
+                    var iconFile = this.getAttribute("icon") || "_Anking_v3.png"
+                    var buttonText = fieldName
+                    if (this.hasAttribute("no-text")) buttonText = ""
                     this.innerHTML = `
                         <a id="link-${short}" href="#" class="hint"></a>
                         <button id="button-${short}" class="button-general">
-                            <img src="_Anking_v3.png">
-                            ${fieldName}
+                        <img id="icon-${short}" src="">
+                            ${buttonText}
                         </button>
                         <div id="${hintId}" class="hints" style="display:none;">
                         </div>
                     `
-
                     this.button = document.getElementById(`button-${short}`)
                     this.link = document.getElementById(`link-${short}`)
                     this.hint = document.getElementById(hintId)
+                    this.icon = document.getElementById(`icon-${short}`)
+
+                    // inserting the icon file name directly in the template string doesnt work
+                    // because Anki probably replaces img src attributes using a regex with the url-encoded src
+                    this.icon.setAttribute("src", iconFile)
 
                     // moves the field content from the dummy to this
                     var dummy = document.getElementById(`dummy-${short}`)
