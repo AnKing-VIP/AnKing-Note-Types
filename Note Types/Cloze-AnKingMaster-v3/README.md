@@ -217,6 +217,7 @@ Detailed changelog over time has been noted <a href="https://www.ankipalace.com/
 - [X] explain var tagID on all note types
 - [X] Fix change from lecture-notes id to lecture
 - [ ] Maybe fix Image hover zoom only working for extra on mobile?  See what it does with mobile taps (maybe compare past version?)
+- [ ] Fix custom images for buttons
 
 
 <b>Please consider checking out our:</b>
