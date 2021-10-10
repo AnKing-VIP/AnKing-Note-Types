@@ -1,17 +1,36 @@
 <script>
-  // ##############  HINT REVEAL SHORTCUTS  ##############
-  // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
-  // The shortcuts are  Alt  +  the number/letter below
-  // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
+    // ##############  HINT REVEAL SHORTCUTS  ##############
+    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
+    // The shortcuts are  Alt  +  the number/letter below
+    // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
+    var ButtonShortcuts = {
+        "Personal Notes" : '49', // alt + 1
+        "Missed Questions" : '50', // alt + 2
+        "Textbook" : '51', // alt + 3
+        "Additional Resources" : '52', // alt + 4
+    }
+    var ToggleAllButtons = '222' // '
 
-  var lecturenotes = '49'; // alt + 1
-  var missedQ = '50'; // alt+ 2
-  var textbook = '51'; // alt + 3
-  var additional = '52'; // alt + 4
-  var OpenCloseAll = '222'; // '
+    // ##############  SHOW HINTS AUTOMATICALLY  ##############
+    var ButtonAutoReveal = {
+        "Personal Notes" : false,
+        "Missed Questions" : false,
+        "Textbook" : false,
+        "Additional Resources" : false,
+    }
 
-var ScrollToHint = false;
+    var ScrollToButton = true;
+
+    // ##############  TAG SHORTCUT  ##############
+    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
+    var ToggleTags = "67"; // c
+
+    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+    var tagID = "XXXYYYZZZ"
+
 </script>
+
+
 
 
 <div class="clozefield">{{cloze:Text}}</div>
@@ -20,11 +39,11 @@ var ScrollToHint = false;
     -change below (not above) to  "edit:cloze:Text" for editable field, 
       but be sure to have the correct add-on installed-->
 
-<div class="editcloze">{{cloze:Text}}</div>
+<div class="editcloze">{{edit:cloze:Text}}</div>
 
 
 <!-- ##############  TEXT-TO-SPEECH ##############
-replace the arrows/dashes from the statement below with double brackets-->
+replace the arrows/dashes from the statement below with double curly brackets-->
 
 <!--tts en_US voices=Apple_Samantha speed=1.4:cloze-only:Text-->
 
@@ -35,152 +54,175 @@ replace the arrows/dashes from the statement below with double brackets-->
 <!-- ##############  SHOW HINTS AUTOMATICALLY  ##############
 For instructions on how to show a field automatically,  visit www.ankingmed.com/faq and type "show hint" into the search bar -->
 
-<!-- PERSONAL NOTES FIELD -->
-{{#Personal Notes}}<a href="#" class="hint" id="hint-ln" onclick="this.style.display='none'; myFunction('button-ln', 'hint-ln', 'button-ln'); return false;">
-      <button class="button-ln"><img src="_Anking_v3.png"> Personal Notes</button></a>{{/Personal Notes}}
-
-<div id="button-ln" class="generalclass" style="display:none;">
-  {{#Personal Notes}}<button onclick="document.getElementById('hint-ln').style.display='inline-block'; myFunction('button-ln', 'hint-ln', 'button-ln')" class="button-ln" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_Anking_v3.png"> Lecture Notes</button>
-      <br>
-      <div class="hints" id="lecture">{{edit:Personal Notes}}</div>
-  {{/Personal Notes}}</div>
+<!-- BUTTON FIELDS -->
+<hint-button field-name="Personal Notes" short="ln" hint-id="lecture"></hint-button>
+<div id="dummy-ln" style="display: none;">{{edit:Personal Notes}}</div>
 
 
-<!-- MISSED QUESTIONS FIELD -->
-{{#Missed Questions}}<a href="#" class="hint" id="hint-mq" onclick="this.style.display='none'; myFunction('button-mq', 'hint-mq', 'button-mq'); return false;">
-      <button class="button-mq"><img src="_Anking_v3.png"> Missed Questions</button></a>{{/Missed Questions}}
-
-<div id="button-mq" class="generalclass" style="display:none;">
-  {{#Missed Questions}}<button onclick="document.getElementById('hint-mq').style.display='inline-block'; myFunction('button-mq', 'hint-mq', 'button-mq')" class="button-mq" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_Anking_v3.png"> Missed Questions</button>
-      <br>
-      <div class="hints" id="missed">{{edit:Missed Questions}}</div>
-  {{/Missed Questions}}</div>
+<hint-button field-name="Missed Questions" short="mq" hint-id="missed"></hint-button>
+<div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>
 
 
-<!-- EXTRA FIELD -->
+<!-- Extra field -->
 <p></p>{{#Extra}}
-  <div id="extra">{{edit:Extra}}</div>
+    <div id="extra">{{edit:Extra}}</div>
 {{/Extra}}<br>
-<div id="testscroll"></div>
 
 
-<!-- Textbook FIELD -->
-{{#Textbook}}<a href="#" class="hint" id="hint-textbook" onclick="this.style.display='none'; myFunction('button-textbook', 'hint-textbook', 'button-textbook'); return false;">
-      <button class="button-textbook"><img src="_dermki.png"> Textbook</button></a>{{/Textbook}}
+<hint-button field-name="Textbook" short="tx" hint-id="textbook"></hint-button>
+<div id="dummy-tx" style="display: none;">{{edit:Textbook}}</div>
 
-<div id="button-textbook" class="generalclass" style="display:none;">
-  {{#Textbook}}<button onclick="document.getElementById('hint-textbook').style.display='inline-block'; myFunction('button-textbook', 'hint-textbook', 'button-textbook')" class="button-textbook" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_dermki.png"> Textbook</button>
-      <br>
-      <div class="hints" id="textbook">{{edit:Textbook}}  </div>{{/Textbook}}</div>
-
-<!-- ADDITIONAL RESOURCES FIELD -->
-{{#Additional Resources}}<a href="#" class="hint" id="hint-ar" onclick="this.style.display='none'; myFunction('button-ar', 'hint-ar', 'button-ar'); return false;">
-      <button class="button-ar"><img src="_dermki.png"> Additional Resources</button></a>{{/Additional Resources}}
-
-<div id="button-ar" class="generalclass" style="display:none;">
-  {{#Additional Resources}}<button onclick="document.getElementById('hint-ar').style.display='inline-block'; myFunction('button-ar', 'hint-ar', 'button-ar')" class="button-ar" style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"><img src="_dermki.png"> Additional Resources</button>
-      <br>
-      <div class="hints" id="additional">{{edit:Additional Resources}}</div>
-  {{/Additional Resources}}</div>
+<hint-button field-name="Additional Resources" short="ar" hint-id="additional"></hint-button>
+<div id="dummy-ar" style="display: none;">{{edit:Additional Resources}}</div>
 
 
+<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
 
 
-
-
+<!-- TOGGLE BUTTONS -->
 <script>
-  //HINT REVEALS
-  function myFunction(divid, id, divid) {
-  var x = document.getElementById(divid), y = document.getElementById(id), z = document.getElementById(divid);
-  if (x.style.display == "none")
-  {
-  x.style.display = "block"; y.style.display = "none"; z.scrollToId;
-  }
-      else {
-        x.style.display = "none"; y.style.display = "inline-block";
-      }
-  if (ScrollToHint){
-z.scrollIntoView({
-    behavior: "smooth", //"auto" for instant scrolling
-    block: "start",
-    inline: "nearest"
-  }); }
-    }
-    document.addEventListener('keydown', function(evt) {
-        if (evt.altKey && evt.keyCode == lecturenotes) {
-            myFunction('button-ln', 'hint-ln', 'button-ln')}  
-        if (evt.altKey && evt.keyCode == missedQ) {
-            myFunction('button-mq', 'hint-mq', 'button-mq')}
-        if (evt.altKey && evt.keyCode == textbook) {
-            myFunction('button-textbook', 'hint-textbook', 'button-textbook')}
-        if (evt.altKey && evt.keyCode == additional) {
-            myFunction('button-ar', 'hint-ar', 'button-ar')}
-    
-        if (evt.keyCode == OpenCloseAll) {
-        try{myFunction('button-ar', 'hint-ar', 'button-ar');}
-        finally{try{myFunction('button-textbook', 'hint-textbook', 'button-textbook');}
-        finally{try{myFunction('button-mq', 'hint-mq', 'button-mq');}
-        finally{myFunction('button-ln', 'hint-ln', 'button-ln');}}}
-        }
-    })
-</script>
+  function defineHintButton() {
+      class HintButton extends HTMLElement {
+          constructor() {
+              super();
+
+              var fieldName = this.getAttribute("field-name")
+
+              // adding the strings together this way to prevent Anki from thinking that a field should be inserted here
+              var fieldString = '{' + '{' + fieldName + '}}'
+              var short = this.getAttribute("short")
+              var hintId = this.getAttribute("hint-id")
+              this.innerHTML = `
+                      <a id="link-${short}" href="#" class="hint"></a>
+                      <button id="button-${short}" class="button-general">
+                          <img src="_Anking_v3.png">
+                          ${fieldName}
+                      </button>
+                      <div id="${hintId}" class="hints" style="display:none;">
+                      </div>
+                  `
+
+              this.button = document.getElementById(`button-${short}`)
+              this.link = document.getElementById(`link-${short}`)
+              this.hint = document.getElementById(hintId)
+
+              // moves the field content from the dummy to this
+              var dummy = document.getElementById(`dummy-${short}`)
+              var content = dummy.innerHTML
+
+              // hide this if the field is empty
+              if (dummy.innerHTML == "" || 
+                  (dummy.lastChild.nodeName == "SCRIPT" && dummy.firstChild.getAttribute("contenteditable") && dummy.firstChild.innerHTML == "")) {
+                  this.remove()
+                  return
+              }
+
+              // ... this also runs script tags, this makes it compatible with the Edit Field during Review add-on
+              setInnerHTML(this.hint, content)
 
 
-<br>
-<br>
+              this.button.onclick = () => this.toggle()
 
-<script>
-  //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
-  var tagID
-</script>
+              // the link is needed so that this works with the Hint Hotkey add-on
+              this.link.onclick = () => this.toggle()
 
-{{#Tags}}
-  <div id="tags-container">{{clickable::Tags}}</div>
-  <script>
-      var tagContainer = document.getElementById("tags-container")
-      if (tagContainer.childElementCount == 0) {
-       var tagList= tagContainer.innerHTML.split(" ");
-       var kbdList = [];
-       var newTagContent = document.createElement("div");
-      
-       for (var i = 0; i < tagList.length;  i++) {
-        var newTag = document.createElement("kbd");
-        newTag.innerHTML = tagList[i];
-        newTagContent.append(newTag)
-       }
-       tagContainer.innerHTML = newTagContent.innerHTML;
-       tagContainer.style.cursor = "default";
-      }
-      if (tagContainer.innerHTML.indexOf(tagID) != -1) {
-      tagContainer.style.backgroundColor = "";
-      }
-      
-      function showtags() {
-        var xx = document.getElementById("tags-container");
-      
-          if (xx.style.display 
-      === "none") {
-          xx.style.display = "block";
-        } else {
-          xx.style.display = 
-        "none";
-        }
-      } 
-      document.addEventListener('keyup', function(e) {
-          if(e.key =="c"){
-           showtags();
+              if (ButtonAutoReveal[fieldName]) {
+                  this.toggle()
+              }
+
+              document.addEventListener("keydown", (evt) => {
+                  if (evt.repeat) return
+                  if (evt.altKey && evt.keyCode == ButtonShortcuts[fieldName]) this.toggle()
+                  if (evt.keyCode == ToggleAllButtons) this.toggle()
+                  return false
+              })
           }
+
+          toggle() {
+              if (!this.button) return
+              if (this.hint.style.display == "none") {
+                  this.button.classList.add("expanded-button")
+                  this.hint.style.display = "block"
+                  this.link.style.display = "none"
+                  if (ScrollToButton) {
+                      this.hint.scrollIntoView({
+                          behavior: "smooth", // "auto" for instant scrolling
+                          block: "start",
+                          inline: "nearest"
+                      });
+                  }
+              } else {
+                  this.button.classList.remove("expanded-button")
+                  this.hint.style.display = "none"
+                  this.link.style.display = ""
+              }
+          }
+
+      }
+      try {
+          customElements.define('hint-button', HintButton)
+      } catch (DOMException) { }
+  }
+
+  defineHintButton()
+
+  function setInnerHTML(elm, html) {
+      elm.innerHTML = html;
+      Array.from(elm.querySelectorAll("script")).forEach(oldScript => {
+          const newScript = document.createElement("script");
+          Array.from(oldScript.attributes)
+              .forEach(attr => newScript.setAttribute(attr.name, attr.value));
+          newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+          oldScript.parentNode.replaceChild(newScript, oldScript);
       });
-      
-      
-  </script>
+  }
+
+
+</script>
+
+
+<!-- CLICKABLE COLORFUL TAGS -->
+{{#Tags}}
+    <div id="tags-container">{{clickable::Tags}}</div>
+    <script>
+        var tagContainer = document.getElementById("tags-container")
+        if (tagContainer.childElementCount == 0) {
+         var tagList= tagContainer.innerHTML.split(" ");
+         var kbdList = [];
+         var newTagContent = document.createElement("div");
+        
+         for (var i = 0; i < tagList.length;  i++) {
+          var newTag = document.createElement("kbd");
+          newTag.innerHTML = tagList[i];
+          newTagContent.append(newTag)
+         }
+         tagContainer.innerHTML = newTagContent.innerHTML;
+         tagContainer.style.cursor = "default";
+        }
+        if (tagContainer.innerHTML.indexOf(tagID) != -1) {
+        tagContainer.style.backgroundColor = "rgba(251,11,11,.15)";
+        }
+        
+        function showtags() {
+          var tagContainerShortcut = document.getElementById("tags-container");
+        
+            if (tagContainerShortcut.style.display 
+        === "none") {
+            tagContainerShortcut.style.display = "block";
+          } else {
+            tagContainerShortcut.style.display = 
+          "none";
+          }
+        } 
+        document.addEventListener('keyup', function(e) {
+            if(e.keyCode == ToggleTags){
+             showtags();
+            }
+        });
+        
+        
+    </script>
 {{/Tags}}
-
-<div id="pic"><a href="https://www.ankingmed.com">
-      <img src="_AnKingRound.png" alt="The AnKing" style="height:50px;border:0;position:fixed;bottom:10px;right:10px;">
-  </a></div>
-
-
 
 
 <!-- WIKIPEDIA SEARCHES -->

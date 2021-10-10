@@ -210,9 +210,11 @@ Detailed changelog over time has been noted <a href="https://www.ankipalace.com/
 - [x] upload changes made over time
 - [X] upload 2 card type video links
 - [X] instructions on features including wikipedia, c to reveal tags, alt+# to reveal things, H for hint hotkeys, how to reveal hints automatically, etc
-- [ ] Update buttons script and html to new version
-- [ ] Remove css styling from buttons (i.e. `style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"`) and put in the .button-revealed css (from AnKingMasterv3 note type)
-- [ ] Update Tags script and update var at top for hotkey switching on and off
+- [X] Update buttons script and html to new version
+- [X] Remove css styling from buttons (i.e. `style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"`) and put in the .button-revealed css (from AnKingMasterv3 note type)
+- [X] Update Tags script and update var at top for hotkey switching on and off
+- [ ] Change to "curly brackets" on all note types
+- [ ] explain var tagID on all note types
 
 
 <b>Please consider checking out our:</b>

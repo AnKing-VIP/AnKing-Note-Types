@@ -10,12 +10,10 @@
 /* TIMER ON/OFF */
 .timer { display: block; } /* 'none' or 'block' */
 /* TAGS ON/OFF DESKTOP & MOBILE*/
-	 #tags-container { display: none; }  /* ‘none’ or ‘block’ */
+  #tags-container { display: none; }  /* ‘none’ or ‘block’ */
 .mobile #tags-container { display: none; } /* ‘none’ or ‘block’ */
 /* MOVE TAGS UP FOR 'NO-DISTRACTIONS' ADD-ON */
 #tags-container{ padding-bottom: 0px; } /* 0 normal, 55 to move up */
-/* ANKING IMAGE HYPERLINK ON/OFF */
-	#pic {display: block; } /* 'none' or 'block' */
 /* MNEMONICS CENTER OR LEFT */
 .mnemonics { text-align:left; } 
 
@@ -65,8 +63,6 @@
 	.hints { color: #4297F9; }
    /* Missed Questions Reveal Color */
 	#missed { color: red; }
-       #missed a[href="#"] { color: red!important; }
-	.nightMode #missed a[href="#"], .night_mode #missed a[href="#"] { color: red!important; }
 
 /* ~~NIGHT MODE COLORS~~ */
 /* NM DEFAULT TEXT COLOR*/ 
@@ -78,8 +74,6 @@
  	.nightMode .cloze, .night_mode .cloze { color: #4297F9!important; }
 /* NM "EXTRA" FIELD COLOR */
 	.nightMode #extra, .night_mode #extra { color: magenta; }
-/* NM HINT COLOR */
-	.nightMode a[href="#"], .night_mode a[href="#"] { color: #4297F9!important; }
 /* NM HINT REVEAL COLOR */
 	.nightMode .hints, .night_mode .hints { color: cyan;}
 
@@ -96,18 +90,18 @@ html { min-height: 100%; display: flex; flex-direction: column; }
 
 /* Formatting For Timer */
 .timer {
-font-size: 20px;
-margin: 12em auto auto auto;
+  font-size: 20px;
+  margin: 12em auto auto auto;
 }
 
 /* Styling For Whole Card*/
 .card {
-text-align: center;
-font-size: 1rem;
-height: 100%;
-margin: 0px 15px;
-flex-grow: 1;
-padding-bottom: 1em;
+  text-align: center;
+  font-size: 1rem;
+  height: 100%;
+  margin: 0px 15px;
+  flex-grow: 1;
+  padding-bottom: 1em;
 }
 .mobile .card { padding-bottom: 5em; }
 
@@ -133,16 +127,24 @@ padding-bottom: 1em;
 .card {--w:0%;}
 
 /*Max image width for resize images in editor add-on */
-    .card [class^=ui-] img {max-width: 100%!important; }
+.card [class^=ui-] img {max-width: 100%!important; }
 
 /*Compatibility with resize images in editor add-on */
-    .resizer {min-width: 0%!important; }
-    .mobile .resizer {min-width:100%!important;}
+.resizer {min-width: 0%!important; }
+.mobile .resizer {min-width:100%!important;}
 
 /*Image hover zoom*/
-#extra img:active, #lecture img:active, #missed img:active { transform:scale(1.2); }
-#textbook img:active, #additional img:active { transform:scale(1.5); }
-.mobile #extra img:active, .mobile #lecture img:active, .mobile #missed img:active, .mobile #textbook img:active, .mobile #additional img:active { transform:scale(1.0); }
+#extra img:active,
+#lecture img:active,
+#missed img:active,
+#textbook img:active,
+#additional img:active {
+  transform: scale(1.2);
+}
+
+.mobile .hints, .mobile #extra img:active {
+  transform: scale(1.0);
+}
 
 /* Cloze format */
 .cloze { font-weight: bold; }
@@ -153,19 +155,8 @@ padding-bottom: 1em;
 
 /* BEGIN HINT FIELDS */
 
-/* Hint Link */
-a[href="#"] {
- font-style: italic;
- padding: 0 !important;
-text-decoration: underline; 
-}
-
 /* Text When Hint Is Shown*/
 .hints { font-style: italic; }
-
-/* Put Bottom Hints Lower */
-/* #firstaid { padding-top: 40px!important; }
-#extra { padding-bottom: 40px!important; } */
 
 
 .hints + #extra { margin-top: 1rem; } /*add spacing between hints and extra field*/
@@ -177,43 +168,61 @@ text-decoration: underline;
 
 /* Fix to make pop-up dictionary images the right size */
 .qtip img {
-   max-width: 95% !important;
-   max-height: 95% !important;
+  max-width: 95% !important;
+  max-height: 95% !important;
 }
 
 /* Details for AnKing hyperlink image */
-#pic { opacity: 0.0; font-size: 16px; font-color: #F2E48E; font-family:Comic Sans!important; font-style:bold;}
-#pic:hover { opacity: 1; transition: opacity 0.2s ease; }
-.mobile #pic { display: none; }
+#pic {
+  opacity: 0.0;
+  font-size: 16px;
+  font-family: Comic Sans !important;
+  font-style: bold;
+  height: 50px;
+  border: 0;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: block;
+}
+
+#pic:hover {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.mobile #pic {
+  display: none;
+}
 
 /* TAGS */
 /* Container To Fix Tags At Bottom Of Screen */
 #tags-container{
-position: fixed;
-bottom: .5px;
-width: 100%;
-line-height: .45rem;
-margin-left: -15px;
+  position: fixed;
+  bottom: .5px;
+  width: 100%;
+  line-height: .45rem;
+  margin-left: -15px;
 }
 
 /* Clickable Tags (need to download the add-on) */
 kbd {
- display: inline-block;
- letter-spacing: .1px;
- font-weight: bold;
- font-size: 10px !important;
- text-shadow: none !important;
- padding: 0.05rem 0.1rem !important;
- margin: 1px -3px !important;
- border-radius: 4px;
- border-width: 1.5px !important;
- border-style: solid;
- background-color: transparent !important;
- box-shadow: none !important;
- opacity: 0.5;
- vertical-align: middle !important;
- line-height: auto!important;
- height: auto!important;
+  display: inline-block;
+  letter-spacing: .1px;
+  font-weight: bold;
+  font-size: 10px !important;
+  text-shadow: none !important;
+  padding: 0.05rem 0.1rem !important;
+  margin: 1px -3px !important;
+  border-radius: 4px;
+  border-width: 1.5px !important;
+  border-style: solid;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  opacity: 0.5;
+  vertical-align: middle !important;
+  line-height: auto!important;
+  height: auto!important;
 }
 
 /* Tag Becomes More Visible On Hover */
@@ -239,87 +248,60 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
 .mnemonics { display: inline-block; } 
 .centerbox {text-align:center;}
 
-/*AMBOSS UNDERLINE
-.amboss-mark { border-bottom: 2px solid rgba(72,74,74,0.2) !important; padding-bottom: .2px; text-decoration: none !important; }
-
-.amboss-mark:hover { border-bottom: rgba(72,74,74,.8) !important; background-color: grey; }*/
 
 /*~~~BUTTON LAYOUT ~~~*/
 
-.button-ln {
+.button-general {
   outline: 0;
-  background-color: #424242; 
-  border-radius: 0.12em; 
+  border-radius: 0.12em;
   border: 1px solid #525253 !important;
-  color: #AFAFAF !important;
   padding: 5px 5px;
   text-align: center;
   display: inline-block;
   font-size: 9.5px;
-  %box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: #424242;
+  color: #AFAFAF !important;
+  margin-top: 8px;
 }
-.button-ln:hover {
-  background-color: #E9E9E9 !important;
-  color: #363638 !important;
-  cursor: default;
-  }
+
+.mobile .button-general {
+  font-size: 18px;
+  padding: 9px 7px;
+}
+
+.expanded-button {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  font-weight: bold;
+  width: 50% !important;
+  background: #ababab !important;
+  color: black !important;
+  font-weight: bold;
+  width: 50% !important;
+}
 
 
-.button-mq {
-  outline: 0;
-  background-color: #424242; 
-  border-radius: 0.12em; 
-  border: 1px solid #525253 !important;
+#button-mq:not(.expanded-button) {
   color: #c26165 !important;
-  padding: 5px 5px;
-  text-align: center;
-  display: inline-block;
-  font-size: 9.5px;
-  %box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
-.button-mq:hover {
-  background-color: #FA8072 !important;
-  color: #363638 !important;
+
+
+html:not(.mobile) .button-general:hover {
   cursor: default;
-  }
-
-
-.button-textbook {
-  outline: 0;
-  background-color: #424242; 
-  border-radius: 0.12em; 
-  border: 1px solid #525253 !important;
-  color: #AFAFAF !important;
-  padding: 5px 5px;
-  text-align: center;
-  display: inline-block;
-  font-size: 9.5px;
-  %box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-.button-textbook:hover {
-  background-color: #ea8eed !important;
-  color: #363638 !important;
-  cursor: default;
-  }
-
-
-.button-ar {
-  outline: 0;
-  background-color: #424242; 
-  border-radius: 0.12em; 
-  border: 1px solid #525253 !important;
-  color: #AFAFAF !important;
-  padding: 5px 5px;
-  text-align: center;
-  display: inline-block;
-  font-size: 9.5px;
-  %box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-.button-ar:hover {
   background-color: #E9E9E9 !important;
   color: #363638 !important;
-  cursor: default;
-  }
+}
 
+html:not(.mobile) #button-mq:hover {
+  background-color: #FA8072 !important;
+  color: black !important;
+}
 
-.mobile .button-ln,  .mobile .button-mq, .mobile .button-textbook, .mobile .button-ar { font-size: 18px; padding: 9px 7px; }
+html:not(.mobile) #button-tx:hover {
+  background-color: #ea8eed !important;
+}
+
+html:not(.mobile) #button-ar:hover {
+  background-color: #FFF1B8 !important;
+}
