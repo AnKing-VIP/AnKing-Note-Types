@@ -213,8 +213,10 @@ Detailed changelog over time has been noted <a href="https://www.ankipalace.com/
 - [X] Update buttons script and html to new version
 - [X] Remove css styling from buttons (i.e. `style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"`) and put in the .button-revealed css (from AnKingMasterv3 note type)
 - [X] Update Tags script and update var at top for hotkey switching on and off
-- [ ] Change to "curly brackets" on all note types
-- [ ] explain var tagID on all note types
+- [X] Change to "curly brackets" on all note types
+- [X] explain var tagID on all note types
+- [ ] Fix change from lecture-notes id to lecture
+- [ ] Maybe fix Image hover zoom only working for extra on mobile?  See what it does with mobile taps (maybe compare past version?)
 
 
 <b>Please consider checking out our:</b>
