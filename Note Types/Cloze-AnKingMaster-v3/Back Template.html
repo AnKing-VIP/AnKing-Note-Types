@@ -4,30 +4,30 @@
     // The shortcuts are  Alt  +  the number/letter below
     // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
     var ButtonShortcuts = {
-        "Lecture Notes" : '49',
-        "Missed Questions" : '50',
-        "Pathoma" : '51',
-        "Boards and Beyond" : '52',
-        "First Aid" : '53',
-        "Sketchy" : '54',
-        "Pixorize" : '55',
-        "Physeo" : '56',
-        "OME" : '112',
-        "Additional Resources" : '57',
+        "Lecture Notes": '49',
+        "Missed Questions": '50',
+        "Pathoma": '51',
+        "Boards and Beyond": '52',
+        "First Aid": '53',
+        "Sketchy": '54',
+        "Pixorize": '55',
+        "Physeo": '56',
+        "OME": '112',
+        "Additional Resources": '57',
     }
     var ToggleAllButtons = '222'
 
     var ButtonAutoReveal = {
-        "Lecture Notes" : false,
-        "Missed Questions" : false,
-        "Pathoma" : false,
-        "Boards and Beyond" : false,
-        "First Aid" : false,
-        "Sketchy" : false,
-        "Pixorize" : false,
-        "Physeo" : false,
-        "OME" : false,
-        "Additional Resources" : false,
+        "Lecture Notes": false,
+        "Missed Questions": false,
+        "Pathoma": false,
+        "Boards and Beyond": false,
+        "First Aid": false,
+        "Sketchy": false,
+        "Pixorize": false,
+        "Physeo": false,
+        "OME": false,
+        "Additional Resources": false,
     }
 
     var ScrollToButton = true;
@@ -71,28 +71,28 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
 <hint-button field-name="Missed Questions" short="mq" hint-id="missed"></hint-button>
 <div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>
 
-<hint-button field-name="Pathoma" short="pat" hint-id="pathoma"></hint-button>
+<hint-button field-name="Pathoma" short="pat" hint-id="pathoma" icon="_pathoma.icon.png" no-text></hint-button>
 <div id="dummy-pat" style="display: none;">{{edit:Pathoma}}</div>
 
-<hint-button field-name="Boards and Beyond" short="bb" hint-id="bnb"></hint-button>
+<hint-button field-name="Boards and Beyond" short="bb" hint-id="bnb" icon="_b&b.icon.png"></hint-button>
 <div id="dummy-bb" style="display: none;">{{edit:Boards and Beyond}}</div>
 
 <!-- EXTRA FIELD -->
 <p></p>{{#Extra}}
-    <div id="extra">{{edit:Extra}}</div>
+<div id="extra">{{edit:Extra}}</div>
 {{/Extra}}<br>
 <div id="testscroll"></div>
 
-<hint-button field-name="First Aid" short="fa" hint-id="firstaid"></hint-button>
+<hint-button field-name="First Aid" short="fa" hint-id="firstaid" icon="_first-aid.icon_v2.1.png"></hint-button>
 <div id="dummy-fa" style="display: none;">{{edit:First Aid}}</div>
 
-<hint-button field-name="Sketchy" short="sketchy" hint-id="sketchy"></hint-button>
+<hint-button field-name="Sketchy" short="sketchy" hint-id="sketchy" icon="_sketchy.icon.png"></hint-button>
 <div id="dummy-sketchy" style="display: none;">{{edit:Sketchy}}</div>
 
-<hint-button field-name="Pixorize" short="pixorize" hint-id="pixorize"></hint-button>
+<hint-button field-name="Pixorize" short="pixorize" hint-id="pixorize" icon="_pixorize.png"></hint-button>
 <div id="dummy-pixorize" style="display: none;">{{edit:Pixorize}}</div>
 
-<hint-button field-name="Physeo" short="physeo" hint-id="physeo"></hint-button>
+<hint-button field-name="Physeo" short="physeo" hint-id="physeo" icon="_physeologo.icon.png" no-text></hint-button>
 <div id="dummy-physeo" style="display: none;">{{edit:Physeo}}</div>
 
 <!-- OME FIELD (CLOSED BY DEFAULT) 
@@ -100,7 +100,6 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
 <div id="dummy-ome" style="display: none;">{{edit:OME}}</div>
 -->
 
-<!-- ADDITIONAL RESOURCES FIELD -->
 <hint-button field-name="Additional Resources" short="ar" hint-id="additional"></hint-button>
 <div id="dummy-ar" style="display: none;">{{edit:Additional Resources}}</div>
 
@@ -117,26 +116,33 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
                 var fieldString = '{' + '{' + fieldName + '}}'
                 var short = this.getAttribute("short")
                 var hintId = this.getAttribute("hint-id")
+                var iconFile = this.getAttribute("icon") || "_Anking_v3.png"
+                var buttonText = fieldName
+                if (this.hasAttribute("no-text")) buttonText = ""
                 this.innerHTML = `
                         <a id="link-${short}" href="#" class="hint"></a>
                         <button id="button-${short}" class="button-general">
-                            <img src="_Anking_v3.png">
-                            ${fieldName}
+                        <img id="icon-${short}" src="">
+                            ${buttonText}
                         </button>
                         <div id="${hintId}" class="hints" style="display:none;">
                         </div>
                     `
-
                 this.button = document.getElementById(`button-${short}`)
                 this.link = document.getElementById(`link-${short}`)
                 this.hint = document.getElementById(hintId)
+                this.icon = document.getElementById(`icon-${short}`)
+
+                // inserting the icon file name directly in the template string doesnt work
+                // because Anki probably replaces img src attributes using a regex with the url-encoded src
+                this.icon.setAttribute("src", iconFile)
 
                 // moves the field content from the dummy to this
                 var dummy = document.getElementById(`dummy-${short}`)
                 var content = dummy.innerHTML
 
                 // hide this if the field is empty
-                if (dummy.innerHTML == "" || 
+                if (dummy.innerHTML == "" ||
                     (dummy.lastChild.nodeName == "SCRIPT" && dummy.firstChild.getAttribute("contenteditable") && dummy.firstChild.innerHTML == "")) {
                     this.remove()
                     return
@@ -211,45 +217,45 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
 
 
 {{#Tags}}
-    <div id="tags-container">{{clickable::Tags}}</div>
-    <script>
-        var tagContainer = document.getElementById("tags-container")
-        if (tagContainer.childElementCount == 0) {
-         var tagList= tagContainer.innerHTML.split(" ");
-         var kbdList = [];
-         var newTagContent = document.createElement("div");
-        
-         for (var i = 0; i < tagList.length;  i++) {
-          var newTag = document.createElement("kbd");
-          newTag.innerHTML = tagList[i];
-          newTagContent.append(newTag)
-         }
-         tagContainer.innerHTML = newTagContent.innerHTML;
-         tagContainer.style.cursor = "default";
+<div id="tags-container">{{clickable::Tags}}</div>
+<script>
+    var tagContainer = document.getElementById("tags-container")
+    if (tagContainer.childElementCount == 0) {
+        var tagList = tagContainer.innerHTML.split(" ");
+        var kbdList = [];
+        var newTagContent = document.createElement("div");
+
+        for (var i = 0; i < tagList.length; i++) {
+            var newTag = document.createElement("kbd");
+            newTag.innerHTML = tagList[i];
+            newTagContent.append(newTag)
         }
-        if (tagContainer.innerHTML.indexOf(tagID) != -1) {
+        tagContainer.innerHTML = newTagContent.innerHTML;
+        tagContainer.style.cursor = "default";
+    }
+    if (tagContainer.innerHTML.indexOf(tagID) != -1) {
         tagContainer.style.backgroundColor = "rgba(251,11,11,.15)";
-        }
-        
-        function showtags() {
-          var tagContainerShortcut = document.getElementById("tags-container");
-        
-            if (tagContainerShortcut.style.display 
-        === "none") {
+    }
+
+    function showtags() {
+        var tagContainerShortcut = document.getElementById("tags-container");
+
+        if (tagContainerShortcut.style.display
+            === "none") {
             tagContainerShortcut.style.display = "block";
-          } else {
-            tagContainerShortcut.style.display = 
-          "none";
-          }
-        } 
-        document.addEventListener('keyup', function(e) {
-            if(e.keyCode == ToggleTags){
-             showtags();
-            }
-        });
-        
-        
-    </script>
+        } else {
+            tagContainerShortcut.style.display =
+                "none";
+        }
+    }
+    document.addEventListener('keyup', function (e) {
+        if (e.keyCode == ToggleTags) {
+            showtags();
+        }
+    });
+
+
+</script>
 {{/Tags}}
 
 <a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
@@ -381,66 +387,67 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
 
 <script>
     function getSummaryFor(word) {
-      word = word.replace(/^[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+|[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+$/g, "");
-           var pc = document.getElementById("popup-container");
-         var hc = document.getElementById("hc");
-          var tc = document.getElementById("tc");
-          var ic = document.getElementById("ic");
-          var imgelem = document.getElementById("popup-image");
-             imgelem.src = "";
-          var shortsum ="";
-      fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + word).then(function(response) {return response.json();}).then(function(response) {
-         shortsum = response.description;
-       shortsum = shortsum.replace(/(Disambiguation.*)/g, "Disambiguation");
-          tc.innerHTML = "<span id='hc'>" +capfl(shortsum) + "</span>" +"\n" +response.extract_html + "\n";
-      tc.style.width = "420px";
-          if (response.extract_html && !response.extract.endsWith("to:")){
-              pc.style.display = "block";
-          document.getElementById("open-wiki-btn").href = response.content_urls.desktop.page;
-          }else{pc.style.display = "none";}
-          if (!response.thumbnail.source || response.type ==="disambiguation"){
-               tc.style.width = "420px";
-          }else{tc.style.width="300px";imgelem.src = response.thumbnail.source;}
-        }).catch(function(error) {console.log(error);});}
-        
-        function closePopup(deselectAlso=false){
-          pcc.style.display = 'none';
-          if (deselectAlso){clearSelection();}
+        word = word.replace(/^[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+|[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+$/g, "");
+        var pc = document.getElementById("popup-container");
+        var hc = document.getElementById("hc");
+        var tc = document.getElementById("tc");
+        var ic = document.getElementById("ic");
+        var imgelem = document.getElementById("popup-image");
+        imgelem.src = "";
+        var shortsum = "";
+        fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + word).then(function (response) { return response.json(); }).then(function (response) {
+            shortsum = response.description;
+            shortsum = shortsum.replace(/(Disambiguation.*)/g, "Disambiguation");
+            tc.innerHTML = "<span id='hc'>" + capfl(shortsum) + "</span>" + "\n" + response.extract_html + "\n";
+            tc.style.width = "420px";
+            if (response.extract_html && !response.extract.endsWith("to:")) {
+                pc.style.display = "block";
+                document.getElementById("open-wiki-btn").href = response.content_urls.desktop.page;
+            } else { pc.style.display = "none"; }
+            if (!response.thumbnail.source || response.type === "disambiguation") {
+                tc.style.width = "420px";
+            } else { tc.style.width = "300px"; imgelem.src = response.thumbnail.source; }
+        }).catch(function (error) { console.log(error); });
+    }
+
+    function closePopup(deselectAlso = false) {
+        pcc.style.display = 'none';
+        if (deselectAlso) { clearSelection(); }
+    }
+    var pcc = document.getElementById("popup-container");
+    var prevSel = "";
+    document.addEventListener('click', function () {
+        var currentSelection = getSelectionText();
+        if (currentSelection !== "") { prevSel = currentSelection; }
+        if (currentSelection && !mustClickW) {
+            getSummaryFor(currentSelection);
+        } else { closePopup(); }
+    });
+    document.addEventListener('keyup', function (e) {
+        if (e.key == "w") {
+            if (pcc.style.display === "block") { closePopup(); } else { getSummaryFor(prevSel); }
         }
-        var pcc = document.getElementById("popup-container");
-        var prevSel = "";
-        document.addEventListener('click', function() {
-            var currentSelection = getSelectionText();
-            if (currentSelection !==""){prevSel = currentSelection;}
-            if (currentSelection && !mustClickW ){
-      getSummaryFor(currentSelection);
-             }else{closePopup();}
-        });
-        document.addEventListener('keyup', function(e) {
-            if(e.key =="w"){
-            if(pcc.style.display ==="block"){closePopup();}else{getSummaryFor(prevSel);}
-            }
-        });
-        function getSelectionText() {
-            var text = "";
-            if (window.getSelection) {
-      text = window.getSelection().toString();
-            } else if (document.selection && document.selection.type != "Control") { text = document.selection.createRange().text;}
-            return text;
-        }
-        function capfl(s) {
-            return s.charAt(0).toUpperCase() + s.slice(1);
-        }
-        function clearSelection(){
-         if (window.getSelection) {window.getSelection().removeAllRanges();}
-         else if (document.selection) {document.selection.empty();}
-        }
-        
-        //CUSTOMIZATION
-        //this is a variable controlling whether user must click the "w" key to open the popup.
-        //if set to true: user must select text, then click the "w" key to open wikipedia popup. Clicking "w" key again will close the popup. 
-        //if set to false: user only needs to select text. popup will open automatically. Clicking "w" is an alternative but not obligatory way of opening/closing the popup in this mode.
-        //BELOW SET to true or to false. 
-        var mustClickW = true;
+    });
+    function getSelectionText() {
+        var text = "";
+        if (window.getSelection) {
+            text = window.getSelection().toString();
+        } else if (document.selection && document.selection.type != "Control") { text = document.selection.createRange().text; }
+        return text;
+    }
+    function capfl(s) {
+        return s.charAt(0).toUpperCase() + s.slice(1);
+    }
+    function clearSelection() {
+        if (window.getSelection) { window.getSelection().removeAllRanges(); }
+        else if (document.selection) { document.selection.empty(); }
+    }
+
+    //CUSTOMIZATION
+    //this is a variable controlling whether user must click the "w" key to open the popup.
+    //if set to true: user must select text, then click the "w" key to open wikipedia popup. Clicking "w" key again will close the popup. 
+    //if set to false: user only needs to select text. popup will open automatically. Clicking "w" is an alternative but not obligatory way of opening/closing the popup in this mode.
+    //BELOW SET to true or to false. 
+    var mustClickW = true;
         //END CUSTOMIZATION
 </script>
