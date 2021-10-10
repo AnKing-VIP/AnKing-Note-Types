@@ -103,7 +103,6 @@ hr { opacity: .7 }
 /* Details For Images And Image Width */
 .mobile .card img {max-width: 100%!important; }
 .mobile .card {margin: 0ex .3px;}
-.mobile #extra img, .mobile #missed img, .mobile #missed img {max-width: 100%!important; }
 
 /* Classes for individual cards */
 .image40 img { width: 40%!important; }
