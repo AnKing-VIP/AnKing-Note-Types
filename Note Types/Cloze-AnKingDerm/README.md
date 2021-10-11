@@ -5,7 +5,7 @@
 ## TODO
 - [x] Update to new style
 - [x] Fix image zoom on mobile and make larger on desktop
-- [ ] Update readme
+- [ ] Update readme with tools in note
 
 
 <b>Please consider checking out our:</b>
