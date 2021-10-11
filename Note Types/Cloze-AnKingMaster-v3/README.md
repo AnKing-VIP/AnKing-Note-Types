@@ -216,7 +216,7 @@ Detailed changelog over time has been noted <a href="https://www.ankipalace.com/
 - [X] Change to "curly brackets" on all note types
 - [X] explain var tagID on all note types
 - [X] Fix change from lecture-notes id to lecture
-- [ ] Maybe fix Image hover zoom - needs to be 1.0 on mobile (maybe just a simple important class?)
+- [x] Maybe fix Image hover zoom - needs to be 1.0 on mobile (maybe just a simple important class?)
 - [x] Fix custom images for buttons
 
 

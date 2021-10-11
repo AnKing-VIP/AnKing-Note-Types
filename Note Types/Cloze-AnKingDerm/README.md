@@ -4,7 +4,7 @@
 
 ## TODO
 - [x] Update to new style
-- [ ] Fix image zoom on mobile and make larger on desktop
+- [x] Fix image zoom on mobile and make larger on desktop
 - [ ] Update readme
 
 

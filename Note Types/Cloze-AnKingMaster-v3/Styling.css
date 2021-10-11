@@ -315,6 +315,12 @@ hr { opacity: .7 }
   min-width: 100% !important;
 }
 
+/* Fix to make pop-up dictionary images the right size */
+.qtip img {
+  max-width: 95% !important;
+  max-height: 95% !important;
+}
+
 /*Image hover zoom*/
 #extra img:active,
 #lecture img:active,
@@ -332,8 +338,8 @@ hr { opacity: .7 }
   transform: scale(1.5);
 }
 
-.mobile .hints, .mobile #extra img:active {
-  transform: scale(1.0);
+.mobile img:active {
+  transform: scale(1.0) !important;
 }
 
 /* Cloze format */
@@ -372,12 +378,6 @@ hr { opacity: .7 }
 #extra {
   font-style: italic;
   font-size: 1rem;
-}
-
-/* Fix to make pop-up dictionary images the right size */
-.qtip img {
-  max-width: 95% !important;
-  max-height: 95% !important;
 }
 
 /* Details for AnKing hyperlink image */

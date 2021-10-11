@@ -119,8 +119,26 @@ html { min-height: 100%; display: flex; flex-direction: column; }
 .image70 img { width: 70%!important; }
 .image80 img { width: 80%!important; }
 .image90 img { width: 90%!important; }
-.image40 img, .image50 img, .image60 img, .image70 img, .image80 img, .image90 img { display:block; margin-right:auto; margin-left: auto; }
-.mobile .image40 img, .mobile .image50 img, .mobile .image60 img, .mobile .image70 img, .mobile .image80 img, .mobile .image90 img {width: auto!important;}
+
+.image40 img,
+.image50 img,
+.image60 img,
+.image70 img,
+.image80 img,
+.image90 img {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.mobile .image40 img,
+.mobile .image50 img,
+.mobile .image60 img,
+.mobile .image70 img,
+.mobile .image80 img,
+.mobile .image90 img {
+  width: auto !important;
+}
 
 /*Compatibility with Image Style Editor add-on*/
 .mobile .card {--w:100%!important;}
@@ -133,17 +151,23 @@ html { min-height: 100%; display: flex; flex-direction: column; }
 .resizer {min-width: 0%!important; }
 .mobile .resizer {min-width:100%!important;}
 
+/* Fix to make pop-up dictionary images the right size */
+.qtip img {
+  max-width: 95% !important;
+  max-height: 95% !important;
+}
+
 /*Image hover zoom*/
 #extra img:active,
 #lecture img:active,
 #missed img:active,
 #textbook img:active,
 #additional img:active {
-  transform: scale(1.2);
+  transform: scale(1.5);
 }
 
-.mobile .hints, .mobile #extra img:active {
-  transform: scale(1.0);
+.mobile img:active {
+  transform: scale(1.0) !important;
 }
 
 /* Cloze format */
@@ -165,12 +189,6 @@ html { min-height: 100%; display: flex; flex-direction: column; }
 /* EXTRA FIELD */
 #extra { font-style: italic; font-size: 1rem;}
 
-
-/* Fix to make pop-up dictionary images the right size */
-.qtip img {
-  max-width: 95% !important;
-  max-height: 95% !important;
-}
 
 /* Details for AnKing hyperlink image */
 #pic {
