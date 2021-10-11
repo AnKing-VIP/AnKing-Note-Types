@@ -3,7 +3,9 @@
 2021***: Initial Release
 
 ## TODO
-- [ ] Update to new style
+- [x] Update to new style
+- [ ] Fix image zoom on mobile and make larger on desktop
+- [ ] Update readme
 
 
 <b>Please consider checking out our:</b>

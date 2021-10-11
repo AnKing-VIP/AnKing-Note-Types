@@ -3,9 +3,11 @@
 2021***: Initial Release
 
 ## TODO
-- [ ] Update buttons script and html to new version
-- [ ] Remove css styling from buttons (i.e. `style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"`) and put in the .button-revealed css (from AnKingMasterv3 note type)
-- [ ] Update Tags script and update var at top for hotkey switching on and off
+- [x] Update buttons script and html to new version
+- [x] Remove css styling from buttons (i.e. `style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"`) and put in the .button-revealed css (from AnKingMasterv3 note type)
+- [x] Update Tags script and update var at top for hotkey switching on and off
+- [ ] Fix image zoom on desktop
+- [ ] Update readme
 
 
 <b>Please consider checking out our:</b>

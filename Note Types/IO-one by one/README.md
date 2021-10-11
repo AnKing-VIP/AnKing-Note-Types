@@ -46,8 +46,10 @@ Huge thank you to Phil (u/Ankiphil), RisingOrange & all others who have contribu
     }
     ```
 - [X] Remove css styling from buttons (i.e. `style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"`) and put in the .button-revealed css (from AnKingMasterv3 note type)
-- [ ] Fix button revealed style
+- [x] Fix button revealed style
 - [ ] Update note type on Github and make release. (Add bottom field about our team)
+- [ ] Update readme
+
 
 <b>Please consider checking out our:</b>
 <br>

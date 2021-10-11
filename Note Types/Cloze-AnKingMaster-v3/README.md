@@ -179,7 +179,7 @@
   <details><summary>Change the transform scale or method <i>(Back Template)</i></summary>
     <p>
 
-    `active` will cause images to zoom on click. `hover` will cause images to zoom on hover 
+    `active` will cause images to zoom on click. `hover` will cause images to zoom on hover. We recommend leaving the .mobile portion untouched as images are default 100% on mobile and the zoom does not work well with touchscreens. 
     ```
     /*Image hover zoom*/
     #extra img:active, #lecture img:active, #missed img:active, #pathoma img:active, #bnb img:active { transform:scale(1.2); }
@@ -216,8 +216,8 @@ Detailed changelog over time has been noted <a href="https://www.ankipalace.com/
 - [X] Change to "curly brackets" on all note types
 - [X] explain var tagID on all note types
 - [X] Fix change from lecture-notes id to lecture
-- [ ] Maybe fix Image hover zoom only working for extra on mobile?  See what it does with mobile taps (maybe compare past version?)
-- [ ] Fix custom images for buttons
+- [ ] Maybe fix Image hover zoom - needs to be 1.0 on mobile (maybe just a simple important class?)
+- [x] Fix custom images for buttons
 
 
 <b>Please consider checking out our:</b>
