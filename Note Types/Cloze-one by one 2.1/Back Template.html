@@ -32,31 +32,34 @@ var clozeHidden = (elem) => `<span style="background-color: blue">${elem.innerHT
 </style>
 
 <script>
-
-function revealCloze(elem) {
-  elem.innerHTML = elem.dataset.content
-  delete elem.dataset.content
-}
-
-let clozes = document.getElementsByClassName("cloze")
-let cloze_color = "blue";
-for (let i = 0; i < clozes.length; i++) {
-  let cloze = clozes[i]
-  cloze.dataset.content = cloze.innerHTML
-  cloze.innerHTML = clozeHidden(cloze)
-  cloze.addEventListener("click", (ev) => {
-    revealCloze(ev.currentTarget)
-  })
-}
-
-document.addEventListener("keyup",  function(ev) {
-    if (ev.key == shortcut) {
+if (!window.revealCloze) {
+  window.revealCloze = function(elem) {
+    elem.innerHTML = elem.dataset.content
+    delete elem.dataset.content
+  }
+  document.addEventListener("keyup",  function(ev) { // FIX: an event listener will be attached to document for every card.
+    if (ev.key == window.shortcut) {
       let elem = document.querySelector(".cloze[data-content]")
       if (elem) {
         revealCloze(elem)
       }
     }
-});
+  });
+}
+
+(function(){
+  let clozes = document.getElementsByClassName("cloze")
+  let cloze_color = "blue";
+  for (let i = 0; i < clozes.length; i++) {
+    let cloze = clozes[i]
+    cloze.dataset.content = cloze.innerHTML
+    cloze.innerHTML = clozeHidden(cloze)
+    cloze.addEventListener("click", (ev) => {
+      revealCloze(ev.currentTarget)
+    })
+  }
+})()
+
 </script>
 
 
