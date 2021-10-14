@@ -5,7 +5,8 @@
 <!-- User Customization Start -->
 
 <script>
-var shortcut = 'n' //Shortcut to reveal cloze
+var reveal_cloze_shortcut = "Shift + N" //Shortcut to reveal cloze
+var reveal_word_shortcut = "Ctrl + N"
 // What cloze is hidden with
 var clozeHidden = (elem) => "_".repeat(elem.textContent.length)
 /* 
@@ -32,6 +33,33 @@ var clozeHidden = (elem) => `<span style="background-color: blue">${elem.innerHT
 </style>
 
 <script>
+if (!window.shortcutMatcher) {
+  // Returns function that match keyboard event to see if it matches given shortcut.
+  window.shortcutMatcher = function (shortcut) {
+    let shortcutKeys = shortcut.toLowerCase().split(/[+]/).map(key => key.trim())
+    let mainKey = shortcutKeys[shortcutKeys.length - 1]
+    if (mainKey.length === 1) {
+        let prepend = /\d/.test(mainKey) ? "digit" : "key"
+        mainKey = prepend + mainKey
+    }
+    let ctrl = shortcutKeys.includes("ctrl")
+    let shift = shortcutKeys.includes("shift")
+    let alt = shortcutKeys.includes("alt")
+
+    let matchShortcut = function (ctrl, shift, alt, mainKey, event) {
+      if (mainKey !== event.code.toLowerCase()) return false
+      if (ctrl !== (event.ctrlKey || event.metaKey)) return false
+      if (shift !== event.shiftKey) return false
+      if (alt !== event.altKey) return false
+      return true
+    }.bind(window, ctrl, shift, alt, mainKey)
+    
+    return matchShortcut
+  }
+}
+</script>
+
+<script>
 if (!window.revealCloze) {
   window.revealCloze = function(elem) {
     if (elem.dataset.content !== undefined) {
@@ -39,8 +67,10 @@ if (!window.revealCloze) {
       delete elem.dataset.content
     }
   }
-  document.addEventListener("keyup",  function(ev) { // FIX: an event listener will be attached to document for every card.
-    if (ev.key == window.shortcut) {
+
+  document.addEventListener("keydown",  function(ev) { // FIX: an event listener will be attached to document for every card.
+    let isShortcut = window.shortcutMatcher(window.reveal_cloze_shortcut)
+    if(isShortcut(ev)) {
       let elem = document.querySelector(".cloze[data-content]")
       if (elem) {
         revealCloze(elem)
