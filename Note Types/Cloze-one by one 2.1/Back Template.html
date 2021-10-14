@@ -34,8 +34,10 @@ var clozeHidden = (elem) => `<span style="background-color: blue">${elem.innerHT
 <script>
 if (!window.revealCloze) {
   window.revealCloze = function(elem) {
-    elem.innerHTML = elem.dataset.content
-    delete elem.dataset.content
+    if (elem.dataset.content !== undefined) {
+      elem.innerHTML = elem.dataset.content
+      delete elem.dataset.content
+    }
   }
   document.addEventListener("keyup",  function(ev) { // FIX: an event listener will be attached to document for every card.
     if (ev.key == window.shortcut) {
