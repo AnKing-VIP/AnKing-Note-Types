@@ -54,9 +54,8 @@ if (!window.revealCloze) {
     let cloze = clozes[i]
     cloze.dataset.content = cloze.innerHTML
     cloze.innerHTML = clozeHidden(cloze)
-    cloze.addEventListener("click", (ev) => {
-      revealCloze(ev.currentTarget)
-    })
+    cloze.addEventListener("click", (ev) => revealCloze(ev.currentTarget))
+    cloze.addEventListener("touchend", (ev) => revealCloze(ev.currentTarget))
   }
 })()
 
