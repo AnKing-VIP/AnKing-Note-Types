@@ -91,10 +91,9 @@ html {
 /*FONT STYLE*/
 .card,
 kbd {
-  font-family: Arial Greek, Arial;
+  font-family: Arial Greek, Arial; /*Step exam's font is Arial Greek*/
 }
 
-/*Step exam's font is Arial Greek*/
 /*MAX IMAGE HEIGHT*/
 img {
   max-height: none;
