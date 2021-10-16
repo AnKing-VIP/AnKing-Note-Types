@@ -47,14 +47,8 @@ var clozeHidden = (elem) => `<span style="background-color: blue">${elem.innerHT
 <!-- User Customization End -->
 
 
-
-<div class="clozefield">{{cloze:Text}}</div>
-
-<!-- ##############  EDIT CLOZE DURING REVIEW  ##############
-			-change below (not above) to  "edit:cloze:Text" for editable field, 
-				but be sure to have the correct add-on installed-->
-
-<div class="editcloze">{{edit:cloze:Text}}</div>
+<!-- ###  IMPORTANT NOTE: This Note type will not work with the Edit Field During Review (Cloze) Add-on -->
+{{cloze:Text}}
 
 
 <!-- ##############  TEXT-TO-SPEECH ##############
@@ -68,10 +62,10 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <!-- BUTTON FIELDS -->
 <hint-button field-name="Personal Notes" short="ln" hint-id="notes"></hint-button>
-<div id="dummy-ln" style="display: none;">{{edit:Personal Notes}}</div>
+<div id="dummy-ln" style="display: none;">{{Personal Notes}}</div>
 
 <hint-button field-name="Missed Questions" short="mq" hint-id="missed"></hint-button>
-<div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>
+<div id="dummy-mq" style="display: none;">{{Missed Questions}}</div>
 
 
 <!-- Extra field -->

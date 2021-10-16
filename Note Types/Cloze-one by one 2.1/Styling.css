@@ -228,17 +228,6 @@ hr { opacity: .7 }
   font-weight: bold;
 }
 
-/* Adjustments For Cloze Edit In Review On Mobile */
-.clozefield,
-.mobile .editcloze {
-  display: none;
-}
-
-.editcloze,
-.mobile .clozefield {
-  display: block;
-}
-
 /* BEGIN HINT FIELDS */
 
 /* Text When Hint Is Shown*/
