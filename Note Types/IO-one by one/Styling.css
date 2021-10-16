@@ -118,25 +118,26 @@ i {
   max-width: 150px !important;
 }
 
-/* AnKing Logo */
-a.logo img {
+/* Details for AnKing hyperlink image */
+#pic {
+  opacity: 0.0;
+  font-size: 16px;
+  font-family: Comic Sans !important;
+  font-style: bold;
   height: 50px;
   border: 0;
   position: fixed;
   bottom: 10px;
   right: 10px;
+  display: block;
 }
 
-a.logo {
-  opacity: 0;
+#pic:hover {
+  opacity: 1;
   transition: opacity 0.2s ease;
 }
 
-a.logo:hover {
-  opacity: 1;
-}
-
-.mobile a.logo {
+.mobile #pic {
   display: none;
 }
 
