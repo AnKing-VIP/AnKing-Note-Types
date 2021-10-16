@@ -2,49 +2,98 @@
 <br>
 {{#Extra}}<div id=extra>{{edit:Extra}}</div>{{/Extra}}
 
+<!-- User Customization Start -->
+
 <script>
-//SHORTCUT TO REVEAL CLOZES
-var shortcut = 'n'
-//SHORTCUT END
+var reveal_cloze_shortcut = "Shift + N" //Shortcut to reveal cloze
+var reveal_word_shortcut = "Ctrl + N"
+// What cloze is hidden with
+var clozeHidden = (elem) => "_".repeat(elem.textContent.length)
+/* 
+You can replace tha above line with below examples.
+
+- Replace all characters with "_" (default):
+var clozeHidden = (elem) => "_".repeat(elem.textContent.length)
+- Fixed length:
+var clozeHidden = (elem) => "___"
+- Replace all non-whitespace characters with "_":
+var clozeHidden = (elem) => elem.textContent.split(" ").map((x) => "_".repeat(x.length)).join(" ") 
+- Color-filled box (doesn't hide images):
+var clozeHidden = (elem) => `<span style="background-color: blue">${elem.innerHTML}</span>`
+*/
 </script>
 
+<!-- User Customization End -->
 
+
+<style>
+.cloze[data-content]:hover {
+  cursor: pointer;
+}
+</style>
 
 <script>
-var clozes = document.getElementsByClassName("cloze");
-var clr = window.getComputedStyle(clozes[0]).color;
-var bg = window.getComputedStyle(clozes[0]).background;
-for (i=1; i<clozes.length; ++i) {
-  clozes[i].style.background = clr;
-  clozes[i].onclick = function() {this.style.background=bg ;}
+if (!window.shortcutMatcher) {
+  // Returns function that match keyboard event to see if it matches given shortcut.
+  window.shortcutMatcher = function (shortcut) {
+    let shortcutKeys = shortcut.toLowerCase().split(/[+]/).map(key => key.trim())
+    let mainKey = shortcutKeys[shortcutKeys.length - 1]
+    if (mainKey.length === 1) {
+        let prepend = /\d/.test(mainKey) ? "digit" : "key"
+        mainKey = prepend + mainKey
+    }
+    let ctrl = shortcutKeys.includes("ctrl")
+    let shift = shortcutKeys.includes("shift")
+    let alt = shortcutKeys.includes("alt")
+
+    let matchShortcut = function (ctrl, shift, alt, mainKey, event) {
+      if (mainKey !== event.code.toLowerCase()) return false
+      if (ctrl !== (event.ctrlKey || event.metaKey)) return false
+      if (shift !== event.shiftKey) return false
+      if (alt !== event.altKey) return false
+      return true
+    }.bind(window, ctrl, shift, alt, mainKey)
+    
+    return matchShortcut
+  }
 }
 </script>
 
 <script>
-    var clozes = [...document.querySelectorAll(".cloze")];
-    if (clozes.length) {
-        const cloze_color = window.getComputedStyle(clozes[0]).color;
-        const cloze_bg_color = window.getComputedStyle(clozes[0]).backgroundColor;
-        clozes.slice(1).forEach((item) => {
-            item.style.backgroundColor = cloze_color;
-            item.addEventListener("click", () => {
-                item.style.backgroundColor = cloze_bg_color;
-            });
-        });
-//USER CUSTOMIZATION event.key 
-
-        document.addEventListener("keyup",  function(e) {
-            if (e.key == shortcut) {
-                clozes.slice(1).some((item) => {
-                    if (item.style.backgroundColor != cloze_bg_color) {
-                        item.style.backgroundColor = cloze_bg_color;
-                        return true;
-                    }
-                })
-            }
-        });
+if (!window.revealCloze) {
+  window.revealCloze = function(elem) {
+    if (elem.dataset.content !== undefined) {
+      elem.innerHTML = elem.dataset.content
+      delete elem.dataset.content
     }
+  }
+
+  document.addEventListener("keydown",  function(ev) { // FIX: an event listener will be attached to document for every card.
+    let isShortcut = window.shortcutMatcher(window.reveal_cloze_shortcut)
+    if(isShortcut(ev)) {
+      let elem = document.querySelector(".cloze[data-content]")
+      if (elem) {
+        revealCloze(elem)
+      }
+    }
+  });
+}
+
+(function(){
+  let clozes = document.getElementsByClassName("cloze")
+  let cloze_color = "blue";
+  for (let i = 0; i < clozes.length; i++) {
+    let cloze = clozes[i]
+    cloze.dataset.content = cloze.innerHTML
+    cloze.innerHTML = clozeHidden(cloze)
+    cloze.addEventListener("click", (ev) => revealCloze(ev.currentTarget))
+    cloze.addEventListener("touchend", (ev) => revealCloze(ev.currentTarget))
+  }
+})()
+
 </script>
+
+
 
 {{#Tags}}
 <div id="tags-container">{{clickable::Tags}}</div>
@@ -74,12 +123,12 @@ if (tagContainer.childElementCount == 0) {
 
 
 <!-- WIKIPEDIA SEARCHES -->
-    <div id="popup-container">
-      <button id="close-popup-btn" onclick="closePopup(true)">&times;</button>
-      <a id="open-wiki-btn" href="">&#8618;</a>
-      <div id="tc"></div> <div id="fadebottom_v"></div>
-      <div id="ic"><img id="popup-image"></div>
-    </div>
+<div id="popup-container">
+  <button id="close-popup-btn" onclick="closePopup(true)">&times;</button>
+  <a id="open-wiki-btn" href="">&#8618;</a>
+  <div id="tc"></div> <div id="fadebottom_v"></div>
+  <div id="ic"><img id="popup-image"></div>
+</div>
 <style>
 #tc {
   color: #222222;
@@ -184,33 +233,41 @@ if (tagContainer.childElementCount == 0) {
 </style>
 
 <script>
-      function getSummaryFor(word) {
-	    word = word.replace(/^[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+|[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+$/g, "");
-             var pc = document.getElementById("popup-container");
-   	    var hc = document.getElementById("hc");
-            var tc = document.getElementById("tc");
-            var ic = document.getElementById("ic");
-            var imgelem = document.getElementById("popup-image");
-       	    imgelem.src = "";
-            var shortsum ="";
-        fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + word).then(function(response) {return response.json();}).then(function(response) {
-           shortsum = response.description;
-  	   shortsum = shortsum.replace(/(Disambiguation.*)/g, "Disambiguation");
-            tc.innerHTML = "<span id='hc'>" +capfl(shortsum) + "</span>" +"\n" +response.extract_html + "\n";
-	    tc.style.width = "420px";
-            if (response.extract_html && !response.extract.endsWith("to:")){
-            	pc.style.display = "block";
-	        document.getElementById("open-wiki-btn").href = response.content_urls.desktop.page;
-            }else{pc.style.display = "none";}
-            if (!response.thumbnail.source || response.type ==="disambiguation"){
-                 tc.style.width = "420px";
-            }else{tc.style.width="300px";imgelem.src = response.thumbnail.source;}
-          }).catch(function(error) {console.log(error);});}
+function getSummaryFor(word) {
+  word = word.replace(/^[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+|[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+$/g, "");
+  var pc = document.getElementById("popup-container");
+  var hc = document.getElementById("hc");
+  var tc = document.getElementById("tc");
+  var ic = document.getElementById("ic");
+  var imgelem = document.getElementById("popup-image");
+  imgelem.src = "";
+  var shortsum ="";
+  fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + word)
+    .then(function(response) { return response.json(); })
+    .then(function(response) {
+      shortsum = response.description;
+      shortsum = shortsum.replace(/(Disambiguation.*)/g, "Disambiguation");
+      tc.innerHTML = "<span id='hc'>" +capfl(shortsum) + "</span>" +"\n" +response.extract_html + "\n";
+      tc.style.width = "420px";
+      if (response.extract_html && !response.extract.endsWith("to:")) {
+        pc.style.display = "block";
+        document.getElementById("open-wiki-btn").href = response.content_urls.desktop.page;
+      } else {
+        pc.style.display = "none";
+      }
+      if (!response.thumbnail.source || response.type ==="disambiguation") {
+        tc.style.width = "420px";
+      } else {
+        tc.style.width="300px";imgelem.src = response.thumbnail.source;
+      }
+  }).catch(function(error) { console.log(error); });
+}
 
 function closePopup(deselectAlso=false){
   pcc.style.display = 'none';
   if (deselectAlso){clearSelection();}
 }
+
 var pcc = document.getElementById("popup-container");
 var prevSel = "";
 document.addEventListener('click', function() {
@@ -218,26 +275,37 @@ document.addEventListener('click', function() {
     if (currentSelection !==""){prevSel = currentSelection;}
     if (currentSelection && !mustClickW ){
     	getSummaryFor(currentSelection);
-     }else{closePopup();}
+    } else { 
+       closePopup();
+    }
 });
 document.addEventListener('keyup', function(e) {
-    if(e.key =="w"){
-	if(pcc.style.display ==="block"){closePopup();}else{getSummaryFor(prevSel);}
+  if (e.key =="w") {
+	  if (pcc.style.display ==="block") {
+      closePopup();
+    } else {
+      getSummaryFor(prevSel);
     }
+  }
 });
 function getSelectionText() {
     var text = "";
     if (window.getSelection) {
         text = window.getSelection().toString();
-    } else if (document.selection && document.selection.type != "Control") { text = document.selection.createRange().text;}
+    } else if (document.selection && document.selection.type != "Control") { 
+      text = document.selection.createRange().text;
+    }
     return text;
 }
 function capfl(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
 function clearSelection(){
- if (window.getSelection) {window.getSelection().removeAllRanges();}
- else if (document.selection) {document.selection.empty();}
+ if (window.getSelection) { 
+   window.getSelection().removeAllRanges(); 
+  } else if (document.selection) { 
+   document.selection.empty(); 
+  }
 }
 
 //CUSTOMIZATION

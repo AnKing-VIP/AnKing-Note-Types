@@ -1,52 +1,76 @@
 <script>qFade=0; if (typeof anki !== 'undefined') anki.qFade=qFade;</script>
+
 {{cloze:Text}}
 
 
-
 <div class="timer" id="s2"></div>
+
+<div id=pic>
+    <a href="https://www.youtube.com/theanking/playlists">
+        <img src="AnKing.png" alt="The AnKing" style="height:38px;border:0;position:fixed;bottom:10px;right:1px;">
+    </a>
+</div>    
+<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
+
+<!-- User Configuration Start -->
 <script>
-//USER CONFIGURATION START
-//Set Timer Length
+var autoflip = true // auto flip to back if cloze has no hints. Does not work for AnkiMobile.
+
+// Timer config (timer length, timer finished message)
 var minutes = 0
 var seconds = 9
-//USER CONFIGURATION END
+var timeOverMsg = "<span style='color:#CC5B5B'>!<br/>!<br/>!<br/>!<br/>!<br/>!</span>"
+</script>
+<!-- User Configuration End -->
 
-function countdown( elementName, minutes, seconds )
-{
-    var element, endTime, hours, mins, msLeft, time;
-    function twoDigits( n )
-    {
+
+<script>
+if(autoflip) {
+    let hasHint = false
+    // Check if a cloze has hint
+    let clozes = document.getElementsByClassName("cloze")
+    for(var i = 0; i < clozes.length; i++) {
+        if (clozes[i].innerHTML !== "[...]") {
+            hasHint = true
+        }
+    }
+
+    if (!hasHint) {
+        if (window.pycmd) {
+        pycmd("ans")
+        } else if (window.showAnswer) {
+            showAnswer()
+        }    
+        // AnkiMobile JS API doesn't have one for show answer. 
+        // Best alternative is to use Taps/Swipes to show answer.
+    }
+
+}
+</script>
+
+
+
+<script>
+function countdown(elementName, minutes, seconds) {
+    var element, endTime, mins, msLeft, time;
+    function twoDigits( n ) {
         return (n <= 9 ? "0" + n : n); 
     }
-    function updateTimer()
-    {
+    function updateTimer() {
         msLeft = endTime - (+new Date);
 
-//USER CUSTOMIZATION- you can edit color and text of the 'time expired' readout under the element.innerHTML
         if ( msLeft < 1000 ) {
-            element.innerHTML = "<span style='color:#CC5B5B'>!<br/>!<br/>!<br/>!<br/>!<br/>!</span>";
+            element.innerHTML = timeOverMsg;
         } else {
             time = new Date( msLeft );
-            hours = time.getUTCHours();
             mins = time.getUTCMinutes();
-            element.innerHTML = (hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds() );
+            element.innerHTML = mins + ':' + twoDigits(time.getUTCSeconds());
             setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
         }
     }
-    element = document.getElementById( elementName );
+    element = document.getElementById(elementName);
     endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
     updateTimer();
 }
 countdown("s2", minutes, seconds ); //2nd value is the minute, 3rd is the seconds
 </script>
-
-<div id=pic><a href="https://www.youtube.com/theanking/playlists">
-<img src="AnKing.png" alt="The AnKing" style=height:38px;border:0;position:fixed;bottom:10px;right:1px;">
-</a></div>
-
-
-
-
-
-
-<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
