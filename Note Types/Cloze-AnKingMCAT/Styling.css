@@ -7,9 +7,6 @@
 /*~~~~~~~~USER CUSTOMIZATION START~~~~~~~~~*/
 /* You can choose colors at www.htmlcolorcodes.com */
 
-/*~~~~~~~~USER CUSTOMIZATION START~~~~~~~~~*/
-/* You can choose colors at www.htmlcolorcodes.com */
-
 /* TIMER ON/OFF */
 .timer {
   display: block; /* ‘none’ or ‘block’ */
@@ -67,7 +64,7 @@ html {
 /*FONT STYLE*/
 .card,
 kbd {
-  font-family: Arial Greek, Arial; /*Step exam's font is Arial Greek*/
+  font-family: Menlo, baskerville, sans; /*Step exam's font is Arial Greek*/
 }
 
 /*MAX IMAGE HEIGHT*/
