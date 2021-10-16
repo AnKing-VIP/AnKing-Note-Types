@@ -1,66 +1,157 @@
-/*The AnKing wishes you the best of luck! Be sure to check out our YouTube channel for all things Anki and Med School related (including how to customize this card type and use these decks):  www.AnKingMed.com  @AnKingMed    */
+/* The AnKing wishes you the best of luck! Be sure to check out our YouTube channel and Instagram
+ for all things Anki and Med School related (including how to customize this card type and use these decks):  
+		www.AnKingMed.com
+			@ankingmed    			
+*/
 
 /*~~~~~~~~USER CUSTOMIZATION START~~~~~~~~~*/
 /* You can choose colors at www.htmlcolorcodes.com */
 
-
 /* TIMER ON/OFF */
-.timer { display: block; } /* 'none' or 'block' */
+.timer {
+  display: block; /* ‘none’ or ‘block’ */
+}
+
 /* TAGS ON/OFF DESKTOP & MOBILE*/
-	#tags-container { display: block; } /* ‘none’ or ‘block’ */
-.mobile #tags-container { display: block; } /* ‘none’ or ‘block’ */
+#tags-container {
+  display: block; /* ‘none’ or ‘block’ */
+}
+
+.mobile #tags-container {
+  display: none; /* ‘none’ or ‘block’ */
+}
+
 /* MOVE TAGS UP FOR 'NO-DISTRACTIONS' ADD-ON */
-#tags-container{ padding-bottom: 0px; } /* 0 normal, 55 to move up */
+#tags-container {
+  padding-bottom: 0px; /* 0 normal, 55 to move up */
+}
 
-/*FONT SIZE*/
-     /* DESKTOP */ html 
-	{ font-size: 28px; }
-     /* MOBILE */ .mobile
-  { font-size: 28px; }
-		/* NOTE: anything with 'px' will keep a font that size indefinitely, 
-    'rem' is a fraction of this size above and allows all text to change size with the above setting */
+/* MNEMONICS CENTER OR LEFT */
+.mnemonics {
+  text-align: left;
+}
 
-/*HINT FONT SIZE*/ .hints 
-	{ font-size: .85rem; }
-/*FONT STYLE*/	
-	.card, kbd { font-family: Arial Greek, Arial; } /*Step exam's font is Arial Greek*/
-/*MAX IMAGE HEIGHT*/
-	img {max-height: 40rem; }
+/*FONT SIZE
+NOTE: anything with 'px' will keep a font that size indefinitely, 
+'rem' is a fraction of this size above and allows all text to change size with the above setting */
+/* Desktop */
+html {
+  font-size: 28px;
+}
+
+/* Mobile */
+.mobile {
+  font-size: 28px;
+}
+
+/*REVEALED HINTS FONT SIZE*/
+.hints {
+  font-size: .85rem;
+}
+/*FONT STYLE*/
+.card,
+kbd {
+  font-family: Arial Greek, Arial; /*Step exam's font is Arial Greek*/
+}
+
+/*MAX IMAGE HEIGHT/WIDTH*/
+img {
+  max-height: none;
+  max-width: 85%;
+}
 
 /* ~~COLORS~~ */
-/*DEFAULT TEXT COLOR*/ 
-	.card { color: black; }
-/*BACKGROUND COLOR*/ 
-	.card { background-color: #D1CFCE; }
-    /*TIMER COUNTDOWN COLOR*/
- 	.timer { color: transparent; }
-/* "EXTRA" FIELD COLOR */
-	#extra { color: navy; }
-/* HINT REVEAL COLOR */
-	.hints { color: #4297F9; }
+/*DEFAULT TEXT COLOR*/
+.card {
+  color: black;
+}
 
+/*BACKGROUND COLOR*/
+.card {
+  background-color: #D1CFCE;
+}
+
+/*TIMER COUNTDOWN COLOR*/
+.timer {
+  color: transparent;
+}
+
+/* CLOZE COLOR */
+.cloze {
+  color: blue;
+}
+
+/* "EXTRA" FIELD COLOR */
+#extra {
+  color: navy;
+}
+
+/* HINT REVEAL COLOR */
+.hints {
+  color: #4297F9;
+}
+
+/* Missed Questions Reveal Color */
+#missed {
+  color: red;
+}
 
 /* ~~NIGHT MODE COLORS~~ */
-/* NM DEFAULT TEXT COLOR*/ 
-	.nightMode.card, .night_mode .card
-     { color: #FFFAFA !important; }
-/* NM BACKGROUND COLOR*/ 
-	.nightMode.card, .night_mode .card { background-color: #272828 !important; }
+/* NM DEFAULT TEXT COLOR*/
+.nightMode.card,
+.night_mode .card {
+  color: #FFFAFA !important;
+}
+
+/* NM BACKGROUND COLOR*/
+.nightMode.card,
+.night_mode .card {
+  background-color: #272828 !important;
+}
+
+/* NM CLOZE COLOR */
+.nightMode .cloze,
+.night_mode .cloze {
+  color: #4297F9 !important;
+}
+
 /* NM "EXTRA" FIELD COLOR */
-	.nightMode #extra, .night_mode #extra { color: magenta; }
+.nightMode #extra,
+.night_mode #extra {
+  color: magenta;
+}
+
 /* NM HINT REVEAL COLOR */
-	.nightMode .hints, .night_mode .hints { color: cyan;}
+.nightMode .hints,
+.night_mode .hints {
+  color: cyan;
+}
 
 /* COLOR ACCENTS FOR BOLD-ITALICS-UNDERLINE*/
-b { color: inherit; }
-u { color: inherit; } 
-i  { color: inherit; }
+b {
+  color: inherit;
+}
+
+u {
+  color: inherit;
+}
+
+i {
+  color: inherit;
+}
 
 /* ~~~~~~~~END CUSTOMIZATION~~~~~~~~ */
 
-html { min-height: 100%; display: flex; flex-direction: column; }
+html {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
-#qa { margin-top: 15px; padding-bottom: 2rem; }  
+#qa {
+  margin-top: 15px;
+  padding-bottom: 2rem;
+}
 
 /* Formatting For Timer */
 .timer {
@@ -68,7 +159,7 @@ html { min-height: 100%; display: flex; flex-direction: column; }
   margin: 12em auto auto auto;
 }
 
-/* Styling For Whole Card */
+/* Styling For Whole Card*/
 .card {
   text-align: center;
   font-size: 1rem;
@@ -78,29 +169,50 @@ html { min-height: 100%; display: flex; flex-direction: column; }
   padding-bottom: 1em;
 }
 
-.mobile .card { padding-bottom: 5em; }
+.mobile .card {
+  padding-bottom: 5em;
+  margin: 0ex .3px;
+}
 
 hr { opacity: .7 }
 
-/* Details For Images And Image Width */
-.mobile .card img {max-width: 100%!important; }
-.mobile .card {margin: 0ex 0em;}
+/* Details For IMAGES */
+.mobile .card img {
+  max-width: 100% !important;
+}
+
+/*Compatibility with Image Style Editor add-on*/
+.mobile .card {
+  --w: 100% !important;
+}
+
+.card {
+  --w: 0%;
+}
 
 /*Max image width for resize images in editor add-on */
-.card [class^=ui-] img {max-width: 100%!important; }
+.card [class^=ui-] img {
+  max-width: 100% !important;
+}
 
 /*Compatibility with resize images in editor add-on */
-.resizer {min-width: 0%!important; }
-.mobile .resizer {min-width:100%!important;}
+.resizer {
+  min-width: 0% !important;
+}
 
-/* BEGIN HINT FIELDS */
-/* Text When Hint Is Shown*/
-.hints { font-size:1rem;}
+.mobile .resizer {
+  min-width: 100% !important;
+}
 
 /* Fix to make pop-up dictionary images the right size */
 .qtip img {
   max-width: 95% !important;
   max-height: 95% !important;
+}
+
+/* Text When Hint Is Shown*/
+.hints {
+  font-style: italic;
 }
 
 /* Details for AnKing hyperlink image */
@@ -183,12 +295,13 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   margin-left: 0px; }
 
 /* MNEMONICS CENTER OR LEFT */
-.mnemonics { display: inline-block; } 
-.centerbox {text-align:center;}
+.mnemonics {
+  display: inline-block;
+}
 
-/*Compatibility with Image Style Editor add-on*/
-.mobile .card {--w:100%;}
-.card {--w:0%;}
+.centerbox {
+  text-align: center;
+}
 
 
 /*~~~BUTTON LAYOUT ~~~*/

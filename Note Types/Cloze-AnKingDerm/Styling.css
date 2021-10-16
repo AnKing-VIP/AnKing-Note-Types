@@ -8,85 +8,175 @@
 /* You can choose colors at www.htmlcolorcodes.com */
 
 /* TIMER ON/OFF */
-.timer { display: block; } /* 'none' or 'block' */
+.timer {
+  display: block; /* ‘none’ or ‘block’ */
+}
+
 /* TAGS ON/OFF DESKTOP & MOBILE*/
-  #tags-container { display: none; }  /* ‘none’ or ‘block’ */
-.mobile #tags-container { display: none; } /* ‘none’ or ‘block’ */
+#tags-container {
+  display: block; /* ‘none’ or ‘block’ */
+}
+
+.mobile #tags-container {
+  display: none; /* ‘none’ or ‘block’ */
+}
+
 /* MOVE TAGS UP FOR 'NO-DISTRACTIONS' ADD-ON */
-#tags-container{ padding-bottom: 0px; } /* 0 normal, 55 to move up */
+#tags-container {
+  padding-bottom: 0px; /* 0 normal, 55 to move up */
+}
+
 /* MNEMONICS CENTER OR LEFT */
-.mnemonics { text-align:left; } 
+.mnemonics {
+  text-align: left;
+}
 
-/*FONT SIZE*/
-     /* DESKTOP */ html 
-	{ font-size: 28px; }
-     /* MOBILE */ .mobile
-         { font-size: 28px; }
-		/* NOTE: anything with 'px' will keep a font that size indefinitely, 'rem' is a fraction of this size above and allows all text to change size with the above setting */
+/*FONT SIZE
+NOTE: anything with 'px' will keep a font that size indefinitely, 
+'rem' is a fraction of this size above and allows all text to change size with the above setting */
+/* Desktop */
+html {
+  font-size: 28px;
+}
 
-/*IPAD ADJUSTMENTS*/
-.ipad .card, .ipad #extra {font-size:28px;}
-.ipad .hints {font-size:24px;}
-.ipad #textbook, .ipad #additional { font-size: 20px!important; }
+/* Mobile */
+.mobile {
+  font-size: 28px;
+}
 
-/*HINT FONT SIZE*/ .hints 
-	{ font-size: .85rem; }
-   /*First Aid, Sketchy, Physeo, Additional Resources Font Size*/
-	#textbook, #additional { font-size: .6rem !important; } 
-   /*First Aid, Sketchy, Physeo, Additional Resources Font Size on Mobile*/
-  .mobile #textbook, .mobile #additional { font-size: 20px!important; }
+/*REVEALED HINTS FONT SIZE*/
+.hints {
+  font-size: .85rem;
+}
 
-/*FONT STYLE*/	
-	.card, kbd { font-family: Arial Greek, Arial; } /*Step exam's font is Arial Greek*/
+/*Other Fields Font Size*/
+#textbook, 
+#additional { 
+  font-size: .6rem !important; 
+} 
+
+/*Other Fields Font Size on Mobile*/
+.mobile #textbook, 
+.mobile #additional { 
+  font-size: 20px!important; 
+}
+
+/*FONT STYLE*/
+.card,
+kbd {
+  font-family: Arial Greek, Arial; /*Step exam's font is Arial Greek*/
+}
+
 /*MAX IMAGE HEIGHT*/
-	img {max-height: none; }
+img {
+  max-height: none;
+}
+
  /*MAX IMAGE WIDTH*/
-		#extra img, #lecture img, #missed img {max-width: 85%; }
-	#textbook img, #additional img {max-width: 60%; }
+#extra img, 
+#lecture img, 
+#missed img {
+  max-width: 85%; 
+}
+
+#textbook img, 
+#additional img {
+  max-width: 60%; 
+}
 
 
 /* ~~COLORS~~ */
-/*DEFAULT TEXT COLOR*/ 
-	.card { color: black; }
-/*BACKGROUND COLOR*/ 
-	.card { background-color: #D1CFCE; }
-	#tags-container { background-color: transparent; }
-    /*TIMER COUNTDOWN COLOR*/
- 	.timer { color: transparent; }
+/*DEFAULT TEXT COLOR*/
+.card {
+  color: black;
+}
+
+/*BACKGROUND COLOR*/
+.card {
+  background-color: #D1CFCE;
+}
+
+/*TIMER COUNTDOWN COLOR*/
+.timer {
+  color: transparent;
+}
+
 /* CLOZE COLOR */
-	.cloze { color: blue; }
+.cloze {
+  color: blue;
+}
+
 /* "EXTRA" FIELD COLOR */
-	#extra { color: navy; }
-/* HINT COLOR*/
-	a[href="#"] { color: blue; }
+#extra {
+  color: navy;
+}
+
 /* HINT REVEAL COLOR */
-	.hints { color: #4297F9; }
-   /* Missed Questions Reveal Color */
-	#missed { color: red; }
+.hints {
+  color: #4297F9;
+}
+
+/* Missed Questions Reveal Color */
+#missed {
+  color: red;
+}
 
 /* ~~NIGHT MODE COLORS~~ */
-/* NM DEFAULT TEXT COLOR*/ 
-	.nightMode.card, .night_mode .card
-     { color: #FFFAFA !important; }
-/* NM BACKGROUND COLOR*/ 
-	.nightMode.card, .night_mode .card { background-color: #272828!important; }
+/* NM DEFAULT TEXT COLOR*/
+.nightMode.card,
+.night_mode .card {
+  color: #FFFAFA !important;
+}
+
+/* NM BACKGROUND COLOR*/
+.nightMode.card,
+.night_mode .card {
+  background-color: #272828 !important;
+}
+
 /* NM CLOZE COLOR */
- 	.nightMode .cloze, .night_mode .cloze { color: #4297F9!important; }
+.nightMode .cloze,
+.night_mode .cloze {
+  color: #4297F9 !important;
+}
+
 /* NM "EXTRA" FIELD COLOR */
-	.nightMode #extra, .night_mode #extra { color: magenta; }
+.nightMode #extra,
+.night_mode #extra {
+  color: magenta;
+}
+
 /* NM HINT REVEAL COLOR */
-	.nightMode .hints, .night_mode .hints { color: cyan;}
+.nightMode .hints,
+.night_mode .hints {
+  color: cyan;
+}
 
 /* COLOR ACCENTS FOR BOLD-ITALICS-UNDERLINE*/
-b { color: inherit; }
-u { color: inherit; } 
-i  { color: inherit; }
+b {
+  color: inherit;
+}
+
+u {
+  color: inherit;
+}
+
+i {
+  color: inherit;
+}
 
 /* ~~~~~~~~END CUSTOMIZATION~~~~~~~~ */
 
-html { min-height: 100%; display: flex; flex-direction: column; }
+html {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
-#qa { margin-top: 15px; padding-bottom: 2rem; }
+#qa {
+  margin-top: 15px;
+  padding-bottom: 2rem;
+}
 
 /* Formatting For Timer */
 .timer {
@@ -103,14 +193,26 @@ html { min-height: 100%; display: flex; flex-direction: column; }
   flex-grow: 1;
   padding-bottom: 1em;
 }
-.mobile .card { padding-bottom: 5em; }
+
+.mobile .card {
+  padding-bottom: 5em;
+  margin: 0ex .3px;
+}
+
+hr { opacity: .7 }
 
 /* Details For IMAGES */
-.mobile .card img {max-width: 100%!important; }
-.mobile .card {margin: 0ex .3px;}
+.mobile .card img {
+  max-width: 100% !important;
+}
 
-#extra img { min-width: 30%; }
-.mobile #extra img, .mobile #lecture img, .mobile #missed img, .mobile #textbook, .mobile #additional img {max-width: 100%!important; }
+#extra img {
+  min-width: 30%;
+}
+
+.mobile .hints, .mobile #extra img {
+  max-width: 100% !important;
+}
 
 /* Classes for individual cards */
 .image40 img { width: 40%!important; }
@@ -141,15 +243,27 @@ html { min-height: 100%; display: flex; flex-direction: column; }
 }
 
 /*Compatibility with Image Style Editor add-on*/
-.mobile .card {--w:100%!important;}
-.card {--w:0%;}
+.mobile .card {
+  --w: 100% !important;
+}
+
+.card {
+  --w: 0%;
+}
 
 /*Max image width for resize images in editor add-on */
-.card [class^=ui-] img {max-width: 100%!important; }
+.card [class^=ui-] img {
+  max-width: 100% !important;
+}
 
 /*Compatibility with resize images in editor add-on */
-.resizer {min-width: 0%!important; }
-.mobile .resizer {min-width:100%!important;}
+.resizer {
+  min-width: 0% !important;
+}
+
+.mobile .resizer {
+  min-width: 100% !important;
+}
 
 /* Fix to make pop-up dictionary images the right size */
 .qtip img {
@@ -171,23 +285,42 @@ html { min-height: 100%; display: flex; flex-direction: column; }
 }
 
 /* Cloze format */
-.cloze { font-weight: bold; }
+.cloze {
+  font-weight: bold;
+}
 
 /* Adjustments For Cloze Edit In Review On Mobile */
-.clozefield, .mobile .editcloze { display: none; }
-.editcloze, .mobile .clozefield { display:  block; }
+.clozefield,
+.mobile .editcloze {
+  display: none;
+}
 
-/* BEGIN HINT FIELDS */
+.editcloze,
+.mobile .clozefield {
+  display: block;
+}
+
+/* BUTTON/HINT FIELDS */
 
 /* Text When Hint Is Shown*/
-.hints { font-style: italic; }
+.hints {
+  font-style: italic;
+}
 
+/* Put Bottom Hints Lower */
+/* #firstaid { padding-top: 40px!important; }
+#extra { padding-bottom: 40px!important; } */
 
-.hints + #extra { margin-top: 1rem; } /*add spacing between hints and extra field*/
-/* END HINT FIELDS  */
+/*add spacing between hints and extra field*/
+.hints+#extra {
+  margin-top: 1rem; 
+}
 
 /* EXTRA FIELD */
-#extra { font-style: italic; font-size: 1rem;}
+#extra {
+  font-style: italic;
+  font-size: 1rem;
+}
 
 
 /* Details for AnKing hyperlink image */
@@ -259,12 +392,26 @@ kbd:nth-of-type(9n+0) { border-color: #9E9E9E; color: #9E9E9E!important; }
 kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
 
 /* Tag Mobile Adjustments */
-.mobile kbd { opacity: .9; margin: 1px !important; display: inline-block; font-size: 10px !important; }
-.mobile #tags-container {line-height:0.6rem; margin-left: 0px; }
+.mobile kbd {
+  opacity: .9;
+  margin: 1px !important;
+  display: inline-block;
+  font-size: 10px !important;
+}
+
+.mobile #tags-container {
+  line-height: 0.6rem;
+  margin-left: 0px;
+}
 
 /* MNEMONICS CENTER OR LEFT */
-.mnemonics { display: inline-block; } 
-.centerbox {text-align:center;}
+.mnemonics {
+  display: inline-block;
+}
+
+.centerbox {
+  text-align: center;
+}
 
 
 /*~~~BUTTON LAYOUT ~~~*/
