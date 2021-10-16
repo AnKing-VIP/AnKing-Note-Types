@@ -9,11 +9,11 @@
 Right now it lets you hit ‘n’ to open the clozes one at a time.  Many people have said they want all the boxes to be the same length/width or work with images, etc.
 I found this fork of it, but I don’t like all the other styling changes they made: https://github.com/thiswillbeyourgithub/Clozolkor
 Features I think would be nice to have are:
-- [ ] customizable
+- [x] customizable
 - [ ] reveal letter by letter or word by word
-- [ ] works with c2 and c3 as well
-- [ ] hides images
-- [ ] he added buttons for mobile but my card type actually just works fine with tapping the blocks so no need for that
+- [x] works with c2 and c3 as well
+- [x] hides images
+- [x] he added buttons for mobile but my card type actually just works fine with tapping the blocks so no need for that
 - [ ] can see the hint before the block hides the cloze
 - [X] he added a lot of other features that are cool, but really not that necessary
 - [ ] Add personal notes and missed questions fields (copy code from IO-one by one once it is finished being updated by Jakub).
