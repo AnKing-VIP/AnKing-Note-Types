@@ -55,12 +55,12 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 For instructions on how to show a field automatically,  visit www.ankingmed.com/faq and type "show hint" into the search bar -->
 
 <!-- BUTTON FIELDS -->
-<hint-button field-name="Personal Notes" short="ln" hint-id="lecture"></hint-button>
-<div id="dummy-ln" style="display: none;">{{edit:Personal Notes}}</div>
+{{#Personal Notes}}<hint-button field-name="Personal Notes" short="ln" hint-id="lecture"></hint-button>
+<div id="dummy-ln" style="display: none;">{{edit:Personal Notes}}</div>{{/Personal Notes}}
 
 
-<hint-button field-name="Missed Questions" short="mq" hint-id="missed"></hint-button>
-<div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>
+{{#Missed Questions}}<hint-button field-name="Missed Questions" short="mq" hint-id="missed"></hint-button>
+<div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>{{/Missed Questions}}
 
 
 <!-- Extra field -->
@@ -69,11 +69,11 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
 {{/Extra}}<br>
 
 
-<hint-button field-name="Textbook" short="tx" hint-id="textbook" icon="_dermki.png"></hint-button>
-<div id="dummy-tx" style="display: none;">{{edit:Textbook}}</div>
+{{#Textbook}}<hint-button field-name="Textbook" short="tx" hint-id="textbook" icon="_dermki.png"></hint-button>
+<div id="dummy-tx" style="display: none;">{{edit:Textbook}}</div>{{/Textbook}}
 
-<hint-button field-name="Additional Resources" short="ar" hint-id="additional" icon="_dermki.png"></hint-button>
-<div id="dummy-ar" style="display: none;">{{edit:Additional Resources}}</div>
+{{#Additional Resources}}<hint-button field-name="Additional Resources" short="ar" hint-id="additional" icon="_dermki.png"></hint-button>
+<div id="dummy-ar" style="display: none;">{{edit:Additional Resources}}</div>{{/Additional Resources}}
 
 
 <a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>

@@ -43,11 +43,11 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <hr>
 
 <!-- BUTTON FIELDS -->
-<hint-button field-name="Personal Notes" short="ln" hint-id="notes"></hint-button>
-<div id="dummy-ln" style="display: none;">{{edit:Personal Notes}}</div>
+{{#Personal Notes}}<hint-button field-name="Personal Notes" short="ln" hint-id="notes"></hint-button>
+<div id="dummy-ln" style="display: none;">{{edit:Personal Notes}}</div>{{/Personal Notes}}
 
-<hint-button field-name="Missed Questions" short="mq" hint-id="missed"></hint-button>
-<div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>
+{{#Missed Questions}}<hint-button field-name="Missed Questions" short="mq" hint-id="missed"></hint-button>
+<div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>{{/Missed Questions}}
 
 <br></br>
 {{#Extra}}<div id=extra>{{edit:Extra}}</div>{{/Extra}}

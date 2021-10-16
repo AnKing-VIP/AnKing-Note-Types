@@ -48,22 +48,22 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <hr>
 
 <!-- BUTTON FIELDS -->
-<hint-button field-name="Lecture Notes" short="ln" hint-id="lecture"></hint-button>
-<div id="dummy-ln" style="display: none;">{{edit:Lecture Notes}}</div>
+{{#Lecture Notes}}<hint-button field-name="Lecture Notes" short="ln" hint-id="lecture"></hint-button>
+<div id="dummy-ln" style="display: none;">{{edit:Lecture Notes}}</div>{{/Lecture Notes}}
 
-<hint-button field-name="Missed Questions" short="mq" hint-id="missed"></hint-button>
-<div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>
+{{#Missed Questions}}<hint-button field-name="Missed Questions" short="mq" hint-id="missed"></hint-button>
+<div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>{{/Missed Questions}}
 
 <!-- EXTRA FIELD -->
 <p></p>{{#Extra}}
 <div id="extra">{{edit:Extra}}</div>
 {{/Extra}}<br>
 
-<hint-button field-name="Pixorize" short="pixorize" hint-id="pixorize"></hint-button>
-<div id="dummy-pixorize" style="display: none;">{{edit:Pixorize}}</div>
+{{#Pixorize}}<hint-button field-name="Pixorize" short="pixorize" hint-id="pixorize"></hint-button>
+<div id="dummy-pixorize" style="display: none;">{{edit:Pixorize}}</div>{{/Pixorize}}
 
-<hint-button field-name="Additional Resources" short="ar" hint-id="additional"></hint-button>
-<div id="dummy-ar" style="display: none;">{{edit:Additional Resources}}</div>
+{{#Additional Resources}}<hint-button field-name="Additional Resources" short="ar" hint-id="additional"></hint-button>
+<div id="dummy-ar" style="display: none;">{{edit:Additional Resources}}</div>{{/Additional Resources}}
 
 
 <a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>

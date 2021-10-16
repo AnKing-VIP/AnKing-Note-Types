@@ -46,14 +46,14 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <hr>
 
 <!-- BUTTON FIELDS -->
-<hint-button field-name="Definitions" short="df" hint-id="definitions"></hint-button>
-<div id="dummy-df" style="display: none;">{{edit:Definitions}}</div>
+{{#Definitions}}<hint-button field-name="Definitions" short="df" hint-id="definitions"></hint-button>
+<div id="dummy-df" style="display: none;">{{edit:Definitions}}</div>{{/Definitions}}
 
-<hint-button field-name="Examples" short="exp" hint-id="examples"></hint-button>
-<div id="dummy-exp" style="display: none;">{{edit:Examples}}</div>
+{{#Examples}}<hint-button field-name="Examples" short="exp" hint-id="examples"></hint-button>
+<div id="dummy-exp" style="display: none;">{{edit:Examples}}</div>{{/Examples}}
 
-<hint-button field-name="Alternative Translations" short="alt" hint-id="alt"></hint-button>
-<div id="dummy-alt" style="display: none;">{{edit:Alternative Translations}}</div>
+{{#Alternative Translations}}<hint-button field-name="Alternative Translations" short="alt" hint-id="alt"></hint-button>
+<div id="dummy-alt" style="display: none;">{{edit:Alternative Translations}}</div>{{/Alternative Translations}}
 
 
 <a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
