@@ -1,30 +1,28 @@
-<script>qFade=0; if (typeof anki !== 'undefined') anki.qFade=qFade;</script>
-
 {{cloze:Text}}
 
+<!-- ##############  Text-to-speech  ##############
+replace the arrows/dashes from the statement below with double curly brackets-->
 
-<div class="timer" id="s2"></div>
+<!--tts en_US voices=Apple_Samantha speed=1.4:cloze:Text-->
 
-<div id=pic>
-    <a href="https://www.youtube.com/theanking/playlists">
-        <img src="AnKing.png" alt="The AnKing" style="height:38px;border:0;position:fixed;bottom:10px;right:1px;">
-    </a>
-</div>    
-<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
 
-<!-- User Configuration Start -->
+<!-- USER CONFIGURATION START -->
 <script>
-var autoflip = true // auto flip to back if cloze has no hints. Does not work for AnkiMobile.
+    var autoflip = true // auto flip to back if cloze has no hints. Does not work for AnkiMobile.
 
-// Timer config (timer length, timer finished message)
-var minutes = 0
-var seconds = 9
-var timeOverMsg = "<span style='color:#CC5B5B'>!<br/>!<br/>!<br/>!<br/>!<br/>!</span>"
+    // Timer config (timer length, timer finished message)
+    var minutes = 0
+    var seconds = 9
+    var timeOverMsg = "<span style='color:#CC5B5B'>!<br/>!<br/>!<br/>!<br/>!<br/>!</span>"
+
+    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+    var tagID = "XXXYYYZZZ"
 </script>
-<!-- User Configuration End -->
+<!-- USER CONFIGURATION END -->
 
 
 <script>
+    // AUTO-FLIP if cloze has hint
 if(autoflip) {
     let hasHint = false
     // Check if a cloze has hint
@@ -48,8 +46,7 @@ if(autoflip) {
 }
 </script>
 
-
-
+<div class="timer" id="s2"></div>
 <script>
 function countdown(elementName, minutes, seconds) {
     var element, endTime, mins, msLeft, time;
@@ -74,3 +71,35 @@ function countdown(elementName, minutes, seconds) {
 }
 countdown("s2", minutes, seconds ); //2nd value is the minute, 3rd is the seconds
 </script>
+
+<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
+
+<script>
+    //DONT FADE BETWEEN CARDS
+	qFade=0; if (typeof anki !== 'undefined') anki.qFade=qFade;
+</script>
+
+{{#Tags}}
+    <div id="tags-container">{{clickable::Tags}}</div>
+    <script>
+        var tagContainer = document.getElementById("tags-container")
+        if (tagContainer.childElementCount == 0) {
+         var tagList= tagContainer.innerHTML.split(" ");
+         var kbdList = [];
+         var newTagContent = document.createElement("div");
+        
+         for (var i = 0; i < tagList.length;  i++) {
+          var newTag = document.createElement("kbd");
+          newTag.innerHTML = tagList[i];
+          newTagContent.append(newTag)
+         }
+         tagContainer.innerHTML = newTagContent.innerHTML;
+         tagContainer.style.cursor = "default";
+        }
+        if (tagContainer.innerHTML.indexOf(tagID) != -1) {
+        tagContainer.style.backgroundColor = "rgba(251,11,11,.2)";
+        } else {
+        tagContainer.style.display = "none";
+        }
+    </script>
+{{/Tags}}
