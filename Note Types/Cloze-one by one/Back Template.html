@@ -9,7 +9,7 @@ var revealClozeWordShortcut = "Shift + N" // Shortcut to reveal next cloze word
 var revealNextMode = "cloze" 
 
 // What cloze is hidden with
-var clozeHidden = (elem) => "<span style='font-size:50px;'>👑</span>"
+var clozeHidden = (elem) => "👑"
 /* 
 You can replace the above line with below examples. '█' or '_' works well for hiding clozes.
 
@@ -20,7 +20,7 @@ var clozeHidden = (elem) => "█".repeat(elem.textContent.length)
 // Show whitespaces:
 var clozeHidden = (elem) => "[" + elem.textContent.split(" ").map((t) => "_".repeat(t.length)).join(" ") + "]"
 // Color-filled box (doesn't hide images):
-var clozeHidden = (elem) => `<span style="background-color: blue">${elem.innerHTML}</span>`
+var clozeHidden = (elem) => `<span style="background-color: red; color: transparent;">${elem.innerHTML}</span>`
 */
 
 // ##############  HINT REVEAL SHORTCUTS  ##############
@@ -70,7 +70,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <!-- BUTTON FIELDS -->
 <button id="button-reveal-next" class="button-general" onclick="revealNext()">Reveal Next</button>
-<button id="button-toggle-all" class="button-general" onclick="toggleRevealAll()">Reveal All</button>
+<button id="button-toggle-all" class="button-general" onclick="toggleRevealAll()">Toggle All</button>
 <br>
 <div class="btn-spacer" hidden></div>
 <hint-button field-name="Personal Notes" short="ln" hint-id="notes"></hint-button>
@@ -185,13 +185,11 @@ if (!window.revealCloze) {
       for (let i = 0; i < elems.length; i++) {
           revealCloze(elems[i])
       }
-      button.innerHTML = "Hide All"
     } else {
       let elems = document.querySelectorAll(".cloze")
       for (let i = 0; i < elems.length; i++) {
       hideCloze(elems[i])
       }
-      button.innerHTML = "Reveal All"
     }
   }
 
