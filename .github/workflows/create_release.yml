@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       file_name:
-        description: apkg file name (use _ for space. No extension)
+        description: apkg file name (without '.apkg')
         required: true
       version:
         description: version string (eg. v6.1)
@@ -21,10 +21,16 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
+      - name: Set variables
+        run: |
+          echo "LAST_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+          file_name="${{ github.event.inputs.file_name }}"
+          echo "WITHOUT_SPACE=${file_name// /_}" >> $GITHUB_ENV
+
       - name: Create github release
         uses: svenstaro/upload-release-action@2.2.1
         with:
           repo_token: ${{ github.token }}
           file: Apkg/${{ github.event.inputs.file_name }}.apkg
           release_name: ${{ github.event.inputs.file_name }}--NoteType_${{ github.event.inputs.version }}
-          tag: ${{ github.event.inputs.file_name }}
+          tag: ${{ env.WITHOUT_SPACE }}-${{ env.LAST_SHA }}
