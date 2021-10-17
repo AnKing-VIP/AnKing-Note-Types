@@ -1,22 +1,17 @@
 # AnKing Note Types
 For simplicity and ease-of-use, I have uploaded all of my note types here. This will allow for better tracking of changes and better tutorials.
 
-**Open the Note Types Folder. Each Folder has it's own README file that explains the note**
+## How to Use These Note Types
+**To download a note type, find the latest version in the [Releases](https://github.com/AnKingMed/AnKing-Note-Types/releases) tab**
 
-## TODO
-- [ ] Github action doesn't work with repeat because asset name is the same
+**To learn how to use and customize a note type, open the [Note Types Folder](https://github.com/AnKingMed/AnKing-Note-Types/tree/master/Note%20Types). Each Folder has it's own README file that explains the note and it's features**
+
+## Thank You
+Huge thank you to @BlueGreenMagick, @Kleinerpirat, and @RisingOrange who have helped significantly with the development of these notes
 
 ***
 
-<b>Please consider checking out our:</b>
-<br>
-<a href="https://www.youtube.com/theanking/playlists" rel="nofollow">YouTube Channel</a>- <i>How to use Anki for beginners and advanced users.</i> 
-<br>
-<a href="https://www.instagram.com/ankingmed" rel="nofollow">Instagram</a>/<a href="https://www.facebook.com/ankingmed" rel="nofollow">Facebook</a>: <i>@Ankingmed</i>
-<br>
-<a href="https://www.ankingmed.com" rel="nofollow">www.AnKingMed.com</a>- <i>Recommended add-ons, tutorials and more including <b>how to download 40+ add-ons in &lt; 5min</b></i>
-<br>
-<a href="https://www.ankipalace.com/membership" rel="nofollow">Patreon</a>- <i>Support our work and <b>get individualized Anki help!</b></i><br>
+<p align="center" style="font-weight:bold; font-size: 30px;">If you like these, please consider donating to this project</p>
 
 <p align="center">
 <a href="https://www.ankingmed.com" rel="nofollow"><img src="https://raw.githubusercontent.com/AnKingMed/My-images/master/AnKing/AnKingSmall.png?raw=true"></a><a href="https://www.ankingmed.com" rel="nofollow"><img src="https://raw.githubusercontent.com/AnKingMed/My-images/master/AnKing/TheAnKing.png?raw=true"></a>
