@@ -1,26 +1,63 @@
 ## Instructions:
 1. Download Closet For Anki addon (272311064), close out of anki, restart anki
-2. Download card template here: <a href="https://github.com/AnKingMed/AnKing-Note-Types/blob/master/Apkg/IO-one_by_one.apkg">IO-one by one</a>
+2. Download the latest version of the note type in the [Releases](https://github.com/AnKingMed/AnKing-Note-Types/releases) tab
 3. When creating the new I/O card, make sure you are using the note template called `IO-one by one`. Paste your image into the 'image' field.
 4. Click the icon in the toolbar that looks like a blue/red box in a box. The image should outline with a red dotted border when you click that button.
+   <img src="/screenshots/Closet button.png" style="width:400px;">
 5. Draw your occlusions in the order you want them revealed. You want each occlusion to say 'rect1' inside of it. **If you need to delete a rectangle**, hold shift while clicking on that box.
 6. Once you have all of your occlusions made, right click on the image (don't right click over an occlusion though) and select 'accept occlusions'
-- You will see the 'I0' field auto populate. At that point you are good to add the card by clicking "Add" at the bottom
-7. When reviewing, you will see all boxes occluded at once, however the first box will be highlighted. Click or use `n` to reveal a box, and the subsequent box will become highlighted. Use `,` to reveal all at once. Continue until all boxes are revealed. You can use `h` (requires the "Hint Hotkeys" add-on instealled) or click to reveal the buttons. Use `'` to reveal all buttons at once. _(These shortcuts can all be customized)_
+   - You will see the 'I0' field auto populate. At that point you are good to add the card by clicking "Add" at the bottom
+7. When reviewing, you will see all boxes occluded at once, however the first box will be highlighted. Click or use `n` to reveal a box, and the subsequent box will become highlighted. Use `,` to reveal all at once. Continue until all boxes are revealed. You can use `h` (requires the "Hint Hotkeys" add-on installed) or click to reveal the buttons. Use `'` to reveal all buttons at once. _(These shortcuts can all be customized in the Back Template)_
 8. **To edit occlusions in an existing card**, click the icon in the toolbar that looks like a blue/red box in a box.
 
 This note type **will** work on Anki iOS and AnkiDroid.
+
+## Features Unique to this Note Type
+- <b>Autoflip to back</b> _(only works on desktop version, not mobile)_
+  <details><summary>Toggle autoflip on/off <i>(Front template)</i></summary>
+    <p>
+
+    ```
+    // ############## USER CONFIGURATION START ##############
+    var autoflip = true // auto flip to back. Does not work for AnkiMobile.
+    // ############## USER CONFIGURATION END ##############
+    ```
+    </p>
+  </details>
+
+- <b>Occlusion Shortcuts</b>
+  <details><summary>Customize Reveal and Toggle All <i>(Back template)</i></summary>
+    <p>
+
+    ```
+    // ##############  OCCLUSION SHORTCUTS  ##############
+    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
+    var RevealIncremental = "78"; // n
+    var ToggleAllOcclusions = "188"; // ,
+    ```
+    </p>
+  </details>
+
+- <b>Occlusion Box Colors</b>
+  <details><summary>Change colors and borders <i>(Styling)</i></summary>
+    <p>
+
+    ```
+    /* OCCLUSION RECTANGLE COLORS */
+    --rect-bg: moccasin;
+    --rect-border: olive;
+    --active-rect-bg: salmon;
+    --active-rect-border: yellow;
+    ```
+    </p>
+  </details>
 
 ## Screen recordings
 ### Card creation
 <img src="/screenshots/Creating IO one by one.gif" style="width:600px;">
 
 ### Function
-<img src="/screenshots/IO one by one new.gif" style="width:600px;">
-
-## How to Customize This Note Type
-- <a href="https://www.youtube.com/watch?v=HgKDRTTTnh4&t=37s">This video</a> goes over how to customize card styling (including basic html/css)
-- <a href="https://www.youtube.com/watch?v=4Q6Ll5k412U&t=1s">This video</a> goes into specifics of the AnKingMaster-v2+ updates to the card styling which is somewhat similar to this card
+<img src="/screenshots/IO one by one.gif" style="width:600px;">
 
 ## Changelog:
 2021-09-05: Initial Release on <a href="https://www.reddit.com/r/Anki/comments/pia8e5/how_to_incrementally_reveal_an_image_occlusion/?utm_source=share&utm_medium=ios_app&utm_name=iossmf">reddit</a>
