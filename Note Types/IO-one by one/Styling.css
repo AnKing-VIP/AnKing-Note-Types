@@ -97,6 +97,7 @@ i {
   text-align: center;
   background-color: var(--background-color);
   font-size: var(--font-size);
+  margin-top: 15px;
 }
 
 #front-info {
