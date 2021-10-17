@@ -23,8 +23,10 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 
 <script>
-    // AUTO-FLIP if cloze has hint
+// AUTO-FLIP if cloze has hint
 if(autoflip) {
+    // avoid flickering
+    document.getElementById("qa").style.display = "none";
     window.clozeHints = [];
 
     // Check if a cloze has hint
