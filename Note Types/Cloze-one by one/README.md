@@ -1,23 +1,60 @@
 ## Example
 <p align="center"><img src="https://raw.githubusercontent.com/AnKingMed/AnKing-Note-Types/master/screenshots/Cloze-one%20by%20one.gif?raw=true" style="width:700px;"></p>
 
-<b>Changelog:</b>
-  <br>
+## Features Unique to this Note Type
+- One by one clozes will work with c2, c3, etc as well
+- `Alt+click` reveals one word at a time. `click` to reveal one cloze or word at a time depending on setting
+- `Click` to reveal or press `Reveal Next` Button
+  <details><summary>Customize Reveal Word vs Cloze <i>(Back template)</i></summary>
+    <p>
+
+    ```
+    // Changes how "Reveal Next" and clicking behaves. Either "cloze" or "word". 
+    var revealNextMode = "cloze" 
+    ```
+    </p>
+  </details>
+
+- `n` to reveal one cloze/word at a time, `shift + n` to reveal one word at a time 
+  <details><summary>Customize Shortcuts <i>(Back template)</i></summary>
+    <p>
+
+    ```
+    var revealClozeShortcut = "N" // Shortcut to reveal next cloze
+    var revealClozeWordShortcut = "Shift + N" // Shortcut to reveal next cloze word
+    ```
+    </p>
+  </details>
+
+- <b>Occlusion Images or Symbol</b>
+  <details><summary>Customize occlusion method <i>(Back template)</i></summary>
+    <p>
+
+    ```
+    // What cloze is hidden with
+    var clozeHidden = (elem) => "👑"
+    /* 
+    You can replace the above line with below examples. '█' or '_' works well for hiding clozes.
+
+    // Fixed length  (default):
+    var clozeHidden = (elem) => "███"
+    // Replace all characters with "█":
+    var clozeHidden = (elem) => "█".repeat(elem.textContent.length)
+    // Show whitespaces:
+    var clozeHidden = (elem) => "[" + elem.textContent.split(" ").map((t) => "_".repeat(t.length)).join(" ") + "]"
+    // Color-filled box (doesn't hide images):
+    var clozeHidden = (elem) => `<span style="background-color: red; color: transparent;">${elem.innerHTML}</span>`
+    */
+    ```
+    </p>
+  </details>
+
+## Changelog:
 2021-08: Initial Release
 
 ## TODO
-Right now it lets you hit ‘n’ to open the clozes one at a time.  Many people have said they want all the boxes to be the same length/width or work with images, etc.
-I found this fork of it, but I don’t like all the other styling changes they made: https://github.com/thiswillbeyourgithub/Clozolkor
-Features I think would be nice to have are:
-- [x] customizable
-- [ ] reveal letter by letter or word by word
-- [x] works with c2 and c3 as well
-- [x] hides images
-- [x] he added buttons for mobile but my card type actually just works fine with tapping the blocks so no need for that
-- [ ] can see the hint before the block hides the cloze
-- [X] he added a lot of other features that are cool, but really not that necessary
-- [ ] Add personal notes and missed questions fields (copy code from IO-one by one once it is finished being updated by Jakub).
-- [ ] Update Tag script with updates Jakub is making to IO-one by one
+Ideas for additional features: https://github.com/thiswillbeyourgithub/Clozolkor
+- [ ] 
 
 
 ***
