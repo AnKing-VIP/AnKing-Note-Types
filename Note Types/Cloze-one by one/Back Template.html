@@ -2,6 +2,7 @@
 
 <script>
 var revealClozeShortcut = "N" //Shortcut to reveal cloze
+var revealClozeWordShortcut = "Alt + N"
 // What cloze is hidden with
 var clozeHidden = (elem) => "<span style='font-size:50px;'>👑</span>"
 /* 
@@ -118,15 +119,55 @@ if (!window.revealCloze) {
     }
   }
 
+  window.revealClozeWord = function(elem) {
+    if (elem.dataset.content === undefined) {
+      return
+    }
+    if (elem.dataset.hidden !== undefined) {
+      let words = elem.dataset.hidden.split(" ");
+      if (words.length == 1) {
+        revealCloze(elem)
+        delete elem.dataset.hidden
+        delete elem.dataset.revealed
+      } else {
+        elem.dataset.revealed = elem.dataset.revealed + " " + words[0]
+        elem.dataset.hidden = words.slice(1).join(" ");
+        let temp = document.createElement("div");
+        temp.innerHTML = elem.dataset.hidden;
+        elem.innerHTML = elem.dataset.revealed + " " + clozeHidden(temp);
+      }
+    } else {
+      let temp = document.createElement("div");
+      temp.innerHTML = elem.dataset.content;
+      elem.dataset.hidden = temp.textContent;
+      elem.dataset.revealed = "";
+      revealClozeWord(elem)
+    }
+  }
+
   document.addEventListener("keydown",  function(ev) {
-    let isShortcut = window.shortcutMatcher(window.revealClozeShortcut)
-    if(isShortcut(ev)) {
+    let showAllShortcut = shortcutMatcher(window.revealClozeShortcut)
+    if(showAllShortcut(ev)) {
       let elem = document.querySelector(".cloze[data-content]")
       if (elem) {
         revealCloze(elem)
+        ev.stopPropagation()
+        ev.preventDefault()
+        return
+      }
+    }
+    let showWordShortcut = shortcutMatcher(window.revealClozeWordShortcut)
+    if (showWordShortcut(ev)) {
+      let elem = document.querySelector(".cloze[data-content]")
+      if (elem) {
+        revealClozeWord(elem)
+        ev.stopPropagation()
+        ev.preventDefault()
+        return
       }
     }
   });
+
 }
 
 (function(){
@@ -140,8 +181,15 @@ if (!window.revealCloze) {
       } else {
           cloze.innerHTML = clozeHidden(cloze)
       }
-      cloze.addEventListener("click", (ev) => revealCloze(ev.currentTarget))
       cloze.addEventListener("touchend", (ev) => revealCloze(ev.currentTarget))
+      cloze.addEventListener("click", (ev) => {
+        if (ev.altKey) {
+          revealClozeWord(ev.currentTarget)
+        } else {
+          revealCloze(ev.currentTarget)
+        }
+      })
+
     }
   } finally {
     // autoflip hides card in front template
