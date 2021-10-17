@@ -1,8 +1,9 @@
 <!-- User Customization Start -->
 
 <script>
-var revealClozeShortcut = "N" //Shortcut to reveal cloze
-var revealClozeWordShortcut = "Alt + N"
+var revealClozeShortcut = "N" // Shortcut to reveal next cloze
+var revealClozeWordShortcut = "Shift + N" // Shortcut to reveal next cloze word
+
 // What cloze is hidden with
 var clozeHidden = (elem) => "<span style='font-size:50px;'>👑</span>"
 /* 
@@ -185,7 +186,7 @@ if (!window.revealCloze) {
       }
       cloze.addEventListener("touchend", (ev) => revealCloze(ev.currentTarget))
       cloze.addEventListener("click", (ev) => {
-        if (ev.altKey) {
+        if (ev.shiftKey) {
           revealClozeWord(ev.currentTarget)
         } else {
           revealCloze(ev.currentTarget)
