@@ -25,31 +25,8 @@ This note type **will** work on Anki iOS and AnkiDroid.
 ## Changelog:
 2021-09-05: Initial Release on <a href="https://www.reddit.com/r/Anki/comments/pia8e5/how_to_incrementally_reveal_an_image_occlusion/?utm_source=share&utm_medium=ios_app&utm_name=iossmf">reddit</a>
 
-## Thank you:
-Huge thank you to Phil (u/Ankiphil), RisingOrange & all others who have contributed to this note type
-
 ## TODO
-- [X] Make it so the incremental review is on the backside of the note type, not the front (I found that I accidentally flipped it with the space bar multiple times)
-- [X] Make it so there’s a hotkey that can open them incrementally (i.e. hitting the letter ‘n’)
-- [X] Making it customizable a tad like my anking note types have been :tada: (Nick cleanup code)
-- [X] Make it so any can be clicked, but the red box is an incremental process
-- [X] Fix on mobile (add a button that reveals them so you don't have to type? Remove the ability to tap them?)
-- [X] Fix reveal code shortcuts to keycodes so there are more options (current method for incremental and reveal all only works on every other card)
-- [X] Fix reveal code for the clickable tags reveal (similar problem as above)
-- [X] Add feature to put the occlusions back after revealing all of them.  Need to update for mobile. Add back reset button?
-- [X] scroll to hint not working (scrolls when closing button instead of opening)
-- [X] Simple way to auto-reveal buttons instead of complicated method. (Make a variable and set to true/false and if true auto trigger opening the field or something like that?)
-     ```
-    var showLecture = true;
-    if (showLecture == true){
-      toggleHint('button-ln', 'hint-ln');
-    }
-    ```
-- [X] Remove css styling from buttons (i.e. `style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"`) and put in the .button-revealed css (from AnKingMasterv3 note type)
-- [x] Fix button revealed style
-- [ ] Update note type on Github and make release. (Add bottom field about our team)
-- [ ] Update readme
-
+- [ ] 
 
 ***
 

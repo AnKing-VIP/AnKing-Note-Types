@@ -9,6 +9,200 @@ For simplicity and ease-of-use, I have uploaded all of my note types here. This 
 ## Thank You
 Huge thank you to @BlueGreenMagick, @Kleinerpirat, @RisingOrange, u/Ankiphil, and u/holythesea who have helped significantly with the development of these notes over the last few years
 
+## How to Use & Customize These Note Types
+- <a href="https://www.youtube.com/watch?v=HgKDRTTTnh4&t=37s">This video</a> goes over how to customize card styling (including basic html/css)
+- <a href="https://www.youtube.com/watch?v=4Q6Ll5k412U&t=1s">This video</a> goes into specifics of the AnKingMaster-v2+ updates to the card styling
+
+### Features Used In These Note Types
+All note types in this repo use many or all of the features listed below. Some will appear slightly different as they have been customized to work with each individual style. Features unique to a note type are listed in the README file of that note type within the Note Types Folder
+- <b>Invisible countdown timer</b> on the front
+  <details><summary>Set timer length <i>(Front template)</i></summary>
+    <p>
+
+    ```
+    // Timer config (timer length, timer finished message)
+    var minutes = 0
+    var seconds = 9
+    var timeOverMsg = "<span style='color:#CC5B5B'>!<br/>!<br/>!<br/>!<br/>!<br/>!</span>"
+    ```
+    </p>
+  </details>
+  <details><summary>Turn timer on/off <i>(Styling)</i></summary>
+    <p>
+
+    ```
+    /* TIMER ON/OFF */
+    .timer {
+      display: block; /* ‘none’ or ‘block’ */
+    }
+    ```
+    </p>
+  </details>
+
+- <b>Clickable tags</b> (must have <a href="">Clickable Tags</a> add-on installed for them to be clickable, but they will still display without the add-on)
+  <details><summary>Turn on/off by default and adjust for compatibility with No Distractions add-on <i>(Styling)</i></summary>
+    <p>
+
+    ```
+    /* TAGS ON/OFF DESKTOP & MOBILE*/
+    #tags-container {
+      display: block; /* ‘none’ or ‘block’ */
+    }
+
+    .mobile #tags-container {
+      display: none; /* ‘none’ or ‘block’ */
+    }
+
+    /* MOVE TAGS UP FOR 'NO-DISTRACTIONS' ADD-ON */
+    #tags-container {
+      padding-bottom: 0px; /* 0 normal, 55 to move up */
+    }
+    ```
+    </p>
+  </details>
+  <details><summary>Toggle on/off with shortcut <i>(Back template)</i></summary>
+    <p>
+
+    Default is `c`
+    ```
+    // ##############  TAG SHORTCUT  ##############
+    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
+    var ToggleTags = "67"; // c
+    ```
+    </p>
+  </details>
+
+- <b>Editable fields</b> - (For use with the <a href="">Edit Field During Review (Cloze)</a> add-on)
+  <details><summary>To enable/disable editable fields <i>(Back template)</i></summary>
+    <p>
+
+    1. Make sure that the correct add-on is installed (NOT `Edit Field During Review`)
+    2. The config of `Edit Field During Review (Cloze)` allows for click to edit or ctrl+click to edit
+    3. In order to make a field editable, change `{{Field Name}}` to `{{edit:Field Name}}`. 
+    <u>For cloze fields:</u>
+    Change `<div class="editcloze id="text"">{{cloze:Text}}</div>` to `<div class="editcloze" id="text">{{edit:cloze:Text}}</div>`
+    Do NOT change `<div class="clozefield">{{cloze:Text}}</div>` (This is set for mobile to avoid errors)
+
+    </p>
+  </details>
+
+- <b>Wikipedia searches in reviewer</b>
+  - Highlight text and then use the shortcut `w` (if nothing shows up, it's because your search returned no results in wikipedia)
+
+- <b>Button shortcuts and/or hint hotkeys add-on</b> (need Refocous Cards when Reviewing add-on unless on Anki 2.1.36+)
+  - The Hint Hotkeys add-on will open buttons with `h`
+  <details><summary>Individual shortcuts can be customized <i>(Back template)</i></summary>
+    <p>
+
+    ```
+    // ##############  HINT REVEAL SHORTCUTS  ##############
+    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
+    // The shortcuts are  Alt  +  the number/letter below
+    // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
+    var ButtonShortcuts = {
+        "Lecture Notes" : '49', // alt + 1
+        "Missed Questions" : '50', // alt + 2
+    }
+    var ToggleAllButtons = '222' // '
+    ```
+    </p>
+  </details>
+
+- <b>Auto scroll to button that is opened</b> (can be toggled off)
+  <details><summary>Turn on/off by default and adjust for compatibility with No Distractions add-on <i>(in styling)</i></summary>
+    <p>
+
+    Change `true` to `false` to turn off the auto scroll
+    ```
+    var ScrollToButton = true;
+    ```
+    </p>
+  </details>
+
+- <b>Auto open hints</b>:
+    <details><summary>Old Version <i>(Back template)</i></summary>
+    <p>
+
+    <img src="/screenshots/Auto-open-hint.jpg" style="width:600px">
+    </p>
+  </details>
+  <details><summary>Current Version <i>(Back template)</i></summary>
+    <p>
+
+    ```
+    // ##############  SHOW HINTS AUTOMATICALLY  ##############
+    var ButtonAutoReveal = {
+        "Lecture Notes" : false,
+        "Missed Questions" : false,
+    }
+    ```
+    </p>
+  </details>
+
+- <b>TTS</b> - watch <a href="https://www.youtube.com/watch?v=5QFDrY7PDUk&t=4s">this video</a> for more details
+  <details><summary>How to enable <i>(Front and back template)</i></summary>
+    <p>
+
+    ## Front template:
+    ```
+    <!-- ##############  Text-to-speech  ##############
+    replace the arrows/dashes from the statement below with double brackets-->
+
+    <!--tts en_US voices=Apple_Samantha speed=1.4:cloze:Text-->
+    ```
+    <u>change to look like:</u>
+    ```
+    <!-- ##############  Text-to-speech  ##############
+    replace the arrows/dashes from the statement below with double brackets-->
+
+    {{tts en_US voices=Apple_Samantha speed=1.4:cloze:Text}}
+    ```
+    ## Back template:
+    ```
+    <!-- ##############  TEXT-TO-SPEECH ##############
+    replace the arrows/dashes from the statement below with double brackets-->
+
+    <!--tts en_US voices=Apple_Samantha speed=1.4:cloze-only:Text-->
+    ```
+    <u>change to look like:</u>
+    ```
+    <!-- ##############  TEXT-TO-SPEECH ##############
+    replace the arrows/dashes from the statement below with double brackets-->
+
+    {{tts en_US voices=Apple_Samantha speed=1.4:cloze-only:Text}}
+    ```
+    </p>
+  </details>
+
+- <b>Images will zoom with click (or hover)</b>
+  <details><summary>Change the transform scale or method <i>(Back Template)</i></summary>
+    <p>
+
+    `active` will cause images to zoom on click. `hover` will cause images to zoom on hover. Some Note Types have specific zoom scales for specific fields
+    ```
+    /*Image hover zoom*/ 
+    img:active {
+      transform: scale(1.2);
+    }
+    .mobile img:active {
+      transform: scale(1.0) !important;
+    }
+    ```
+    </p>
+  </details>
+  
+- <b>Highlight all tags with a red background when there is a tag containing the text "xxxyyyzzz"</b>
+  <details><summary>Change tagID <i>(Front and Back Template)</i></summary>
+    <p>
+
+    ```
+    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+    var tagID = "XXXYYYZZZ"
+    ```
+    </p>
+  </details>
+
+
 ***
 
 ### If you like these, please consider donating to this project
