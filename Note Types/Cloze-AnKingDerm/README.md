@@ -1,11 +1,5 @@
-<b>Changelog:</b>
-  <br>
+## Changelog: 
 2021***: Initial Release
-
-## TODO
-- [x] Update to new style
-- [x] Fix image zoom on mobile and make larger on desktop
-- [ ] Update readme with tools in note
 
 
 ***

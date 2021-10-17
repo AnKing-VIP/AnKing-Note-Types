@@ -1,15 +1,26 @@
-<a href="https://github.com/AnKingMed/AnKing-Note-Types/blob/master/Apkg/AnKingMCAT%20note%20type.apkg">Link to download</a>
+### Features Unique to this Note Type
+- <b>AnKingMed alternate styling available</b> <a href="/Note Types/Cloze-AnKingMCAT/AnKing Custom Styling.css">here</a>
+  <details><summary>Replace the customizable portion with the contents of the link above <i>(in styling)</i></summary>
+    <p>
 
-<b>Changelog:</b>
-  <br>
+    <u>The customizable portion begins and ends as shown below:</u>
+    ```
+    /*#########################################################
+    ################  USER CUSTOMIZATION START  ##############*/
+    ...
+    contents
+    ...
+    /*################  USER CUSTOMIZATION END  ################
+    ###########################################################*/
+    ```
+    </p>
+  </details>
+
+## Changelog: 
 2021***: Initial Release
 
 ## TODO
-- [x] Update buttons script and html to new version
-- [x] Remove css styling from buttons (i.e. `style="background:#ababab; color:black!important; font-weight:bold; width:50%!important;"`) and put in the .button-revealed css (from AnKingMasterv3 note type)
-- [x] Update Tags script and update var at top for hotkey switching on and off
-- [x] Make image zoom bigger on desktop, ensure 1.0 on mobile
-- [ ] Update readme
+
 
 ***
 
