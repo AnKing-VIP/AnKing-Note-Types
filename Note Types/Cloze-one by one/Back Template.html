@@ -2,19 +2,24 @@
 ################  USER CUSTOMIZATION START  ############## -->
 
 <script>
-var revealClozeShortcut = "N" //Shortcut to reveal cloze
+var revealClozeShortcut = "N" // Shortcut to reveal next cloze
+var revealClozeWordShortcut = "Shift + N" // Shortcut to reveal next cloze word
+
+// Changes how "Reveal Next" and clicking behaves. Either "cloze" or "word". 
+var revealMode = "cloze" 
+
 // What cloze is hidden with
 var clozeHidden = (elem) => "<span style='font-size:50px;'>👑</span>"
 /* 
 You can replace the above line with below examples. '█' or '_' works well for hiding clozes.
 
-- Fixed length  (default):
+// Fixed length  (default):
 var clozeHidden = (elem) => "███"
-- Replace all characters with "█":
+// Replace all characters with "█":
 var clozeHidden = (elem) => "█".repeat(elem.textContent.length)
-- Replace all non-whitespace characters with "█":
-var clozeHidden = (elem) => elem.textContent.split(" ").map((x) => "█".repeat(x.length)).join(" ") 
-- Color-filled box (doesn't hide images):
+// Show whitespaces:
+var clozeHidden = (elem) => "[" + elem.textContent.split(" ").map((t) => "_".repeat(t.length)).join(" ") + "]"
+// Color-filled box (doesn't hide images):
 var clozeHidden = (elem) => `<span style="background-color: blue">${elem.innerHTML}</span>`
 */
 
@@ -64,6 +69,10 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 
 <!-- BUTTON FIELDS -->
+<button id="button-reveal-next" class="button-general" onclick="revealNext()">Reveal Next</button>
+<button id="button-toggle-all" class="button-general" onclick="toggleRevealAll()">Reveal All</button>
+<br>
+<div class="btn-spacer" hidden></div>
 <hint-button field-name="Personal Notes" short="ln" hint-id="notes"></hint-button>
 <div id="dummy-ln" style="display: none;">{{Personal Notes}}</div>
 
@@ -114,6 +123,15 @@ if (!window.shortcutMatcher) {
 
 <script>
 if (!window.revealCloze) {
+  window.hideCloze = function(cloze) {
+    cloze.dataset.content = cloze.innerHTML
+      if(window.clozeHints && window.clozeHints[i]) {
+          cloze.innerHTML = window.clozeHints[i]
+      } else {
+          cloze.innerHTML = clozeHidden(cloze)
+      }
+  }
+  
   window.revealCloze = function(elem) {
     if (elem.dataset.content !== undefined) {
       elem.innerHTML = elem.dataset.content
@@ -121,15 +139,93 @@ if (!window.revealCloze) {
     }
   }
 
+  window.revealClozeWord = function(elem) {
+    if (elem.dataset.content === undefined) {
+      return
+    }
+    if (elem.dataset.hidden !== undefined) {
+      let words = elem.dataset.hidden.split(" ");
+      if (words.length == 1) {
+        revealCloze(elem)
+        delete elem.dataset.hidden
+        delete elem.dataset.revealed
+      } else {
+        elem.dataset.revealed = elem.dataset.revealed + " " + words[0]
+        elem.dataset.hidden = words.slice(1).join(" ");
+        let temp = document.createElement("div");
+        temp.innerHTML = elem.dataset.hidden;
+        elem.innerHTML = elem.dataset.revealed + " " + clozeHidden(temp);
+      }
+    } else {
+      let temp = document.createElement("div");
+      temp.innerHTML = elem.dataset.content;
+      elem.dataset.hidden = temp.textContent;
+      elem.dataset.revealed = "";
+      revealClozeWord(elem)
+    }
+  }
+
+  window.revealNext = function() {
+    let nextHidden = document.querySelector(".cloze[data-content]")
+    if(!nextHidden) {
+        return
+    } 
+    if (revealNextMode === "word") {
+        revealClozeWord(nextHidden)
+    } else {
+        revealCloze(nextHidden)
+    }
+    return
+  }
+
+  window.toggleRevealAll = function() {
+    let elems = document.querySelectorAll(".cloze[data-content]")
+    let button = document.getElementById("button-toggle-all")
+    if(elems.length > 0) {
+      for (let i = 0; i < elems.length; i++) {
+          revealCloze(elems[i])
+      }
+      button.innerHTML = "Hide All"
+    } else {
+      let elems = document.querySelectorAll(".cloze")
+      for (let i = 0; i < elems.length; i++) {
+      hideCloze(elems[i])
+      }
+      button.innerHTML = "Reveal All"
+    }
+  }
+
+  window.revealClozeClicked = function(ev) {
+    if (!ev.altKey && (revealNextMode !== "word")) {
+      revealCloze(ev.currentTarget)
+    } else {
+      revealClozeWord(ev.currentTarget)
+    }
+  }
+
   document.addEventListener("keydown",  function(ev) {
-    let isShortcut = window.shortcutMatcher(window.revealClozeShortcut)
-    if(isShortcut(ev)) {
+    let showAllShortcut = shortcutMatcher(window.revealClozeShortcut)
+    if(showAllShortcut(ev)) {
       let elem = document.querySelector(".cloze[data-content]")
       if (elem) {
         revealCloze(elem)
+        ev.stopPropagation()
+        ev.preventDefault()
+        return
+      }
+    }
+    let showWordShortcut = shortcutMatcher(window.revealClozeWordShortcut)
+    if (showWordShortcut(ev)) {
+      let elem = document.querySelector(".cloze[data-content]")
+      if (elem) {
+        revealClozeWord(elem)
+        ev.stopPropagation()
+        ev.preventDefault()
+        return
       }
     }
   });
+
 }
 
 (function(){
@@ -137,18 +233,14 @@ if (!window.revealCloze) {
     let clozes = document.getElementsByClassName("cloze")
     for (let i = 0; i < clozes.length; i++) {
       let cloze = clozes[i]
-      cloze.dataset.content = cloze.innerHTML
-      if(window.clozeHints && window.clozeHints[i]) {
-          cloze.innerHTML = window.clozeHints[i]
-      } else {
-          cloze.innerHTML = clozeHidden(cloze)
-      }
-      cloze.addEventListener("click", (ev) => revealCloze(ev.currentTarget))
-      cloze.addEventListener("touchend", (ev) => revealCloze(ev.currentTarget))
+      hideCloze(cloze)
+      cloze.addEventListener("touchend", revealClozeClicked)
+      cloze.addEventListener("click", revealClozeClicked)
+
     }
   } finally {
     // autoflip hides card in front template
-    document.getElementById("qa").style.removeProperty("display") = undefined; 
+    document.getElementById("qa").style.removeProperty("display")
   }
 })()
 
