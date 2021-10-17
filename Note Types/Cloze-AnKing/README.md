@@ -1,5 +1,6 @@
 ## Changelog: 
-2021***: Initial Release
+2021-09: Initial Release
+2021-10-17: Significant overhaul of styling, buttons, formatting and more
 
 
 ***

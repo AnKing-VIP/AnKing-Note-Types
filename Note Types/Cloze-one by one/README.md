@@ -62,6 +62,7 @@
 
 ## Changelog:
 2021-08: Initial Release
+2021-10-17: Significant overhaul of styling, buttons, formatting and more
 
 ## TODO
 Ideas for additional features: https://github.com/thiswillbeyourgithub/Clozolkor

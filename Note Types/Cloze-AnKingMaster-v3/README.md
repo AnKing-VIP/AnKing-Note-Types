@@ -23,6 +23,7 @@
 Detailed changelog over time has been noted <a href="https://www.ankipalace.com/deck-updates-log">here</a>
 
 2021-09-03: Initial Release on Github
+2021-10-17: Significant overhaul of styling, buttons, formatting and more
 
 ## TODO
 - [ ] 
