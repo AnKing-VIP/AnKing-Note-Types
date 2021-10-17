@@ -14,6 +14,8 @@ var clozeHidden = (elem) => "███"
 var clozeHidden = (elem) => "█".repeat(elem.textContent.length)
 - Replace all non-whitespace characters with "█":
 var clozeHidden = (elem) => elem.textContent.split(" ").map((x) => "█".repeat(x.length)).join(" ") 
+- Show whitespaces:
+var clozeHidden = (elem) => "[" + elem.textContent.split(" ").map((t) => "_".repeat(t.length)).join(" ") + "]"
 - Color-filled box (doesn't hide images):
 var clozeHidden = (elem) => `<span style="background-color: blue">${elem.innerHTML}</span>`
 */
