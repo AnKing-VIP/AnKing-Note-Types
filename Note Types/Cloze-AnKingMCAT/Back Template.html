@@ -31,13 +31,13 @@
 </script>
 
 
-<div class="clozefield">{{cloze:Text}}</div>
+<div class="clozefield" id="text">{{cloze:Text}}</div>
 
 <!-- ##############  EDIT CLOZE DURING REVIEW  ##############
 			-change below (not above) to  "edit:cloze:Text" for editable field, 
 				but be sure to have the correct add-on installed-->
 
-<div class="editcloze">{{cloze:Text}}</div>
+<div class="editcloze" id="text">{{edit:cloze:Text}}</div>
 
 
 <!-- ##############  TEXT-TO-SPEECH ##############
@@ -48,7 +48,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <hr>
 
 <!-- BUTTON FIELDS -->
-{{#Lecture Notes}}<hint-button field-name="Lecture Notes" short="ln" hint-id="lecture"></hint-button>
+{{#Lecture Notes}}<hint-button field-name="Lecture Notes" short="ln" hint-id="notes"></hint-button>
 <div id="dummy-ln" style="display: none;">{{edit:Lecture Notes}}</div>{{/Lecture Notes}}
 
 {{#Missed Questions}}<hint-button field-name="Missed Questions" short="mq" hint-id="missed"></hint-button>
@@ -66,6 +66,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <div id="dummy-ar" style="display: none;">{{edit:Additional Resources}}</div>{{/Additional Resources}}
 
 
+<!-- ANKING HYPERLINK IMAGE -->
 <a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
 
 

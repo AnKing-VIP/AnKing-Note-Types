@@ -1,22 +1,23 @@
 @import url("__closet-0.5.3.css");
 
-/*~~~~~~~~USER CUSTOMIZATION START~~~~~~~~~*/
+/*#########################################################
+################  USER CUSTOMIZATION START  ##############*/
 /* You can choose colors at www.htmlcolorcodes.com */
 
-/*FONT SIZE*/
-/* anything with 'px' will keep a font that size indefinitely, 
+/*~~~~~~~~~FONT SIZE~~~~~~~~~*/
+/*NOTE: anything with 'px' will keep a font that size indefinitely, 
 'rem' is a fraction of this size above and allows all text to change size with the above setting */
-/* desktop */
+/* Desktop */
 html {
   font-size: 28px;
 }
-
 /* mobile */
 .mobile {
   font-size: 28px;
 }
 
 .card {
+  /* FONT STYLE */
   --font-family: Arial Greek, Arial;
   /* TEXT COLOR */
   --color: black;
@@ -38,7 +39,6 @@ html {
 #tags-container {
   display: none; /* ‘none’ or ‘block’ */
 }
-
 .mobile #tags-container {
   display: none; /* ‘none’ or ‘block’ */
 }
@@ -46,10 +46,6 @@ html {
 /* MOVE TAGS UP FOR 'NO-DISTRACTIONS' ADD-ON */
 #tags-container {
   padding-bottom: 0px; /* 0 normal, 55 to move up */
-}
-
-#tags-container {
-  background-color: transparent;
 }
 
 /* HINT REVEAL STYLING */
@@ -72,7 +68,8 @@ html {
 }
 
 /* NM HINT REVEAL COLOR */
-.nightMode .hints, .night_mode .hints { 
+.nightMode .hints, 
+.night_mode .hints { 
   color: cyan;
 }
 
@@ -89,7 +86,8 @@ i {
   color: inherit;
 }
 
-/* ~~~~~~~~END CUSTOMIZATION~~~~~~~~ */
+/*################  USER CUSTOMIZATION END  ################
+###########################################################*/
 
 .nightMode.card,
 .night_mode .card,
@@ -118,7 +116,7 @@ i {
   max-width: 150px !important;
 }
 
-/* Details for AnKing hyperlink image */
+/* ~~~~~~ANKING HYPERLINK IMAGE~~~~~~ */
 #pic {
   opacity: 0.0;
   font-size: 16px;
@@ -250,7 +248,7 @@ img {
   visibility: hidden;
 }
 
-/* TAGS */
+/* ~~~~~~~~~ TAGS ~~~~~~~~~ */
 /* Container To Fix Tags At Bottom Of Screen */
 #tags-container {
   position: fixed;
@@ -258,11 +256,11 @@ img {
   width: 100%;
   line-height: .45rem;
   margin-left: -15px;
+  background-color: transparent;
 }
 
 /* Clickable Tags (need to download the add-on) */
 kbd {
-  font-family: Arial Greek, Arial;
   display: inline-block;
   letter-spacing: .1px;
   font-weight: bold;
@@ -306,12 +304,13 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   display: inline-block;
   font-size: 10px !important;
 }
-
 .mobile #tags-container {
   line-height: 0.6rem;
   margin-left: 0px;
 }
 
+
+/* ~~~~~~~~~BUTTON LAYOUT~~~~~~~~~ */
 .mobile .btn-spacer {
   display: block;
   height: 10px;
@@ -368,6 +367,7 @@ html:not(.mobile) #button-mq:hover{
   color: black!important;
 }
 
+/* Make it so tapping buttons doesn't trigger answering the card on mobile */
 .dummy-btn {
 	background: none !important;
 	color: inherit !important;

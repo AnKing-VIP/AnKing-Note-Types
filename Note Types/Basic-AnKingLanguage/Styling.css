@@ -4,7 +4,8 @@
 			@ankingmed    			
 */
 
-/*~~~~~~~~USER CUSTOMIZATION START~~~~~~~~~*/
+/*#########################################################
+################  USER CUSTOMIZATION START  ##############*/
 /* You can choose colors at www.htmlcolorcodes.com */
 
 /* TIMER ON/OFF */
@@ -26,108 +27,99 @@
   padding-bottom: 0px; /* 0 normal, 55 to move up */
 }
 
-/* MNEMONICS CENTER OR LEFT */
-.mnemonics {
-  text-align: left;
-}
 
-/*FONT SIZE
-NOTE: anything with 'px' will keep a font that size indefinitely, 
+/*~~~~~~~~~FONT SIZE~~~~~~~~~*/
+/*NOTE: anything with 'px' will keep a font that size indefinitely, 
 'rem' is a fraction of this size above and allows all text to change size with the above setting */
 /* Desktop */
 html {
   font-size: 28px;
 }
-
 /* Mobile */
 .mobile {
   font-size: 28px;
 }
 
-/*REVEALED HINTS FONT SIZE*/
+/*Revealed Hints Font Size*/
 .hints {
   font-size: .85rem;
 }
-/*FONT STYLE*/
+
+
+/*~~~~~~~~~FONT STYLE~~~~~~~~~*/
 .card,
 kbd {
   font-family: Arial Greek, Arial; /*Step exam's font is Arial Greek*/
 }
 
-/*MAX IMAGE HEIGHT/WIDTH*/
+
+/*~~~~~~~MAX IMAGE HEIGHT/WIDGTH~~~~~~~*/
 img {
   max-height: none;
   max-width: 85%;
 }
 
-/* ~~COLORS~~ */
-/*DEFAULT TEXT COLOR*/
+
+/*~~~~~~~~~COLORS~~~~~~~~~/
+/* Default Text Color */
 .card {
   color: black;
 }
-
-/*BACKGROUND COLOR*/
+/* Background Color */
 .card {
   background-color: #D1CFCE;
 }
-
-/*TIMER COUNTDOWN COLOR*/
+/* Cloze Color */
+.cloze {
+  color: blue;
+}
+/* "Extra" Field Color */
+#extra {
+  color: navy;
+}
+/* Hint Reveal Color */
+.hints {
+  color: #4297F9;
+}
+/* Missed Questions Hint Reveal Color */
+#missed {
+  color: red;
+}
+/* Timer Countdown Color */
 .timer {
   color: transparent;
 }
 
-/* CLOZE COLOR */
-.cloze {
-  color: blue;
-}
 
-/* "EXTRA" FIELD COLOR */
-#extra {
-  color: navy;
-}
-
-/* HINT REVEAL COLOR */
-.hints {
-  color: #4297F9;
-}
-
-/* Missed Questions Reveal Color */
-#missed {
-  color: red;
-}
-
-/* ~~NIGHT MODE COLORS~~ */
-/* NM DEFAULT TEXT COLOR*/
+/*~~~~~~~~NIGHT MODE COLORS~~~~~~~~*/
+/* NM Default Text Color */
 .nightMode.card,
 .night_mode .card {
   color: #FFFAFA !important;
 }
-
-/* NM BACKGROUND COLOR*/
+/* NM Background Color */
 .nightMode.card,
 .night_mode .card {
   background-color: #272828 !important;
 }
-
-/* NM CLOZE COLOR */
+/* NM Cloze Color */
 .nightMode .cloze,
 .night_mode .cloze {
   color: #4297F9 !important;
 }
-
-/* NM "EXTRA" FIELD COLOR */
+/* NM "Extra" Field Color */
 .nightMode #extra,
 .night_mode #extra {
   color: magenta;
 }
-
-/* NM HINT REVEAL COLOR */
+/* NM Hint Reveal Color */
 .nightMode .hints,
 .night_mode .hints {
   color: cyan;
 }
 
-/* COLOR ACCENTS FOR BOLD-ITALICS-UNDERLINE*/
+
+/* ~~~~~COLOR ACCENTS FOR BOLD-ITALICS-UNDERLINE~~~~~~*/
 b {
   color: inherit;
 }
@@ -140,24 +132,9 @@ i {
   color: inherit;
 }
 
-/* ~~~~~~~~END CUSTOMIZATION~~~~~~~~ */
+/*################  USER CUSTOMIZATION END  ################
+###########################################################*/
 
-html {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-#qa {
-  margin-top: 15px;
-  padding-bottom: 2rem;
-}
-
-/* Formatting For Timer */
-.timer {
-  font-size: 20px;
-  margin: 12em auto auto auto;
-}
 
 /* Styling For Whole Card*/
 .card {
@@ -168,26 +145,76 @@ html {
   flex-grow: 1;
   padding-bottom: 1em;
 }
-
 .mobile .card {
   padding-bottom: 5em;
   margin: 0ex .3px;
 }
 
+/* Style the horizontal line */
 hr { opacity: .7 }
 
-/* Details For IMAGES */
+/* Formatting For Timer */
+.timer {
+  font-size: 20px;
+  margin: 12em auto auto auto;
+}
+
+
+/* ~~~~~~~~~ FIELDS ~~~~~~~~~ */
+/* Cloze format */
+.cloze {
+  font-weight: bold;
+}
+
+/* Text When Hint Is Shown*/
+.hints {
+  font-style: italic;
+}
+
+/* EXTRA FIELDS */
+#back { 
+  font-size: 1rem;
+}
+#romanization { 
+  font-style: italic; 
+  font-size: .5rem; 
+  color:grey;}
+
+#definitions, 
+#examples, 
+#alt {
+  width: 100%;
+  padding: 2px 0;
+  text-align: center;
+  border: 5px solid black;
+  margin-top: 2px;
+  font-size:0.7rem;
+}
+
+
+/* ~~~~~~~~~DETAILS FOR IMAGES~~~~~~~~~ */
 .mobile .card img {
   max-width: 100% !important;
 }
 
-/*Compatibility with Image Style Editor add-on*/
-.mobile .card {
-  --w: 100% !important;
+
+/* ~~~~~~~MNEMONICS LEFT JUSTIFIED~~~~~~~ */
+.mnemonics {
+  display: inline-block;
+  text-align: left; /* can change to center to 'turn off' this feature */
+}
+.centerbox {
+  text-align: center;
 }
 
+
+/* ~~~~~~~~~ ADD-ON CONFIGURATIONS ~~~~~~~~~ */
+/*Compatibility with Image Style Editor add-on*/
 .card {
   --w: 0%;
+}
+.mobile .card {
+  --w: 100% !important;
 }
 
 /*Max image width for resize images in editor add-on */
@@ -199,7 +226,6 @@ hr { opacity: .7 }
 .resizer {
   min-width: 0% !important;
 }
-
 .mobile .resizer {
   min-width: 100% !important;
 }
@@ -210,12 +236,8 @@ hr { opacity: .7 }
   max-height: 95% !important;
 }
 
-/* Text When Hint Is Shown*/
-.hints {
-  font-style: italic;
-}
 
-/* Details for AnKing hyperlink image */
+/* ~~~~~~ANKING HYPERLINK IMAGE~~~~~~ */
 #pic {
   opacity: 0.0;
   font-size: 16px;
@@ -238,7 +260,8 @@ hr { opacity: .7 }
   display: none;
 }
 
-/* TAGS */
+
+/* ~~~~~~~~~ TAGS ~~~~~~~~~ */
 /* Container To Fix Tags At Bottom Of Screen */
 #tags-container {
   position: fixed;
@@ -270,7 +293,10 @@ kbd {
 }
 
 /* Tag Becomes More Visible On Hover */
-kbd:hover { opacity: 1; transition: opacity 0.2s ease; }
+kbd:hover {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
 
 /* Tag Colors */
 kbd:nth-of-type(1n+0) { border-color: #F44336; color: #F44336!important; }
@@ -294,18 +320,8 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   line-height:0.6rem; 
   margin-left: 0px; }
 
-/* MNEMONICS CENTER OR LEFT */
-.mnemonics {
-  display: inline-block;
-}
 
-.centerbox {
-  text-align: center;
-}
-
-
-/*~~~BUTTON LAYOUT ~~~*/
-
+/* ~~~~~~~~~BUTTON LAYOUT~~~~~~~~~ */
 .button-general {
   outline: 0;
   border-radius: 0.12em;
@@ -346,18 +362,4 @@ html:not(.mobile) .button-general:hover {
   cursor: default;
   background-color: #E9E9E9 !important;
   color: #363638 !important;
-}
-
-
-/* EXTRA FIELDS */
-#back { font-size: 1rem;}
-#romanization { font-style: italic; font-size: .5rem; color:grey;}
-
-#definitions, #examples, #alt {
-  width: 100%;
-  padding: 2px 0;
-  text-align: center;
-  border: 5px solid black;
-  margin-top: 2px;
-  font-size:0.7rem;
 }

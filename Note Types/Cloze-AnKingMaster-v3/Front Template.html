@@ -1,4 +1,4 @@
-{{cloze:Text}}
+<div id="text">{{cloze:Text}}</div>
 
 
 <!-- ##############  Text-to-speech  ##############
@@ -22,6 +22,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 </script>
 
 
+<!-- COUNTDOWN TIMER -->
 <div class="timer" id="s2"></div>
 <script>
 function countdown(elementName, minutes, seconds) {
@@ -48,13 +49,18 @@ function countdown(elementName, minutes, seconds) {
 countdown("s2", minutes, seconds ); //2nd value is the minute, 3rd is the seconds
 </script>
 
+
+<!-- ANKING HYPERLINK IMAGE -->
 <a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
+
 
 <script>
     //DONT FADE BETWEEN CARDS
 	qFade=0; if (typeof anki !== 'undefined') anki.qFade=qFade;
 </script>
 
+
+<!-- CLICKABLE COLORFUL TAGS -->
 {{#Tags}}
     <div id="tags-container">{{clickable::Tags}}</div>
     <script>

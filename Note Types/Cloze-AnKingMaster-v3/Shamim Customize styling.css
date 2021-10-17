@@ -1,4 +1,5 @@
-/*~~~~~~~~USER CUSTOMIZATION START~~~~~~~~~*/
+/*#########################################################
+################  USER CUSTOMIZATION START  ##############*/
 /* You can choose colors at www.htmlcolorcodes.com */
 
 /* TIMER ON/OFF */
@@ -20,19 +21,14 @@
   padding-bottom: 0px; /* 0 normal, 55 to move up */
 }
 
-/* MNEMONICS CENTER OR LEFT */
-.mnemonics {
-  text-align: left;
-}
 
-/*FONT SIZE
-NOTE: anything with 'px' will keep a font that size indefinitely, 
+/*~~~~~~~~~FONT SIZE~~~~~~~~~*/
+/*NOTE: anything with 'px' will keep a font that size indefinitely, 
 'rem' is a fraction of this size above and allows all text to change size with the above setting */
 /* Desktop */
 html {
   font-size: 28px;
 }
-
 /* Mobile */
 .mobile {
   font-size: 28px;
@@ -43,11 +39,9 @@ html {
 .ipad #extra {
 font-size: 28px;
 }
-
 .ipad .hints {
 font-size: 24px;
 }
-
 .ipad #firstaid,
 .ipad #sketchy,
 .ipad #pixorize,
@@ -62,7 +56,7 @@ font-size: 20px !important;
   font-size: .85rem;
 }
 
-/*First Aid, Sketchy, Physeo, Additional Resources Font Size*/
+/*Other Fields Font Size*/
 #firstaid,
 #sketchy,
 #pixorize,
@@ -71,7 +65,7 @@ font-size: 20px !important;
   font-size: .6rem !important;
 }
 
-/*First Aid, Sketchy, Physeo, Additional Resources Font Size on Mobile*/
+/*Other Fields Font Size on Mobile*/
 .mobile #firstaid,
 .mobile #sketchy,
 .mobile #pixorize,
@@ -80,20 +74,19 @@ font-size: 20px !important;
   font-size: 20px !important;
 }
 
-/*FONT STYLE*/
+/*~~~~~~~~~FONT STYLE~~~~~~~~~*/
 .card,
 kbd {
   font-family: Menlo, baskerville, sans; /*Step exam's font is Arial Greek*/
 }
 
-/*MAX IMAGE HEIGHT*/
+/*~~~~~~~MAX IMAGE HEIGHT/WIDGTH~~~~~~~*/
 img {
   max-height: none;
 }
 
-/*MAX IMAGE WIDTH*/
 #extra img,
-#lecture img,
+#notes img,
 #missed img,
 #pathoma img,
 #bnb img {
@@ -109,64 +102,64 @@ img {
 }
 
 
-/* ~~COLORS~~ */
-/*DEFAULT TEXT COLOR*/ 
+/*~~~~~~~~~COLORS~~~~~~~~~/
+/* Default Text Color */
 .card { 
 	color: #D7DEE9; 
 }
-/*BACKGROUND COLOR*/ 
+/* Background Color */
 .card { 
 	background-color: #333B45; 
 }
-/*TIMER COUNTDOWN COLOR*/
-.timer { 
-	color: transparent; 
-}
-/* CLOZE COLOR */
+/* Cloze Color */
 .cloze { 
 	color: MediumSeaGreen; 
 }
-/* "EXTRA" FIELD COLOR */
+/* "Extra" Field Color */
 #extra { 
 	color: #839496; 
 }
-/* HINT REVEAL COLOR */
+/* Hint Reveal Color */
 .hints { 
 	color: #6c71c4; 
 }
-/* Missed Questions Reveal Color */
+/* Missed Questions Hint Reveal Color */
 #missed { 
 	color: #dc322f; 
 }
+/* Timer Countdown Color */
+.timer {
+	color: transparent;
+}
 
-/* ~~NIGHT MODE COLORS~~ */
-/* NM DEFAULT TEXT COLOR*/ 
+/*~~~~~~~~NIGHT MODE COLORS~~~~~~~~*/
+/* NM Default Text Color */
 .nightMode.card, 
 .night_mode .card { 
 	color: #D7DEE9 !important; 
 }
-/* NM BACKGROUND COLOR*/ 
+/* NM Background Color */
 .nightMode.card, 
 .night_mode .card { 
 	background-color: #333B45 !important; 
 }
-/* NM CLOZE COLOR */
+/* NM Cloze Color */
 .nightMode .cloze, 
 .night_mode .cloze { 
 	color: MediumSeaGreen !important; 
 }
-/* NM "EXTRA" FIELD COLOR */
+/* NM "Extra" Field Color */
 .nightMode #extra, 
 .night_mode #extra { 
 	color: #839496; 
 }
-/* NM HINT REVEAL COLOR */
+/* NM Hint Reveal Color */
 .nightMode .hints, 
 .night_mode .hints { 
 	color: #6c71c4;
 }
 
-/* COLOR ACCENTS FOR BOLD-ITALICS-UNDERLINE*/
+/* ~~~~~COLOR ACCENTS FOR BOLD-ITALICS-UNDERLINE~~~~~~*/
 b { 
 	color: #C695C6 !important; 
 }
@@ -177,4 +170,5 @@ i  {
 	color: IndianRed !important; 
 }
 
-/* ~~~~~~~~END CUSTOMIZATION~~~~~~~~ */
+/*################  USER CUSTOMIZATION END  ################
+###########################################################*/

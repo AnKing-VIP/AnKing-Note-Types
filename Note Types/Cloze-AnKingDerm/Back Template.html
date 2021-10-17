@@ -33,13 +33,13 @@
 
 
 
-<div class="clozefield">{{cloze:Text}}</div>
+<div class="clozefield" id="text">{{cloze:Text}}</div>
 
 <!-- ##############  EDIT CLOZE DURING REVIEW  ##############
-    -change below (not above) to  "edit:cloze:Text" for editable field, 
-      but be sure to have the correct add-on installed-->
+			-change below (not above) to  "edit:cloze:Text" for editable field, 
+				but be sure to have the correct add-on installed-->
 
-<div class="editcloze">{{edit:cloze:Text}}</div>
+<div class="editcloze" id="text">{{edit:cloze:Text}}</div>
 
 
 <!-- ##############  TEXT-TO-SPEECH ##############
@@ -51,11 +51,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <hr>
 
 
-<!-- ##############  SHOW HINTS AUTOMATICALLY  ##############
-For instructions on how to show a field automatically,  visit www.ankingmed.com/faq and type "show hint" into the search bar -->
-
 <!-- BUTTON FIELDS -->
-{{#Personal Notes}}<hint-button field-name="Personal Notes" short="ln" hint-id="lecture"></hint-button>
+{{#Personal Notes}}<hint-button field-name="Personal Notes" short="ln" hint-id="notes"></hint-button>
 <div id="dummy-ln" style="display: none;">{{edit:Personal Notes}}</div>{{/Personal Notes}}
 
 
@@ -76,6 +73,7 @@ For instructions on how to show a field automatically,  visit www.ankingmed.com/
 <div id="dummy-ar" style="display: none;">{{edit:Additional Resources}}</div>{{/Additional Resources}}
 
 
+<!-- ANKING HYPERLINK IMAGE -->
 <a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
 
 
