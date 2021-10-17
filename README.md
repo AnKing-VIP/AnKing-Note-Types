@@ -7,7 +7,7 @@ For simplicity and ease-of-use, I have uploaded all of my note types here. This 
 **To learn how to use and customize a note type,** open the [Note Types Folder](https://github.com/AnKingMed/AnKing-Note-Types/tree/master/Note%20Types). Each Folder has it's own README file that explains the note and it's features
 
 ## Thank You
-Huge thank you to @BlueGreenMagick, @Kleinerpirat, and @RisingOrange who have helped significantly with the development of these notes
+Huge thank you to @BlueGreenMagick, @Kleinerpirat, @RisingOrange, u/Ankiphil, and u/holythesea who have helped significantly with the development of these notes over the last few years
 
 ***
 
