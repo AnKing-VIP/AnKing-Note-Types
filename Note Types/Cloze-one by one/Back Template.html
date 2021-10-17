@@ -1,47 +1,47 @@
 <!-- User Customization Start -->
 
 <script>
-var reveal_cloze_shortcut = "N" //Shortcut to reveal cloze
-var reveal_word_shortcut = "Ctrl + N"
+var revealClozeShortcut = "N" //Shortcut to reveal cloze
 // What cloze is hidden with
 var clozeHidden = (elem) => "<span style='font-size:50px;'>👑</span>"
 /* 
-You can replace the above line with below examples.
+You can replace the above line with below examples. '█' or '_' works well for hiding clozes.
 
 - Fixed length  (default):
 var clozeHidden = (elem) => "███"
 - Replace all characters with "█":
-var clozeHidden = (elem) => "_".repeat(elem.textContent.length)
+var clozeHidden = (elem) => "█".repeat(elem.textContent.length)
 - Replace all non-whitespace characters with "█":
 var clozeHidden = (elem) => elem.textContent.split(" ").map((x) => "█".repeat(x.length)).join(" ") 
 - Color-filled box (doesn't hide images):
 var clozeHidden = (elem) => `<span style="background-color: blue">${elem.innerHTML}</span>`
 */
 
-    // ##############  HINT REVEAL SHORTCUTS  ##############
-    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
-    // The shortcuts are  Alt  +  the number/letter below
-    // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
-    var ButtonShortcuts = {
-        "Personal Notes" : '49', // alt + 1
-        "Missed Questions" : '50', // alt + 2
-    }
-    var ToggleAllButtons = '222' // '
+// ##############  HINT REVEAL SHORTCUTS  ##############
+// Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
+// The shortcuts are  Alt  +  the number/letter below
+// All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
+var ButtonShortcuts = {
+    "Personal Notes" : '49', // alt + 1
+    "Missed Questions" : '50', // alt + 2
+}
+var ToggleAllButtons = '222' // '
 
-    // ##############  SHOW HINTS AUTOMATICALLY  ##############
-    var ButtonAutoReveal = {
-        "Personal Notes" : false,
-        "Missed Questions" : false,
-    }
+// ##############  SHOW HINTS AUTOMATICALLY  ##############
+var ButtonAutoReveal = {
+    "Personal Notes" : false,
+    "Missed Questions" : false,
+}
 
-    var ScrollToButton = true;
+var ScrollToButton = true;
 
-    // ##############  TAG SHORTCUT  ##############
-    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
-    var ToggleTags = "67"; // c
+// ##############  TAG SHORTCUT  ##############
+// Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
+var ToggleTags = "67"; // c
 
-    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
-    var tagID = "XXXYYYZZZ"
+//ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+var tagID = "XXXYYYZZZ"
+
 </script>
 
 <!-- User Customization End -->
@@ -118,8 +118,8 @@ if (!window.revealCloze) {
     }
   }
 
-  document.addEventListener("keydown",  function(ev) { // FIX: an event listener will be attached to document for every card.
-    let isShortcut = window.shortcutMatcher(window.reveal_cloze_shortcut)
+  document.addEventListener("keydown",  function(ev) {
+    let isShortcut = window.shortcutMatcher(window.revealClozeShortcut)
     if(isShortcut(ev)) {
       let elem = document.querySelector(".cloze[data-content]")
       if (elem) {
@@ -131,7 +131,6 @@ if (!window.revealCloze) {
 
 (function(){
   let clozes = document.getElementsByClassName("cloze")
-  let cloze_color = "blue";
   for (let i = 0; i < clozes.length; i++) {
     let cloze = clozes[i]
     cloze.dataset.content = cloze.innerHTML
