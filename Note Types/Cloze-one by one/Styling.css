@@ -358,7 +358,6 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   color: #AFAFAF !important;
   margin-top: 8px;
 }
-
 .mobile .button-general {
   font-size: 18px;
   padding: 9px 7px;
@@ -376,6 +375,10 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   width: 50% !important;
 }
 
+.mobile .btn-spacer {
+  display: block;
+  height: 10px;
+}
 
 #button-mq:not(.expanded-button) {
   color: #c26165 !important;

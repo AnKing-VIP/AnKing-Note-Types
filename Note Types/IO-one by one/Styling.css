@@ -311,11 +311,6 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
 
 
 /* ~~~~~~~~~BUTTON LAYOUT~~~~~~~~~ */
-.mobile .btn-spacer {
-  display: block;
-  height: 10px;
-}
-
 .button-general {
   outline: 0;
   border-radius: 0.12em;
@@ -343,6 +338,12 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   font-weight:bold; 
   width:50% !important;
 }
+
+.mobile .btn-spacer {
+  display: block;
+  height: 10px;
+}
+
 
 html:not(.mobile) .button-general:hover {
   color: #363638 !important;
