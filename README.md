@@ -6,6 +6,22 @@ For simplicity and ease-of-use, I have uploaded all of my note types here. This 
 
 **To learn how to use and customize a note type,** open the [Note Types Folder](https://github.com/AnKingMed/AnKing-Note-Types/tree/master/Note%20Types). Each Folder has it's own README file that explains the note and it's features
 
+## How to Update These Note Types
+There are two methods to update if you already have any of these notes in your collection
+##### Method 1 (Preferred)
+1. Download the latest file from the [Releases](https://github.com/AnKingMed/AnKing-Note-Types/releases) tab
+2. Install the [Special Fields add-on](https://ankiweb.net/shared/info/1102281552) (restart Anki after installing)
+3. Go to Tools->Special Fields
+4. Click the `Update Settings` button and then `Save`
+5. Import the downloaded file. This should update the note styling
+_After importing, we recommended that you go back to Tools->Special Fields and click the `Import Tags Settings` button to prevent any future updates from altering note styling_
+
+##### Method 2
+NOTE: This method is less preferred because updates may be in progress and incomplete.
+1. Locate the appropriate file in the [Note Types Folder](https://github.com/AnKingMed/AnKing-Note-Types/tree/master/Note%20Types)
+2. Copy the text from the file into the Front Template, Back Template and Styling of the note type
+   - You can click the `Copy Raw Content` (box on top of a box) button in the top right to easily copy everything _(it's just left of the pencil icon)_ 
+
 ## Thank You
 Huge thank you to @BlueGreenMagick, @Kleinerpirat, @RisingOrange, u/Ankiphil, and u/holythesea who have helped significantly with the development of these notes over the last few years
 
