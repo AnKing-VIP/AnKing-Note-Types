@@ -54,7 +54,6 @@
 
 ## TODO
 Ideas for additional features: https://github.com/thiswillbeyourgithub/Clozolkor
-- [ ] 
 
 
 ***
