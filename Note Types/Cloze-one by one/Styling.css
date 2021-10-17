@@ -1,6 +1,11 @@
-/*The AnKing wishes you the best of luck! Be sure to check out our youtube channel for all things Anki and Pre-med/Med School related (including how to customize this card type and use these decks):  www.AnKingMed.com    */
+/* The AnKing wishes you the best of luck! Be sure to check out our YouTube channel and Instagram
+ for all things Anki and Med School related (including how to customize this card type and use these decks):  
+		www.AnKingMed.com
+			@ankingmed    			
+*/
 
-/*~~~~~~~~USER CUSTOMIZATION START~~~~~~~~~*/
+/*#########################################################
+################  USER CUSTOMIZATION START  ##############*/
 /* You can choose colors at www.htmlcolorcodes.com */
 
 /* TIMER ON/OFF */
@@ -12,7 +17,6 @@
 #tags-container {
   display: block; /* ‘none’ or ‘block’ */
 }
-
 .mobile #tags-container {
   display: none; /* ‘none’ or ‘block’ */
 }
@@ -22,110 +26,107 @@
   padding-bottom: 0px; /* 0 normal, 55 to move up */
 }
 
-/* MNEMONICS CENTER OR LEFT */
-.mnemonics {
-  text-align: left;
-}
 
-/*FONT SIZE
-NOTE: anything with 'px' will keep a font that size indefinitely, 
+/*~~~~~~~~~FONT SIZE~~~~~~~~~*/
+/*NOTE: anything with 'px' will keep a font that size indefinitely, 
 'rem' is a fraction of this size above and allows all text to change size with the above setting */
 /* Desktop */
 html {
   font-size: 28px;
 }
-
 /* Mobile */
 .mobile {
   font-size: 28px;
 }
 
-/*REVEALED HINTS FONT SIZE*/
+/*IPAD ADJUSTMENTS (currently not applied)
+.ipad .card {
+  font-size: 28px;
+}
+.ipad .hints {
+  font-size: 24px;
+}
+*/
+
+/*Revealed Hints Font Size*/
 .hints {
   font-size: .85rem;
 }
 
-/*FONT STYLE*/
+
+/*~~~~~~~~~FONT STYLE~~~~~~~~~*/
 .card,
 kbd {
   font-family: Arial Greek, Arial; /*Step exam's font is Arial Greek*/
 }
 
-/*MAX IMAGE HEIGHT/WIDTH*/
+
+/*~~~~~~~MAX IMAGE HEIGHT/WIDGTH~~~~~~~*/
 img {
   max-height: none;
   max-width: 85%;
 }
 
-/* ~~COLORS~~ */
-/*DEFAULT TEXT COLOR*/
+/*~~~~~~~~~COLORS~~~~~~~~~/
+/* Default Text Color */
 .card {
   color: black;
 }
-
-/*BACKGROUND COLOR*/
+/* Background Color */
 .card {
   background-color: #D1CFCE;
 }
-
-/*TIMER COUNTDOWN COLOR*/
+/* Cloze Color */
+.cloze {
+  color: blue;
+}
+/* "Extra" Field Color */
+#extra {
+  color: navy;
+}
+/* Hint Reveal Color */
+.hints {
+  color: #4297F9;
+}
+/* Missed Questions Hint Reveal Color */
+#missed {
+  color: red;
+}
+/* Timer Countdown Color */
 .timer {
   color: transparent;
 }
 
-/* CLOZE COLOR */
-.cloze {
-  color: blue;
-}
 
-/* "EXTRA" FIELD COLOR */
-#extra {
-  color: navy;
-}
-
-/* HINT REVEAL COLOR */
-.hints {
-  color: #4297F9;
-}
-
-/* Missed Questions Reveal Color */
-#missed {
-  color: red;
-}
-
-
-/* ~~NIGHT MODE COLORS~~ */
-/* NM DEFAULT TEXT COLOR*/
+/*~~~~~~~~NIGHT MODE COLORS~~~~~~~~*/
+/* NM Default Text Color */
 .nightMode.card,
 .night_mode .card {
   color: #FFFAFA !important;
 }
-
-/* NM BACKGROUND COLOR*/
+/* NM Background Color */
 .nightMode.card,
 .night_mode .card {
   background-color: #272828 !important;
 }
-
-/* NM CLOZE COLOR */
+/* NM Cloze Color */
 .nightMode .cloze,
 .night_mode .cloze {
   color: #4297F9 !important;
 }
-
-/* NM "EXTRA" FIELD COLOR */
+/* NM "Extra" Field Color */
 .nightMode #extra,
 .night_mode #extra {
   color: magenta;
 }
-
-/* NM HINT REVEAL COLOR */
+/* NM Hint Reveal Color */
 .nightMode .hints,
 .night_mode .hints {
   color: cyan;
 }
 
-/* COLOR ACCENTS FOR BOLD-ITALICS-UNDERLINE*/
+
+/* ~~~~~COLOR ACCENTS FOR BOLD-ITALICS-UNDERLINE~~~~~~*/
 b {
   color: inherit;
 }
@@ -138,24 +139,8 @@ i {
   color: inherit;
 }
 
-/* ~~~~~~~~END CUSTOMIZATION~~~~~~~~ */
-
-html {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-#qa {
-  margin-top: 15px;
-  padding-bottom: 2rem;
-}
-
-/* Formatting For Timer */
-.timer {
-  font-size: 20px;
-  margin: 12em auto auto auto;
-}
+/*################  USER CUSTOMIZATION END  ################
+###########################################################*/
 
 /* Styling For Whole Card*/
 .card {
@@ -166,50 +151,60 @@ html {
   flex-grow: 1;
   padding-bottom: 1em;
 }
-
 .mobile .card {
   padding-bottom: 5em;
   margin: 0ex .3px;
 }
 
+/* Style the horizontal line */
 hr { opacity: .7 }
 
-/* Details For IMAGES */
+/* Formatting For Timer */
+.timer {
+  font-size: 20px;
+  margin: 12em auto auto auto;
+}
+
+
+/* ~~~~~~~~~ FIELDS ~~~~~~~~~ */
+/* Cloze format */
+.cloze {
+  font-weight: bold;
+}
+
+/* Adjustments For Cloze Edit In Review On Mobile */
+.clozefield,
+.mobile .editcloze {
+  display: none;
+}
+.editcloze,
+.mobile .clozefield {
+  display: block;
+}
+
+/* Text When Hint Is Shown*/
+.hints {
+  font-style: italic;
+}
+
+/*add spacing between hints and extra field*/
+.hints+#extra {
+  margin-top: 1rem; 
+}
+
+/* Extra Field */
+#extra {
+  font-style: italic;
+  font-size: 1rem;
+}
+
+
+/* ~~~~~~~~~DETAILS FOR IMAGES~~~~~~~~~ */
 .mobile .card img {
   max-width: 100% !important;
 }
-
 #extra img {
   min-width: 30%;
-}
-
-/*Compatibility with Image Style Editor add-on*/
-.mobile .card {
-  --w: 100% !important;
-}
-
-.card {
-  --w: 0%;
-}
-
-/*Max image width for resize images in editor add-on */
-.card [class^=ui-] img {
-  max-width: 100% !important;
-}
-
-/*Compatibility with resize images in editor add-on */
-.resizer {
-  min-width: 0% !important;
-}
-
-.mobile .resizer {
-  min-width: 100% !important;
-}
-
-/* Fix to make pop-up dictionary images the right size */
-.qtip img {
-  max-width: 95% !important;
-  max-height: 95% !important;
 }
 
 /*Image hover zoom*/
@@ -223,34 +218,47 @@ hr { opacity: .7 }
   transform: scale(1.0) !important;
 }
 
-/* Cloze format */
-.cloze {
-  font-weight: bold;
+
+/* ~~~~~~~MNEMONICS LEFT JUSTIFIED~~~~~~~ */
+.mnemonics {
+  display: inline-block;
+  text-align: left; /* can change to center to 'turn off' this feature */
+}
+.centerbox {
+  text-align: center;
 }
 
-/* BEGIN HINT FIELDS */
 
-/* Text When Hint Is Shown*/
-.hints {
-  font-style: italic;
+/* ~~~~~~~~~ ADD-ON CONFIGURATIONS ~~~~~~~~~ */
+/*Compatibility with Image Style Editor add-on*/
+.card {
+  --w: 0%;
+}
+.mobile .card {
+  --w: 100% !important;
 }
 
-/* Put Bottom Hints Lower */
-/* #firstaid { padding-top: 40px!important; }
-#extra { padding-bottom: 40px!important; } */
-
-/*add spacing between hints and extra field*/
-.hints+#extra {
-  margin-top: 1rem; 
+/*Max image width for resize images in editor add-on */
+.card [class^=ui-] img {
+  max-width: 100% !important;
 }
 
-/* EXTRA FIELD */
-#extra {
-  font-style: italic;
-  font-size: 1rem;
+/*Compatibility with resize images in editor add-on */
+.resizer {
+  min-width: 0% !important;
+}
+.mobile .resizer {
+  min-width: 100% !important;
 }
 
-/* Details for AnKing hyperlink image */
+/* Fix to make pop-up dictionary images the right size */
+.qtip img {
+  max-width: 95% !important;
+  max-height: 95% !important;
+}
+
+
+/* ~~~~~~ANKING HYPERLINK IMAGE~~~~~~ */
 #pic {
   opacity: 0.0;
   font-size: 16px;
@@ -273,7 +281,8 @@ hr { opacity: .7 }
   display: none;
 }
 
-/* TAGS */
+
+/* ~~~~~~~~~ TAGS ~~~~~~~~~ */
 /* Container To Fix Tags At Bottom Of Screen */
 #tags-container {
   position: fixed;
@@ -330,24 +339,13 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   display: inline-block;
   font-size: 10px !important;
 }
-
 .mobile #tags-container {
   line-height: 0.6rem;
   margin-left: 0px;
 }
 
-/* MNEMONICS CENTER OR LEFT */
-.mnemonics {
-  display: inline-block;
-}
 
-.centerbox {
-  text-align: center;
-}
-
-
-/*~~~BUTTON LAYOUT ~~~*/
-
+/* ~~~~~~~~~BUTTON LAYOUT~~~~~~~~~ */
 .button-general {
   outline: 0;
   border-radius: 0.12em;
