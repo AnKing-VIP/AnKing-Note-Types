@@ -2,16 +2,16 @@
 For simplicity and ease-of-use, I have uploaded all of my note types here. This will allow for better tracking of changes and better tutorials.
 
 ## How to Use These Note Types
-**To download a note type, find the latest version in the [Releases](https://github.com/AnKingMed/AnKing-Note-Types/releases) tab**
+**To download a note type,** find the latest version in the [Releases](https://github.com/AnKingMed/AnKing-Note-Types/releases) tab
 
-**To learn how to use and customize a note type, open the [Note Types Folder](https://github.com/AnKingMed/AnKing-Note-Types/tree/master/Note%20Types). Each Folder has it's own README file that explains the note and it's features**
+**To learn how to use and customize a note type,** open the [Note Types Folder](https://github.com/AnKingMed/AnKing-Note-Types/tree/master/Note%20Types). Each Folder has it's own README file that explains the note and it's features
 
 ## Thank You
 Huge thank you to @BlueGreenMagick, @Kleinerpirat, and @RisingOrange who have helped significantly with the development of these notes
 
 ***
 
-<p align="center" style="font-weight:bold; font-size: 30px;">If you like these, please consider donating to this project</p>
+### If you like these, please consider donating to this project
 
 <p align="center">
 <a href="https://www.ankingmed.com" rel="nofollow"><img src="https://raw.githubusercontent.com/AnKingMed/My-images/master/AnKing/AnKingSmall.png?raw=true"></a><a href="https://www.ankingmed.com" rel="nofollow"><img src="https://raw.githubusercontent.com/AnKingMed/My-images/master/AnKing/TheAnKing.png?raw=true"></a>
