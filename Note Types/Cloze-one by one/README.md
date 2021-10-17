@@ -49,11 +49,23 @@
     </p>
   </details>
 
+- <b>Autoflip to back</b> _(only works on desktop version, not mobile)_
+  <details><summary>Toggle autoflip on/off <i>(Front template)</i></summary>
+    <p>
+
+    ```
+    // ############## USER CONFIGURATION START ##############
+    var autoflip = false // auto flip to back if cloze has no hints. Does not work for AnkiMobile.
+    ```
+    </p>
+  </details>
+
 ## Changelog:
 2021-08: Initial Release
 
 ## TODO
 Ideas for additional features: https://github.com/thiswillbeyourgithub/Clozolkor
+
 
 
 ***
