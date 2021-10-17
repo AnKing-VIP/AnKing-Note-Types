@@ -23,7 +23,7 @@ var clozeHidden = (elem) => "[" + elem.textContent.split(" ").map((t) => "_".rep
 var clozeHidden = (elem) => `<span style="background-color: red; color: transparent;">${elem.innerHTML}</span>`
 */
 
-// ##############  HINT REVEAL SHORTCUTS  ##############
+// ~~~~~~~~~~~~~  HINT REVEAL SHORTCUTS  ~~~~~~~~~~~~~
 // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
 // The shortcuts are  Alt  +  the number/letter below
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -33,7 +33,7 @@ var ButtonShortcuts = {
 }
 var ToggleAllButtons = '222' // '
 
-// ##############  SHOW HINTS AUTOMATICALLY  ##############
+// ~~~~~~~~~~~~~  SHOW HINTS AUTOMATICALLY  ~~~~~~~~~~~~~
 var ButtonAutoReveal = {
     "Personal Notes" : false,
     "Missed Questions" : false,
@@ -41,7 +41,7 @@ var ButtonAutoReveal = {
 
 var ScrollToButton = true;
 
-// ##############  TAG SHORTCUT  ##############
+// ~~~~~~~~~~~~~  TAG SHORTCUT  ~~~~~~~~~~~~~
 // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
 var ToggleTags = "67"; // c
 
@@ -59,7 +59,7 @@ var tagID = "XXXYYYZZZ"
 <div id="text">{{cloze:Text}}</div>
 
 
-<!-- ##############  TEXT-TO-SPEECH ##############
+<!-- ~~~~~~~~~~~~~  TEXT-TO-SPEECH ~~~~~~~~~~~~~
 replace the arrows/dashes from the statement below with double curly brackets-->
 
 <!--tts en_US voices=Apple_Samantha speed=1.4:cloze-only:Text-->
