@@ -27,12 +27,6 @@ for all things Anki and Pre-med/Med School related
   padding-bottom: 0px; /* 0 normal, 55 to move up */
 }
 
-/* MNEMONICS CENTER OR LEFT */
-.mnemonics {
-  text-align: left;
-}
-
-
 /*~~~~~~~~~FONT SIZE~~~~~~~~~*/
 /*NOTE: anything with 'px' will keep a font that size indefinitely, 
 'rem' is a fraction of this size above and allows all text to change size with the above setting */
