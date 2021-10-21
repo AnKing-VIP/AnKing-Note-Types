@@ -37,7 +37,7 @@ html {
 
 /* TAGS ON/OFF DESKTOP & MOBILE*/
 #tags-container {
-  display: none; /* ‘none’ or ‘block’ */
+  display: block; /* ‘none’ or ‘block’ */
 }
 .mobile #tags-container {
   display: none; /* ‘none’ or ‘block’ */
