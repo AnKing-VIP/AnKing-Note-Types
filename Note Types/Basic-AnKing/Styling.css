@@ -8,9 +8,10 @@
 ################  USER CUSTOMIZATION START  ##############*/
 /* You can choose colors at www.htmlcolorcodes.com */
 
-/* TIMER ON/OFF */
+
+/* TIMER ON/OFF - off by default on Basic cards*/
 .timer {
-  display: block; /* ‘none’ or ‘block’ */
+  display: none; /* ‘none’ or ‘block’ */
 }
 
 /* TAGS ON/OFF DESKTOP & MOBILE*/
