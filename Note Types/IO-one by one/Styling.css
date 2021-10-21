@@ -1,44 +1,20 @@
 @import url("__closet-0.5.3.css");
 
+
 /*#########################################################
 ################  USER CUSTOMIZATION START  ##############*/
 /* You can choose colors at www.htmlcolorcodes.com */
 
-/*~~~~~~~~~FONT SIZE~~~~~~~~~*/
-/*NOTE: anything with 'px' will keep a font that size indefinitely, 
-'rem' is a fraction of this size above and allows all text to change size with the above setting */
-/* Desktop */
-html {
-  font-size: 28px;
-}
-/* mobile */
-.mobile {
-  font-size: 28px;
-}
-
-.card {
-  /* FONT STYLE */
-  --font-family: Arial Greek, Arial;
-  /* TEXT COLOR */
-  --color: black;
-  --background-color: #D1CFCE;
-
-  /* OCCLUSION RECTANGLE COLORS */
-  --rect-bg: moccasin;
-  --rect-border: olive;
-  --active-rect-bg: salmon;
-  --active-rect-border: yellow;
-
-  /*MAX IMAGE HEIGHT */
-  --img-max-height: none;
-  /*MAX IMAGE WIDTH */
-  --img-max-width: none;
+/* TIMER ON/OFF */
+.timer {
+  display: block; /* ‘none’ or ‘block’ */
 }
 
 /* TAGS ON/OFF DESKTOP & MOBILE*/
 #tags-container {
   display: block; /* ‘none’ or ‘block’ */
 }
+
 .mobile #tags-container {
   display: none; /* ‘none’ or ‘block’ */
 }
@@ -48,30 +24,91 @@ html {
   padding-bottom: 0px; /* 0 normal, 55 to move up */
 }
 
-/* HINT REVEAL STYLING */
-.hints { 
-  color: #4297F9;
-  font-size: .85rem;
-  font-style: italic; 
+/*~~~~~~~~~FONT SIZE~~~~~~~~~*/
+/*NOTE: anything with 'px' will keep a font that size indefinitely, 
+'rem' is a fraction of this size above and allows all text to change size with the above setting */
+/* Desktop */
+html {
+  font-size: 28px;
+}
+/* Mobile */
+.mobile {
+  font-size: 28px;
 }
 
-/* Missed Questions Reveal Color */
-#missed-questions { 
+/*IPAD ADJUSTMENTS (currently not applied)
+.ipad .card {
+  font-size: 28px;
+}
+.ipad .hints {
+  font-size: 24px;
+}
+*/
+
+/*Revealed Hints Font Size*/
+.hints {
+  font-size: .85rem;
+}
+
+
+/*~~~~~~~~~FONT STYLE~~~~~~~~~*/
+.card,
+kbd {
+  font-family: Arial Greek, Arial; /*Step exam's font is Arial Greek*/
+}
+
+/*~~~~~~~MAX IMAGE HEIGHT/WIDGTH~~~~~~~*/
+img {
+  max-height: none;
+  max-width: 85%;
+}
+
+
+/*~~~~~~~~~COLORS~~~~~~~~~*/
+.card {
+  /* OCCLUSION RECTANGLE COLORS */
+  --rect-bg: moccasin;
+  --rect-border: olive;
+  --active-rect-bg: salmon;
+  --active-rect-border: yellow;
+}
+
+
+/* Default Text Color */
+.card {
+  color: black;
+}
+/* Background Color */
+.card {
+  background-color: #D1CFCE;
+}
+/* Hint Reveal Color */
+.hints {
+  color: #4297F9;
+}
+/* Missed Questions Hint Reveal Color */
+#missed {
   color: red;
 }
 
-/* COLORS NIGHTMODE */
+
+/*~~~~~~~~NIGHT MODE COLORS~~~~~~~~*/
+/* NM Default Text Color */
 .nightMode.card,
 .night_mode .card {
-  --color: #FFFAFA;
-  --background-color: #272828;
+  color: #FFFAFA !important;
 }
-
-/* NM HINT REVEAL COLOR */
-.nightMode .hints, 
-.night_mode .hints { 
+/* NM Background Color */
+.nightMode.card,
+.night_mode .card {
+  background-color: #272828 !important;
+}
+/* NM Hint Reveal Color */
+.nightMode .hints,
+.night_mode .hints {
   color: cyan;
 }
+
 
 /* COLOR ACCENTS FOR BOLD-ITALICS-UNDERLINE*/
 b {
@@ -89,33 +126,68 @@ i {
 /*################  USER CUSTOMIZATION END  ################
 ###########################################################*/
 
-.nightMode.card,
-.night_mode .card,
+
+/* Styling For Whole Card*/
 .card {
-  font-family: var(--font-family);
-  color: var(--color);
   text-align: center;
-  background-color: var(--background-color);
-  font-size: var(--font-size);
+  font-size: 1rem;
+  height: 100%;
+  margin: 0px 15px;
+  flex-grow: 1;
+  padding-bottom: 1em;
   margin-top: 15px;
 }
-
-#front-info {
-  position: fixed;
-  top: 20vh;
-  width: 100%;
-  font-size: 20px;
+.mobile .card {
+  padding-bottom: 5em;
+  margin: 0ex .3px;
 }
 
-.mobile #front-info {
-  width: 90vw;
-  font-size: 4.5vw;
+
+/* ~~~~~~~~~ FIELDS ~~~~~~~~~ */
+/* Text When Hint Is Shown*/
+.hints {
+  font-style: italic;
 }
 
-#front-info img {
-  margin-bottom: 2em;
-  max-width: 150px !important;
+
+/* ~~~~~~~~~ ADD-ON CONFIGURATIONS ~~~~~~~~~ */
+/*Compatibility with Image Style Editor add-on*/
+.card {
+  --w: 0%;
 }
+.mobile .card {
+  --w: 100% !important;
+}
+
+/*Max image width for resize images in editor add-on */
+.card [class^=ui-] img {
+  max-width: 100% !important;
+}
+
+/*Compatibility with resize images in editor add-on */
+.resizer {
+  min-width: 0% !important;
+}
+.mobile .resizer {
+  min-width: 100% !important;
+}
+
+/* Fix to make pop-up dictionary images the right size */
+.qtip img {
+  max-width: 95% !important;
+  max-height: 95% !important;
+}
+
+
+/* ~~~~~~~MNEMONICS LEFT JUSTIFIED~~~~~~~ */
+.mnemonics {
+  display: inline-block;
+  text-align: left; /* can change to center to 'turn off' this feature */
+}
+.centerbox {
+  text-align: center;
+}
+
 
 /* ~~~~~~ANKING HYPERLINK IMAGE~~~~~~ */
 #pic {
@@ -140,7 +212,32 @@ i {
   display: none;
 }
 
-/* Front Tooltip */
+
+/* ~~~~~~~ FRONT FORMATTING ~~~~~~~ */
+.header {
+  font-size: 1rem;
+  margin-bottom: 1em;
+}
+
+#front-info {
+  position: fixed;
+  top: 20vh;
+  width: 100%;
+  font-size: 20px;
+}
+
+.mobile #front-info {
+  width: 90vw;
+  font-size: 4.5vw;
+}
+
+#front-info img {
+  margin-bottom: 2em;
+  max-width: 150px !important;
+}
+
+
+/* ~~~~~~~ FRONT TOOLTIP ~~~~~~~ */
 .help {
   position: fixed;
   top: 18px;
@@ -223,17 +320,8 @@ i {
   }
 }
 
-.header {
-  font-size: 1rem;
-  margin-bottom: 1em;
-}
 
-img {
-  max-height: var(--img-max-height);
-  max-width: var(--img-max-width);
-}
-
-/* Incremental reveal: Closet rects */
+/* ~~~~~~INCREMENTAL REVEAL: Closet rects~~~~~~ */
 .closet-rect.is-active.is-back rect {
   fill: var(--rect-bg);
   stroke: var(--rect-border);
@@ -249,23 +337,24 @@ img {
   visibility: hidden;
 }
 
+
 /* ~~~~~~~~~ TAGS ~~~~~~~~~ */
 /* Container To Fix Tags At Bottom Of Screen */
-#tags-container {
+#tags-container{
   position: fixed;
   bottom: .5px;
   width: 100%;
   line-height: .45rem;
   margin-left: -15px;
-  background-color: transparent;
+  background-color: transparent; 
 }
 
 /* Clickable Tags (need to download the add-on) */
 kbd {
   display: inline-block;
-  letter-spacing: .1px;
+  letter-spacing: .2px;
   font-weight: bold;
-  font-size: 10px !important;
+  font-size: 12px !important;
   text-shadow: none !important;
   padding: 0.05rem 0.1rem !important;
   margin: 1px -3px !important;
@@ -275,9 +364,9 @@ kbd {
   background-color: transparent !important;
   box-shadow: none !important;
   opacity: 0.5;
-  vertical-align: middle !important;
-  line-height: auto !important;
-  height: auto !important;
+  vertical-align: middle;
+  line-height: auto!important;
+  height: auto!important;
 }
 
 /* Tag Becomes More Visible On Hover */
