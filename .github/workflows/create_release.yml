@@ -7,7 +7,7 @@ on:
         description: apkg file name (Basic-AnKing, Basic-AnKingLanguage, Cloze-AnKing, Cloze-AnKingDerm, Cloze-AnKingMCAT, Cloze-AnKingMaster-v3, Cloze_one-by-one, IO-one_by_one, Physeo-Note-Types)
         required: true
       version:
-        description: version string (eg. v6.1)
+        description: release version string (eg. 6.1)
         required: true
         
 jobs:
@@ -32,5 +32,5 @@ jobs:
         with:
           repo_token: ${{ github.token }}
           file: Apkg/${{ github.event.inputs.file_name }}.apkg
-          release_name: ${{ github.event.inputs.file_name }}--NoteType_${{ github.event.inputs.version }}
+          release_name: ${{ github.event.inputs.file_name }}--Release_${{ github.event.inputs.version }}
           tag: ${{ env.WITHOUT_SPACE }}-${{ env.LAST_SHA }}
