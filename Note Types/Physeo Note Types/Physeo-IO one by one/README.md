@@ -60,11 +60,8 @@ This note type **will** work on Anki iOS and AnkiDroid.
 <img src="/screenshots/IO one by one.gif" style="width:600px;">
 
 ## Changelog:
-2021-09-05: Initial Release on <a href="https://www.reddit.com/r/Anki/comments/pia8e5/how_to_incrementally_reveal_an_image_occlusion/?utm_source=share&utm_medium=ios_app&utm_name=iossmf">reddit</a> by someone else
-2021-10-17: Significant overhaul of styling, buttons, formatting and more
+2021-10-20: Initial Release 
 
-## TODO
-- [ ] 
 
 ***
 
