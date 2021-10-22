@@ -9,9 +9,9 @@
 /* You can choose colors at www.htmlcolorcodes.com */
 
 
-/* TIMER ON/OFF - off by default on Basic cards*/
+/* TIMER ON/OFF */
 .timer {
-  display: none; /* ‘none’ or ‘block’ */
+  display: block; /* ‘none’ or ‘block’ */
 }
 
 /* TAGS ON/OFF DESKTOP & MOBILE*/

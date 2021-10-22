@@ -28,21 +28,10 @@
   </script>
   
   
-  <div id="front">{{edit:FrontSide}}</div>
+  <div id="front">{{edit:Front}}</div>
   
   <hr id=answer>
-  
-  <div id="back">{{edit:Back}}</div>
-  
-  <br>
 
-  <!-- ##############  Text-to-speech  ##############
-  replace the arrows/dashes from the statement below with double curly brackets-->
-  
-  <!--tts en_US voices=Apple_Samantha speed=1.4:Back -->
-  
-  
-  <hr>
   
   <!-- BUTTON FIELDS -->
   {{#Personal Notes}}<hint-button field-name="Personal Notes" short="ln" hint-id="notes"></hint-button>
@@ -51,7 +40,18 @@
   {{#Missed Questions}}<hint-button field-name="Missed Questions" short="mq" hint-id="missed"></hint-button>
   <div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>{{/Missed Questions}}
   
-  
+  <!-- Back field -->
+<p></p>
+<div id="back">{{edit:Back}}</div>
+
+<br>
+
+<!-- ##############  Text-to-speech  ##############
+replace the arrows/dashes from the statement below with double curly brackets-->
+
+<!--tts en_US voices=Apple_Samantha speed=1.4:Back -->
+
+
   <!-- ANKING HYPERLINK IMAGE -->
   <a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
   

@@ -30,11 +30,15 @@
 </script>
 
 
-<div id="front">{{edit:FrontSide}}</div>
+<div id="front">{{edit:Front}}</div>
 
 <hr id=answer>
 
+<!-- Back field -->
+<p></p>
 <div id="back">{{edit:Back}}</div>
+
+{{#Romanization}}<div class="hints" id="romanization" href="#">{{Romanization}}</div>{{/Romanization}}
 
 <br>
 
@@ -42,10 +46,6 @@
 replace the arrows/dashes from the statement below with double curly brackets-->
 
 <!--tts en_US voices=Apple_Samantha speed=1.4:Back -->
-
-{{#Romanization}}<div class="hints" id="romanization" href="#">{{Romanization}}</div>{{/Romanization}}
-
-<hr>
 
 <!-- BUTTON FIELDS -->
 {{#Definitions}}<hint-button field-name="Definitions" short="df" hint-id="definitions"></hint-button>
@@ -56,6 +56,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 {{#Alternative Translations}}<hint-button field-name="Alternative Translations" short="alt" hint-id="alt"></hint-button>
 <div id="dummy-alt" style="display: none;">{{edit:Alternative Translations}}</div>{{/Alternative Translations}}
+
+
 
 
 <!-- ANKING HYPERLINK IMAGE -->
