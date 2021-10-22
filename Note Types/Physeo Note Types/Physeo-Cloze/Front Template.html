@@ -56,27 +56,44 @@ countdown("s2", minutes, seconds ); //2nd value is the minute, 3rd is the second
 
 <!-- CLICKABLE COLORFUL TAGS -->
 {{#Tags}}
-    <div id="tags-container">{{clickable::Tags}}</div>
-    <script>
+<div id="tags-container">{{clickable::Tags}}</div>
+<script>
     var tagContainer = document.getElementById("tags-container")
     if (tagContainer.childElementCount == 0) {
-        var tagList= tagContainer.innerHTML.split(" ");
+        var tagList = tagContainer.innerHTML.split(" ");
         var kbdList = [];
         var newTagContent = document.createElement("div");
-    
-        for (var i = 0; i < tagList.length;  i++) {
-        var newTag = document.createElement("kbd");
-        newTag.innerHTML = tagList[i];
-        newTagContent.append(newTag)
+
+        for (var i = 0; i < tagList.length; i++) {
+            var newTag = document.createElement("kbd");
+            newTag.innerHTML = tagList[i];
+            newTagContent.append(newTag)
         }
         tagContainer.innerHTML = newTagContent.innerHTML;
         tagContainer.style.cursor = "default";
     }
     if (tagContainer.innerHTML.indexOf(tagID) != -1) {
-    tagContainer.style.backgroundColor = "rgba(251,11,11,.2)";
-    } else {
-    tagContainer.style.display = "none";
+        tagContainer.style.backgroundColor = "rgba(251,11,11,.15)";
     }
-    </script>
+
+    function showtags() {
+        var xx = document.getElementById("tags-container");
+
+        if (xx.style.display
+            === "none") {
+            xx.style.display = "block";
+        } else {
+            xx.style.display =
+                "none";
+        }
+    }
+    document.addEventListener('keyup', function (e) {
+        if (e.keyCode == ToggleTags) {
+            showtags();
+        }
+    });
+
+
+</script>
 {{/Tags}}
 
