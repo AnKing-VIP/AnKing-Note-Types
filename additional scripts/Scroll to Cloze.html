@@ -1,0 +1,18 @@
+<script>
+    function scroll_to_cloze() {
+     let mycloze = document.getElementsByClassName("cloze")[0];
+     mycloze.scrollIntoView({block: "center"});
+    }
+    
+    if (typeof onShownHook !== "undefined") {
+     //for Anki 2.1.x
+     onShownHook.push(function() {
+     scroll_to_cloze();
+     })
+    } else {
+     // for AnkiDroid
+     setTimeout(function() {
+     scroll_to_cloze();
+     }, 10);
+    }
+    </script>
