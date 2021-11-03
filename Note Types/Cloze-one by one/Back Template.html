@@ -135,7 +135,8 @@ if (!window.revealCloze) {
   }
   
   window.revealCloze = function(elem) {
-    if (elem.dataset.content !== undefined) {
+    // This if may not be needed anymore. Redundancy.
+    if (elem.dataset.content !== undefined) { 
       elem.innerHTML = elem.dataset.content
       delete elem.dataset.content
     }
@@ -196,10 +197,14 @@ if (!window.revealCloze) {
   }
 
   window.revealClozeClicked = function(ev) {
+    let elem = ev.currentTarget
+    if (elem.dataset.content === undefined) {
+      return
+    }
     if (!ev.altKey && (revealNextMode !== "word")) {
-      revealCloze(ev.currentTarget)
+      revealCloze(elem)
     } else {
-      revealClozeWord(ev.currentTarget)
+      revealClozeWord(elem)
     }
     ev.stopPropagation()
     ev.preventDefault()
