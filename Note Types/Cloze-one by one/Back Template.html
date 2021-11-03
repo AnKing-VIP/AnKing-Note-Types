@@ -201,6 +201,8 @@ if (!window.revealCloze) {
     } else {
       revealClozeWord(ev.currentTarget)
     }
+    ev.stopPropagation()
+    ev.preventDefault()
   }
 
   document.addEventListener("keydown",  function(ev) {
