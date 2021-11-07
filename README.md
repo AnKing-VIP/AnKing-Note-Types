@@ -219,7 +219,8 @@ All note types in this repo use many or all of the features listed below. Some w
   </details>
 
 ## TODO
-- [x] Nothing to do :) 
+- [ ] Merge one by one pull to Cloze-one by one and Physeo one by one
+- [ ] Create one by one compatible with AnKingMaster note type
 
 ***
 
