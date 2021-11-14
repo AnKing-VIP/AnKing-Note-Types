@@ -98,47 +98,45 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 </style>
 
 <script>
-if (!window.shortcutMatcher) {
-  // Returns function that match keyboard event to see if it matches given shortcut.
-  window.shortcutMatcher = function (shortcut) {
-    let shortcutKeys = shortcut.toLowerCase().split(/[+]/).map(key => key.trim())
-    let mainKey = shortcutKeys[shortcutKeys.length - 1]
-    if (mainKey.length === 1) {
-        let prepend = /\d/.test(mainKey) ? "digit" : "key"
-        mainKey = prepend + mainKey
-    }
-    let ctrl = shortcutKeys.includes("ctrl")
-    let shift = shortcutKeys.includes("shift")
-    let alt = shortcutKeys.includes("alt")
-
-    let matchShortcut = function (ctrl, shift, alt, mainKey, event) {
-      if (mainKey !== event.code.toLowerCase()) return false
-      if (ctrl !== (event.ctrlKey || event.metaKey)) return false
-      if (shift !== event.shiftKey) return false
-      if (alt !== event.altKey) return false
-      return true
-    }.bind(window, ctrl, shift, alt, mainKey)
-    
-    return matchShortcut
+// Returns function that match keyboard event to see if it matches given shortcut.
+function shortcutMatcher(shortcut) {
+  let shortcutKeys = shortcut.toLowerCase().split(/[+]/).map(key => key.trim())
+  let mainKey = shortcutKeys[shortcutKeys.length - 1]
+  if (mainKey.length === 1) {
+      let prepend = /\d/.test(mainKey) ? "digit" : "key"
+      mainKey = prepend + mainKey
   }
+  let ctrl = shortcutKeys.includes("ctrl")
+  let shift = shortcutKeys.includes("shift")
+  let alt = shortcutKeys.includes("alt")
+
+  let matchShortcut = function (ctrl, shift, alt, mainKey, event) {
+    if (mainKey !== event.code.toLowerCase()) return false
+    if (ctrl !== (event.ctrlKey || event.metaKey)) return false
+    if (shift !== event.shiftKey) return false
+    if (alt !== event.altKey) return false
+    return true
+  }.bind(window, ctrl, shift, alt, mainKey)
+  
+  return matchShortcut
 }
 </script>
 
 <script>
-/*
-var clozeOneByOneEnabled = true;
-try {
-    clozeOneByOneEnabled = `{ {One by one} }` === ""
-} catch (exception) {
-  console.log(exception)
-}
-*/
-var clozeOneByOneEnabled = true 
+(function() {
+  /*
+  var clozeOneByOneEnabled = true;
+  try {
+      clozeOneByOneEnabled = `{ {One by one} }` === ""
+  } catch (exception) {
+    console.log(exception)
+  }
+  */
+  var clozeOneByOneEnabled = true 
 
-// Declared to window scope to avoid redeclaring for every card.
-if (!window.revealCloze) {
+  // Declared to window scope to avoid redeclaring for every card.
 
-  window.hideCloze = function(cloze) {
+  let hideCloze = function(cloze) {
     if (!clozeOneByOneEnabled) {
       return
     }
@@ -150,7 +148,7 @@ if (!window.revealCloze) {
       }
   }
   
-  window.revealCloze = function(elem) {
+  let revealCloze = function(elem) {
     // Checking for dataset.content is undefined may not be needed anymore?
     if (!clozeOneByOneEnabled || elem.dataset.content === undefined) {
       return
@@ -159,7 +157,7 @@ if (!window.revealCloze) {
     delete elem.dataset.content
   }
 
-  window.revealClozeWord = function(elem) {
+  let revealClozeWord = function(elem) {
     if (!clozeOneByOneEnabled || elem.dataset.content === undefined) {
       return
     }
@@ -197,7 +195,7 @@ if (!window.revealCloze) {
     }
   }
 
-  window.hideAllCloze = function(initial) {
+  let hideAllCloze = function(initial) {
     let clozes = document.getElementsByClassName("cloze")
     for (let i = 0; i < clozes.length; i++) {
       let cloze = clozes[i]
@@ -220,11 +218,11 @@ if (!window.revealCloze) {
           revealCloze(elems[i])
       }
     } else {
-      window.hideAllCloze(initial=false)
+      hideAllCloze(initial=false)
     }
   }
 
-  window.revealClozeClicked = function(ev) {
+  let revealClozeClicked = function(ev) {
     let elem = ev.currentTarget
     if (elem.dataset.content === undefined) {
       return
@@ -238,36 +236,47 @@ if (!window.revealCloze) {
     ev.preventDefault()
   }
 
-  let showAllShortcut = shortcutMatcher(window.revealClozeShortcut)
-  let showWordShortcut = shortcutMatcher(window.revealClozeWordShortcut)
-  document.addEventListener("keydown",  function(ev) {
-    if(showAllShortcut(ev)) {
-      let elem = document.querySelector(".cloze[data-content]")
-      if (elem) {
-        revealCloze(elem)
-        ev.stopPropagation()
-        ev.preventDefault()
-        return
-      }
+  // previously attached listener should be removed.
+  //
+  // In case the keydown listener changes between versions across notetypes
+  // and if shortcut is different across notetypes, attached every time.
+  let attachKeydownListener = function() {
+    if(window.revealClozeKeydownListener) {
+      document.removeEventListener("keydown", window.revealClozeKeydownListener)
     }
-    if (showWordShortcut(ev)) {
-      let elem = document.querySelector(".cloze[data-content]")
-      if (elem) {
-        revealClozeWord(elem)
-        ev.stopPropagation()
-        ev.preventDefault()
-        return
-      }
-    }
-  });
-}
-</script>
 
-<script>
-(function(){
+    let showAllShortcut = shortcutMatcher(window.revealClozeShortcut)
+    let showWordShortcut = shortcutMatcher(window.revealClozeWordShortcut)
+
+
+    window.revealClozeKeydownListener = function(ev) {
+      if(showAllShortcut(ev)) {
+        let elem = document.querySelector(".cloze[data-content]")
+        if (elem) {
+          revealCloze(elem)
+          ev.stopPropagation()
+          ev.preventDefault()
+          return
+        }
+      }
+      if (showWordShortcut(ev)) {
+        let elem = document.querySelector(".cloze[data-content]")
+        if (elem) {
+          revealClozeWord(elem)
+          ev.stopPropagation()
+          ev.preventDefault()
+          return
+        }
+      }
+    }
+    document.addEventListener("keydown", window.revealClozeKeydownListener);
+  }
+  
   // autoflip hides card in front template
   document.getElementById("qa").style.removeProperty("display")
-  window.hideAllCloze(initial=true)
+  hideAllCloze(initial=true)
+
+  attachKeydownListener()
 })()
 
 </script>
