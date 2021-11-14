@@ -153,8 +153,8 @@ if (!window.revealCloze) {
     if (!clozeOneByOneEnabled || elem.dataset.content === undefined) {
       return
     }
-      elem.innerHTML = elem.dataset.content
-      delete elem.dataset.content
+    elem.innerHTML = elem.dataset.content
+    delete elem.dataset.content
   }
 
   window.revealClozeWord = function(elem) {
@@ -196,6 +196,18 @@ if (!window.revealCloze) {
     return
   }
 
+  window.hideAll = function(initial) {
+    let clozes = document.getElementsByClassName("cloze")
+    for (let i = 0; i < clozes.length; i++) {
+      let cloze = clozes[i]
+      hideCloze(cloze)
+      if (initial === true) {
+        cloze.addEventListener("touchend", revealClozeClicked)
+        cloze.addEventListener("click", revealClozeClicked)
+      }
+    }
+  }
+
   window.toggleRevealAll = function() {
     let elems = document.querySelectorAll(".cloze[data-content]")
     let button = document.getElementById("button-toggle-all")
@@ -204,10 +216,7 @@ if (!window.revealCloze) {
           revealCloze(elems[i])
       }
     } else {
-      let elems = document.querySelectorAll(".cloze")
-      for (let i = 0; i < elems.length; i++) {
-      hideCloze(elems[i])
-      }
+      window.hideAll(initial=false)
     }
   }
 
@@ -252,14 +261,7 @@ if (!window.revealCloze) {
 
 (function(){
   try{
-    let clozes = document.getElementsByClassName("cloze")
-    for (let i = 0; i < clozes.length; i++) {
-      let cloze = clozes[i]
-      hideCloze(cloze)
-      cloze.addEventListener("touchend", revealClozeClicked)
-      cloze.addEventListener("click", revealClozeClicked)
-
-    }
+    window.hideAll(initial=true)
   } finally {
     // autoflip hides card in front template
     document.getElementById("qa").style.removeProperty("display")
