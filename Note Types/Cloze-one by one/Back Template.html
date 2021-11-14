@@ -238,8 +238,9 @@ if (!window.revealCloze) {
     ev.preventDefault()
   }
 
+  let showAllShortcut = shortcutMatcher(window.revealClozeShortcut)
+  let showWordShortcut = shortcutMatcher(window.revealClozeWordShortcut)
   document.addEventListener("keydown",  function(ev) {
-    let showAllShortcut = shortcutMatcher(window.revealClozeShortcut)
     if(showAllShortcut(ev)) {
       let elem = document.querySelector(".cloze[data-content]")
       if (elem) {
@@ -249,7 +250,6 @@ if (!window.revealCloze) {
         return
       }
     }
-    let showWordShortcut = shortcutMatcher(window.revealClozeWordShortcut)
     if (showWordShortcut(ev)) {
       let elem = document.querySelector(".cloze[data-content]")
       if (elem) {
@@ -260,7 +260,6 @@ if (!window.revealCloze) {
       }
     }
   });
-
 }
 </script>
 
