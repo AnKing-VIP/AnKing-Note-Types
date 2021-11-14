@@ -3,9 +3,10 @@
 
 <script>
 var revealClozeShortcut = "N" // Shortcut to reveal next cloze
-var revealClozeWordShortcut = "Shift + N" // Shortcut to reveal next cloze word
+var revealClozeWordShortcut = "Shift + N" // Shortcut to reveal next hidden word in cloze
 
-// Changes how "Reveal Next" and clicking behaves. Either "cloze" or "word". 
+// Changes how "Reveal Next" and clicking behaves. Either "cloze" or "word".
+// "word" reveals word by word. 
 var revealNextMode = "cloze" 
 
 // What cloze is hidden with
@@ -13,12 +14,12 @@ var clozeHidden = (elem) => "👑"
 /* 
 You can replace the above line with below examples. '█' or '_' works well for hiding clozes.
 
-// Fixed length  (default):
+// Fixed length:
 var clozeHidden = (elem) => "███"
-// Replace all characters with "█":
+// Replace each character with "█":
 var clozeHidden = (elem) => "█".repeat(elem.textContent.length)
 // Show whitespaces:
-var clozeHidden = (elem) => "[" + elem.textContent.split(" ").map((t) => "_".repeat(t.length)).join(" ") + "]"
+var clozeHidden = (elem) => "[" + elem.textContent.split(" ").map((t) => "█".repeat(t.length)).join(" ") + "]"
 // Color-filled box (doesn't hide images):
 var clozeHidden = (elem) => `<span style="background-color: red; color: transparent;">${elem.innerHTML}</span>`
 */
