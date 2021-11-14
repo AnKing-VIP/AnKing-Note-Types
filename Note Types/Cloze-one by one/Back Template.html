@@ -7,21 +7,21 @@ var revealClozeWordShortcut = "Shift + N" // Shortcut to reveal next hidden word
 
 // Changes how "Reveal Next" and clicking behaves. Either "cloze" or "word".
 // "word" reveals word by word. 
-var revealNextMode = "cloze" 
+var revealNextClozeMode = "cloze" 
 
 // What cloze is hidden with
-var clozeHidden = (elem) => "👑"
+var clozeHider = (elem) => "👑"
 /* 
 You can replace the above line with below examples. '█' or '_' works well for hiding clozes.
 
 // Fixed length:
-var clozeHidden = (elem) => "███"
+var clozeHider = (elem) => "███"
 // Replace each character with "█":
-var clozeHidden = (elem) => "█".repeat(elem.textContent.length)
+var clozeHider = (elem) => "█".repeat(elem.textContent.length)
 // Show whitespaces:
-var clozeHidden = (elem) => "[" + elem.textContent.split(" ").map((t) => "█".repeat(t.length)).join(" ") + "]"
+var clozeHider = (elem) => "[" + elem.textContent.split(" ").map((t) => "█".repeat(t.length)).join(" ") + "]"
 // Color-filled box (doesn't hide images):
-var clozeHidden = (elem) => `<span style="background-color: red; color: transparent;">${elem.innerHTML}</span>`
+var clozeHider = (elem) => `<span style="background-color: red; color: transparent;">${elem.innerHTML}</span>`
 */
 
 // ~~~~~~~~~~~~~  HINT REVEAL SHORTCUTS  ~~~~~~~~~~~~~
@@ -72,8 +72,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 
 <!-- BUTTON FIELDS -->
-<button id="button-reveal-next" class="button-general" onclick="revealNext()">Reveal Next</button>
-<button id="button-toggle-all" class="button-general" onclick="toggleRevealAll()">Toggle All</button>
+<button id="button-reveal-next" class="button-general" onclick="revealNextCloze()">Reveal Next</button>
+<button id="button-toggle-all" class="button-general" onclick="toggleAllCloze()">Toggle All</button>
 <br>
 <div class="btn-spacer" hidden></div>
 <hint-button field-name="Personal Notes" short="ln" hint-id="notes"></hint-button>
@@ -135,7 +135,9 @@ try {
 */
 var clozeOneByOneEnabled = true 
 
+// Declared to window scope to avoid redeclaring for every card.
 if (!window.revealCloze) {
+
   window.hideCloze = function(cloze) {
     if (!clozeOneByOneEnabled) {
       return
@@ -144,7 +146,7 @@ if (!window.revealCloze) {
       if(window.clozeHints && window.clozeHints[i]) {
           cloze.innerHTML = window.clozeHints[i]
       } else {
-          cloze.innerHTML = clozeHidden(cloze)
+          cloze.innerHTML = clozeHider(cloze)
       }
   }
   
@@ -172,7 +174,7 @@ if (!window.revealCloze) {
         elem.dataset.hidden = words.slice(1).join(" ");
         let temp = document.createElement("div");
         temp.innerHTML = elem.dataset.hidden;
-        elem.innerHTML = elem.dataset.revealed + " " + clozeHidden(temp);
+        elem.innerHTML = elem.dataset.revealed + " " + clozeHider(temp);
       }
     } else {
       let temp = document.createElement("div");
@@ -183,20 +185,19 @@ if (!window.revealCloze) {
     }
   }
 
-  window.revealNext = function() {
+  window.revealNextCloze = function() {
     let nextHidden = document.querySelector(".cloze[data-content]")
     if(!nextHidden) {
         return
     } 
-    if (revealNextMode === "word") {
+    if (revealNextClozeMode === "word") {
         revealClozeWord(nextHidden)
     } else {
         revealCloze(nextHidden)
     }
-    return
   }
 
-  window.hideAll = function(initial) {
+  window.hideAllCloze = function(initial) {
     let clozes = document.getElementsByClassName("cloze")
     for (let i = 0; i < clozes.length; i++) {
       let cloze = clozes[i]
@@ -211,7 +212,7 @@ if (!window.revealCloze) {
     }
   }
 
-  window.toggleRevealAll = function() {
+  window.toggleAllCloze = function() {
     let elems = document.querySelectorAll(".cloze[data-content]")
     let button = document.getElementById("button-toggle-all")
     if(elems.length > 0) {
@@ -219,7 +220,7 @@ if (!window.revealCloze) {
           revealCloze(elems[i])
       }
     } else {
-      window.hideAll(initial=false)
+      window.hideAllCloze(initial=false)
     }
   }
 
@@ -228,7 +229,7 @@ if (!window.revealCloze) {
     if (elem.dataset.content === undefined) {
       return
     }
-    if (!ev.altKey && (revealNextMode !== "word")) {
+    if (!ev.altKey && (revealNextClozeMode !== "word")) {
       revealCloze(elem)
     } else {
       revealClozeWord(elem)
@@ -267,7 +268,7 @@ if (!window.revealCloze) {
 (function(){
   // autoflip hides card in front template
   document.getElementById("qa").style.removeProperty("display")
-  window.hideAll(initial=true)
+  window.hideAllCloze(initial=true)
 })()
 
 </script>
