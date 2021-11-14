@@ -26,8 +26,18 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 
 <script>
+/*
+var clozeOneByOneEnabled = true;
+try {
+    clozeOneByOneEnabled = `{ {One by one} }` === ""
+} catch (exception) {
+  console.log(exception)
+}
+*/
+var clozeOneByOneEnabled = true 
+
 // AUTO-FLIP if cloze has hint
-if(autoflip) {
+if(clozeOneByOneEnabled && autoflip) {
     // avoid flickering
     document.getElementById("qa").style.display = "none";
     window.clozeHints = [];

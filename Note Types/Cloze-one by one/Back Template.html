@@ -125,8 +125,21 @@ if (!window.shortcutMatcher) {
 </script>
 
 <script>
+/*
+var clozeOneByOneEnabled = true;
+try {
+    clozeOneByOneEnabled = `{ {One by one} }` === ""
+} catch (exception) {
+  console.log(exception)
+}
+*/
+var clozeOneByOneEnabled = true 
+
 if (!window.revealCloze) {
   window.hideCloze = function(cloze) {
+    if (!clozeOneByOneEnabled) {
+      return
+    }
     cloze.dataset.content = cloze.innerHTML
       if(window.clozeHints && window.clozeHints[i]) {
           cloze.innerHTML = window.clozeHints[i]
@@ -136,15 +149,16 @@ if (!window.revealCloze) {
   }
   
   window.revealCloze = function(elem) {
-    // This if may not be needed anymore. Redundancy.
-    if (elem.dataset.content !== undefined) { 
+    // Checking for dataset.content is undefined may not be needed anymore?
+    if (!clozeOneByOneEnabled || elem.dataset.content === undefined) {
+      return
+    }
       elem.innerHTML = elem.dataset.content
       delete elem.dataset.content
-    }
   }
 
   window.revealClozeWord = function(elem) {
-    if (elem.dataset.content === undefined) {
+    if (!clozeOneByOneEnabled || elem.dataset.content === undefined) {
       return
     }
     if (elem.dataset.hidden !== undefined) {
