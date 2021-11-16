@@ -1,15 +1,13 @@
 <script>
     // ##############  HINT REVEAL SHORTCUTS  ##############
-    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
-    // The shortcuts are  Alt  +  the number/letter below
     // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
     var ButtonShortcuts = {
-        "Personal Notes" : '49', // alt + 1
-        "Missed Questions" : '50', // alt + 2
-        "Textbook" : '51', // alt + 3
-        "Additional Resources" : '52', // alt + 4
+        "Personal Notes" : "Alt + 1",
+        "Missed Questions" : "Alt + 2",
+        "Textbook" : "Alt + 3",
+        "Additional Resources" : "Alt + 4",
     }
-    var ToggleAllButtons = '222' // '
+    var ToggleAllButtonsShortcut = "'"
 
     // ##############  SHOW HINTS AUTOMATICALLY  ##############
     var ButtonAutoReveal = {
@@ -22,8 +20,7 @@
     var ScrollToButton = true;
 
     // ##############  TAG SHORTCUT  ##############
-    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
-    var ToggleTags = "67"; // c
+    var ToggleTagsShortcut = "C";
 
     //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
     var tagID = "XXXYYYZZZ"
@@ -77,6 +74,54 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <!-- ANKING HYPERLINK IMAGE -->
 <a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
+
+
+<!-- Shortcut Matcher Function -->
+<script>
+  var specialCharCodes = {
+    "-": "minus",
+    "=": "equal",
+    "[": "bracketleft",
+    "]": "bracketright",
+    ";": "semicolon",
+    "'": "quote",
+    "`": "backquote",
+    "\\": "backslash",
+    ",": "comma",
+    ".": "period",
+    "/": "slash",
+  };
+  // Returns function that match keyboard event to see if it matches given shortcut.
+  function shortcutMatcher(shortcut) {
+    let shortcutKeys = shortcut.toLowerCase().split(/[+]/).map(key => key.trim())
+    let mainKey = shortcutKeys[shortcutKeys.length - 1]
+    if (mainKey.length === 1) {
+      if (/\d/.test(mainKey)) {
+        mainKey = "digit" + mainKey
+      } else if (/[a-zA-Z]/.test(mainKey)) {
+        mainKey = "key" + mainKey
+      } else {
+        let code = specialCharCodes[mainKey];
+        if (code) {
+          mainKey = code
+        }
+      }
+    }
+    let ctrl = shortcutKeys.includes("ctrl")
+    let shift = shortcutKeys.includes("shift")
+    let alt = shortcutKeys.includes("alt")
+  
+    let matchShortcut = function (ctrl, shift, alt, mainKey, event) {
+      if (mainKey !== event.code.toLowerCase()) return false
+      if (ctrl !== (event.ctrlKey || event.metaKey)) return false
+      if (shift !== event.shiftKey) return false
+      if (alt !== event.altKey) return false
+      return true
+    }.bind(window, ctrl, shift, alt, mainKey)
+    
+    return matchShortcut
+  }
+</script>
 
 
 <!-- TOGGLE BUTTONS -->
@@ -137,10 +182,13 @@ replace the arrows/dashes from the statement below with double curly brackets-->
                     this.toggle()
                 }
 
+                var isShortcut = shortcutMatcher(ButtonShortcuts[fieldName])
+                var isToggleAllShortcut = shortcutMatcher(ToggleAllButtonsShortcut)
                 document.addEventListener("keydown", (evt) => {
                     if (evt.repeat) return
-                    if (evt.altKey && evt.keyCode == ButtonShortcuts[fieldName]) this.toggle()
-                    if (evt.keyCode == ToggleAllButtons) this.toggle()
+                    if (isShortcut(evt) || isToggleAllShortcut(evt)) {
+                      this.toggle()
+                    }
                     return false
                 })
             }
@@ -221,11 +269,14 @@ replace the arrows/dashes from the statement below with double curly brackets-->
           "none";
           }
         } 
-        document.addEventListener('keyup', function(e) {
-            if(e.keyCode == ToggleTags){
-             showtags();
+
+        var isShortcut = shortcutMatcher(ToggleTagsShortcut)
+        document.addEventListener('keyup', function (e) {
+            if (isShortcut(e)) {
+                showtags();
             }
         });
+
         
         
     </script>

@@ -79,11 +79,10 @@ All note types in this repo use many or all of the features listed below. Some w
   <details><summary>Toggle on/off with shortcut <i>(Back template)</i></summary>
     <p>
 
-    Default is `c`
+    Default is `C`
     ```
     // ##############  TAG SHORTCUT  ##############
-    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
-    var ToggleTags = "67"; // c
+    var ToggleTagsShortcut = "C";
     ```
     </p>
   </details>
@@ -112,14 +111,12 @@ All note types in this repo use many or all of the features listed below. Some w
 
     ```
     // ##############  HINT REVEAL SHORTCUTS  ##############
-    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
-    // The shortcuts are  Alt  +  the number/letter below
     // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
     var ButtonShortcuts = {
-        "Lecture Notes" : '49', // alt + 1
-        "Missed Questions" : '50', // alt + 2
+        "Lecture Notes" : "Alt + 1",
+        "Missed Questions" : "Alt + 2",
     }
-    var ToggleAllButtons = '222' // '
+    var ToggleAllButtons = "'"
     ```
     </p>
   </details>

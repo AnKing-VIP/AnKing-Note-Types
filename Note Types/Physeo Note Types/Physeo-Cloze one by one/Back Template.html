@@ -25,14 +25,12 @@ var clozeHider = (elem) => `<span style="background-color: red; color: transpare
 */
 
 // ~~~~~~~~~~~~~  HINT REVEAL SHORTCUTS  ~~~~~~~~~~~~~
-// Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
-// The shortcuts are  Alt  +  the number/letter below
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
 var ButtonShortcuts = {
-    "Personal Notes" : '49', // alt + 1
-    "Missed Questions" : '50', // alt + 2
+    "Personal Notes" : "Alt + 1",
+    "Missed Questions" : "Alt + 2",
 }
-var ToggleAllButtons = '222' // '
+var ToggleAllButtonsShortcut = "'"
 
 // ~~~~~~~~~~~~~  SHOW HINTS AUTOMATICALLY  ~~~~~~~~~~~~~
 var ButtonAutoReveal = {
@@ -43,8 +41,7 @@ var ButtonAutoReveal = {
 var ScrollToButton = true;
 
 // ~~~~~~~~~~~~~  TAG SHORTCUT  ~~~~~~~~~~~~~
-// Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
-var ToggleTags = "67"; // c
+var ToggleTagsShortcut = "C";
 
 //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
 var tagID = "XXXYYYZZZ"
@@ -365,10 +362,13 @@ replace the arrows/dashes from the statement below with double curly brackets-->
                     this.toggle()
                 }
 
+                var isShortcut = shortcutMatcher(ButtonShortcuts[fieldName])
+                var isToggleAllShortcut = shortcutMatcher(ToggleAllButtonsShortcut)
                 document.addEventListener("keydown", (evt) => {
                     if (evt.repeat) return
-                    if (evt.altKey && evt.keyCode == ButtonShortcuts[fieldName]) this.toggle()
-                    if (evt.keyCode == ToggleAllButtons) this.toggle()
+                    if (isShortcut(evt) || isToggleAllShortcut(evt)) {
+                    this.toggle()
+                    }
                     return false
                 })
             }
@@ -449,8 +449,9 @@ replace the arrows/dashes from the statement below with double curly brackets-->
                 "none";
         }
     }
+    var isShortcut = shortcutMatcher(ToggleTagsShortcut)
     document.addEventListener('keyup', function (e) {
-        if (e.keyCode == ToggleTags) {
+        if (isShortcut(e)) {
             showtags();
         }
     });

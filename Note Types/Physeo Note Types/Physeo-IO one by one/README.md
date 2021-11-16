@@ -31,9 +31,8 @@ This note type **will** work on Anki iOS and AnkiDroid.
 
     ```
     // ##############  OCCLUSION SHORTCUTS  ##############
-    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
-    var RevealIncremental = "78"; // n
-    var ToggleAllOcclusions = "188"; // ,
+    var RevealIncremental = "N";
+    var ToggleAllOcclusions = ",";
     ```
     </p>
   </details>

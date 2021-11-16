@@ -1,22 +1,20 @@
 <script>
     // ##############  OCCLUSION SHORTCUTS  ##############
-    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
-    var RevealIncremental = "78"; // n
-    var ToggleAllOcclusions = "188"; // ,
+    var RevealIncremental = "N";
+    var ToggleAllOcclusions = ",";
 
     // ##############  TAG SHORTCUT  ##############
-    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
-    var ToggleTags = "67"; // c
+    var ToggleTagsShortcut = "C";
 
     // ##############  BUTTON SETTINGS  ##############
-    // The button shortcuts are  Alt + the number/letter the keycode stands for
     // All buttons will also open with "H" if using the Hint Hotkeys add-on 
-    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
     var ButtonShortcuts = {
-        "Extra": '49', // alt + 1
-        "Personal Notes": '50', // alt + 2
-        "Missed Questions": '51', // alt + 3
+        "Extra": "Alt + 1",
+        "Personal Notes": "Alt + 2",
+        "Missed Questions": "Alt + 3",
     }
+
+    var ToggleAllButtonsShortcut = "'"
 
     // change values from false to true to have the fields revealed from the start
     var ButtonAutoReveal = {
@@ -25,7 +23,6 @@
         "Missed Questions": false,
     }
 
-    var ToggleAllButtons = '222' // '
     var ScrollToButton = true
 
     //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
@@ -57,6 +54,54 @@
 
 <!-- ANKING HYPERLINK IMAGE -->
 <a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
+
+
+<!-- Shortcut Matcher Function -->
+<script>
+  var specialCharCodes = {
+    "-": "minus",
+    "=": "equal",
+    "[": "bracketleft",
+    "]": "bracketright",
+    ";": "semicolon",
+    "'": "quote",
+    "`": "backquote",
+    "\\": "backslash",
+    ",": "comma",
+    ".": "period",
+    "/": "slash",
+  };
+  // Returns function that match keyboard event to see if it matches given shortcut.
+  function shortcutMatcher(shortcut) {
+    let shortcutKeys = shortcut.toLowerCase().split(/[+]/).map(key => key.trim())
+    let mainKey = shortcutKeys[shortcutKeys.length - 1]
+    if (mainKey.length === 1) {
+      if (/\d/.test(mainKey)) {
+        mainKey = "digit" + mainKey
+      } else if (/[a-zA-Z]/.test(mainKey)) {
+        mainKey = "key" + mainKey
+      } else {
+        let code = specialCharCodes[mainKey];
+        if (code) {
+          mainKey = code
+        }
+      }
+    }
+    let ctrl = shortcutKeys.includes("ctrl")
+    let shift = shortcutKeys.includes("shift")
+    let alt = shortcutKeys.includes("alt")
+  
+    let matchShortcut = function (ctrl, shift, alt, mainKey, event) {
+      if (mainKey !== event.code.toLowerCase()) return false
+      if (ctrl !== (event.ctrlKey || event.metaKey)) return false
+      if (shift !== event.shiftKey) return false
+      if (alt !== event.altKey) return false
+      return true
+    }.bind(window, ctrl, shift, alt, mainKey)
+    
+    return matchShortcut
+  }
+</script>  
 
 
 <div id="anki-am" data-name="Assets by ASSET MANAGER" data-version="2.1">
@@ -94,11 +139,11 @@
         }
         if (!globalThis.ToggleTagsListening) {
             globalThis.ToggleTagsListening = true
-            document.addEventListener('keydown', function (evt) {
-                if (evt.repeat) return
-                evt = evt || window.event
-                if (evt.keyCode == ToggleTags) {
-                    toggleTags();
+            var isShortcut = shortcutMatcher(ToggleTagsShortcut)
+            document.addEventListener('keydown', function (e) {
+              if (e.repeat) return
+                if (isShortcut(e)) {
+                    showtags();
                 }
             });
         }
@@ -163,10 +208,13 @@
                         this.toggle()
                     }
 
+                    var isShortcut = shortcutMatcher(ButtonShortcuts[fieldName])
+                    var isToggleAllShortcut = shortcutMatcher(ToggleAllButtonsShortcut)
                     document.addEventListener("keydown", (evt) => {
                         if (evt.repeat) return
-                        if (evt.altKey && evt.keyCode == ButtonShortcuts[fieldName]) this.toggle()
-                        if (evt.keyCode == ToggleAllButtons) this.toggle()
+                        if (isShortcut(evt) || isToggleAllShortcut(evt)) {
+                        this.toggle()
+                        }
                         return false
                     })
                 }
