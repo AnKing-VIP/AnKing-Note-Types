@@ -85,16 +85,6 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <div id="extra">{{edit:Extra}}</div>
 {{/Extra}}<br>
 
-
-
-<!-- CLOZE ONE BY ONE SCRIPT -->
-<style>
-.cloze[data-content]:hover {
-  cursor: pointer;
-}
-</style>
-
-
 <!-- Shortcut Matcher Function -->
 <script>
 var specialCharCodes = {
@@ -142,7 +132,14 @@ function shortcutMatcher(shortcut) {
 }
 </script>
 
-<!-- Cloze One by One -->
+
+<!-- CLOZE ONE BY ONE SCRIPT -->
+<style>
+  .cloze[data-content]:hover {
+    cursor: pointer;
+  }
+</style>
+
 <script>
 (function() {
   /*
@@ -154,8 +151,6 @@ function shortcutMatcher(shortcut) {
   }
   */
   var clozeOneByOneEnabled = true 
-
-  // Declared to window scope to avoid redeclaring for every card.
 
   let hideCloze = function(cloze) {
     if (!clozeOneByOneEnabled) {
