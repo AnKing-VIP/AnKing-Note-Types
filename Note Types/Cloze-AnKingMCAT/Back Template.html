@@ -70,6 +70,14 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <hr>
 
 <!-- BUTTON FIELDS -->
+
+<!-- ClOZE ONE BY ONE BUTTONS -->
+{{#One by one}}
+<button id="button-reveal-next" class="button-general" onclick="revealNextCloze()">Reveal Next Cloze</button>
+<button id="button-toggle-all" class="button-general" onclick="toggleAllCloze()">Toggle All Cloze</button>
+<br />
+{{/One by one}}
+
 {{#Lecture Notes}}<hint-button field-name="Lecture Notes" short="ln" hint-id="notes"></hint-button>
 <div id="dummy-ln" style="display: none;">{{edit:Lecture Notes}}</div>{{/Lecture Notes}}
 

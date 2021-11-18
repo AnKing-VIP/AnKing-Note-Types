@@ -69,9 +69,12 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 
 <!-- BUTTON FIELDS -->
-<button id="button-reveal-next" class="button-general" onclick="revealNext()">Reveal Next</button>
-<button id="button-toggle-all" class="button-general" onclick="toggleRevealAll()">Toggle All</button>
-<br>
+
+<!-- ClOZE ONE BY ONE BUTTONS -->
+<button id="button-reveal-next" class="button-general" onclick="revealNextCloze()">Reveal Next Cloze</button>
+<button id="button-toggle-all" class="button-general" onclick="toggleAllCloze()">Toggle All Cloze</button>
+<br />
+
 <div class="btn-spacer" hidden></div>
 <hint-button field-name="Personal Notes" short="ln" hint-id="notes"></hint-button>
 <div id="dummy-ln" style="display: none;">{{Personal Notes}}</div>
