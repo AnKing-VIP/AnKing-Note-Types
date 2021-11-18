@@ -147,15 +147,14 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <script>
   (function() {
+    var clozeOneByOneEnabled = true 
     /*
-    var clozeOneByOneEnabled = true;
     try {
-        clozeOneByOneEnabled = `{ {One by one} }` === ""
+        clozeOneByOneEnabled = `{ {One by one} }`.trim() !== ""
     } catch (exception) {
       console.log(exception)
     }
     */
-    var clozeOneByOneEnabled = true 
 
     const hideCloze = function(cloze) {
       if (!clozeOneByOneEnabled) {
