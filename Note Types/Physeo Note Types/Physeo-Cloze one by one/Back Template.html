@@ -416,6 +416,165 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 </script>
 
 
+<!-- CLOZE ONE BY ONE SCRIPT -->
+<style>
+  .cloze[data-content]:hover {
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  (function() {
+    var clozeOneByOneEnabled = true;
+    try {
+        clozeOneByOneEnabled = `{{One by one}}`.trim() !== ""
+    } catch (exception) {
+      console.log(exception)
+    }
+
+    const hideCloze = function(cloze) {
+      if (!clozeOneByOneEnabled) {
+        return
+      }
+      cloze.dataset.content = cloze.innerHTML
+        if(window.clozeHints && window.clozeHints[i]) {
+            cloze.innerHTML = window.clozeHints[i]
+        } else {
+            cloze.innerHTML = clozeHider(cloze)
+        }
+    }
+    
+    const revealCloze = function(elem) {
+      // Checking for dataset.content is undefined may not be needed anymore?
+      if (!clozeOneByOneEnabled || elem.dataset.content === undefined) {
+        return
+      }
+      elem.innerHTML = elem.dataset.content
+      delete elem.dataset.content
+    }
+
+    const revealClozeWord = function(elem) {
+      if (!clozeOneByOneEnabled || elem.dataset.content === undefined) {
+        return
+      }
+      if (elem.dataset.hidden !== undefined) {
+        let words = elem.dataset.hidden.split(" ");
+        if (words.length == 1) {
+          revealCloze(elem)
+          delete elem.dataset.hidden
+          delete elem.dataset.revealed
+        } else {
+          elem.dataset.revealed = elem.dataset.revealed + " " + words[0]
+          elem.dataset.hidden = words.slice(1).join(" ");
+          let temp = document.createElement("div");
+          temp.innerHTML = elem.dataset.hidden;
+          elem.innerHTML = elem.dataset.revealed + " " + clozeHider(temp);
+        }
+      } else {
+        let temp = document.createElement("div");
+        temp.innerHTML = elem.dataset.content;
+        elem.dataset.hidden = temp.textContent;
+        elem.dataset.revealed = "";
+        revealClozeWord(elem)
+      }
+    }
+
+    window.revealNextCloze = function() {
+      let nextHidden = document.querySelector(".cloze[data-content]")
+      if(!nextHidden) {
+          return
+      } 
+      if (revealNextClozeMode === "word") {
+          revealClozeWord(nextHidden)
+      } else {
+          revealCloze(nextHidden)
+      }
+    }
+
+    const hideloze = function(initial) {
+      let clozes = document.getElementsByClassName("cloze")
+      for (let i = 0; i < clozes.length; i++) {
+        let cloze = clozes[i]
+        if (cloze.offsetWidth === 0) {
+          continue
+        }
+        hideCloze(cloze)
+        if (initial === true) {
+          cloze.addEventListener("touchend", revealClozeClicked)
+          cloze.addEventListener("click", revealClozeClicked)
+        }
+      }
+    }
+
+    window.toggleAllCloze = function() {
+      let elems = document.querySelectorAll(".cloze[data-content]")
+      let button = document.getElementById("button-toggle-all")
+      if(elems.length > 0) {
+        for (let i = 0; i < elems.length; i++) {
+            revealCloze(elems[i])
+        }
+      } else {
+        hideAllCloze(initial=false)
+      }
+    }
+
+    const revealClozeClicked = function(ev) {
+      let elem = ev.currentTarget
+      if (elem.dataset.content === undefined) {
+        return
+      }
+      if (!ev.altKey && (revealNextClozeMode !== "word")) {
+        revealCloze(elem)
+      } else {
+        revealClozeWord(elem)
+      }
+      ev.stopPropagation()
+      ev.preventDefault()
+    }
+
+    // previously attached listener should be removed.
+    //
+    // In case the keydown listener changes between versions across notetypes
+    // and if shortcut is different across notetypes, attached every time.
+    const attachKeydownListener = function() {
+      if(window.revealClozeKeydownListener) {
+        document.removeEventListener("keydown", window.revealClozeKeydownListener)
+      }
+      let showAllShortcut = shortcutMatcher(window.revealClozeShortcut)
+      let showWordShortcut = shortcutMatcher(window.revealClozeWordShortcut)
+
+      window.revealClozeKeydownListener = function(ev) {
+        if(showAllShortcut(ev)) {
+          let elem = document.querySelector(".cloze[data-content]")
+          if (elem) {
+            revealCloze(elem)
+            ev.stopPropagation()
+            ev.preventDefault()
+            return
+          }
+        }
+        if (showWordShortcut(ev)) {
+          let elem = document.querySelector(".cloze[data-content]")
+          if (elem) {
+            revealClozeWord(elem)
+            ev.stopPropagation()
+            ev.preventDefault()
+            return
+          }
+        }
+      }
+      document.addEventListener("keydown", window.revealClozeKeydownListener);
+    }
+    
+    // autoflip hides card in front template
+    document.getElementById("qa").style.removeProperty("display")
+    hideAllCloze(initial=true)
+
+    attachKeydownListener()
+  })()
+</script>
+
+
 <!-- CLICKABLE COLORFUL TAGS -->
 {{#Tags}}
 <div id="tags-container">{{clickable::Tags}}</div>
