@@ -2,6 +2,8 @@
 ################  USER CUSTOMIZATION START  ############## -->
 
 <script>
+
+// ~~~~~~~~~~~~~  CLOZE ONE BY ONE  ~~~~~~~~~~~~~
 var revealClozeShortcut = "N" // Shortcut to reveal next cloze
 var revealClozeWordShortcut = "Shift + N" // Shortcut to reveal next hidden word in cloze
 
@@ -85,6 +87,9 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <div id="extra">{{edit:Extra}}</div>
 {{/Extra}}<br>
 
+<!-- ANKING HYPERLINK IMAGE -->
+<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
+
 <!-- Shortcut Matcher Function -->
 <script>
   var specialCharCodes = {
@@ -152,7 +157,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     */
     var clozeOneByOneEnabled = true 
 
-    let hideCloze = function(cloze) {
+    const hideCloze = function(cloze) {
       if (!clozeOneByOneEnabled) {
         return
       }
@@ -164,7 +169,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         }
     }
     
-    let revealCloze = function(elem) {
+    const revealCloze = function(elem) {
       // Checking for dataset.content is undefined may not be needed anymore?
       if (!clozeOneByOneEnabled || elem.dataset.content === undefined) {
         return
@@ -173,7 +178,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
       delete elem.dataset.content
     }
 
-    let revealClozeWord = function(elem) {
+    const revealClozeWord = function(elem) {
       if (!clozeOneByOneEnabled || elem.dataset.content === undefined) {
         return
       }
@@ -211,7 +216,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
       }
     }
 
-    let hideAllCloze = function(initial) {
+    const hideloze = function(initial) {
       let clozes = document.getElementsByClassName("cloze")
       for (let i = 0; i < clozes.length; i++) {
         let cloze = clozes[i]
@@ -238,7 +243,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
       }
     }
 
-    let revealClozeClicked = function(ev) {
+    const revealClozeClicked = function(ev) {
       let elem = ev.currentTarget
       if (elem.dataset.content === undefined) {
         return
@@ -256,14 +261,12 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     //
     // In case the keydown listener changes between versions across notetypes
     // and if shortcut is different across notetypes, attached every time.
-    let attachKeydownListener = function() {
+    const attachKeydownListener = function() {
       if(window.revealClozeKeydownListener) {
         document.removeEventListener("keydown", window.revealClozeKeydownListener)
       }
-
       let showAllShortcut = shortcutMatcher(window.revealClozeShortcut)
       let showWordShortcut = shortcutMatcher(window.revealClozeWordShortcut)
-
 
       window.revealClozeKeydownListener = function(ev) {
         if(showAllShortcut(ev)) {
@@ -295,10 +298,6 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     attachKeydownListener()
   })()
 </script>
-
-
-<!-- ANKING HYPERLINK IMAGE -->
-<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
 
 
 <!-- TOGGLE BUTTONS -->
