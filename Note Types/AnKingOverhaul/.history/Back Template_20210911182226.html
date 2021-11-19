@@ -1,0 +1,465 @@
+<script>
+    // ##############  HINT REVEAL SHORTCUTS  ##############
+    // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
+    // The shortcuts are  Alt  +  the number/letter below
+    // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
+
+    var lecturenotes = '49';
+    var missedQ = '50';
+    var pathoma = '51';
+    var bnb = '52';
+    var firstaid = '53';
+    var sketchy = '54';
+    var pixorize = '55';
+    var physeo = '56';
+	var ome= '112';
+    var additional = '57';
+    var OpenCloseAll = '222';
+
+	var ScrollToHint = true;
+</script>
+
+
+<div class="clozefield">{{cloze:Text}}</div>
+
+<!-- ##############  EDIT CLOZE DURING REVIEW  ##############
+			-change below (not above) to  "edit:cloze:Text" for editable field, 
+				but be sure to have the correct add-on installed-->
+
+<div class="editcloze">{{cloze:Text}}</div>
+
+
+<!-- ##############  TEXT-TO-SPEECH ##############
+replace the arrows/dashes from the statement below with double brackets-->
+
+<!--tts en_US voices=Apple_Samantha speed=1.4:cloze-only:Text-->
+
+
+<hr>
+
+
+<!-- ##############  SHOW HINTS AUTOMATICALLY  ##############
+For instructions on how to show a field automatically,  visit www.ankingmed.com/faq and type "show hint" into the search bar -->
+
+<!-- OME AUTO OPEN FIELD -->
+<div class="banner-ome">{{#OME}}{{OME}}{{/OME}}</div>
+
+<!-- LECTURE NOTES FIELD -->
+{{#Lecture Notes}}<a href="#" class="hint" id="hint-ln" onclick="this.style.display='none'; RevealButton('button-ln', 'hint-ln', 'button-ln'); return false;">
+        <button class="button-ln"><img src="_Anking_v3.png"> Lecture Notes</button></a>{{/Lecture Notes}}
+
+<div id="button-ln" class="generalclass" style="display:none;">
+    {{#Lecture Notes}}<button onclick="document.getElementById('hint-ln').style.display='inline-block'; RevealButton('button-ln', 'hint-ln', 'button-ln')" class="button-ln button-revealed"><img src="_Anking_v3.png"> Lecture Notes</button>
+        <br>
+        <div class="hints" id="lecture">{{edit:Lecture Notes}}</div>
+    {{/Lecture Notes}}</div>
+
+
+<!-- MISSED QUESTIONS FIELD -->
+{{#Missed Questions}}<a href="#" class="hint" id="hint-mq" onclick="this.style.display='none'; RevealButton('button-mq', 'hint-mq', 'button-mq'); return false;">
+        <button class="button-mq"><img src="_Anking_v3.png"> Missed Questions</button></a>{{/Missed Questions}}
+
+<div id="button-mq" class="generalclass" style="display:none;">
+    {{#Missed Questions}}<button onclick="document.getElementById('hint-mq').style.display='inline-block'; RevealButton('button-mq', 'hint-mq', 'button-mq')" class="button-mq button-revealed"><img src="_Anking_v3.png"> Missed Questions</button>
+        <br>
+        <div class="hints" id="missed">{{edit:Missed Questions}}</div>
+    {{/Missed Questions}}</div>
+
+
+<!-- PATHOMA FIELD -->
+{{#Pathoma}}<a href="#" class="hint" id="hint-pat" onclick="this.style.display='none'; RevealButton('button-pat', 'hint-pat', 'button-pat'); return false;">
+        <button class="button-pat"><img src="_pathoma.icon.png"></button></a>{{/Pathoma}}
+
+<div id="button-pat" class="generalclass" style="display:none;">
+    {{#Pathoma}}<button onclick="document.getElementById('hint-pat').style.display='inline-block'; RevealButton('button-pat', 'hint-pat', 'button-pat')" class="button-pat button-revealed"><img src="_pathoma.icon.png"></button>
+        <br>
+        <div class="hints" id="pathoma">{{edit:Pathoma}}</div>
+    {{/Pathoma}}</div>
+
+
+<!-- BOARDS AND BEYOND FIELD -->
+{{#Boards and Beyond}}<a href="#" class="hint" id="hint-bb" onclick="this.style.display='none'; RevealButton('button-bb', 'hint-bb', 'button-bb'); return false;">
+        <button class="button-bb"><img src="_b&b.icon.png"> Boards and Beyond</button></a>{{/Boards and Beyond}}
+
+<div id="button-bb" class="generalclass" style="display:none;">
+    {{#Boards and Beyond}}<button onclick="document.getElementById('hint-bb').style.display='inline-block'; RevealButton('button-bb', 'hint-bb', 'button-bb')" class="button-bb button-revealed"><img src="_b&b.icon.png"> Boards and Beyond</button>
+        <br>
+        <div class="hints" id="bnb">{{edit:Boards and Beyond}}</div>
+    {{/Boards and Beyond}}</div>
+
+
+<!-- EXTRA FIELD -->
+<p></p>{{#Extra}}
+    <div id="extra">{{edit:Extra}}</div>
+{{/Extra}}<br>
+<div id="testscroll"></div>
+
+
+<!-- FIRST AID FIELD -->
+{{#First Aid}}<a href="#" class="hint" id="hint-fa" onclick="this.style.display='none'; RevealButton('button-fa', 'hint-fa', 'button-fa'); return false;">
+        <button class="button-fa"><img src="_first-aid.icon_v2.1.png">First Aid</button></a>{{/First Aid}}
+
+<div id="button-fa" class="generalclass" style="display:none;">
+    {{#First Aid}}<button onclick="document.getElementById('hint-fa').style.display='inline-block'; RevealButton('button-fa', 'hint-fa', 'button-fa')" class="button-fa button-revealed"><img src="_first-aid.icon_v2.1.png">First Aid</button>
+        <div class="hints" id="firstaid">{{edit:First Aid}}</div>
+    {{/First Aid}}</div>
+
+
+<!-- SKETCHY FIELD -->
+{{#Sketchy}}<a href="#" class="hint" id="hint-sketchy" onclick="this.style.display='none'; RevealButton('button-sketchy', 'hint-sketchy', 'button-sketchy'); return false;">
+        <button class="button-sketchy"><img src="_sketchy.icon.png"> Sketchy</button></a>{{/Sketchy}}
+
+<div id="button-sketchy" class="generalclass" style="display:none;">
+    {{#Sketchy}}<button onclick="document.getElementById('hint-sketchy').style.display='inline-block'; RevealButton('button-sketchy', 'hint-sketchy', 'button-sketchy')" class="button-sketchy button-revealed"><img src="_sketchy.icon.png"> Sketchy</button>
+        <br>
+        <div class="hints" id="sketchy">{{edit:Sketchy}}</div>
+    {{/Sketchy}}</div>
+
+
+<!-- PIXORIZE FIELD -->
+{{#Pixorize}}<a href="#" class="hint" id="hint-pixorize" onclick="this.style.display='none'; RevealButton('button-pixorize', 'hint-pixorize', 'button-pixorize'); return false;">
+        <button class="button-pixorize"><img src="_pixorize.png"> Pixorize</button></a>{{/Pixorize}}
+
+<div id="button-pixorize" class="generalclass" style="display:none;">
+    {{#Pixorize}}<button onclick="document.getElementById('hint-pixorize').style.display='inline-block'; RevealButton('button-pixorize', 'hint-pixorize', 'button-pixorize')" class="button-pixorize button-revealed"><img src="_pixorize.png"> Pixorize</button>
+        <br>
+        <div class="hints" id="pixorize">{{edit:Pixorize}}</div>
+    {{/Pixorize}}</div>
+
+
+<!-- PHYSEO FIELD -->
+{{#Physeo}}<a href="#" class="hint" id="hint-physeo" onclick="this.style.display='none'; RevealButton('button-physeo', 'hint-physeo', 'button-physeo'); return false;">
+        <button class="button-physeo"><img src="_physeologo.icon.png"></button></a>{{/Physeo}}
+
+<div id="button-physeo" class="generalclass" style="display:none;">
+    {{#Physeo}}<button onclick="document.getElementById('hint-physeo').style.display='inline-block'; RevealButton('button-physeo', 'hint-physeo', 'button-physeo')" class="button-physeo button-revealed"><img src="_physeologo.icon.png"></button>
+        <br>
+        <div class="hints" id="physeo">{{edit:Physeo}}</div>
+    {{/Physeo}}</div>
+
+
+<!-- OME FIELD (CLOSED BY DEFAULT) 
+{{#OME}}<a href="#" class="hint" id="hint-ome" onclick="this.style.display='none'; RevealButton('button-ome', 'hint-ome', 'button-ome'); return false;">
+    <button class="button-ome"><img src="_omelogo.icon.png"> OnlineMedEd</button></a>{{/OME}}
+
+<div id="button-ome" class="generalclass" style="display:none;">
+{{#OME}}<button onclick="document.getElementById('hint-ome').style.display='inline-block'; RevealButton('button-ome', 'hint-ome', 'button-ome')" class="button-ome button-revealed"><img src="_omelogo.icon.png"> OnlineMedEd</button>
+    <br>
+    <div class="hints" id="ome">{{edit:OME}}</div>
+{{/OME}}</div>
+-->
+
+<!-- ADDITIONAL RESOURCES FIELD -->
+{{#Additional Resources}}<a href="#" class="hint" id="hint-ar" onclick="this.style.display='none'; RevealButton('button-ar', 'hint-ar', 'button-ar'); return false;">
+        <button class="button-ar"><img src="_Anking_v3.png"> Additional Resources</button></a>{{/Additional Resources}}
+
+<div id="button-ar" class="generalclass" style="display:none;">
+    {{#Additional Resources}}<button onclick="document.getElementById('hint-ar').style.display='inline-block'; RevealButton('button-ar', 'hint-ar', 'button-ar')" class="button-ar button-revealed><img src="_Anking_v3.png"> Additional Resources</button>
+        <br>
+        <div class="hints" id="additional">{{edit:Additional Resources}}</div>
+    {{/Additional Resources}}</div>
+
+
+
+
+
+
+<script>
+    //HINT REVEALS
+    function RevealButton(divid, id, divid) {
+    var x = document.getElementById(divid), y = document.getElementById(id), z = document.getElementById(divid);
+    if (x.style.display == "none")
+    {
+    x.style.display = "block"; y.style.display = "none"; z.scrollToId;
+    }
+        else {
+          x.style.display = "none"; y.style.display = "inline-block";
+        }
+    if (ScrollToHint){
+	z.scrollIntoView({
+      behavior: "smooth", //"auto" for instant scrolling
+      block: "start",
+      inline: "nearest"
+    }); }
+      }
+      document.onkeydown = function(evt) {
+       evt = evt || window.event;
+          if (evt.altKey && evt.keyCode == lecturenotes) {
+              RevealButton('button-ln', 'hint-ln', 'button-ln')}  
+          if (evt.altKey && evt.keyCode == missedQ) {
+              RevealButton('button-mq', 'hint-mq', 'button-mq')}
+          if (evt.altKey && evt.keyCode == pathoma) {
+              RevealButton('button-pat', 'hint-pat', 'button-pat')}
+          if (evt.altKey && evt.keyCode == bnb) {
+              RevealButton('button-bb', 'hint-bb', 'button-bb')}
+          if (evt.altKey && evt.keyCode == firstaid) {
+              RevealButton('button-fa', 'hint-fa', 'button-fa')}
+          if (evt.altKey && evt.keyCode == sketchy) {
+              RevealButton('button-sketchy', 'hint-sketchy', 'button-sketchy')}
+          if (evt.altKey && evt.keyCode == pixorize) {
+              RevealButton('button-pixorize', 'hint-pixorize', 'button-pixorize')}
+          if (evt.altKey && evt.keyCode == physeo) {
+              RevealButton('button-physeo', 'hint-physeo', 'button-physeo')}
+		  if (evt.altKey && evt.keyCode == ome) {
+              RevealButton('button-ome', 'hint-ome', 'button-ome')}
+          if (evt.altKey && evt.keyCode == additional) {
+              RevealButton('button-ar', 'hint-ar', 'button-ar')}
+      
+          if (evt.keyCode == OpenCloseAll) {
+          try{RevealButton('button-ar', 'hint-ar', 'button-ar');}
+          finally{try{RevealButton('button-ome', 'hint-ome', 'button-ome');}
+          finally{try{RevealButton('button-physeo', 'hint-physeo', 'button-physeo');}
+          finally{try{RevealButton('button-pixorize', 'hint-pixorize', 'button-pixorize');}
+          finally{try{RevealButton('button-sketchy', 'hint-sketchy', 'button-sketchy');}
+          finally{try{RevealButton('button-fa', 'hint-fa', 'button-fa');}
+          finally{try{RevealButton('button-bb', 'hint-bb', 'button-bb');}
+          finally{try{RevealButton('button-pat', 'hint-pat', 'button-pat');}
+          finally{try{RevealButton('button-mq', 'hint-mq', 'button-mq');}
+          finally{RevealButton('button-ln', 'hint-ln', 'button-ln');}}}}}}}}}
+          }
+      }
+</script>
+
+
+<br>
+<br>
+
+<script>
+    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+    var tagID
+</script>
+
+{{#Tags}}
+    <div id="tags-container">{{clickable::Tags}}</div>
+    <script>
+        var tagContainer = document.getElementById("tags-container")
+        if (tagContainer.childElementCount == 0) {
+         var tagList= tagContainer.innerHTML.split(" ");
+         var kbdList = [];
+         var newTagContent = document.createElement("div");
+        
+         for (var i = 0; i < tagList.length;  i++) {
+          var newTag = document.createElement("kbd");
+          newTag.innerHTML = tagList[i];
+          newTagContent.append(newTag)
+         }
+         tagContainer.innerHTML = newTagContent.innerHTML;
+         tagContainer.style.cursor = "default";
+        }
+        if (tagContainer.innerHTML.indexOf(tagID) != -1) {
+        tagContainer.style.backgroundColor = "rgba(251,11,11,.15)";
+        }
+        
+        function showtags() {
+          var tagContainerShortcut = document.getElementById("tags-container");
+        
+            if (tagContainerShortcut.style.display 
+        === "none") {
+            tagContainerShortcut.style.display = "block";
+          } else {
+            tagContainerShortcut.style.display = 
+          "none";
+          }
+        } 
+        document.addEventListener('keyup', function(e) {
+            if(e.key =="c"){
+             showtags();
+            }
+        });
+        
+        
+    </script>
+{{/Tags}}
+
+<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
+
+
+
+
+
+<!-- WIKIPEDIA SEARCHES -->
+<div id="popup-container">
+    <button id="close-popup-btn" onclick="closePopup(true)">&times;</button>
+    <a id="open-wiki-btn" href="">&#8618;</a>
+    <div id="tc"></div>
+    <div id="fadebottom_v"></div>
+    <div id="ic"><img id="popup-image"></div>
+</div>
+<style>
+    #tc {
+        color: #222222;
+        position: absolute;
+        top: 16px;
+        margin: 0px;
+        left: 15px;
+        text-decoration: none;
+        height: 320px;
+        overflow: hidden;
+        overflow-y: scroll;
+        white-space: pre-wrap;
+        width: 300px;
+    }
+
+    #tc p {
+        margin: 0px;
+    }
+
+    #tc::-webkit-scrollbar {
+        display: none;
+    }
+
+    #fadebottom_v {
+        height: 30px;
+        width: 300px;
+        background: -webkit-linear-gradient(270deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 1));
+        z-index: 111;
+        position: absolute;
+        bottom: 0px;
+        left: 15px;
+    }
+
+    #hc {
+        color: #666;
+        font-weight: bold;
+    }
+
+    #ic {
+        right: 0px;
+        top: 30px;
+        position: absolute;
+    }
+
+    #ic img {
+        width: 160px;
+        height: auto;
+        object-fit: cover;
+        overflow: hidden;
+    }
+
+    #popup-image {
+        width: 140px;
+        height: auto;
+    }
+
+    #popup-container {
+        background: #fff;
+        position: absolute;
+        bottom: 30px;
+        right: 10px;
+        z-index: 110;
+        -webkit-box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+        padding: 0;
+        display: none;
+        font-size: 17px;
+        line-height: 20px;
+        border-radius: 2px;
+        width: 480px;
+        height: 340px;
+        overflow: hidden;
+        font-family: Arial;
+        text-align: left;
+        border: 1px solid #d0d0d0;
+        border-radius: 5px;
+    }
+
+    #close-popup-btn {
+        position: absolute;
+        top: 1px;
+        right: 5px;
+        width: 32px;
+        height: 32px;
+        background: none;
+        border: 0;
+        cursor: pointer;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 20px;
+        outline: none;
+        text-align: right;
+        z-index: 112;
+    }
+
+    #open-wiki-btn {
+        position: absolute;
+        top: 10px;
+        right: 30px;
+        width: 15px;
+        height: 32px;
+        background: none;
+        border: 0;
+        cursor: pointer;
+        text-decoration: none;
+        color: #222222;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 17px;
+        outline: none;
+        text-align: left;
+        z-index: 112;
+    }
+</style>
+
+<script>
+    function getSummaryFor(word) {
+      word = word.replace(/^[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+|[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+$/g, "");
+           var pc = document.getElementById("popup-container");
+         var hc = document.getElementById("hc");
+          var tc = document.getElementById("tc");
+          var ic = document.getElementById("ic");
+          var imgelem = document.getElementById("popup-image");
+             imgelem.src = "";
+          var shortsum ="";
+      fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + word).then(function(response) {return response.json();}).then(function(response) {
+         shortsum = response.description;
+       shortsum = shortsum.replace(/(Disambiguation.*)/g, "Disambiguation");
+          tc.innerHTML = "<span id='hc'>" +capfl(shortsum) + "</span>" +"\n" +response.extract_html + "\n";
+      tc.style.width = "420px";
+          if (response.extract_html && !response.extract.endsWith("to:")){
+              pc.style.display = "block";
+          document.getElementById("open-wiki-btn").href = response.content_urls.desktop.page;
+          }else{pc.style.display = "none";}
+          if (!response.thumbnail.source || response.type ==="disambiguation"){
+               tc.style.width = "420px";
+          }else{tc.style.width="300px";imgelem.src = response.thumbnail.source;}
+        }).catch(function(error) {console.log(error);});}
+        
+        function closePopup(deselectAlso=false){
+          pcc.style.display = 'none';
+          if (deselectAlso){clearSelection();}
+        }
+        var pcc = document.getElementById("popup-container");
+        var prevSel = "";
+        document.addEventListener('click', function() {
+            var currentSelection = getSelectionText();
+            if (currentSelection !==""){prevSel = currentSelection;}
+            if (currentSelection && !mustClickW ){
+      getSummaryFor(currentSelection);
+             }else{closePopup();}
+        });
+        document.addEventListener('keyup', function(e) {
+            if(e.key =="w"){
+            if(pcc.style.display ==="block"){closePopup();}else{getSummaryFor(prevSel);}
+            }
+        });
+        function getSelectionText() {
+            var text = "";
+            if (window.getSelection) {
+      text = window.getSelection().toString();
+            } else if (document.selection && document.selection.type != "Control") { text = document.selection.createRange().text;}
+            return text;
+        }
+        function capfl(s) {
+            return s.charAt(0).toUpperCase() + s.slice(1);
+        }
+        function clearSelection(){
+         if (window.getSelection) {window.getSelection().removeAllRanges();}
+         else if (document.selection) {document.selection.empty();}
+        }
+        
+        //CUSTOMIZATION
+        //this is a variable controlling whether user must click the "w" key to open the popup.
+        //if set to true: user must select text, then click the "w" key to open wikipedia popup. Clicking "w" key again will close the popup. 
+        //if set to false: user only needs to select text. popup will open automatically. Clicking "w" is an alternative but not obligatory way of opening/closing the popup in this mode.
+        //BELOW SET to true or to false. 
+        var mustClickW = true;
+        //END CUSTOMIZATION
+</script>
