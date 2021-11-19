@@ -158,7 +158,7 @@ var specialCharCodes = {
                 }
 
                 // ... this also runs script tags, this makes it compatible with the Edit Field during Review add-on
-                setInnerHTML(this.hint, content)
+                ankingsetInnerHTML(this.hint, content)
 
 
                 this.button.onclick = () => this.toggle()
@@ -209,7 +209,7 @@ var specialCharCodes = {
 
     defineHintButton()
 
-    function setInnerHTML(elm, html) {
+    function ankingsetInnerHTML(elm, html) {
         elm.innerHTML = html;
         Array.from(elm.querySelectorAll("script")).forEach(oldScript => {
             const newScript = document.createElement("script");
