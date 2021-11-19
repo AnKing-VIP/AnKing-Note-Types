@@ -29,68 +29,68 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <!-- CLOZE ONE BY ONE AUTOFLIP -->
 <script>
-var clozeOneByOneEnabled = true;
-try {
-  clozeOneByOneEnabled = `{{One by one}}`.trim() !== ""
-} catch (exception) {
-  console.log(exception)
-}
-
-// AUTO-FLIP if cloze has hint
-if(clozeOneByOneEnabled && autoflip) {
+  var clozeOneByOneEnabled = true;
+  try {
+    clozeOneByOneEnabled = `{{One by one}}`.trim() !== ""
+  } catch (exception) {
+    console.log(exception)
+  }
+  
+  // AUTO-FLIP if cloze has hint
+  if(clozeOneByOneEnabled && autoflip) {
     // avoid flickering
     document.getElementById("qa").style.display = "none";
     window.clozeHints = [];
-
+    
     // Check if a cloze has hint
     let clozes = document.getElementsByClassName("cloze")
     for(var i = 0; i < clozes.length; i++) {
-        if (clozes[i].innerHTML === "[...]") {
-            window.clozeHints.push("")
-        } else {
-            window.clozeHints.push(clozes[i].innerHTML)
-        }
+      if (clozes[i].innerHTML === "[...]") {
+        window.clozeHints.push("")
+      } else {
+        window.clozeHints.push(clozes[i].innerHTML)
+      }
     }
-
+    
     if (window.pycmd) {
-        pycmd("ans")
+      pycmd("ans")
     } else if (window.showAnswer) {
-        showAnswer()
+      showAnswer()
     }    
     // AnkiMobile JS API doesn't have one for show answer. 
     // Best alternative is to use Taps/Swipes to show answer.
-
-} else {
+    
+  } else {
     delete window.clozeHints
-}
+  }
 </script>
 
  
 <!-- COUNTDOWN TIMER -->
 <div class="timer" id="s2"></div>
 <script>
-function countdown(elementName, minutes, seconds) {
+  function countdown(elementName, minutes, seconds) {
     var element, endTime, mins, msLeft, time;
     function twoDigits( n ) {
-        return (n <= 9 ? "0" + n : n); 
+      return (n <= 9 ? "0" + n : n); 
     }
     function updateTimer() {
-        msLeft = endTime - (+new Date);
-
-        if ( msLeft < 1000 ) {
-            element.innerHTML = timeOverMsg;
-        } else {
-            time = new Date( msLeft );
-            mins = time.getUTCMinutes();
-            element.innerHTML = mins + ':' + twoDigits(time.getUTCSeconds());
-            setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
-        }
+      msLeft = endTime - (+new Date);
+      
+      if ( msLeft < 1000 ) {
+        element.innerHTML = timeOverMsg;
+      } else {
+        time = new Date( msLeft );
+        mins = time.getUTCMinutes();
+        element.innerHTML = mins + ':' + twoDigits(time.getUTCSeconds());
+        setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+      }
     }
     element = document.getElementById(elementName);
     endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
     updateTimer();
-}
-countdown("s2", minutes, seconds ); //2nd value is the minute, 3rd is the seconds
+  }
+  countdown("s2", minutes, seconds ); //2nd value is the minute, 3rd is the seconds
 </script>
 
 <!-- PHYSEO HYPERLINK IMAGE -->

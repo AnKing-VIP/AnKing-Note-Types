@@ -26,15 +26,15 @@ components/ankingAddEventListener
     white-space: pre-wrap;
     width: 300px;
   }
-
+  
   #tc p {
     margin: 0px;
   }
-
+  
   #tc::-webkit-scrollbar {
     display: none;
   }
-
+  
   #fadebottom_v {
     height: 30px;
     width: 300px;
@@ -44,30 +44,30 @@ components/ankingAddEventListener
     bottom: 0px;
     left: 15px;
   }
-
+  
   #hc {
     color: #666;
     font-weight: bold;
   }
-
+  
   #ic {
     right: 0px;
     top: 30px;
     position: absolute;
   }
-
+  
   #ic img {
     width: 160px;
     height: auto;
     object-fit: cover;
     overflow: hidden;
   }
-
+  
   #popup-image {
     width: 140px;
     height: auto;
   }
-
+  
   #popup-container {
     background: #fff;
     position: absolute;
@@ -89,7 +89,7 @@ components/ankingAddEventListener
     border: 1px solid #d0d0d0;
     border-radius: 5px;
   }
-
+  
   #close-popup-btn {
     position: absolute;
     top: 1px;
@@ -105,7 +105,7 @@ components/ankingAddEventListener
     text-align: right;
     z-index: 112;
   }
-
+  
   #open-wiki-btn {
     position: absolute;
     top: 10px;
@@ -135,7 +135,10 @@ components/ankingAddEventListener
     var imgelem = document.getElementById("popup-image");
     imgelem.src = "";
     var shortsum = "";
-    fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + word).then(function (response) { return response.json(); }).then(function (response) {
+    
+    fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + word)
+    .then(function (response) { return response.json(); })
+    .then(function (response) {
       shortsum = response.description;
       shortsum = shortsum.replace(/(Disambiguation.*)/g, "Disambiguation");
       tc.innerHTML = "<span id='hc'>" + capfl(shortsum) + "</span>" + "\n" + response.extract_html + "\n";
@@ -143,17 +146,25 @@ components/ankingAddEventListener
       if (response.extract_html && !response.extract.endsWith("to:")) {
         pc.style.display = "block";
         document.getElementById("open-wiki-btn").href = response.content_urls.desktop.page;
-      } else { pc.style.display = "none"; }
+      } else { 
+        pc.style.display = "none"; 
+      }
       if (!response.thumbnail.source || response.type === "disambiguation") {
         tc.style.width = "420px";
-      } else { tc.style.width = "300px"; imgelem.src = response.thumbnail.source; }
-    }).catch(function (error) { console.log(error); });
+      } else { 
+        tc.style.width = "300px"; imgelem.src = response.thumbnail.source; 
+      }
+    })
+    .catch(function (error) { 
+      console.log(error); 
+    });
   }
-
+  
   function closePopup(deselectAlso = false) {
     pcc.style.display = 'none';
     if (deselectAlso) { clearSelection(); }
   }
+
   var pcc = document.getElementById("popup-container");
   var prevSel = "";
   ankingAddEventListener(document, 'click', function () {
@@ -163,11 +174,13 @@ components/ankingAddEventListener
       getSummaryFor(currentSelection);
     } else { closePopup(); }
   });
+
   ankingAddEventListener(document, 'keyup', function (e) {
     if (e.key == "w") {
       if (pcc.style.display === "block") { closePopup(); } else { getSummaryFor(prevSel); }
     }
   });
+
   function getSelectionText() {
     var text = "";
     if (window.getSelection) {
@@ -175,19 +188,21 @@ components/ankingAddEventListener
     } else if (document.selection && document.selection.type != "Control") { text = document.selection.createRange().text; }
     return text;
   }
+
   function capfl(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
   }
+
   function clearSelection() {
     if (window.getSelection) { window.getSelection().removeAllRanges(); }
     else if (document.selection) { document.selection.empty(); }
   }
-
+  
   //CUSTOMIZATION
   //this is a variable controlling whether user must click the "w" key to open the popup.
   //if set to true: user must select text, then click the "w" key to open wikipedia popup. Clicking "w" key again will close the popup. 
   //if set to false: user only needs to select text. popup will open automatically. Clicking "w" is an alternative but not obligatory way of opening/closing the popup in this mode.
   //BELOW SET to true or to false. 
   var mustClickW = true;
-        //END CUSTOMIZATION
+  //END CUSTOMIZATION
 </script>

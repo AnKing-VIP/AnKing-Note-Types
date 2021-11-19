@@ -12,35 +12,35 @@
 
 <!-- CLOZE ONE BY ONE AUTOFLIP -->
 <script>
-var clozeOneByOneEnabled = true;
-
-// AUTO-FLIP if cloze has hint
-if(clozeOneByOneEnabled && autoflip) {
+  var clozeOneByOneEnabled = true;
+  
+  // AUTO-FLIP if cloze has hint
+  if(clozeOneByOneEnabled && autoflip) {
     // avoid flickering
     document.getElementById("qa").style.display = "none";
     window.clozeHints = [];
-
+    
     // Check if a cloze has hint
     let clozes = document.getElementsByClassName("cloze")
     for(var i = 0; i < clozes.length; i++) {
-        if (clozes[i].innerHTML === "[...]") {
-            window.clozeHints.push("")
-        } else {
-            window.clozeHints.push(clozes[i].innerHTML)
-        }
+      if (clozes[i].innerHTML === "[...]") {
+        window.clozeHints.push("")
+      } else {
+        window.clozeHints.push(clozes[i].innerHTML)
+      }
     }
-
+    
     if (window.pycmd) {
-        pycmd("ans")
+      pycmd("ans")
     } else if (window.showAnswer) {
-        showAnswer()
+      showAnswer()
     }    
     // AnkiMobile JS API doesn't have one for show answer. 
     // Best alternative is to use Taps/Swipes to show answer.
-
-} else {
+    
+  } else {
     delete window.clozeHints
-}
+  }
 </script>
 
 
