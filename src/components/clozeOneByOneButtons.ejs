@@ -1,0 +1,13 @@
+<%# 
+Should have components/clozeOneByOne.ejs after this component
+
+Parameters:
+- optional: boolean
+
+%> 
+<!-- ClOZE ONE BY ONE BUTTONS -->
+<% if(optional) { %>{{#One by one}}<% } %>
+<button id="button-reveal-next" class="button-general" onclick="revealNextCloze()">Reveal Next Cloze</button>
+<button id="button-toggle-all" class="button-general" onclick="toggleAllCloze()">Toggle All Cloze</button>
+<br />
+<% if(optional) { %>{{/One by one}}<% } %>

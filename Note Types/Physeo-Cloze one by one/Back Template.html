@@ -2,6 +2,7 @@
 ################  USER CUSTOMIZATION START  ############## -->
 
 <script>
+// ~~~~~~~~~~~~~  CLOZE ONE BY ONE  ~~~~~~~~~~~~~
 var revealClozeShortcut = "N" // Shortcut to reveal next cloze
 var revealClozeWordShortcut = "Shift + N" // Shortcut to reveal next hidden word in cloze
 
@@ -66,11 +67,13 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 
 <!-- BUTTON FIELDS -->
-
+ 
 <!-- ClOZE ONE BY ONE BUTTONS -->
+
 <button id="button-reveal-next" class="button-general" onclick="revealNextCloze()">Reveal Next Cloze</button>
 <button id="button-toggle-all" class="button-general" onclick="toggleAllCloze()">Toggle All Cloze</button>
 <br />
+
 
 <div class="btn-spacer" hidden></div>
 <hint-button field-name="Personal Notes" short="ln" hint-id="notes"></hint-button>
@@ -152,27 +155,20 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   }
 </script>
 
+
 <!-- CLOZE ONE BY ONE SCRIPT -->
 <style>
-.cloze[data-content]:hover {
-  cursor: pointer;
-}
+  .cloze[data-content]:hover {
+    cursor: pointer;
+  }
 </style>
-
 
 <script>
   (function() {
-    /*
     var clozeOneByOneEnabled = true;
-    try {
-        clozeOneByOneEnabled = `{ {One by one} }` === ""
-    } catch (exception) {
-      console.log(exception)
-    }
-    */
-    var clozeOneByOneEnabled = true 
-  
-    let hideCloze = function(cloze) {
+    
+
+    const hideCloze = function(cloze) {
       if (!clozeOneByOneEnabled) {
         return
       }
@@ -184,7 +180,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         }
     }
     
-    let revealCloze = function(elem) {
+    const revealCloze = function(elem) {
       // Checking for dataset.content is undefined may not be needed anymore?
       if (!clozeOneByOneEnabled || elem.dataset.content === undefined) {
         return
@@ -192,8 +188,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
       elem.innerHTML = elem.dataset.content
       delete elem.dataset.content
     }
-  
-    let revealClozeWord = function(elem) {
+
+    const revealClozeWord = function(elem) {
       if (!clozeOneByOneEnabled || elem.dataset.content === undefined) {
         return
       }
@@ -218,7 +214,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         revealClozeWord(elem)
       }
     }
-  
+
     window.revealNextCloze = function() {
       let nextHidden = document.querySelector(".cloze[data-content]")
       if(!nextHidden) {
@@ -230,8 +226,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
           revealCloze(nextHidden)
       }
     }
-  
-    let hideAllCloze = function(initial) {
+
+    const hideAllCloze = function(initial) {
       let clozes = document.getElementsByClassName("cloze")
       for (let i = 0; i < clozes.length; i++) {
         let cloze = clozes[i]
@@ -245,7 +241,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         }
       }
     }
-  
+
     window.toggleAllCloze = function() {
       let elems = document.querySelectorAll(".cloze[data-content]")
       let button = document.getElementById("button-toggle-all")
@@ -257,8 +253,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         hideAllCloze(initial=false)
       }
     }
-  
-    let revealClozeClicked = function(ev) {
+
+    const revealClozeClicked = function(ev) {
       let elem = ev.currentTarget
       if (elem.dataset.content === undefined) {
         return
@@ -271,20 +267,18 @@ replace the arrows/dashes from the statement below with double curly brackets-->
       ev.stopPropagation()
       ev.preventDefault()
     }
-  
+
     // previously attached listener should be removed.
     //
     // In case the keydown listener changes between versions across notetypes
     // and if shortcut is different across notetypes, attached every time.
-    let attachKeydownListener = function() {
+    const attachKeydownListener = function() {
       if(window.revealClozeKeydownListener) {
         document.removeEventListener("keydown", window.revealClozeKeydownListener)
       }
-  
       let showAllShortcut = shortcutMatcher(window.revealClozeShortcut)
       let showWordShortcut = shortcutMatcher(window.revealClozeWordShortcut)
-  
-  
+
       window.revealClozeKeydownListener = function(ev) {
         if(showAllShortcut(ev)) {
           let elem = document.querySelector(".cloze[data-content]")
@@ -311,11 +305,10 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     // autoflip hides card in front template
     document.getElementById("qa").style.removeProperty("display")
     hideAllCloze(initial=true)
-  
+
     attachKeydownListener()
   })()
 </script>
-
 
 <!-- PHYSEO HYPERLINK IMAGE -->
 <a href="https://www.physeo.com"><img src="_PhyseoRoundLogo.png" alt="Physeo" id="pic"></a>

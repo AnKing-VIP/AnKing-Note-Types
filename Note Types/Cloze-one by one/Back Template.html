@@ -68,9 +68,13 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 
 <!-- BUTTON FIELDS -->
-<!-- CLOZE ONE BY ONE-->
+ 
+<!-- ClOZE ONE BY ONE BUTTONS -->
+
 <button id="button-reveal-next" class="button-general" onclick="revealNextCloze()">Reveal Next Cloze</button>
 <button id="button-toggle-all" class="button-general" onclick="toggleAllCloze()">Toggle All Cloze</button>
+<br />
+
 <br>
 <div class="btn-spacer" hidden></div>
 <hint-button field-name="Personal Notes" short="ln" hint-id="notes"></hint-button>
@@ -155,6 +159,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   }
 </script>
 
+
 <!-- CLOZE ONE BY ONE SCRIPT -->
 <style>
   .cloze[data-content]:hover {
@@ -164,14 +169,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <script>
   (function() {
-    var clozeOneByOneEnabled = true 
-    /*
-    try {
-        clozeOneByOneEnabled = `{ {One by one} }`.trim() !== ""
-    } catch (exception) {
-      console.log(exception)
-    }
-    */
+    var clozeOneByOneEnabled = true;
+    
 
     const hideCloze = function(cloze) {
       if (!clozeOneByOneEnabled) {
