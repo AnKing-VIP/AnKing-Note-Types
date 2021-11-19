@@ -73,7 +73,6 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <button id="button-reveal-next" class="button-general" onclick="revealNextCloze()">Reveal Next Cloze</button>
 <button id="button-toggle-all" class="button-general" onclick="toggleAllCloze()">Toggle All Cloze</button>
 <br />
-
 {{/One by one}}
 
 
@@ -391,47 +390,35 @@ replace the arrows/dashes from the statement below with double curly brackets-->
       }
       ev.stopPropagation()
       ev.preventDefault()
-    }
-
-    // previously attached listener should be removed.
-    //
-    // In case the keydown listener changes between versions across notetypes
-    // and if shortcut is different across notetypes, attached every time.
-    const attachKeydownListener = function() {
-      if(window.revealClozeKeydownListener) {
-        document.removeEventListener("keydown", window.revealClozeKeydownListener)
-      }
-      let showAllShortcut = shortcutMatcher(window.revealClozeShortcut)
-      let showWordShortcut = shortcutMatcher(window.revealClozeWordShortcut)
-
-      window.revealClozeKeydownListener = function(ev) {
-        if(showAllShortcut(ev)) {
-          let elem = document.querySelector(".cloze[data-content]")
-          if (elem) {
-            revealCloze(elem)
-            ev.stopPropagation()
-            ev.preventDefault()
-            return
-          }
-        }
-        if (showWordShortcut(ev)) {
-          let elem = document.querySelector(".cloze[data-content]")
-          if (elem) {
-            revealClozeWord(elem)
-            ev.stopPropagation()
-            ev.preventDefault()
-            return
-          }
-        }
-      }
-      ankingAddEventListener(document, "keydown", window.revealClozeKeydownListener);
-    }
+    }      
     
     // autoflip hides card in front template
     document.getElementById("qa").style.removeProperty("display")
     hideAllCloze(initial=true)
 
-    attachKeydownListener()
+    let showAllShortcut = shortcutMatcher(window.revealClozeShortcut)
+    let showWordShortcut = shortcutMatcher(window.revealClozeWordShortcut)
+
+    ankingAddEventListener(document, "keydown", (ev) => {
+      if(showAllShortcut(ev)) {
+        let elem = document.querySelector(".cloze[data-content]")
+        if (elem) {
+          revealCloze(elem)
+          ev.stopPropagation()
+          ev.preventDefault()
+          return
+        }
+      }
+      if (showWordShortcut(ev)) {
+        let elem = document.querySelector(".cloze[data-content]")
+        if (elem) {
+          revealClozeWord(elem)
+          ev.stopPropagation()
+          ev.preventDefault()
+          return
+        }
+      }
+    });
   })()
 </script>
 
