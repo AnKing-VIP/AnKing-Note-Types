@@ -164,24 +164,25 @@
         }
     </script>
     {{/Tags}}
+    
+    
+<!-- TOGGLE BUTTONS -->
+<script>
+    function defineHintButton() {
+        class HintButton extends HTMLElement {
+            constructor() {
+                super();
 
-    <!-- TOGGLE BUTTONS -->
-    <script>
-        function defineHintButton() {
-            class HintButton extends HTMLElement {
-                constructor() {
-                    super();
+                var fieldName = this.getAttribute("field-name")
 
-                    var fieldName = this.getAttribute("field-name")
-
-                    // adding the strings together this way to prevent Anki from thinking that a field should be inserted here
-                    var fieldString = '{' + '{' + fieldName + '}}'
-                    var short = this.getAttribute("short")
-                    var hintId = this.getAttribute("hint-id")
-                    var iconFile = this.getAttribute("icon") || "_Anking_v3.png"
-                    var buttonText = fieldName
-                    if (this.hasAttribute("no-text")) buttonText = ""
-                    this.innerHTML = `
+                // adding the strings together this way to prevent Anki from thinking that a field should be inserted here
+                var fieldString = '{' + '{' + fieldName + '}}'
+                var short = this.getAttribute("short")
+                var hintId = this.getAttribute("hint-id")
+                var iconFile = this.getAttribute("icon") || "_Anking_v3.png"
+                var buttonText = fieldName
+                if (this.hasAttribute("no-text")) buttonText = ""
+                this.innerHTML = `
                         <a id="link-${short}" href="#" class="hint"></a>
                         <button id="button-${short}" class="button-general">
                         <img id="icon-${short}" src="">
@@ -190,91 +191,91 @@
                         <div id="${hintId}" class="hints" style="display:none;">
                         </div>
                     `
-                    this.button = document.getElementById(`button-${short}`)
-                    this.link = document.getElementById(`link-${short}`)
-                    this.hint = document.getElementById(hintId)
-                    this.icon = document.getElementById(`icon-${short}`)
+                this.button = document.getElementById(`button-${short}`)
+                this.link = document.getElementById(`link-${short}`)
+                this.hint = document.getElementById(hintId)
+                this.icon = document.getElementById(`icon-${short}`)
 
-                    // inserting the icon file name directly in the template string doesnt work
-                    // because Anki probably replaces img src attributes using a regex with the url-encoded src
-                    this.icon.setAttribute("src", iconFile)
+                // inserting the icon file name directly in the template string doesnt work
+                // because Anki probably replaces img src attributes using a regex with the url-encoded src
+                this.icon.setAttribute("src", iconFile)
 
-                    // moves the field content from the dummy to this
-                    var dummy = document.getElementById(`dummy-${short}`)
-                    var content = dummy.innerHTML
+                // moves the field content from the dummy to this
+                var dummy = document.getElementById(`dummy-${short}`)
+                var content = dummy.innerHTML
 
-                    // hide this if the field is empty
-                    if (dummy.innerHTML == "" ||
-                        (dummy.lastChild.nodeName == "SCRIPT" && dummy.firstChild.getAttribute("contenteditable") && dummy.firstChild.innerHTML == "")) {
-                        this.remove()
-                        return
-                    }
-
-                    // ... this also runs script tags, this makes it compatible with the Edit Field during Review add-on
-                    ankingsetInnerHTML(this.hint, content)
-
-
-                    this.button.onclick = () => this.toggle()
-
-                    // the link is needed so that this works with the Hint Hotkey add-on
-                    this.link.onclick = () => this.toggle()
-
-                    if (ButtonAutoReveal[fieldName]) {
-                        this.toggle()
-                    }
-
-                    var isShortcut = shortcutMatcher(ButtonShortcuts[fieldName])
-                    var isToggleAllShortcut = shortcutMatcher(ToggleAllButtonsShortcut)
-                    ankingAddEventListener(document, "keydown", (evt) => {
-                        if (evt.repeat) return
-                        if (isShortcut(evt) || isToggleAllShortcut(evt)) {
-                        this.toggle()
-                        }
-                        return false
-                    })
+                // hide this if the field is empty
+                if (dummy.innerHTML == "" ||
+                    (dummy.lastChild.nodeName == "SCRIPT" && dummy.firstChild.getAttribute("contenteditable") && dummy.firstChild.innerHTML == "")) {
+                    this.remove()
+                    return
                 }
 
-                toggle() {
-                    if (!this.button) return
-                    if (this.hint.style.display == "none") {
-                        this.button.classList.add("expanded-button")
-                        this.hint.style.display = "block"
-                        this.link.style.display = "none"
-                        if (ScrollToButton) {
-                            this.hint.scrollIntoView({
-                                behavior: "smooth", // "auto" for instant scrolling
-                                block: "start",
-                                inline: "nearest"
-                            });
-                        }
-                    } else {
-                        this.button.classList.remove("expanded-button")
-                        this.hint.style.display = "none"
-                        this.link.style.display = ""
-                    }
+                // ... this also runs script tags, this makes it compatible with the Edit Field during Review add-on
+                ankingsetInnerHTML(this.hint, content)
+
+
+                this.button.onclick = () => this.toggle()
+
+                // the link is needed so that this works with the Hint Hotkey add-on
+                this.link.onclick = () => this.toggle()
+
+                if (ButtonAutoReveal[fieldName]) {
+                    this.toggle()
                 }
 
+                var isShortcut = shortcutMatcher(ButtonShortcuts[fieldName])
+                var isToggleAllShortcut = shortcutMatcher(ToggleAllButtonsShortcut)
+                ankingAddEventListener(document, "keydown", (evt) => {
+                    if (evt.repeat) return
+                    if (isShortcut(evt) || isToggleAllShortcut(evt)) {
+                      this.toggle()
+                    }
+                    return false
+                })
             }
-            try {
-                customElements.define('hint-button', HintButton)
-            } catch (DOMException) { }
+
+            toggle() {
+                if (!this.button) return
+                if (this.hint.style.display == "none") {
+                    this.button.classList.add("expanded-button")
+                    this.hint.style.display = "block"
+                    this.link.style.display = "none"
+                    if (ScrollToButton) {
+                        this.hint.scrollIntoView({
+                            behavior: "smooth", // "auto" for instant scrolling
+                            block: "start",
+                            inline: "nearest"
+                        });
+                    }
+                } else {
+                    this.button.classList.remove("expanded-button")
+                    this.hint.style.display = "none"
+                    this.link.style.display = ""
+                }
+            }
+
         }
+        try {
+            customElements.define('hint-button', HintButton)
+        } catch (DOMException) { }
+    }
 
-        defineHintButton()
+    defineHintButton()
 
-        function ankingsetInnerHTML(elm, html) {
-            elm.innerHTML = html;
-            Array.from(elm.querySelectorAll("script")).forEach(oldScript => {
-                const newScript = document.createElement("script");
-                Array.from(oldScript.attributes)
-                    .forEach(attr => newScript.setAttribute(attr.name, attr.value));
-                newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-                oldScript.parentNode.replaceChild(newScript, oldScript);
-            });
-        }
+    function ankingsetInnerHTML(elm, html) {
+        elm.innerHTML = html;
+        Array.from(elm.querySelectorAll("script")).forEach(oldScript => {
+            const newScript = document.createElement("script");
+            Array.from(oldScript.attributes)
+                .forEach(attr => newScript.setAttribute(attr.name, attr.value));
+            newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+        });
+    }
 
+</script>
 
-    </script>
 
     <!-- INCREMENTAL IMAGE OCCLUSION SCRIPT -->
     <script data-name="Incremental IO" data-version="v0.1">
