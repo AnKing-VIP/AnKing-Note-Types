@@ -235,7 +235,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 </script>
 
-
+ 
 <!-- CLICKABLE COLORFUL TAGS -->
 {{#Tags}}
 <div id="tags-container">{{clickable::Tags}}</div>
@@ -269,13 +269,14 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         "none";
     }
   }
-
+  
   var isShortcut = shortcutMatcher(toggleTagsShortcut)
   ankingAddEventListener(document, 'keyup', function (e) {
       if (isShortcut(e)) {
           showtags();
       }
   });
+
 </script>
 {{/Tags}}
 
