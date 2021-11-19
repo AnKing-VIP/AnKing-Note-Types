@@ -1,0 +1,21 @@
+{
+  "name": "anking-note-types",
+  "version": "1.0.0",
+  "description": "Repo containing Anking note types for Anki.",
+  "scripts": {
+    "build": "bash ./build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnKingMed/AnKing-Note-Types.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnKingMed/AnKing-Note-Types/issues"
+  },
+  "homepage": "https://github.com/AnKingMed/AnKing-Note-Types#readme",
+  "devDependencies": {
+    "ejs": "^3.1.6"
+  }
+}

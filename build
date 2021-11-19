@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Extended glob pattern: !(*.ejs)
+shopt -s extglob
+# When no file matches glob, don't treat the pattern as literal string
+shopt -s nullglob
+
+for dir in ./src/notetypes/*/ ; do
+    NOTETYPE_DIR="./Note Types/$(basename ${dir})"
+    
+    for file in "${NOTETYPE_DIR}"/* ; do
+        rm "$file"
+    done
+
+    npx ejs "$dir"/front.ejs -o "${NOTETYPE_DIR}/Front Template.html"
+    npx ejs "$dir"/back.ejs -o "${NOTETYPE_DIR}/Back Template.html"
+
+    for file in "${dir}"!(*.ejs) ; do
+        cp "$file" "${NOTETYPE_DIR}/$(basename $file)"
+    done
+done

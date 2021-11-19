@@ -219,6 +219,16 @@ All note types in this repo use many or all of the features listed below. Some w
 - [ ] Merge one by one pull to Cloze-one by one and Physeo one by one
 - [ ] Create one by one compatible with AnKingMaster note type
 
+## Contributing
+
+All files in `/Note Types` are generated from files in `/src`. DO NOT edit the files in `/Note Types`!
+
+To generate the files, [Node.js](https://nodejs.org/en/download/) needs to be installed.
+
+After editing the files in `/src`, run `npm run build` to generate the files. Always run `npm run build` before opening a Pull Request.
+
+If you get a `Permission denied` message, you may need to run `sudo chmod 755 ./build` to make the `build` file executable.
+
 ***
 
 ### If you like these, please consider donating to this project
