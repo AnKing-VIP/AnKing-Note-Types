@@ -26,6 +26,54 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 </script>
 
 
+
+<!-- Shortcut Matcher Function -->
+<script>
+  var specialCharCodes = {
+    "-": "minus",
+    "=": "equal",
+    "[": "bracketleft",
+    "]": "bracketright",
+    ";": "semicolon",
+    "'": "quote",
+    "`": "backquote",
+    "\\": "backslash",
+    ",": "comma",
+    ".": "period",
+    "/": "slash",
+  };
+  // Returns function that match keyboard event to see if it matches given shortcut.
+  function shortcutMatcher(shortcut) {
+    let shortcutKeys = shortcut.toLowerCase().split(/[+]/).map(key => key.trim())
+    let mainKey = shortcutKeys[shortcutKeys.length - 1]
+    if (mainKey.length === 1) {
+      if (/\d/.test(mainKey)) {
+        mainKey = "digit" + mainKey
+      } else if (/[a-zA-Z]/.test(mainKey)) {
+        mainKey = "key" + mainKey
+      } else {
+        let code = specialCharCodes[mainKey];
+        if (code) {
+          mainKey = code
+        }
+      }
+    }
+    let ctrl = shortcutKeys.includes("ctrl")
+    let shift = shortcutKeys.includes("shift")
+    let alt = shortcutKeys.includes("alt")
+
+    let matchShortcut = function (ctrl, shift, alt, mainKey, event) {
+      if (mainKey !== event.code.toLowerCase()) return false
+      if (ctrl !== (event.ctrlKey || event.metaKey)) return false
+      if (shift !== event.shiftKey) return false
+      if (alt !== event.altKey) return false
+      return true
+    }.bind(window, ctrl, shift, alt, mainKey)
+    
+    return matchShortcut
+  }
+</script>
+
 <!-- COUNTDOWN TIMER -->
 <div class="timer" id="s2"></div>
 <script>
@@ -97,8 +145,10 @@ countdown("s2", minutes, seconds ); //2nd value is the minute, 3rd is the second
                 "none";
         }
     }
+
+    var isShortcut = shortcutMatcher(toggleTagsShortcut)
     document.addEventListener('keyup', function (e) {
-        if (e.keyCode == toggleTagsShortcut) {
+        if (isShortcut(e)) {
             showtags();
         }
     });
