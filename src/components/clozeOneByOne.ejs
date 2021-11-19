@@ -22,13 +22,13 @@ components/shortcutMatcher
 <script>
   (function() {
     var clozeOneByOneEnabled = true;
-    <% if (optional === true) { %>
+    <%_ if (optional === true) { _%>
     try {
         clozeOneByOneEnabled = `{{One by one}}`.trim() !== ""
     } catch (exception) {
       console.log(exception)
     }
-    <% } %>
+    <%_ } _%>
 
     const hideCloze = function(cloze) {
       if (!clozeOneByOneEnabled) {

@@ -6,8 +6,12 @@ Parameters:
 
 %> 
 <!-- ClOZE ONE BY ONE BUTTONS -->
-<% if(optional) { %>{{#One by one}}<% } %>
+<%_ if(optional) { _%>
+{{#One by one}}
+<%_ } _%>
 <button id="button-reveal-next" class="button-general" onclick="revealNextCloze()">Reveal Next Cloze</button>
 <button id="button-toggle-all" class="button-general" onclick="toggleAllCloze()">Toggle All Cloze</button>
 <br />
-<% if(optional) { %>{{/One by one}}<% } %>
+<%_ if(optional) { _%>
+{{/One by one}}
+<%_ } _%>

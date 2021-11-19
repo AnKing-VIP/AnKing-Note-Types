@@ -86,7 +86,9 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <button id="button-reveal-next" class="button-general" onclick="revealNextCloze()">Reveal Next Cloze</button>
 <button id="button-toggle-all" class="button-general" onclick="toggleAllCloze()">Toggle All Cloze</button>
 <br />
+
 {{/One by one}}
+
 
 <!-- OME AUTO OPEN FIELD -->
 <div class="banner-ome">{{#OME}}{{OME}}{{/OME}}</div>
@@ -322,13 +324,11 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <script>
   (function() {
     var clozeOneByOneEnabled = true;
-    
     try {
         clozeOneByOneEnabled = `{{One by one}}`.trim() !== ""
     } catch (exception) {
       console.log(exception)
     }
-    
 
     const hideCloze = function(cloze) {
       if (!clozeOneByOneEnabled) {
