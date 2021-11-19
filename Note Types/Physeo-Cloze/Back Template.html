@@ -108,7 +108,6 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   }
 </script>
 
-
 <!-- Shortcut Matcher Function -->
 <script>
   var specialCharCodes = {
@@ -143,7 +142,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     let ctrl = shortcutKeys.includes("ctrl")
     let shift = shortcutKeys.includes("shift")
     let alt = shortcutKeys.includes("alt")
-  
+
     let matchShortcut = function (ctrl, shift, alt, mainKey, event) {
       if (mainKey !== event.code.toLowerCase()) return false
       if (ctrl !== (event.ctrlKey || event.metaKey)) return false
@@ -154,8 +153,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     
     return matchShortcut
   }
-</script>  
-  
+</script>
 
 <!-- TOGGLE BUTTONS -->
 <script>

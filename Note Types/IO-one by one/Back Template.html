@@ -72,7 +72,6 @@
   }
 </script>
 
-
 <!-- Shortcut Matcher Function -->
 <script>
   var specialCharCodes = {
@@ -107,7 +106,7 @@
     let ctrl = shortcutKeys.includes("ctrl")
     let shift = shortcutKeys.includes("shift")
     let alt = shortcutKeys.includes("alt")
-  
+
     let matchShortcut = function (ctrl, shift, alt, mainKey, event) {
       if (mainKey !== event.code.toLowerCase()) return false
       if (ctrl !== (event.ctrlKey || event.metaKey)) return false
@@ -118,8 +117,7 @@
     
     return matchShortcut
   }
-</script>  
-
+</script>
 
 <div id="anki-am" data-name="Assets by ASSET MANAGER" data-version="2.1">
 

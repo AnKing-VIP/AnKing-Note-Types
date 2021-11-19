@@ -77,7 +77,6 @@ countdown("s2", minutes, seconds ); //2nd value is the minute, 3rd is the second
   }
 </script>
 
-
 <!-- Shortcut Matcher Function -->
 <script>
   var specialCharCodes = {
@@ -112,7 +111,7 @@ countdown("s2", minutes, seconds ); //2nd value is the minute, 3rd is the second
     let ctrl = shortcutKeys.includes("ctrl")
     let shift = shortcutKeys.includes("shift")
     let alt = shortcutKeys.includes("alt")
-  
+
     let matchShortcut = function (ctrl, shift, alt, mainKey, event) {
       if (mainKey !== event.code.toLowerCase()) return false
       if (ctrl !== (event.ctrlKey || event.metaKey)) return false
@@ -124,7 +123,6 @@ countdown("s2", minutes, seconds ); //2nd value is the minute, 3rd is the second
     return matchShortcut
   }
 </script>
-
 
 <script>
     //DONT FADE BETWEEN CARDS

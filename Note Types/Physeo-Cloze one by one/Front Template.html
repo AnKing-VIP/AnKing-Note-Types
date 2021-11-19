@@ -58,7 +58,6 @@ if(autoflip) {
 }
 </script>
 
-
 <!-- NOT-PERSISTING EVENT LISTENER -->
 <script>
   if (window.ankingEventListeners) {
@@ -113,7 +112,7 @@ if(autoflip) {
     let ctrl = shortcutKeys.includes("ctrl")
     let shift = shortcutKeys.includes("shift")
     let alt = shortcutKeys.includes("alt")
-  
+
     let matchShortcut = function (ctrl, shift, alt, mainKey, event) {
       if (mainKey !== event.code.toLowerCase()) return false
       if (ctrl !== (event.ctrlKey || event.metaKey)) return false
