@@ -222,12 +222,13 @@ All note types in this repo use many or all of the features listed below. Some w
 ## Contributing
 
 All files in `/Note Types` are generated from files in `/src`. DO NOT edit the files in `/Note Types`!
+We use [ejs](https://ejs.co/) to reduce duplicate code across various note types.
 
-To generate the files, [Node.js](https://nodejs.org/en/download/) needs to be installed.
+To generate the files, [Node.js](https://nodejs.org/en/download/) needs to be installed, and `npm` added to PATH.
 
 After editing the files in `/src`, run `npm run build` to generate the files. Always run `npm run build` before opening a Pull Request.
 
-If you get a `Permission denied` message, you may need to run `sudo chmod 755 ./build` to make the `build` file executable.
+If you get a `Permission denied` message, you may need to run `sudo chmod 755 ./build` to make the `/build` file executable.
 
 ***
 
