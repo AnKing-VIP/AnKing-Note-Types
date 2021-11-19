@@ -1,0 +1,414 @@
+/*    ANKINGDERM   */
+
+/* The AnKing wishes you the best of luck! Be sure to check out our YouTube channel and Instagram
+ for all things Anki and Med School related (including how to customize this card type and use these decks):  
+		www.AnKingMed.com
+			@ankingmed    			
+*/
+
+/*#########################################################
+################  USER CUSTOMIZATION START  ##############*/
+/* You can choose colors at www.htmlcolorcodes.com */
+
+/* TIMER ON/OFF */
+.timer {
+  display: block; /* ‘none’ or ‘block’ */
+}
+
+/* TAGS ON/OFF DESKTOP & MOBILE*/
+#tags-container {
+  display: block; /* ‘none’ or ‘block’ */
+}
+
+.mobile #tags-container {
+  display: none; /* ‘none’ or ‘block’ */
+}
+
+/* MOVE TAGS UP FOR 'NO-DISTRACTIONS' ADD-ON */
+#tags-container {
+  padding-bottom: 0px; /* 0 normal, 55 to move up */
+}
+
+
+/*~~~~~~~~~FONT SIZE~~~~~~~~~*/
+/*NOTE: anything with 'px' will keep a font that size indefinitely, 
+'rem' is a fraction of this size above and allows all text to change size with the above setting */
+/* Desktop */
+html {
+  font-size: 28px;
+}
+/* Mobile */
+.mobile {
+  font-size: 28px;
+}
+
+/*IPAD ADJUSTMENTS (currently not applied)
+.ipad .card {
+  font-size: 28px;
+}
+.ipad .hints {
+  font-size: 24px;
+}
+*/
+
+/*Revealed Hints Font Size*/
+.hints {
+  font-size: .85rem;
+}
+
+/*Other Fields Font Size*/
+#textbook, 
+#additional { 
+  font-size: .6rem !important; 
+} 
+/*Other Fields Font Size on Mobile*/
+.mobile #textbook, 
+.mobile #additional { 
+  font-size: 20px!important; 
+}
+
+
+/*~~~~~~~~~FONT STYLE~~~~~~~~~*/
+.card,
+kbd {
+  font-family: Arial Greek, Arial; /*Step exam's font is Arial Greek*/
+}
+
+
+/*~~~~~~~MAX IMAGE HEIGHT/WIDGTH~~~~~~~*/
+img {
+  max-height: none;
+  max-width: 85%;
+}
+
+
+/*~~~~~~~~~COLORS~~~~~~~~~/
+/* Default Text Color */
+.card {
+  color: black;
+}
+/* Background Color */
+.card {
+  background-color: #D1CFCE;
+}
+/* Cloze Color */
+.cloze {
+  color: blue;
+}
+/* "Extra" Field Color */
+#extra {
+  color: navy;
+}
+/* Hint Reveal Color */
+.hints {
+  color: #4297F9;
+}
+/* Missed Questions Hint Reveal Color */
+#missed {
+  color: red;
+}
+/* Timer Countdown Color */
+.timer {
+  color: transparent;
+}
+
+
+/*~~~~~~~~NIGHT MODE COLORS~~~~~~~~*/
+/* NM Default Text Color */
+.nightMode.card,
+.night_mode .card {
+  color: #FFFAFA !important;
+}
+/* NM Background Color */
+.nightMode.card,
+.night_mode .card {
+  background-color: #272828 !important;
+}
+/* NM Cloze Color */
+.nightMode .cloze,
+.night_mode .cloze {
+  color: #4297F9 !important;
+}
+/* NM "Extra" Field Color */
+.nightMode #extra,
+.night_mode #extra {
+  color: magenta;
+}
+/* NM Hint Reveal Color */
+.nightMode .hints,
+.night_mode .hints {
+  color: cyan;
+}
+
+
+/* ~~~~~COLOR ACCENTS FOR BOLD-ITALICS-UNDERLINE~~~~~~*/
+b {
+  color: inherit;
+}
+
+u {
+  color: inherit;
+}
+
+i {
+  color: inherit;
+}
+
+/*################  USER CUSTOMIZATION END  ################
+###########################################################*/
+
+
+/* Styling For Whole Card*/
+.card {
+  text-align: center;
+  font-size: 1rem;
+  height: 100%;
+  margin: 0px 15px;
+  flex-grow: 1;
+  padding-bottom: 1em;
+  margin-top: 15px;
+}
+.mobile .card {
+  padding-bottom: 5em;
+  margin: 0ex .3px;
+}
+
+/* Style the horizontal line */
+hr { opacity: .7 }
+
+/* Formatting For Timer */
+.timer {
+  font-size: 20px;
+  margin: 12em auto auto auto;
+}
+
+
+/* ~~~~~~~~~ FIELDS ~~~~~~~~~ */
+/* Cloze format */
+.cloze {
+  font-weight: bold;
+}
+
+/* Adjustments For Cloze Edit In Review On Mobile */
+.clozefield,
+.mobile .editcloze {
+  display: none;
+}
+.editcloze,
+.mobile .clozefield {
+  display: block;
+}
+
+/* Text When Hint Is Shown*/
+.hints {
+  font-style: italic;
+}
+
+/*add spacing between hints and extra field*/
+.hints+#extra {
+  margin-top: 1rem; 
+}
+
+/* Extra Field */
+#extra {
+  font-style: italic;
+  font-size: 1rem;
+}
+
+
+/* ~~~~~~~~~DETAILS FOR IMAGES~~~~~~~~~ */
+.mobile .card img {
+  max-width: 100% !important;
+}
+#extra img {
+  min-width: 30%;
+}
+
+/*Image hover zoom*/  
+img:active {
+  transform: scale(1.4);
+}
+.mobile img:active {
+  transform: scale(1.0) !important;
+}
+
+
+/* ~~~~~~~MNEMONICS LEFT JUSTIFIED~~~~~~~ */
+.mnemonics {
+  display: inline-block;
+  text-align: left; /* can change to center to 'turn off' this feature */
+}
+.centerbox {
+  text-align: center;
+}
+
+
+/* ~~~~~~~~~ ADD-ON CONFIGURATIONS ~~~~~~~~~ */
+/*Compatibility with Image Style Editor add-on*/
+.card {
+  --w: 0%;
+}
+.mobile .card {
+  --w: 100% !important;
+}
+
+/*Max image width for resize images in editor add-on */
+.card [class^=ui-] img {
+  max-width: 100% !important;
+}
+
+/*Compatibility with resize images in editor add-on */
+.resizer {
+  min-width: 0% !important;
+}
+.mobile .resizer {
+  min-width: 100% !important;
+}
+
+/* Fix to make pop-up dictionary images the right size */
+.qtip img {
+  max-width: 95% !important;
+  max-height: 95% !important;
+}
+
+
+/* ~~~~~~ANKING HYPERLINK IMAGE~~~~~~ */
+#pic {
+  opacity: 0.0;
+  font-size: 16px;
+  font-family: Comic Sans !important;
+  font-style: bold;
+  height: 50px;
+  border: 0;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: block;
+}
+
+#pic:hover {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.mobile #pic {
+  display: none;
+}
+
+
+/* ~~~~~~~~~ TAGS ~~~~~~~~~ */
+/* Container To Fix Tags At Bottom Of Screen */
+#tags-container{
+  position: fixed;
+  bottom: .5px;
+  width: 100%;
+  line-height: .45rem;
+  margin-left: -15px;
+}
+
+/* Clickable Tags (need to download the add-on) */
+kbd {
+  display: inline-block;
+  letter-spacing: .1px;
+  font-weight: bold;
+  font-size: 10px !important;
+  text-shadow: none !important;
+  padding: 0.05rem 0.1rem !important;
+  margin: 1px -3px !important;
+  border-radius: 4px;
+  border-width: 1.5px !important;
+  border-style: solid;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  opacity: 0.5;
+  vertical-align: middle !important;
+  line-height: auto!important;
+  height: auto!important;
+}
+
+/* Tag Becomes More Visible On Hover */
+kbd:hover {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+/* Tag Colors */
+kbd:nth-of-type(1n+0) { border-color: #F44336; color: #F44336!important; }
+kbd:nth-of-type(2n+0) { border-color: #9C27B0; color: #9C27B0!important; }
+kbd:nth-of-type(3n+0) { border-color: #3F51B5; color: #3F51B5!important; }
+kbd:nth-of-type(4n+0) { border-color: #03A9F4; color: #03A9F4!important; }
+kbd:nth-of-type(5n+0) { border-color: #009688; color: #009688!important; }
+kbd:nth-of-type(6n+0) { border-color: #C0CA33; color: #C0CA33!important; }
+kbd:nth-of-type(7n+0) { border-color: #FF9800; color: #FF9800!important;}
+kbd:nth-of-type(8n+0) { border-color: #FF5722; color: #FF5722!important; }
+kbd:nth-of-type(9n+0) { border-color: #9E9E9E; color: #9E9E9E!important; }
+kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
+
+/* Tag Mobile Adjustments */
+.mobile kbd {
+  opacity: .9;
+  margin: 1px !important;
+  display: inline-block;
+  font-size: 10px !important;
+}
+.mobile #tags-container {
+  line-height: 0.6rem;
+  margin-left: 0px;
+}
+
+
+/* ~~~~~~~~~BUTTON LAYOUT~~~~~~~~~ */
+.button-general {
+  outline: 0;
+  border-radius: 0.12em;
+  border: 1px solid #525253 !important;
+  padding: 5px 5px;
+  text-align: center;
+  display: inline-block;
+  font-size: 9.5px;
+  background-color: #424242;
+  color: #AFAFAF !important;
+  margin-top: 8px;
+}
+
+.mobile .button-general {
+  font-size: 18px;
+  padding: 9px 7px;
+}
+
+.expanded-button {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  font-weight: bold;
+  width: 50% !important;
+  background: #ababab !important;
+  color: black !important;
+  font-weight: bold;
+  width: 50% !important;
+}
+
+
+#button-mq:not(.expanded-button) {
+  color: #c26165 !important;
+}
+
+
+html:not(.mobile) .button-general:hover {
+  cursor: default;
+  background-color: #E9E9E9 !important;
+  color: #363638 !important;
+}
+
+html:not(.mobile) #button-mq:hover {
+  background-color: #FA8072 !important;
+  color: black !important;
+}
+
+html:not(.mobile) #button-tx:hover {
+  background-color: #ea8eed !important;
+}
+
+html:not(.mobile) #button-ar:hover {
+  background-color: #FFF1B8 !important;
+}

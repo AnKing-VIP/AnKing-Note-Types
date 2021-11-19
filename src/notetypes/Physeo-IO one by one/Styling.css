@@ -1,0 +1,470 @@
+@import url("__closet-0.5.3.css");
+
+
+/*#########################################################
+################  USER CUSTOMIZATION START  ##############*/
+/* You can choose colors at www.htmlcolorcodes.com */
+
+/* TIMER ON/OFF */
+.timer {
+  display: block; /* ‘none’ or ‘block’ */
+}
+
+/* TAGS ON/OFF DESKTOP & MOBILE*/
+#tags-container {
+  display: block; /* ‘none’ or ‘block’ */
+}
+
+.mobile #tags-container {
+  display: none; /* ‘none’ or ‘block’ */
+}
+
+/* MOVE TAGS UP FOR 'NO-DISTRACTIONS' ADD-ON */
+#tags-container {
+  padding-bottom: 0px; /* 0 normal, 55 to move up */
+}
+
+/*~~~~~~~~~FONT SIZE~~~~~~~~~*/
+/*NOTE: anything with 'px' will keep a font that size indefinitely, 
+'rem' is a fraction of this size above and allows all text to change size with the above setting */
+/* Desktop */
+html {
+  font-size: 28px;
+}
+/* Mobile */
+.mobile {
+  font-size: 28px;
+}
+
+/*IPAD ADJUSTMENTS (currently not applied)
+.ipad .card {
+  font-size: 28px;
+}
+.ipad .hints {
+  font-size: 24px;
+}
+*/
+
+/*Revealed Hints Font Size*/
+.hints {
+  font-size: .85rem;
+}
+
+
+/*~~~~~~~~~FONT STYLE~~~~~~~~~*/
+.card,
+kbd {
+  font-family: Arial Greek, Arial; /*Step exam's font is Arial Greek*/
+}
+
+/*~~~~~~~MAX IMAGE HEIGHT/WIDGTH~~~~~~~*/
+img {
+  max-height: none;
+  max-width: 85%;
+}
+
+
+/*~~~~~~~~~COLORS~~~~~~~~~*/
+.card {
+  /* OCCLUSION RECTANGLE COLORS */
+  --rect-bg: moccasin;
+  --rect-border: olive;
+  --active-rect-bg: salmon;
+  --active-rect-border: yellow;
+}
+
+
+/* Default Text Color */
+.card {
+  color: #56868a;
+}
+/* Background Color */
+.card {
+  background-color: #f8f9fd;
+}
+/* Hint Reveal Color */
+.hints {
+  color: #56868a;
+}
+/* Missed Questions Hint Reveal Color */
+#missed {
+  color: #ff684d;
+}
+
+
+/*~~~~~~~~NIGHT MODE COLORS~~~~~~~~*/
+/* NM Default Text Color */
+.nightMode.card,
+.night_mode .card {
+  color: #FFFAFA !important;
+}
+/* NM Background Color */
+.nightMode.card,
+.night_mode .card {
+  background-color: #272828 !important;
+}
+/* NM Hint Reveal Color */
+.nightMode .hints,
+.night_mode .hints {
+  color: #78c0ca;
+}
+
+
+/* COLOR ACCENTS FOR BOLD-ITALICS-UNDERLINE*/
+b {
+  color: inherit;
+}
+
+u {
+  color: inherit;
+}
+
+i {
+  color: inherit;
+}
+
+/*################  USER CUSTOMIZATION END  ################
+###########################################################*/
+
+
+/* Styling For Whole Card*/
+.card {
+  text-align: center;
+  font-size: 1rem;
+  height: 100%;
+  margin: 0px 15px;
+  flex-grow: 1;
+  padding-bottom: 1em;
+  margin-top: 15px;
+}
+.mobile .card {
+  padding-bottom: 5em;
+  margin: 0ex .3px;
+}
+
+
+/* ~~~~~~~~~ FIELDS ~~~~~~~~~ */
+/* Text When Hint Is Shown*/
+.hints {
+  font-style: italic;
+}
+
+
+/* ~~~~~~~~~ ADD-ON CONFIGURATIONS ~~~~~~~~~ */
+/*Compatibility with Image Style Editor add-on*/
+.card {
+  --w: 0%;
+}
+.mobile .card {
+  --w: 100% !important;
+}
+
+/*Max image width for resize images in editor add-on */
+.card [class^=ui-] img {
+  max-width: 100% !important;
+}
+
+/*Compatibility with resize images in editor add-on */
+.resizer {
+  min-width: 0% !important;
+}
+.mobile .resizer {
+  min-width: 100% !important;
+}
+
+/* Fix to make pop-up dictionary images the right size */
+.qtip img {
+  max-width: 95% !important;
+  max-height: 95% !important;
+}
+
+
+/* ~~~~~~~MNEMONICS LEFT JUSTIFIED~~~~~~~ */
+.mnemonics {
+  display: inline-block;
+  text-align: left; /* can change to center to 'turn off' this feature */
+}
+.centerbox {
+  text-align: center;
+}
+
+
+/* ~~~~~~PHYSEO HYPERLINK IMAGE~~~~~~ */
+#pic {
+  opacity: 0.6;
+  font-size: 16px;
+  font-family: Comic Sans !important;
+  font-style: bold;
+  height: 100px;
+  border: 0;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: block;
+}
+
+#pic:hover {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.mobile #pic {
+  display: none;
+}
+
+
+/* ~~~~~~~ FRONT FORMATTING ~~~~~~~ */
+.header {
+  font-size: 1rem;
+  margin-bottom: 1em;
+}
+
+#front-info {
+  position: fixed;
+  top: 20vh;
+  width: 100%;
+  font-size: 20px;
+}
+
+.mobile #front-info {
+  width: 90vw;
+  font-size: 4.5vw;
+}
+
+#front-info img {
+  margin-bottom: 2em;
+  max-width: 150px !important;
+}
+
+
+/* ~~~~~~~ FRONT TOOLTIP ~~~~~~~ */
+.help {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  text-align: center;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 0.8rem;
+  line-height: 26px;
+  cursor: default;
+}
+
+.help:before {
+  content: '?';
+  font-weight: bold;
+}
+
+.help:hover p {
+  display: block;
+  transform-origin: 100% 0%;
+  -webkit-animation: fadeIn 0.3s ease-in-out;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.help p {
+  display: none;
+  text-align: left;
+  background-color: #1E2021;
+  padding: 20px;
+  width: 300px;
+  position: absolute;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  right: -4px;
+  color: #FFF;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.help p:before {
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-bottom-color: #1E2021;
+  right: 10px;
+  top: -12px;
+}
+
+.help-tip p:after {
+  width: 100%;
+  height: 40px;
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 0;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  100% {
+    opacity: 100%;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}
+
+
+/* ~~~~~~INCREMENTAL REVEAL: Closet rects~~~~~~ */
+.closet-rect.is-active.is-back rect {
+  fill: var(--rect-bg);
+  stroke: var(--rect-border);
+  cursor: pointer;
+}
+
+.closet-rect.is-active.is-back.is-highlighted rect {
+  fill: var(--active-rect-bg);
+  stroke: var(--active-rect-border);
+}
+
+.closet-rect.revealed rect {
+  visibility: hidden;
+}
+
+
+/* ~~~~~~~~~ TAGS ~~~~~~~~~ */
+/* Container To Fix Tags At Bottom Of Screen */
+#tags-container{
+  position: fixed;
+  bottom: .5px;
+  width: 100%;
+  line-height: .45rem;
+  margin-left: -15px;
+  background-color: transparent; 
+}
+
+/* Clickable Tags (need to download the add-on) */
+kbd {
+  display: inline-block;
+  letter-spacing: .2px;
+  font-weight: bold;
+  font-size: 12px !important;
+  text-shadow: none !important;
+  padding: 0.05rem 0.1rem !important;
+  margin: 1px -3px !important;
+  border-radius: 4px;
+  border-width: 1.5px !important;
+  border-style: solid;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  opacity: 0.5;
+  vertical-align: middle;
+  line-height: auto!important;
+  height: auto!important;
+}
+
+/* Tag Becomes More Visible On Hover */
+kbd:hover {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+/* Tag Colors */
+kbd:nth-of-type(1n+0) { border-color: #78c0ca; color: #588f96!important; }
+kbd:nth-of-type(2n+0) { border-color: #78c0ca; color: #588f96!important; }
+kbd:nth-of-type(3n+0) { border-color: #78c0ca; color: #588f96!important; }
+kbd:nth-of-type(4n+0) { border-color: #78c0ca; color: #588f96!important; }
+kbd:nth-of-type(5n+0) { border-color: #78c0ca; color: #588f96!important; }
+kbd:nth-of-type(6n+0) { border-color: #78c0ca; color: #588f96!important; }
+kbd:nth-of-type(7n+0) { border-color: #78c0ca; color: #588f96!important; }
+kbd:nth-of-type(8n+0) { border-color: #78c0ca; color: #588f96!important; }
+kbd:nth-of-type(9n+0) { border-color: #78c0ca; color: #588f96!important; }
+kbd:nth-of-type(10n+0) { border-color: #78c0ca; color: #588f96!important; }
+
+/* Tag Mobile Adjustments */
+.mobile kbd {
+  opacity: .9;
+  margin: 1px !important;
+  display: inline-block;
+  font-size: 10px !important;
+}
+.mobile #tags-container {
+  line-height: 0.6rem;
+  margin-left: 0px;
+}
+
+
+/* ~~~~~~~~~BUTTON LAYOUT~~~~~~~~~ */
+.button-general {
+  outline: 0;
+  border-radius: 0.12em;
+  border: 1px solid #525253 !important;
+  padding: 5px 5px;
+  text-align: center;
+  display: inline-block;
+  font-size: 9.5px;
+  background-color: #424242;
+  color: #AFAFAF !important;
+  margin-top: 8px;
+}
+.mobile .button-general { 
+  font-size: 18px; padding: 9px 7px; 
+}
+
+.expanded-button {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  font-weight: bold;
+  width: 50% !important;
+  background: #ababab !important;
+  color: black !important;
+  font-weight: bold;
+  width: 50% !important;
+}
+
+.mobile .btn-spacer {
+  display: block;
+  height: 10px;
+}
+
+
+html:not(.mobile) .button-general:hover {
+  cursor: default;
+  background-color: #588f96 !important;
+  color: #363638 !important;
+}
+
+html:not(.mobile) #button-ex:hover{
+  background-color: #588f96 !important;
+}
+
+html:not(.mobile) #button-ln:hover{
+  background-color: #588f96 !important;
+}
+
+#button-mq:not(.expanded-button) {
+  color: #c26165 !important;
+}
+
+html:not(.mobile) #button-mq:hover {
+  background-color: #FA8072 !important;
+  color: black !important;
+}
+
+/* Make it so tapping buttons doesn't trigger answering the card on mobile */
+.dummy-btn {
+	background: none !important;
+	color: inherit !important;
+	border: none !important;
+	padding: 0 !important;
+	font: inherit !important;
+	cursor: inherit !important;
+	outline: inherit !important;
+}
