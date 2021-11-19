@@ -17,7 +17,7 @@
     var ScrollToButton = true;
 
     // ##############  TAG SHORTCUT  ##############
-    var ToggleTagsShortcut = "C";
+    var toggleTagsShortcut = "C";
 
     //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
     var tagID = "XXXYYYZZZ"
@@ -258,7 +258,7 @@ var specialCharCodes = {
         }
     }
 
-    var isShortcut = shortcutMatcher(ToggleTagsShortcut)
+    var isShortcut = shortcutMatcher(toggleTagsShortcut)
     document.addEventListener('keyup', function (e) {
         if (isShortcut(e)) {
             showtags();

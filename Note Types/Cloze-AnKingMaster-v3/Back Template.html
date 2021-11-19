@@ -32,7 +32,7 @@
     var ScrollToButton = true;
 
     // ##############  TAG SHORTCUT  ##############
-    var ToggleTagsShortcut = "C";
+    var toggleTagsShortcut = "C";
 
     //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
     var tagID = "XXXYYYZZZ"
@@ -442,7 +442,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
           }
         }
       }
-      document.addEventListener("keydown", window.revealClozeKeydownListener);
+      ankingAddEventListener(document, "keydown", window.revealClozeKeydownListener);
     }
     
     // autoflip hides card in front template
@@ -487,8 +487,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
                 "none";
         }
     }
-    var isShortcut = shortcutMatcher(ToggleTagsShortcut)
-    document.addEventListener('keyup', function (e) {
+    var isShortcut = shortcutMatcher(toggleTagsShortcut)
         if (isShortcut(e)) {
             showtags();
         }

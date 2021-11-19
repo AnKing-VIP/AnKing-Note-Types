@@ -21,7 +21,7 @@
     var tagID = "XXXYYYZZZ"
 
     // ##############  TAG SHORTCUT  ##############
-    var ToggleTagsShortcut = "C";
+    var toggleTagsShortcut = "C";
 
     // ~~~~~~~~~~~~~  CLOZE ONE BY ONE  ~~~~~~~~~~~~~
     var revealClozeShortcut = "N" // Shortcut to reveal next cloze
@@ -446,7 +446,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
                 "none";
         }
     }
-    var isShortcut = shortcutMatcher(ToggleTagsShortcut)
+    var isShortcut = shortcutMatcher(toggleTagsShortcut)
     document.addEventListener('keyup', function (e) {
         if (isShortcut(e)) {
             showtags();

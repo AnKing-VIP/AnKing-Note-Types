@@ -4,7 +4,7 @@
     var ToggleAllOcclusions = ",";
 
     // ##############  TAG SHORTCUT  ##############
-    var ToggleTagsShortcut = "C";
+    var toggleTagsShortcut = "C";
 
     // ##############  BUTTON SETTINGS  ##############
     // All buttons will also open with "H" if using the Hint Hotkeys add-on 
@@ -139,7 +139,7 @@
         }
         if (!globalThis.ToggleTagsListening) {
             globalThis.ToggleTagsListening = true
-            var isShortcut = shortcutMatcher(ToggleTagsShortcut)
+            var isShortcut = shortcutMatcher(toggleTagsShortcut)
             document.addEventListener('keydown', function (e) {
               if (e.repeat) return
                 if (isShortcut(e)) {

@@ -82,7 +82,7 @@ All note types in this repo use many or all of the features listed below. Some w
     Default is `C`
     ```
     // ##############  TAG SHORTCUT  ##############
-    var ToggleTagsShortcut = "C";
+    var toggleTagsShortcut = "C";
     ```
     </p>
   </details>
