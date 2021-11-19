@@ -1,0 +1,68 @@
+<script>
+  // ##############  HINT REVEAL SHORTCUTS  ##############
+  // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
+  var ButtonShortcuts = {
+    "Definitions": "Alt + 1",
+    "Examples": "Alt + 2",
+    "Alternative Translations": "Alt + 3"
+  }
+
+  var ToggleAllButtonsShortcut = "'"
+
+  // ##############  SHOW HINTS AUTOMATICALLY  ##############
+  var ButtonAutoReveal = {
+    "Definitions": false,
+    "Examples": false,
+    "Alternative Translations": false,
+  }
+
+  var ScrollToButton = true;
+
+    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+    var tagID = "XXXYYYZZZ"
+
+</script>
+
+
+<div id="front">{{edit:Front}}</div>
+
+<hr id=answer>
+
+<!-- Back field -->
+<p></p>
+<div id="back">{{edit:Back}}</div>
+
+{{#Romanization}}<div class="hints" id="romanization" href="#">{{Romanization}}</div>{{/Romanization}}
+
+<br>
+
+<!-- ##############  Text-to-speech  ##############
+replace the arrows/dashes from the statement below with double curly brackets-->
+
+<!--tts en_US voices=Apple_Samantha speed=1.4:Back -->
+
+<!-- BUTTON FIELDS -->
+{{#Definitions}}<hint-button field-name="Definitions" short="df" hint-id="definitions"></hint-button>
+<div id="dummy-df" style="display: none;">{{edit:Definitions}}</div>{{/Definitions}}
+
+{{#Examples}}<hint-button field-name="Examples" short="exp" hint-id="examples"></hint-button>
+<div id="dummy-exp" style="display: none;">{{edit:Examples}}</div>{{/Examples}}
+
+{{#Alternative Translations}}<hint-button field-name="Alternative Translations" short="alt" hint-id="alt"></hint-button>
+<div id="dummy-alt" style="display: none;">{{edit:Alternative Translations}}</div>{{/Alternative Translations}}
+
+
+
+
+<!-- ANKING HYPERLINK IMAGE -->
+<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
+
+<%- include('src/components/ankingAddEventListener.ejs') %>
+
+<%- include('src/components/shortcutMatcher.ejs') %>
+
+<%- include('src/components/toggleButtons.ejs', {defaultIconFile: "_Anking_v3.png"}) %>
+
+<%- include('src/components/colorfulTags.ejs') %>
+
+<%- include('src/components/wikipediaSearches.ejs') %>

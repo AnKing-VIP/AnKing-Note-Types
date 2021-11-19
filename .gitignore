@@ -3,6 +3,8 @@ tools/
 profile/
 meta.json
 
+node_modules
+
 src/*/gui/forms/anki*
 src/*/gui/resources/anki*
 
@@ -13,6 +15,8 @@ __pycache__/
 
 .vscode/
 *.code-workspace
+
+
 Note Types/IO-one by one/.history/Back Template_20210907223308.html
 Note Types/IO-one by one/.history/Back Template_20210911180125.html
 Note Types/IO-one by one/.history/Styling_20210907222703.css

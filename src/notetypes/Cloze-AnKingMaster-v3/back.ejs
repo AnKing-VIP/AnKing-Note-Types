@@ -1,0 +1,119 @@
+<script>
+    // ##############  HINT REVEAL SHORTCUTS  ##############
+    // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
+    var ButtonShortcuts = {
+        "Lecture Notes" : "Alt + 1",
+        "Missed Questions" : "Alt + 2",
+        "Pathoma" : "Alt + 3",
+        "Boards and Beyond" : "Alt + 4",
+        "First Aid" : "Alt + 5",
+        "Sketchy" : "Alt + 6",
+        "Pixorize" : "Alt + 7",
+        "Physeo" : "Alt + 8",
+        "OME" : "Alt + F1",
+        "Additional Resources" : 'Alt + 9',
+    }
+    var ToggleAllButtonsShortcut = "'"
+
+    // ##############  SHOW HINTS AUTOMATICALLY  ##############
+    var ButtonAutoReveal = {
+        "Lecture Notes" : false,
+        "Missed Questions" : false,
+        "Pathoma" : false,
+        "Boards and Beyond" : false,
+        "First Aid" : false,
+        "Sketchy" : false,
+        "Pixorize" : false,
+        "Physeo" : false,
+        "OME" : false, // not currently a button
+        "Additional Resources" : false,
+    }
+
+    var ScrollToButton = true;
+
+    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+    var tagID = "XXXYYYZZZ"
+
+    <%- include('src/components/clozeOneByOneUserConf.js') %>
+
+</script>
+
+
+<div class="clozefield" id="text">{{cloze:Text}}</div>
+
+<!-- ##############  EDIT CLOZE DURING REVIEW  ##############
+			-change below (not above) to  "edit:cloze:Text" for editable field, 
+				but be sure to have the correct add-on installed-->
+
+<div class="editcloze" id="text">{{edit:cloze:Text}}</div>
+
+
+<br>
+
+<!-- ##############  TEXT-TO-SPEECH ##############
+replace the arrows/dashes from the statement below with double curly brackets-->
+
+<!--tts en_US voices=Apple_Samantha speed=1.4:cloze-only:Text-->
+
+
+<hr>
+
+<!-- BUTTON FIELDS -->
+<%- include('src/components/clozeOneByOneButtons.ejs', {optional: true}) %>
+
+<!-- OME AUTO OPEN FIELD -->
+<div class="banner-ome">{{#OME}}{{OME}}{{/OME}}</div>
+
+<!-- BUTTON FIELDS -->
+{{#Lecture Notes}}<hint-button field-name="Lecture Notes" short="ln" hint-id="notes"></hint-button>
+<div id="dummy-ln" style="display: none;">{{edit:Lecture Notes}}</div>{{/Lecture Notes}}
+
+{{#Missed Questions}}<hint-button field-name="Missed Questions" short="mq" hint-id="missed"></hint-button>
+<div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>{{/Missed Questions}}
+
+{{#Pathoma}}<hint-button field-name="Pathoma" short="pat" hint-id="pathoma" icon="_pathoma.icon.png" no-text></hint-button>
+<div id="dummy-pat" style="display: none;">{{edit:Pathoma}}</div>{{/Pathoma}}
+
+{{#Boards and Beyond}}<hint-button field-name="Boards and Beyond" short="bb" hint-id="bnb" icon="_b&b.icon.png"></hint-button>
+<div id="dummy-bb" style="display: none;">{{edit:Boards and Beyond}}</div>{{/Boards and Beyond}}
+
+<!-- Extra field -->
+<p></p>{{#Extra}}
+<div id="extra">{{edit:Extra}}</div>
+{{/Extra}}<br>
+
+{{#First Aid}}<hint-button field-name="First Aid" short="fa" hint-id="firstaid" icon="_first-aid.icon_v2.1.png"></hint-button>
+<div id="dummy-fa" style="display: none;">{{edit:First Aid}}</div>{{/First Aid}}
+
+{{#Sketchy}}<hint-button field-name="Sketchy" short="sketchy" hint-id="sketchy" icon="_sketchy.icon.png"></hint-button>
+<div id="dummy-sketchy" style="display: none;">{{edit:Sketchy}}</div>{{/Sketchy}}
+
+{{#Pixorize}}<hint-button field-name="Pixorize" short="pixorize" hint-id="pixorize" icon="_pixorize.png"></hint-button>
+<div id="dummy-pixorize" style="display: none;">{{edit:Pixorize}}</div>{{/Pixorize}}
+
+{{#Physeo}}<hint-button field-name="Physeo" short="physeo" hint-id="physeo" icon="_physeologo.icon.png" no-text></hint-button>
+<div id="dummy-physeo" style="display: none;">{{edit:Physeo}}</div>{{/Physeo}}
+
+<!-- OME FIELD (DISABLED BY DEFAULT) 
+{{#OME}}<hint-button field-name="OME" short="ome" hint-id="ome"></hint-button>
+<div id="dummy-ome" style="display: none;">{{edit:OME}}</div>{{/OME}}
+-->
+
+{{#Additional Resources}}<hint-button field-name="Additional Resources" short="ar" hint-id="additional"></hint-button>
+<div id="dummy-ar" style="display: none;">{{edit:Additional Resources}}</div>{{/Additional Resources}}
+
+
+<!-- ANKING HYPERLINK IMAGE -->
+<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
+
+<%- include('src/components/ankingAddEventListener.ejs') %>
+
+<%- include('src/components/shortcutMatcher.ejs') %>
+
+<%- include('src/components/toggleButtons.ejs', {defaultIconFile: "_Anking_v3.png"}) %>
+
+<%- include('src/components/clozeOneByOne.ejs', {optional: true}) %>
+
+<%- include('src/components/colorfulTags.ejs') %>
+
+<%- include('src/components/wikipediaSearches.ejs') %>

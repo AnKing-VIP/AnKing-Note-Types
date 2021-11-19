@@ -1,0 +1,89 @@
+<script>
+    // ##############  HINT REVEAL SHORTCUTS  ##############
+    // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
+    var ButtonShortcuts = {
+        "Personal Notes" : "Alt + 1",
+        "Missed Questions" : "Alt + 2",
+        "Textbook" : "Alt + 3",
+        "Additional Resources" : "Alt + 4",
+    }
+    var ToggleAllButtonsShortcut = "'"
+
+    // ##############  SHOW HINTS AUTOMATICALLY  ##############
+    var ButtonAutoReveal = {
+        "Personal Notes" : false,
+        "Missed Questions" : false,
+        "Textbook" : false,
+        "Additional Resources" : false,
+    }
+
+    var ScrollToButton = true;
+
+    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+    var tagID = "XXXYYYZZZ"
+
+    <%- include('src/components/clozeOneByOneUserConf.js') %>
+
+</script>
+
+
+
+
+<div class="clozefield" id="text">{{cloze:Text}}</div>
+
+<!-- ##############  EDIT CLOZE DURING REVIEW  ##############
+			-change below (not above) to  "edit:cloze:Text" for editable field, 
+				but be sure to have the correct add-on installed-->
+
+<div class="editcloze" id="text">{{edit:cloze:Text}}</div>
+
+
+<br>
+
+<!-- ##############  TEXT-TO-SPEECH ##############
+replace the arrows/dashes from the statement below with double curly brackets-->
+
+<!--tts en_US voices=Apple_Samantha speed=1.4:cloze-only:Text-->
+
+
+<hr>
+
+
+<!-- BUTTON FIELDS -->
+<%- include('src/components/clozeOneByOneButtons.ejs', {optional: true}) %>
+
+{{#Personal Notes}}<hint-button field-name="Personal Notes" short="ln" hint-id="notes"></hint-button>
+<div id="dummy-ln" style="display: none;">{{edit:Personal Notes}}</div>{{/Personal Notes}}
+
+
+{{#Missed Questions}}<hint-button field-name="Missed Questions" short="mq" hint-id="missed"></hint-button>
+<div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>{{/Missed Questions}}
+
+
+<!-- Extra field -->
+<p></p>{{#Extra}}
+    <div id="extra">{{edit:Extra}}</div>
+{{/Extra}}<br>
+
+
+{{#Textbook}}<hint-button field-name="Textbook" short="tx" hint-id="textbook" icon="_dermki.png"></hint-button>
+<div id="dummy-tx" style="display: none;">{{edit:Textbook}}</div>{{/Textbook}}
+
+{{#Additional Resources}}<hint-button field-name="Additional Resources" short="ar" hint-id="additional" icon="_dermki.png"></hint-button>
+<div id="dummy-ar" style="display: none;">{{edit:Additional Resources}}</div>{{/Additional Resources}}
+
+
+<!-- ANKING HYPERLINK IMAGE -->
+<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
+
+<%- include('src/components/ankingAddEventListener.ejs') %>
+
+<%- include('src/components/shortcutMatcher.ejs') %>
+
+<%- include('src/components/toggleButtons.ejs', {defaultIconFile: "_Anking_v3.png"}) %>
+
+<%- include('src/components/clozeOneByOne.ejs', {optional: true}) %>
+
+<%- include('src/components/colorfulTags.ejs') %>
+
+<%- include('src/components/wikipediaSearches.ejs') %>

@@ -1,14 +1,12 @@
 <script>
   // ##############  HINT REVEAL SHORTCUTS  ##############
-  // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
-  // The shortcuts are  Alt  +  the number/letter below
   // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
   var ButtonShortcuts = {
-    "Personal Notes": '49', // alt + 1
-    "Missed Questions": '50', // alt + 2
+    "Personal Notes": "Alt + 1",
+    "Missed Questions": "Alt + 2",
   }
 
-  var ToggleAllButtons = '222' // '
+  var ToggleAllButtonsShortcut = "'"
 
   // ##############  SHOW HINTS AUTOMATICALLY  ##############
   var ButtonAutoReveal = {
@@ -17,10 +15,6 @@
   }
 
   var ScrollToButton = true;
-
-  // ##############  TAG SHORTCUT  ##############
-  // Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
-  var ToggleTags = "67"; // c
 
     //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
     var tagID = "XXXYYYZZZ"
@@ -53,20 +47,85 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 
 
-
 <!-- ANKING HYPERLINK IMAGE -->
 <a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
+
+
+
+
+<!-- NOT-PERSISTING EVENT LISTENER -->
+<script>
+  if (window.ankingEventListeners) {
+    for (const listener of ankingEventListeners) {
+      const type = listener[0]
+      const handler = listener[1]
+      document.removeEventListener(type, handler)
+    }
+  }
+  window.ankingEventListeners = []
   
-  
+  window.ankingAddEventListener = function(type, handler) {
+    document.addEventListener(type, handler)
+    window.ankingEventListeners.push([type, handler])
+  }
+</script>
+
+<!-- Shortcut Matcher Function -->
+<script>
+  var specialCharCodes = {
+    "-": "minus",
+    "=": "equal",
+    "[": "bracketleft",
+    "]": "bracketright",
+    ";": "semicolon",
+    "'": "quote",
+    "`": "backquote",
+    "\\": "backslash",
+    ",": "comma",
+    ".": "period",
+    "/": "slash",
+  };
+  // Returns function that match keyboard event to see if it matches given shortcut.
+  function shortcutMatcher(shortcut) {
+    let shortcutKeys = shortcut.toLowerCase().split(/[+]/).map(key => key.trim())
+    let mainKey = shortcutKeys[shortcutKeys.length - 1]
+    if (mainKey.length === 1) {
+      if (/\d/.test(mainKey)) {
+        mainKey = "digit" + mainKey
+      } else if (/[a-zA-Z]/.test(mainKey)) {
+        mainKey = "key" + mainKey
+      } else {
+        let code = specialCharCodes[mainKey];
+        if (code) {
+          mainKey = code
+        }
+      }
+    }
+    let ctrl = shortcutKeys.includes("ctrl")
+    let shift = shortcutKeys.includes("shift")
+    let alt = shortcutKeys.includes("alt")
+
+    let matchShortcut = function (ctrl, shift, alt, mainKey, event) {
+      if (mainKey !== event.code.toLowerCase()) return false
+      if (ctrl !== (event.ctrlKey || event.metaKey)) return false
+      if (shift !== event.shiftKey) return false
+      if (alt !== event.altKey) return false
+      return true
+    }.bind(window, ctrl, shift, alt, mainKey)
+    
+    return matchShortcut
+  }
+</script>
+
 <!-- TOGGLE BUTTONS -->
 <script>
   function defineHintButton() {
     class HintButton extends HTMLElement {
       constructor() {
         super();
-
+        
         var fieldName = this.getAttribute("field-name")
-
+        
         // adding the strings together this way to prevent Anki from thinking that a field should be inserted here
         var fieldString = '{' + '{' + fieldName + '}}'
         var short = this.getAttribute("short")
@@ -75,55 +134,57 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         var buttonText = fieldName
         if (this.hasAttribute("no-text")) buttonText = ""
         this.innerHTML = `
-                        <a id="link-${short}" href="#" class="hint"></a>
-                        <button id="button-${short}" class="button-general">
-                        <img id="icon-${short}" src="">
-                            ${buttonText}
-                        </button>
-                        <div id="${hintId}" class="hints" style="display:none;">
-                        </div>
-                    `
+        <a id="link-${short}" href="#" class="hint"></a>
+        <button id="button-${short}" class="button-general">
+          <img id="icon-${short}" src="">
+          ${buttonText}
+        </button>
+        <div id="${hintId}" class="hints" style="display:none;">
+        </div>
+        `
         this.button = document.getElementById(`button-${short}`)
         this.link = document.getElementById(`link-${short}`)
         this.hint = document.getElementById(hintId)
         this.icon = document.getElementById(`icon-${short}`)
-
+        
         // inserting the icon file name directly in the template string doesnt work
         // because Anki probably replaces img src attributes using a regex with the url-encoded src
         this.icon.setAttribute("src", iconFile)
-
+        
         // moves the field content from the dummy to this
         var dummy = document.getElementById(`dummy-${short}`)
         var content = dummy.innerHTML
-
+        
         // hide this if the field is empty
         if (dummy.innerHTML == "" ||
-          (dummy.lastChild.nodeName == "SCRIPT" && dummy.firstChild.getAttribute("contenteditable") && dummy.firstChild.innerHTML == "")) {
+        (dummy.lastChild.nodeName == "SCRIPT" && dummy.firstChild.getAttribute("contenteditable") && dummy.firstChild.innerHTML == "")) {
           this.remove()
           return
         }
-
-        // ... this also runs script tags, this makes it compatible with the Edit Field during Review add-on
-        setInnerHTML(this.hint, content)
-
-
+        
+        // this also runs script tags, this makes it compatible with the Edit Field during Review add-on
+        ankingsetInnerHTML(this.hint, content)
+        
         this.button.onclick = () => this.toggle()
-
+        
         // the link is needed so that this works with the Hint Hotkey add-on
         this.link.onclick = () => this.toggle()
-
+        
         if (ButtonAutoReveal[fieldName]) {
           this.toggle()
         }
-
-        document.addEventListener("keydown", (evt) => {
+        
+        var isShortcut = shortcutMatcher(ButtonShortcuts[fieldName])
+        var isToggleAllShortcut = shortcutMatcher(ToggleAllButtonsShortcut)
+        ankingAddEventListener("keydown", (evt) => {
           if (evt.repeat) return
-          if (evt.altKey && evt.keyCode == ButtonShortcuts[fieldName]) this.toggle()
-          if (evt.keyCode == ToggleAllButtons) this.toggle()
+          if (isShortcut(evt) || isToggleAllShortcut(evt)) {
+            this.toggle()
+          }
           return false
         })
       }
-
+      
       toggle() {
         if (!this.button) return
         if (this.hint.style.display == "none") {
@@ -143,29 +204,27 @@ replace the arrows/dashes from the statement below with double curly brackets-->
           this.link.style.display = ""
         }
       }
-
+      
     }
     try {
       customElements.define('hint-button', HintButton)
     } catch (DOMException) { }
   }
-
+  
   defineHintButton()
-
-  function setInnerHTML(elm, html) {
+  
+  function ankingsetInnerHTML(elm, html) {
     elm.innerHTML = html;
     Array.from(elm.querySelectorAll("script")).forEach(oldScript => {
       const newScript = document.createElement("script");
       Array.from(oldScript.attributes)
-        .forEach(attr => newScript.setAttribute(attr.name, attr.value));
+      .forEach(attr => newScript.setAttribute(attr.name, attr.value));
       newScript.appendChild(document.createTextNode(oldScript.innerHTML));
       oldScript.parentNode.replaceChild(newScript, oldScript);
     });
   }
-
-
-</script>
   
+</script>
   
 <!-- CLICKABLE COLORFUL TAGS -->
 {{#Tags}}
@@ -200,16 +259,16 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         "none";
     }
   }
-  document.addEventListener('keyup', function (e) {
-    if (e.keyCode == ToggleTags) {
-      showtags();
-    }
+  
+  var isShortcut = shortcutMatcher(toggleTagsShortcut)
+  ankingAddEventListener('keyup', function (e) {
+      if (isShortcut(e)) {
+          showtags();
+      }
   });
-
 
 </script>
 {{/Tags}}
-  
 
 <!-- WIKIPEDIA SEARCHES -->
 <div id="popup-container">
@@ -233,15 +292,15 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     white-space: pre-wrap;
     width: 300px;
   }
-
+  
   #tc p {
     margin: 0px;
   }
-
+  
   #tc::-webkit-scrollbar {
     display: none;
   }
-
+  
   #fadebottom_v {
     height: 30px;
     width: 300px;
@@ -251,30 +310,30 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     bottom: 0px;
     left: 15px;
   }
-
+  
   #hc {
     color: #666;
     font-weight: bold;
   }
-
+  
   #ic {
     right: 0px;
     top: 30px;
     position: absolute;
   }
-
+  
   #ic img {
     width: 160px;
     height: auto;
     object-fit: cover;
     overflow: hidden;
   }
-
+  
   #popup-image {
     width: 140px;
     height: auto;
   }
-
+  
   #popup-container {
     background: #fff;
     position: absolute;
@@ -296,7 +355,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     border: 1px solid #d0d0d0;
     border-radius: 5px;
   }
-
+  
   #close-popup-btn {
     position: absolute;
     top: 1px;
@@ -312,7 +371,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     text-align: right;
     z-index: 112;
   }
-
+  
   #open-wiki-btn {
     position: absolute;
     top: 10px;
@@ -342,7 +401,10 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     var imgelem = document.getElementById("popup-image");
     imgelem.src = "";
     var shortsum = "";
-    fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + word).then(function (response) { return response.json(); }).then(function (response) {
+    
+    fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + word)
+    .then(function (response) { return response.json(); })
+    .then(function (response) {
       shortsum = response.description;
       shortsum = shortsum.replace(/(Disambiguation.*)/g, "Disambiguation");
       tc.innerHTML = "<span id='hc'>" + capfl(shortsum) + "</span>" + "\n" + response.extract_html + "\n";
@@ -350,31 +412,41 @@ replace the arrows/dashes from the statement below with double curly brackets-->
       if (response.extract_html && !response.extract.endsWith("to:")) {
         pc.style.display = "block";
         document.getElementById("open-wiki-btn").href = response.content_urls.desktop.page;
-      } else { pc.style.display = "none"; }
+      } else { 
+        pc.style.display = "none"; 
+      }
       if (!response.thumbnail.source || response.type === "disambiguation") {
         tc.style.width = "420px";
-      } else { tc.style.width = "300px"; imgelem.src = response.thumbnail.source; }
-    }).catch(function (error) { console.log(error); });
+      } else { 
+        tc.style.width = "300px"; imgelem.src = response.thumbnail.source; 
+      }
+    })
+    .catch(function (error) { 
+      console.log(error); 
+    });
   }
-
+  
   function closePopup(deselectAlso = false) {
     pcc.style.display = 'none';
     if (deselectAlso) { clearSelection(); }
   }
+
   var pcc = document.getElementById("popup-container");
   var prevSel = "";
-  document.addEventListener('click', function () {
+  ankingAddEventListener('click', function () {
     var currentSelection = getSelectionText();
     if (currentSelection !== "") { prevSel = currentSelection; }
     if (currentSelection && !mustClickW) {
       getSummaryFor(currentSelection);
     } else { closePopup(); }
   });
-  document.addEventListener('keyup', function (e) {
+
+  ankingAddEventListener('keyup', function (e) {
     if (e.key == "w") {
       if (pcc.style.display === "block") { closePopup(); } else { getSummaryFor(prevSel); }
     }
   });
+
   function getSelectionText() {
     var text = "";
     if (window.getSelection) {
@@ -382,19 +454,21 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     } else if (document.selection && document.selection.type != "Control") { text = document.selection.createRange().text; }
     return text;
   }
+
   function capfl(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
   }
+
   function clearSelection() {
     if (window.getSelection) { window.getSelection().removeAllRanges(); }
     else if (document.selection) { document.selection.empty(); }
   }
-
+  
   //CUSTOMIZATION
   //this is a variable controlling whether user must click the "w" key to open the popup.
   //if set to true: user must select text, then click the "w" key to open wikipedia popup. Clicking "w" key again will close the popup. 
   //if set to false: user only needs to select text. popup will open automatically. Clicking "w" is an alternative but not obligatory way of opening/closing the popup in this mode.
   //BELOW SET to true or to false. 
   var mustClickW = true;
-        //END CUSTOMIZATION
+  //END CUSTOMIZATION
 </script>

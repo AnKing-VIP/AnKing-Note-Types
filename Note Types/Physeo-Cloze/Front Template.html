@@ -1,0 +1,203 @@
+<div id="text">{{cloze:Text}}</div>
+
+<br>
+
+<!-- ##############  Text-to-speech  ##############
+replace the arrows/dashes from the statement below with double curly brackets-->
+
+{{tts en_US voices=Apple_Samantha speed=1.4:cloze:Text}}
+
+<script>
+    // ############## USER CONFIGURATION START ##############
+    // Auto flip to back when One by one mode.
+    var autoflip = false 
+
+    // Timer config (timer length, timer finished message)
+    var minutes = 0
+    var seconds = 9
+    var timeOverMsg = "<span style='color:#CC5B5B'>!<br/>!<br/>!<br/>!<br/>!<br/>!</span>"
+
+    // ##############  TAG SHORTCUT  ##############
+    var toggleTagsShortcut = "C";
+
+    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+    var tagID = "XXXYYYZZZ"
+
+    // ############## USER CONFIGURATION END ##############
+</script>
+
+<!-- CLOZE ONE BY ONE AUTOFLIP -->
+<script>
+  var clozeOneByOneEnabled = true;
+  try {
+    clozeOneByOneEnabled = `{{One by one}}`.trim() !== ""
+  } catch (exception) {
+    console.log(exception)
+  }
+  
+  // AUTO-FLIP if cloze has hint
+  if(clozeOneByOneEnabled && autoflip) {
+    // avoid flickering
+    document.getElementById("qa").style.display = "none";
+    window.clozeHints = [];
+    
+    // Check if a cloze has hint
+    let clozes = document.getElementsByClassName("cloze")
+    for(var i = 0; i < clozes.length; i++) {
+      if (clozes[i].innerHTML === "[...]") {
+        window.clozeHints.push("")
+      } else {
+        window.clozeHints.push(clozes[i].innerHTML)
+      }
+    }
+    
+    if (window.pycmd) {
+      pycmd("ans")
+    } else if (window.showAnswer) {
+      showAnswer()
+    }    
+    // AnkiMobile JS API doesn't have one for show answer. 
+    // Best alternative is to use Taps/Swipes to show answer.
+    
+  } else {
+    delete window.clozeHints
+  }
+</script>
+
+<!-- COUNTDOWN TIMER -->
+<div class="timer" id="s2"></div>
+<script>
+  function countdown(elementName, minutes, seconds) {
+    var element, endTime, mins, msLeft, time;
+    function twoDigits( n ) {
+      return (n <= 9 ? "0" + n : n); 
+    }
+    function updateTimer() {
+      msLeft = endTime - (+new Date);
+      
+      if ( msLeft < 1000 ) {
+        element.innerHTML = timeOverMsg;
+      } else {
+        time = new Date( msLeft );
+        mins = time.getUTCMinutes();
+        element.innerHTML = mins + ':' + twoDigits(time.getUTCSeconds());
+        setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+      }
+    }
+    element = document.getElementById(elementName);
+    endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
+    updateTimer();
+  }
+  countdown("s2", minutes, seconds ); //2nd value is the minute, 3rd is the seconds
+</script>
+
+<!-- PHYSEO HYPERLINK IMAGE -->
+<a href="https://www.physeo.com"><img src="_PhyseoRoundLogo.png" alt="Physeo" id="pic"></a>
+
+<!-- NOT-PERSISTING EVENT LISTENER -->
+<script>
+  if (window.ankingEventListeners) {
+    for (const listener of ankingEventListeners) {
+      const type = listener[0]
+      const handler = listener[1]
+      document.removeEventListener(type, handler)
+    }
+  }
+  window.ankingEventListeners = []
+  
+  window.ankingAddEventListener = function(type, handler) {
+    document.addEventListener(type, handler)
+    window.ankingEventListeners.push([type, handler])
+  }
+</script>
+
+<!-- Shortcut Matcher Function -->
+<script>
+  var specialCharCodes = {
+    "-": "minus",
+    "=": "equal",
+    "[": "bracketleft",
+    "]": "bracketright",
+    ";": "semicolon",
+    "'": "quote",
+    "`": "backquote",
+    "\\": "backslash",
+    ",": "comma",
+    ".": "period",
+    "/": "slash",
+  };
+  // Returns function that match keyboard event to see if it matches given shortcut.
+  function shortcutMatcher(shortcut) {
+    let shortcutKeys = shortcut.toLowerCase().split(/[+]/).map(key => key.trim())
+    let mainKey = shortcutKeys[shortcutKeys.length - 1]
+    if (mainKey.length === 1) {
+      if (/\d/.test(mainKey)) {
+        mainKey = "digit" + mainKey
+      } else if (/[a-zA-Z]/.test(mainKey)) {
+        mainKey = "key" + mainKey
+      } else {
+        let code = specialCharCodes[mainKey];
+        if (code) {
+          mainKey = code
+        }
+      }
+    }
+    let ctrl = shortcutKeys.includes("ctrl")
+    let shift = shortcutKeys.includes("shift")
+    let alt = shortcutKeys.includes("alt")
+
+    let matchShortcut = function (ctrl, shift, alt, mainKey, event) {
+      if (mainKey !== event.code.toLowerCase()) return false
+      if (ctrl !== (event.ctrlKey || event.metaKey)) return false
+      if (shift !== event.shiftKey) return false
+      if (alt !== event.altKey) return false
+      return true
+    }.bind(window, ctrl, shift, alt, mainKey)
+    
+    return matchShortcut
+  }
+</script>
+
+<!-- CLICKABLE COLORFUL TAGS -->
+{{#Tags}}
+<div id="tags-container">{{clickable::Tags}}</div>
+<script>
+  var tagContainer = document.getElementById("tags-container")
+  if (tagContainer.childElementCount == 0) {
+    var tagList = tagContainer.innerHTML.split(" ");
+    var kbdList = [];
+    var newTagContent = document.createElement("div");
+
+    for (var i = 0; i < tagList.length; i++) {
+      var newTag = document.createElement("kbd");
+      newTag.innerHTML = tagList[i];
+      newTagContent.append(newTag)
+    }
+    tagContainer.innerHTML = newTagContent.innerHTML;
+    tagContainer.style.cursor = "default";
+  }
+  if (tagContainer.innerHTML.indexOf(tagID) != -1) {
+    tagContainer.style.backgroundColor = "rgba(251,11,11,.15)";
+  }
+
+  function showtags() {
+    var tagContainerShortcut = document.getElementById("tags-container");
+
+    if (tagContainerShortcut.style.display
+      === "none") {
+      tagContainerShortcut.style.display = "block";
+    } else {
+      tagContainerShortcut.style.display =
+        "none";
+    }
+  }
+  
+  var isShortcut = shortcutMatcher(toggleTagsShortcut)
+  ankingAddEventListener('keyup', function (e) {
+      if (isShortcut(e)) {
+          showtags();
+      }
+  });
+
+</script>
+{{/Tags}}

@@ -1,0 +1,69 @@
+<div id="front">{{edit:Front}}</div>
+
+<br>
+
+<!-- ##############  Text-to-speech  ##############
+replace the arrows/dashes from the statement below with double curly brackets-->
+
+<!--tts en_US voices=Apple_Samantha speed=1.4:Front -->
+
+
+<script>
+    // ############## USER CONFIGURATION START ##############
+
+    // Timer config (timer length, timer finished message)
+    var minutes = 0
+    var seconds = 9
+    var timeOverMsg = "<span style='color:#CC5B5B'>!<br/>!<br/>!<br/>!<br/>!<br/>!</span>"
+
+    // ##############  TAG SHORTCUT  ##############
+    var toggleTagsShortcut = "C";
+
+    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+    var tagID = "XXXYYYZZZ"
+
+    // ############## USER CONFIGURATION END ##############
+</script>
+
+<%- include('src/components/ankingAddEventListener.ejs') %>
+
+<%- include('src/components/shortcutMatcher.ejs') %>
+
+<!-- COUNTDOWN TIMER -->
+<div class="timer" id="s2"></div>
+<script>
+function countdown(elementName, minutes, seconds) {
+    var element, endTime, mins, msLeft, time;
+    function twoDigits( n ) {
+        return (n <= 9 ? "0" + n : n); 
+    }
+    function updateTimer() {
+        msLeft = endTime - (+new Date);
+
+        if ( msLeft < 1000 ) {
+            element.innerHTML = timeOverMsg;
+        } else {
+            time = new Date( msLeft );
+            mins = time.getUTCMinutes();
+            element.innerHTML = mins + ':' + twoDigits(time.getUTCSeconds());
+            setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+        }
+    }
+    element = document.getElementById(elementName);
+    endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
+    updateTimer();
+}
+countdown("s2", minutes, seconds ); //2nd value is the minute, 3rd is the seconds
+</script>
+
+
+<!-- ANKING HYPERLINK IMAGE -->
+<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
+
+
+<script>
+    //DONT FADE BETWEEN CARDS
+	qFade=0; if (typeof anki !== 'undefined') anki.qFade=qFade;
+</script>
+
+<%- include('src/components/colorfulTags.ejs') %>

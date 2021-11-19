@@ -1,0 +1,655 @@
+ <script>
+    // ##############  BUTTON REVEAL SHORTCUTS  ##############
+    // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
+    var ButtonShortcuts = {
+        "Personal Notes" : "Alt + 1",
+        "Missed Questions" : "Alt + 2"
+    }
+
+    var ToggleAllButtonsShortcut = "'"
+
+    // ##############  SHOW BUTTON HINTS AUTOMATICALLY  ##############
+    var ButtonAutoReveal = {
+        "Personal Notes": false,
+        "Missed Questions": false,
+    }
+
+    var ScrollToButton = true;
+
+    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+    var tagID = "XXXYYYZZZ"
+
+    // ~~~~~~~~~~~~~  CLOZE ONE BY ONE  ~~~~~~~~~~~~~
+var revealClozeShortcut = "N" // Shortcut to reveal next cloze
+var revealClozeWordShortcut = "Shift + N" // Shortcut to reveal next hidden word in cloze
+
+// Changes how "Reveal Next" and clicking behaves. Either "cloze" or "word".
+// "word" reveals word by word. 
+var revealNextClozeMode = "cloze" 
+
+// What cloze is hidden with
+var clozeHider = (elem) => "👑"
+/* 
+You can replace the above line with below examples. '█' or '_' works well for hiding clozes.
+
+// Fixed length:
+var clozeHider = (elem) => "███"
+// Replace each character with "█":
+var clozeHider = (elem) => "█".repeat(elem.textContent.length)
+// Show whitespaces:
+var clozeHider = (elem) => "[" + elem.textContent.split(" ").map((t) => "█".repeat(t.length)).join(" ") + "]"
+// Color-filled box (doesn't hide images):
+var clozeHider = (elem) => `<span style="background-color: red; color: transparent;">${elem.innerHTML}</span>`
+*/
+</script>
+
+<div class="clozefield" id="text">{{cloze:Text}}</div>
+
+<!-- ##############  EDIT CLOZE DURING REVIEW  ##############
+			-change below (not above) to  "edit:cloze:Text" for editable field, 
+				but be sure to have the correct add-on installed-->
+
+<div class="editcloze" id="text">{{edit:cloze:Text}}</div>
+
+<br>
+
+<!-- ##############  TEXT-TO-SPEECH ##############
+replace the arrows/dashes from the statement below with double curly brackets-->
+
+{{tts en_US voices=Apple_Samantha speed=1.4:cloze-only:Text}}
+
+
+<hr>
+
+<!-- BUTTON FIELDS -->
+<!-- ClOZE ONE BY ONE BUTTONS -->
+{{#One by one}}
+<button id="button-reveal-next" class="button-general" onclick="revealNextCloze()">Reveal Next Cloze</button>
+<button id="button-toggle-all" class="button-general" onclick="toggleAllCloze()">Toggle All Cloze</button>
+<br />
+{{/One by one}}
+
+
+{{#Personal Notes}}<hint-button field-name="Personal Notes" short="ln" hint-id="notes"></hint-button>
+<div id="dummy-ln" style="display: none;">{{edit:Personal Notes}}</div>{{/Personal Notes}}
+
+{{#Missed Questions}}<hint-button field-name="Missed Questions" short="mq" hint-id="missed"></hint-button>
+<div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>{{/Missed Questions}}
+
+<br></br>
+<!-- Extra field -->
+<p></p>{{#Extra}}
+<div id="extra">{{edit:Extra}}</div>
+{{/Extra}}<br>
+
+{{#Images}}<div id="imagefield">{{edit:Images}}</div>{{/Images}}
+
+
+<!-- PHYSEO HYPERLINK IMAGE -->
+<a href="https://www.physeo.com"><img src="_PhyseoRoundLogo.png" alt="Physeo" id="pic"></a>
+
+<!-- NOT-PERSISTING EVENT LISTENER -->
+<script>
+  if (window.ankingEventListeners) {
+    for (const listener of ankingEventListeners) {
+      const type = listener[0]
+      const handler = listener[1]
+      document.removeEventListener(type, handler)
+    }
+  }
+  window.ankingEventListeners = []
+  
+  window.ankingAddEventListener = function(type, handler) {
+    document.addEventListener(type, handler)
+    window.ankingEventListeners.push([type, handler])
+  }
+</script>
+
+<!-- Shortcut Matcher Function -->
+<script>
+  var specialCharCodes = {
+    "-": "minus",
+    "=": "equal",
+    "[": "bracketleft",
+    "]": "bracketright",
+    ";": "semicolon",
+    "'": "quote",
+    "`": "backquote",
+    "\\": "backslash",
+    ",": "comma",
+    ".": "period",
+    "/": "slash",
+  };
+  // Returns function that match keyboard event to see if it matches given shortcut.
+  function shortcutMatcher(shortcut) {
+    let shortcutKeys = shortcut.toLowerCase().split(/[+]/).map(key => key.trim())
+    let mainKey = shortcutKeys[shortcutKeys.length - 1]
+    if (mainKey.length === 1) {
+      if (/\d/.test(mainKey)) {
+        mainKey = "digit" + mainKey
+      } else if (/[a-zA-Z]/.test(mainKey)) {
+        mainKey = "key" + mainKey
+      } else {
+        let code = specialCharCodes[mainKey];
+        if (code) {
+          mainKey = code
+        }
+      }
+    }
+    let ctrl = shortcutKeys.includes("ctrl")
+    let shift = shortcutKeys.includes("shift")
+    let alt = shortcutKeys.includes("alt")
+
+    let matchShortcut = function (ctrl, shift, alt, mainKey, event) {
+      if (mainKey !== event.code.toLowerCase()) return false
+      if (ctrl !== (event.ctrlKey || event.metaKey)) return false
+      if (shift !== event.shiftKey) return false
+      if (alt !== event.altKey) return false
+      return true
+    }.bind(window, ctrl, shift, alt, mainKey)
+    
+    return matchShortcut
+  }
+</script>
+
+<!-- TOGGLE BUTTONS -->
+<script>
+  function defineHintButton() {
+    class HintButton extends HTMLElement {
+      constructor() {
+        super();
+        
+        var fieldName = this.getAttribute("field-name")
+        
+        // adding the strings together this way to prevent Anki from thinking that a field should be inserted here
+        var fieldString = '{' + '{' + fieldName + '}}'
+        var short = this.getAttribute("short")
+        var hintId = this.getAttribute("hint-id")
+        var iconFile = this.getAttribute("icon") || "_PhyseoRoundSmall.png"
+        var buttonText = fieldName
+        if (this.hasAttribute("no-text")) buttonText = ""
+        this.innerHTML = `
+        <a id="link-${short}" href="#" class="hint"></a>
+        <button id="button-${short}" class="button-general">
+          <img id="icon-${short}" src="">
+          ${buttonText}
+        </button>
+        <div id="${hintId}" class="hints" style="display:none;">
+        </div>
+        `
+        this.button = document.getElementById(`button-${short}`)
+        this.link = document.getElementById(`link-${short}`)
+        this.hint = document.getElementById(hintId)
+        this.icon = document.getElementById(`icon-${short}`)
+        
+        // inserting the icon file name directly in the template string doesnt work
+        // because Anki probably replaces img src attributes using a regex with the url-encoded src
+        this.icon.setAttribute("src", iconFile)
+        
+        // moves the field content from the dummy to this
+        var dummy = document.getElementById(`dummy-${short}`)
+        var content = dummy.innerHTML
+        
+        // hide this if the field is empty
+        if (dummy.innerHTML == "" ||
+        (dummy.lastChild.nodeName == "SCRIPT" && dummy.firstChild.getAttribute("contenteditable") && dummy.firstChild.innerHTML == "")) {
+          this.remove()
+          return
+        }
+        
+        // this also runs script tags, this makes it compatible with the Edit Field during Review add-on
+        ankingsetInnerHTML(this.hint, content)
+        
+        this.button.onclick = () => this.toggle()
+        
+        // the link is needed so that this works with the Hint Hotkey add-on
+        this.link.onclick = () => this.toggle()
+        
+        if (ButtonAutoReveal[fieldName]) {
+          this.toggle()
+        }
+        
+        var isShortcut = shortcutMatcher(ButtonShortcuts[fieldName])
+        var isToggleAllShortcut = shortcutMatcher(ToggleAllButtonsShortcut)
+        ankingAddEventListener("keydown", (evt) => {
+          if (evt.repeat) return
+          if (isShortcut(evt) || isToggleAllShortcut(evt)) {
+            this.toggle()
+          }
+          return false
+        })
+      }
+      
+      toggle() {
+        if (!this.button) return
+        if (this.hint.style.display == "none") {
+          this.button.classList.add("expanded-button")
+          this.hint.style.display = "block"
+          this.link.style.display = "none"
+          if (ScrollToButton) {
+            this.hint.scrollIntoView({
+              behavior: "smooth", // "auto" for instant scrolling
+              block: "start",
+              inline: "nearest"
+            });
+          }
+        } else {
+          this.button.classList.remove("expanded-button")
+          this.hint.style.display = "none"
+          this.link.style.display = ""
+        }
+      }
+      
+    }
+    try {
+      customElements.define('hint-button', HintButton)
+    } catch (DOMException) { }
+  }
+  
+  defineHintButton()
+  
+  function ankingsetInnerHTML(elm, html) {
+    elm.innerHTML = html;
+    Array.from(elm.querySelectorAll("script")).forEach(oldScript => {
+      const newScript = document.createElement("script");
+      Array.from(oldScript.attributes)
+      .forEach(attr => newScript.setAttribute(attr.name, attr.value));
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+  }
+  
+</script> 
+
+<!-- CLOZE ONE BY ONE SCRIPT -->
+<style>
+  .cloze[data-content]:hover {
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  (function() {
+    var clozeOneByOneEnabled = true;
+    try {
+        clozeOneByOneEnabled = `{{One by one}}`.trim() !== ""
+    } catch (exception) {
+      console.log(exception)
+    }
+
+    const hideCloze = function(cloze) {
+      if (!clozeOneByOneEnabled) {
+        return
+      }
+      cloze.dataset.content = cloze.innerHTML
+        if(window.clozeHints && window.clozeHints[i]) {
+            cloze.innerHTML = window.clozeHints[i]
+        } else {
+            cloze.innerHTML = clozeHider(cloze)
+        }
+    }
+    
+    const revealCloze = function(elem) {
+      // Checking for dataset.content is undefined may not be needed anymore?
+      if (!clozeOneByOneEnabled || elem.dataset.content === undefined) {
+        return
+      }
+      elem.innerHTML = elem.dataset.content
+      delete elem.dataset.content
+    }
+
+    const revealClozeWord = function(elem) {
+      if (!clozeOneByOneEnabled || elem.dataset.content === undefined) {
+        return
+      }
+      if (elem.dataset.hidden !== undefined) {
+        let words = elem.dataset.hidden.split(" ");
+        if (words.length == 1) {
+          revealCloze(elem)
+          delete elem.dataset.hidden
+          delete elem.dataset.revealed
+        } else {
+          elem.dataset.revealed = elem.dataset.revealed + " " + words[0]
+          elem.dataset.hidden = words.slice(1).join(" ");
+          let temp = document.createElement("div");
+          temp.innerHTML = elem.dataset.hidden;
+          elem.innerHTML = elem.dataset.revealed + " " + clozeHider(temp);
+        }
+      } else {
+        let temp = document.createElement("div");
+        temp.innerHTML = elem.dataset.content;
+        elem.dataset.hidden = temp.textContent;
+        elem.dataset.revealed = "";
+        revealClozeWord(elem)
+      }
+    }
+
+    window.revealNextCloze = function() {
+      let nextHidden = document.querySelector(".cloze[data-content]")
+      if(!nextHidden) {
+          return
+      } 
+      if (revealNextClozeMode === "word") {
+          revealClozeWord(nextHidden)
+      } else {
+          revealCloze(nextHidden)
+      }
+    }
+
+    const hideAllCloze = function(initial) {
+      let clozes = document.getElementsByClassName("cloze")
+      for (let i = 0; i < clozes.length; i++) {
+        let cloze = clozes[i]
+        if (cloze.offsetWidth === 0) {
+          continue
+        }
+        hideCloze(cloze)
+        if (initial === true) {
+          cloze.addEventListener("touchend", revealClozeClicked)
+          cloze.addEventListener("click", revealClozeClicked)
+        }
+      }
+    }
+
+    window.toggleAllCloze = function() {
+      let elems = document.querySelectorAll(".cloze[data-content]")
+      let button = document.getElementById("button-toggle-all")
+      if(elems.length > 0) {
+        for (let i = 0; i < elems.length; i++) {
+            revealCloze(elems[i])
+        }
+      } else {
+        hideAllCloze(initial=false)
+      }
+    }
+
+    const revealClozeClicked = function(ev) {
+      let elem = ev.currentTarget
+      if (elem.dataset.content === undefined) {
+        return
+      }
+      if (!ev.altKey && (revealNextClozeMode !== "word")) {
+        revealCloze(elem)
+      } else {
+        revealClozeWord(elem)
+      }
+      ev.stopPropagation()
+      ev.preventDefault()
+    }      
+    
+    // autoflip hides card in front template
+    document.getElementById("qa").style.removeProperty("display")
+    hideAllCloze(initial=true)
+
+    let showAllShortcut = shortcutMatcher(window.revealClozeShortcut)
+    let showWordShortcut = shortcutMatcher(window.revealClozeWordShortcut)
+
+    ankingAddEventListener("keydown", (ev) => {
+      if(showAllShortcut(ev)) {
+        let elem = document.querySelector(".cloze[data-content]")
+        if (elem) {
+          revealCloze(elem)
+          ev.stopPropagation()
+          ev.preventDefault()
+          return
+        }
+      }
+      if (showWordShortcut(ev)) {
+        let elem = document.querySelector(".cloze[data-content]")
+        if (elem) {
+          revealClozeWord(elem)
+          ev.stopPropagation()
+          ev.preventDefault()
+          return
+        }
+      }
+    });
+  })()
+</script>
+
+<!-- CLICKABLE COLORFUL TAGS -->
+{{#Tags}}
+<div id="tags-container">{{clickable::Tags}}</div>
+<script>
+  var tagContainer = document.getElementById("tags-container")
+  if (tagContainer.childElementCount == 0) {
+    var tagList = tagContainer.innerHTML.split(" ");
+    var kbdList = [];
+    var newTagContent = document.createElement("div");
+
+    for (var i = 0; i < tagList.length; i++) {
+      var newTag = document.createElement("kbd");
+      newTag.innerHTML = tagList[i];
+      newTagContent.append(newTag)
+    }
+    tagContainer.innerHTML = newTagContent.innerHTML;
+    tagContainer.style.cursor = "default";
+  }
+  if (tagContainer.innerHTML.indexOf(tagID) != -1) {
+    tagContainer.style.backgroundColor = "rgba(251,11,11,.15)";
+  }
+
+  function showtags() {
+    var tagContainerShortcut = document.getElementById("tags-container");
+
+    if (tagContainerShortcut.style.display
+      === "none") {
+      tagContainerShortcut.style.display = "block";
+    } else {
+      tagContainerShortcut.style.display =
+        "none";
+    }
+  }
+  
+  var isShortcut = shortcutMatcher(toggleTagsShortcut)
+  ankingAddEventListener('keyup', function (e) {
+      if (isShortcut(e)) {
+          showtags();
+      }
+  });
+
+</script>
+{{/Tags}}
+
+<!-- WIKIPEDIA SEARCHES -->
+<div id="popup-container">
+  <button id="close-popup-btn" onclick="closePopup(true)">&times;</button>
+  <a id="open-wiki-btn" href="">&#8618;</a>
+  <div id="tc"></div>
+  <div id="fadebottom_v"></div>
+  <div id="ic"><img id="popup-image"></div>
+</div>
+<style>
+  #tc {
+    color: #222222;
+    position: absolute;
+    top: 16px;
+    margin: 0px;
+    left: 15px;
+    text-decoration: none;
+    height: 320px;
+    overflow: hidden;
+    overflow-y: scroll;
+    white-space: pre-wrap;
+    width: 300px;
+  }
+  
+  #tc p {
+    margin: 0px;
+  }
+  
+  #tc::-webkit-scrollbar {
+    display: none;
+  }
+  
+  #fadebottom_v {
+    height: 30px;
+    width: 300px;
+    background: -webkit-linear-gradient(270deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 1));
+    z-index: 111;
+    position: absolute;
+    bottom: 0px;
+    left: 15px;
+  }
+  
+  #hc {
+    color: #666;
+    font-weight: bold;
+  }
+  
+  #ic {
+    right: 0px;
+    top: 30px;
+    position: absolute;
+  }
+  
+  #ic img {
+    width: 160px;
+    height: auto;
+    object-fit: cover;
+    overflow: hidden;
+  }
+  
+  #popup-image {
+    width: 140px;
+    height: auto;
+  }
+  
+  #popup-container {
+    background: #fff;
+    position: absolute;
+    bottom: 30px;
+    right: 10px;
+    z-index: 110;
+    -webkit-box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+    padding: 0;
+    display: none;
+    font-size: 17px;
+    line-height: 20px;
+    border-radius: 2px;
+    width: 480px;
+    height: 340px;
+    overflow: hidden;
+    font-family: Arial;
+    text-align: left;
+    border: 1px solid #d0d0d0;
+    border-radius: 5px;
+  }
+  
+  #close-popup-btn {
+    position: absolute;
+    top: 1px;
+    right: 5px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+    outline: none;
+    text-align: right;
+    z-index: 112;
+  }
+  
+  #open-wiki-btn {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    width: 15px;
+    height: 32px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: #222222;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 17px;
+    outline: none;
+    text-align: left;
+    z-index: 112;
+  }
+</style>
+
+<script>
+  function getSummaryFor(word) {
+    word = word.replace(/^[\.,\/#\!$%\^&\*;:{}=\-_`~() \'\s]+|[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+$/g, "");
+    var pc = document.getElementById("popup-container");
+    var hc = document.getElementById("hc");
+    var tc = document.getElementById("tc");
+    var ic = document.getElementById("ic");
+    var imgelem = document.getElementById("popup-image");
+    imgelem.src = "";
+    var shortsum = "";
+    
+    fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + word)
+    .then(function (response) { return response.json(); })
+    .then(function (response) {
+      shortsum = response.description;
+      shortsum = shortsum.replace(/(Disambiguation.*)/g, "Disambiguation");
+      tc.innerHTML = "<span id='hc'>" + capfl(shortsum) + "</span>" + "\n" + response.extract_html + "\n";
+      tc.style.width = "420px";
+      if (response.extract_html && !response.extract.endsWith("to:")) {
+        pc.style.display = "block";
+        document.getElementById("open-wiki-btn").href = response.content_urls.desktop.page;
+      } else { 
+        pc.style.display = "none"; 
+      }
+      if (!response.thumbnail.source || response.type === "disambiguation") {
+        tc.style.width = "420px";
+      } else { 
+        tc.style.width = "300px"; imgelem.src = response.thumbnail.source; 
+      }
+    })
+    .catch(function (error) { 
+      console.log(error); 
+    });
+  }
+  
+  function closePopup(deselectAlso = false) {
+    pcc.style.display = 'none';
+    if (deselectAlso) { clearSelection(); }
+  }
+
+  var pcc = document.getElementById("popup-container");
+  var prevSel = "";
+  ankingAddEventListener('click', function () {
+    var currentSelection = getSelectionText();
+    if (currentSelection !== "") { prevSel = currentSelection; }
+    if (currentSelection && !mustClickW) {
+      getSummaryFor(currentSelection);
+    } else { closePopup(); }
+  });
+
+  ankingAddEventListener('keyup', function (e) {
+    if (e.key == "w") {
+      if (pcc.style.display === "block") { closePopup(); } else { getSummaryFor(prevSel); }
+    }
+  });
+
+  function getSelectionText() {
+    var text = "";
+    if (window.getSelection) {
+      text = window.getSelection().toString();
+    } else if (document.selection && document.selection.type != "Control") { text = document.selection.createRange().text; }
+    return text;
+  }
+
+  function capfl(s) {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+
+  function clearSelection() {
+    if (window.getSelection) { window.getSelection().removeAllRanges(); }
+    else if (document.selection) { document.selection.empty(); }
+  }
+  
+  //CUSTOMIZATION
+  //this is a variable controlling whether user must click the "w" key to open the popup.
+  //if set to true: user must select text, then click the "w" key to open wikipedia popup. Clicking "w" key again will close the popup. 
+  //if set to false: user only needs to select text. popup will open automatically. Clicking "w" is an alternative but not obligatory way of opening/closing the popup in this mode.
+  //BELOW SET to true or to false. 
+  var mustClickW = true;
+  //END CUSTOMIZATION
+</script>

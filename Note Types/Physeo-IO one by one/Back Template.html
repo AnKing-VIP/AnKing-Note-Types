@@ -1,0 +1,446 @@
+<script>
+    // ##############  OCCLUSION SHORTCUTS  ##############
+    var RevealIncrementalShortcut = "N";
+    var ToggleAllOcclusionsShortcut = ",";
+
+    // ##############  BUTTON SETTINGS  ##############
+    // All buttons will also open with "H" if using the Hint Hotkeys add-on 
+    var ButtonShortcuts = {
+        "Extra": "Alt + 1",
+        "Personal Notes": "Alt + 2",
+        "Missed Questions": "Alt + 3",
+    }
+    var ToggleAllButtonsShortcut = "'"
+
+    // change values from false to true to have the fields revealed from the start
+    var ButtonAutoReveal = {
+        "Extra": false,
+        "Personal Notes": false,
+        "Missed Questions": false,
+    }
+
+    var ScrollToButton = true
+
+    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+    var tagID = "XXXYYYZZZ"
+
+</script>
+
+<div id="extras" hidden>{{I0}}</div>
+<div class="header">{{Header}}</div>
+<button class="dummy-btn">
+    <div class="io">{{Image}}</div>
+</button>
+<br>
+<button id="button-reveal-next" class="button-general">Reveal Next</button>
+<button id="button-toggle-all" class="button-general">Toggle All</button>
+<br>
+<div class="btn-spacer" hidden></div>
+
+<!-- TOGGLE HINT BUTTONS -->
+{{#Extra}}<hint-button field-name="Extra" short="ex" hint-id="extra"></hint-button>
+<div id="dummy-ex" style="display: none;">{{edit:Extra}}</div>{{/Extra}}
+
+{{#Personal Notes}}<hint-button field-name="Personal Notes" short="ln" hint-id="personal-notes"></hint-button>
+<div id="dummy-ln" style="display: none;">{{edit:Personal Notes}}</div>{{/Personal Notes}}
+
+{{#Missed Questions}}<hint-button field-name="Missed Questions" short="mq" hint-id="missed-questions"></hint-button>
+<div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>{{/Missed Questions}}
+
+
+<!-- PHYSEO HYPERLINK IMAGE -->
+<a href="https://www.physeo.com"><img src="_PhyseoRoundLogo.png" alt="Physeo" id="pic"></a>
+
+<!-- NOT-PERSISTING EVENT LISTENER -->
+<script>
+  if (window.ankingEventListeners) {
+    for (const listener of ankingEventListeners) {
+      const type = listener[0]
+      const handler = listener[1]
+      document.removeEventListener(type, handler)
+    }
+  }
+  window.ankingEventListeners = []
+  
+  window.ankingAddEventListener = function(type, handler) {
+    document.addEventListener(type, handler)
+    window.ankingEventListeners.push([type, handler])
+  }
+</script>
+
+<!-- Shortcut Matcher Function -->
+<script>
+  var specialCharCodes = {
+    "-": "minus",
+    "=": "equal",
+    "[": "bracketleft",
+    "]": "bracketright",
+    ";": "semicolon",
+    "'": "quote",
+    "`": "backquote",
+    "\\": "backslash",
+    ",": "comma",
+    ".": "period",
+    "/": "slash",
+  };
+  // Returns function that match keyboard event to see if it matches given shortcut.
+  function shortcutMatcher(shortcut) {
+    let shortcutKeys = shortcut.toLowerCase().split(/[+]/).map(key => key.trim())
+    let mainKey = shortcutKeys[shortcutKeys.length - 1]
+    if (mainKey.length === 1) {
+      if (/\d/.test(mainKey)) {
+        mainKey = "digit" + mainKey
+      } else if (/[a-zA-Z]/.test(mainKey)) {
+        mainKey = "key" + mainKey
+      } else {
+        let code = specialCharCodes[mainKey];
+        if (code) {
+          mainKey = code
+        }
+      }
+    }
+    let ctrl = shortcutKeys.includes("ctrl")
+    let shift = shortcutKeys.includes("shift")
+    let alt = shortcutKeys.includes("alt")
+
+    let matchShortcut = function (ctrl, shift, alt, mainKey, event) {
+      if (mainKey !== event.code.toLowerCase()) return false
+      if (ctrl !== (event.ctrlKey || event.metaKey)) return false
+      if (shift !== event.shiftKey) return false
+      if (alt !== event.altKey) return false
+      return true
+    }.bind(window, ctrl, shift, alt, mainKey)
+    
+    return matchShortcut
+  }
+</script>
+
+<div id="anki-am" data-name="Assets by ASSET MANAGER" data-version="2.1">
+
+<!-- CLICKABLE COLORFUL TAGS -->
+{{#Tags}}
+<div id="tags-container">{{clickable::Tags}}</div>
+<script>
+  var tagContainer = document.getElementById("tags-container")
+  if (tagContainer.childElementCount == 0) {
+    var tagList = tagContainer.innerHTML.split(" ");
+    var kbdList = [];
+    var newTagContent = document.createElement("div");
+
+    for (var i = 0; i < tagList.length; i++) {
+      var newTag = document.createElement("kbd");
+      newTag.innerHTML = tagList[i];
+      newTagContent.append(newTag)
+    }
+    tagContainer.innerHTML = newTagContent.innerHTML;
+    tagContainer.style.cursor = "default";
+  }
+  if (tagContainer.innerHTML.indexOf(tagID) != -1) {
+    tagContainer.style.backgroundColor = "rgba(251,11,11,.15)";
+  }
+
+  function showtags() {
+    var tagContainerShortcut = document.getElementById("tags-container");
+
+    if (tagContainerShortcut.style.display
+      === "none") {
+      tagContainerShortcut.style.display = "block";
+    } else {
+      tagContainerShortcut.style.display =
+        "none";
+    }
+  }
+  
+  var isShortcut = shortcutMatcher(toggleTagsShortcut)
+  ankingAddEventListener('keyup', function (e) {
+      if (isShortcut(e)) {
+          showtags();
+      }
+  });
+
+</script>
+{{/Tags}}
+    
+    <!-- TOGGLE BUTTONS -->
+<script>
+  function defineHintButton() {
+    class HintButton extends HTMLElement {
+      constructor() {
+        super();
+        
+        var fieldName = this.getAttribute("field-name")
+        
+        // adding the strings together this way to prevent Anki from thinking that a field should be inserted here
+        var fieldString = '{' + '{' + fieldName + '}}'
+        var short = this.getAttribute("short")
+        var hintId = this.getAttribute("hint-id")
+        var iconFile = this.getAttribute("icon") || "_PhyseoRoundSmall.png"
+        var buttonText = fieldName
+        if (this.hasAttribute("no-text")) buttonText = ""
+        this.innerHTML = `
+        <a id="link-${short}" href="#" class="hint"></a>
+        <button id="button-${short}" class="button-general">
+          <img id="icon-${short}" src="">
+          ${buttonText}
+        </button>
+        <div id="${hintId}" class="hints" style="display:none;">
+        </div>
+        `
+        this.button = document.getElementById(`button-${short}`)
+        this.link = document.getElementById(`link-${short}`)
+        this.hint = document.getElementById(hintId)
+        this.icon = document.getElementById(`icon-${short}`)
+        
+        // inserting the icon file name directly in the template string doesnt work
+        // because Anki probably replaces img src attributes using a regex with the url-encoded src
+        this.icon.setAttribute("src", iconFile)
+        
+        // moves the field content from the dummy to this
+        var dummy = document.getElementById(`dummy-${short}`)
+        var content = dummy.innerHTML
+        
+        // hide this if the field is empty
+        if (dummy.innerHTML == "" ||
+        (dummy.lastChild.nodeName == "SCRIPT" && dummy.firstChild.getAttribute("contenteditable") && dummy.firstChild.innerHTML == "")) {
+          this.remove()
+          return
+        }
+        
+        // this also runs script tags, this makes it compatible with the Edit Field during Review add-on
+        ankingsetInnerHTML(this.hint, content)
+        
+        this.button.onclick = () => this.toggle()
+        
+        // the link is needed so that this works with the Hint Hotkey add-on
+        this.link.onclick = () => this.toggle()
+        
+        if (ButtonAutoReveal[fieldName]) {
+          this.toggle()
+        }
+        
+        var isShortcut = shortcutMatcher(ButtonShortcuts[fieldName])
+        var isToggleAllShortcut = shortcutMatcher(ToggleAllButtonsShortcut)
+        ankingAddEventListener("keydown", (evt) => {
+          if (evt.repeat) return
+          if (isShortcut(evt) || isToggleAllShortcut(evt)) {
+            this.toggle()
+          }
+          return false
+        })
+      }
+      
+      toggle() {
+        if (!this.button) return
+        if (this.hint.style.display == "none") {
+          this.button.classList.add("expanded-button")
+          this.hint.style.display = "block"
+          this.link.style.display = "none"
+          if (ScrollToButton) {
+            this.hint.scrollIntoView({
+              behavior: "smooth", // "auto" for instant scrolling
+              block: "start",
+              inline: "nearest"
+            });
+          }
+        } else {
+          this.button.classList.remove("expanded-button")
+          this.hint.style.display = "none"
+          this.link.style.display = ""
+        }
+      }
+      
+    }
+    try {
+      customElements.define('hint-button', HintButton)
+    } catch (DOMException) { }
+  }
+  
+  defineHintButton()
+  
+  function ankingsetInnerHTML(elm, html) {
+    elm.innerHTML = html;
+    Array.from(elm.querySelectorAll("script")).forEach(oldScript => {
+      const newScript = document.createElement("script");
+      Array.from(oldScript.attributes)
+      .forEach(attr => newScript.setAttribute(attr.name, attr.value));
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+  }
+  
+</script>
+
+
+    <!-- INCREMENTAL IMAGE OCCLUSION SCRIPT -->
+    <script data-name="Incremental IO" data-version="v0.1">
+        /* Script by Matthias Metelka @kleinerpirat */
+
+        function setupIncrementalIO() {
+            var observer = new MutationObserver(() => {
+                document.getElementById("button-toggle-all").addEventListener("click", toggleAll)
+                document.getElementById("button-reveal-next").addEventListener("click", toggleNext)
+
+                let rect = document.querySelector(".closet-rect.is-active")
+                if (rect) {
+                    activate(rect)
+                    observer.disconnect()
+                    globalThis.AnkingIORects = document.querySelectorAll(".closet-rect.is-active")
+                    for (let rect of globalThis.AnkingIORects) {
+                        rect.addEventListener("click", reveal)
+                    }
+                    if (!globalThis.AnKingIOListening) {
+                        var isRevealIncrementalScut = shortcutMatcher(RevealIncrementalShortcut)
+                        var isToggleAllOcclScut = shortcutMatcher(ToggleAllOcclusionsShortcut)
+                        document.addEventListener("keydown", (evt) => {
+                            if (evt.repeat) return
+                            if (isRevealIncrementalScut(evt)) {
+                                toggleNext()
+                            }
+                            else if (isToggleAllOcclScut(evt)) {
+                                toggleAll()
+                            }
+                        })
+                        globalThis.AnKingIOListening = true
+                    }
+
+                    let buttons = document.getElementsByClassName("extra-btn")
+                    function toggle() {
+                        if (!this.classList.contains("uncollapsed")) {
+                            this.nextElementSibling.classList.remove("hidden")
+                            this.classList.add("uncollapsed")
+                        }
+                        else {
+                            this.nextElementSibling.classList.add("hidden")
+                            this.classList.remove("uncollapsed")
+                        }
+                    }
+                    for (let button of buttons) {
+                        button.addEventListener("click", toggle)
+                    }
+
+                }
+            })
+            observer.observe(document.getElementById("qa"), {
+                childList: true,
+                subtree: true
+            })
+
+
+            function toggleNext() {
+                let active = document.querySelector(".closet-rect.is-highlighted")
+                if (active) incrementalReveal.call(active)
+            }
+
+            function toggleAll() {
+                let allRevealed = true
+                for (let rect of globalThis.AnkingIORects) {
+                    if (!rect.classList.contains("revealed")) allRevealed = false
+                }
+                if (allRevealed) {
+                    for (let rect of globalThis.AnkingIORects) {
+                        hide.call(rect)
+                    }
+                    let newActiveRect = document.querySelector(".closet-rect.is-active")
+                    activate(newActiveRect)
+                } else {
+                    for (let rect of globalThis.AnkingIORects) {
+                        reveal.call(rect)
+                    }
+                }
+            }
+
+            function incrementalReveal() {
+                reveal.call(this)
+                let next = this.nextElementSibling
+                if (next) {
+                    while (next.classList.contains("revealed") && next.nextElementSibling) {
+                        next = next.nextElementSibling
+                    }
+                    if (!next.classList.contains("revealed")) activate(next)
+                }
+                else if (document.getElementById("extra-content")) {
+                    document.getElementById("extra-content").classList.remove("hidden")
+                }
+            }
+
+            function reveal() {
+                this.classList.remove("is-highlighted")
+                this.classList.add("revealed")
+            }
+
+            function hide() {
+                this.classList.remove("revealed")
+                this.removeEventListener("click", incrementalReveal)
+            }
+
+            function activate(rect) {
+                rect.classList.add("is-highlighted")
+                rect.addEventListener("click", incrementalReveal)
+            }
+
+        }
+        setupIncrementalIO()
+
+    </script>
+
+    <script data-name="Closet Setup" data-version="v0.1">
+        function closetUserLogic(closet, preset, chooseMemory) {
+            const elements = closet.template.anki.getQaChildNodes();
+            const memory = chooseMemory("closet__1");
+            const filterManager = closet.FilterManager.make(preset, memory.map);
+
+            const output = [[elements, memory, filterManager]];
+
+            filterManager.install(
+                closet.recipes.shuffle({ tagname: "mix" }),
+                closet.recipes.order({ tagname: "ord" }),
+
+                closet.flashcard.recipes.cloze({
+                    tagname: "c",
+                    defaultBehavior: closet.flashcard.behaviors.Show,
+                }),
+                closet.flashcard.recipes.multipleChoice({
+                    tagname: "mc",
+                    defaultBehavior: closet.flashcard.behaviors.Show,
+                }),
+                closet.flashcard.recipes.sort({
+                    tagname: "sort",
+                    defaultBehavior: closet.flashcard.behaviors.Show,
+                }),
+                closet.browser.recipes.rect({
+                    tagname: "rect",
+                    defaultBehavior: closet.flashcard.behaviors.Hide,
+                }),
+            );;
+            return output;
+        }
+
+        var getAnkiPrefix = () =>
+            globalThis.ankiPlatform === "desktop"
+                ? ""
+                : globalThis.AnkiDroidJS
+                    ? "https://appassets.androidplatform.net"
+                    : ".";
+
+        var closetPromise = import(`${getAnkiPrefix()}/__closet-0.5.3.js`);
+        closetPromise
+            .then(
+                ({ closet }) =>
+                    closet.template.anki.initialize(
+                        closet,
+                        closetUserLogic,
+                        "{{Card}}",
+                        "{{Tags}}",
+                        "back",
+                    ),
+                (error) => console.log("An error occured while loading Closet:", error),
+            )
+            .catch((error) =>
+                console.log("An error occured while executing Closet:", error),
+            );
+
+        if (globalThis.onUpdateHook) {
+            onUpdateHook.push(() => closetPromise);
+        }
+    </script>
+</div>

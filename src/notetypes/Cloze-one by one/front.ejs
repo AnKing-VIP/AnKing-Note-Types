@@ -1,0 +1,48 @@
+<div id="text">{{cloze:Text}}</div>
+
+
+<br>
+
+<!-- ##############  Text-to-speech  ##############
+replace the arrows/dashes from the statement below with double curly brackets-->
+
+<!--tts en_US voices=Apple_Samantha speed=1.4:cloze:Text-->
+
+
+<script>
+    // ############## USER CONFIGURATION START ##############
+    // Auto flip to back when One by one mode.
+    var autoflip = false 
+
+    // Timer config (timer length, timer finished message)
+    var minutes = 0
+    var seconds = 9
+    var timeOverMsg = "<span style='color:#CC5B5B'>!<br/>!<br/>!<br/>!<br/>!<br/>!</span>"
+
+    // ~~~~~~~~~~~~~  TAG SHORTCUT  ~~~~~~~~~~~~~
+    var toggleTagsShortcut = "C";
+
+    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+    var tagID = "XXXYYYZZZ"
+
+    // ############## USER CONFIGURATION END ##############
+</script>
+
+<%- include('src/components/clozeOneByOneAutoFlip.ejs', {optional: false}) %>
+
+<%- include('src/components/countdownTimer.ejs') %>
+
+<!-- ANKING HYPERLINK IMAGE -->
+<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
+
+
+<script>
+    //DONT FADE BETWEEN CARDS
+	qFade=0; if (typeof anki !== 'undefined') anki.qFade=qFade;
+</script>
+
+<%- include('src/components/ankingAddEventListener.ejs') %>
+
+<%- include('src/components/shortcutMatcher.ejs') %>
+
+<%- include('src/components/colorfulTags.ejs') %>
