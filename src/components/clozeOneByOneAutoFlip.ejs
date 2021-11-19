@@ -1,18 +1,26 @@
-<script>
-   // ############## USER CONFIGURATION START ##############
-   // Auto flip to back when One by one mode.
-   var autoflip = false 
+<%# 
 
-   // ##############  TAG SHORTCUT  ##############
-   var toggleTagsShortcut = "C";
+# Parameters
+- optional: boolean
+if true, {{One by one}} value determines whether it's one by one mode.
+if false, always one by one mode
 
-    // ############## USER CONFIGURATION END ##############
-</script>
+# Global Variables
+- autoflip: boolean
 
+Sets window.clozeHints to hint values.
 
+%>
 <!-- CLOZE ONE BY ONE AUTOFLIP -->
 <script>
 var clozeOneByOneEnabled = true;
+<%_ if (optional === true) { _%>
+try {
+  clozeOneByOneEnabled = `{{One by one}}`.trim() !== ""
+} catch (exception) {
+  console.log(exception)
+}
+<%_ } _%>
 
 // AUTO-FLIP if cloze has hint
 if(clozeOneByOneEnabled && autoflip) {
@@ -42,18 +50,3 @@ if(clozeOneByOneEnabled && autoflip) {
     delete window.clozeHints
 }
 </script>
-
-{{#I0}}
-{{#Image}}
-<div id="front-info">
-   <a href="https://www.ankingmed.com"><img src="_AnKingRound.png"></a>
-   <div>This is an Image Occlusion one by one card: Please flip to the backside.</div>
-   <div class="help">
-      <p>On the backside, your task is to incrementally reveal an image occlusion.
-         Click on the active rectangle to reveal it and activate the next.</p>
-   </div>
-</div>
-
-<div hidden>{{Image}}</div>
-{{/Image}}
-{{/I0}}

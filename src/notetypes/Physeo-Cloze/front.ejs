@@ -9,6 +9,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <script>
     // ############## USER CONFIGURATION START ##############
+    // Auto flip to back when One by one mode.
+    var autoflip = false 
 
     // Timer config (timer length, timer finished message)
     var minutes = 0
@@ -23,6 +25,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
     // ############## USER CONFIGURATION END ##############
 </script>
+
+<%- include('src/components/clozeOneByOneAutoFlip.ejs', {optional: true}) %>
 
 <%- include('src/components/countdownTimer.ejs') %>
 

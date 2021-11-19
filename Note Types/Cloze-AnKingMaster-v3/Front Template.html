@@ -11,6 +11,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <script>
     // ############## USER CONFIGURATION START ##############
+    // Auto flip to back when One by one mode.
+    var autoflip = false 
 
     // Timer config (timer length, timer finished message)
     var minutes = 0
@@ -24,6 +26,45 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     var tagID = "XXXYYYZZZ"
 
     // ############## USER CONFIGURATION END ##############
+</script>
+
+
+<!-- CLOZE ONE BY ONE AUTOFLIP -->
+<script>
+var clozeOneByOneEnabled = true;
+try {
+  clozeOneByOneEnabled = `{{One by one}}`.trim() !== ""
+} catch (exception) {
+  console.log(exception)
+}
+
+// AUTO-FLIP if cloze has hint
+if(clozeOneByOneEnabled && autoflip) {
+    // avoid flickering
+    document.getElementById("qa").style.display = "none";
+    window.clozeHints = [];
+
+    // Check if a cloze has hint
+    let clozes = document.getElementsByClassName("cloze")
+    for(var i = 0; i < clozes.length; i++) {
+        if (clozes[i].innerHTML === "[...]") {
+            window.clozeHints.push("")
+        } else {
+            window.clozeHints.push(clozes[i].innerHTML)
+        }
+    }
+
+    if (window.pycmd) {
+        pycmd("ans")
+    } else if (window.showAnswer) {
+        showAnswer()
+    }    
+    // AnkiMobile JS API doesn't have one for show answer. 
+    // Best alternative is to use Taps/Swipes to show answer.
+
+} else {
+    delete window.clozeHints
+}
 </script>
 
 <!-- NOT-PERSISTING EVENT LISTENER -->

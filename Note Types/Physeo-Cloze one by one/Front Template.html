@@ -11,7 +11,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <script>
     // ############## USER CONFIGURATION START ##############
-    var autoflip = false // auto flip to back if cloze has no hints. Does not work for AnkiMobile.
+    // Auto flip to back when One by one mode.
+    var autoflip = false 
 
     // Timer config (timer length, timer finished message)
     var minutes = 0
@@ -28,9 +29,13 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 </script>
 
 
+
+<!-- CLOZE ONE BY ONE AUTOFLIP -->
 <script>
+var clozeOneByOneEnabled = true;
+
 // AUTO-FLIP if cloze has hint
-if(autoflip) {
+if(clozeOneByOneEnabled && autoflip) {
     // avoid flickering
     document.getElementById("qa").style.display = "none";
     window.clozeHints = [];
