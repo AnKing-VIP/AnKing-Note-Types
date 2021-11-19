@@ -216,8 +216,15 @@ All note types in this repo use many or all of the features listed below. Some w
   </details>
 
 ## TODO
-- [ ] Merge one by one pull to Cloze-one by one and Physeo one by one
-- [ ] Create one by one compatible with AnKingMaster note type
+- [ ] Update Readme files with big 11/19 update introducing renaming and the 'one by one' field
+  - [ ] Include any changes to user customization on front and back templates
+- [ ] Record video explaining how to use all these
+
+Note type problems:
+- [ ] Autoflip needs to not flip if there is a hint, otherwise they can’t ever see the hint
+- [ ] Cloze-AnKingDerm, AnKingMCAT, AnKingOverhaul, Basic-AnKing Language aren’t working with any shortcuts for the buttons (alt+# or ’)
+- [ ] IO-one by one and Physeo-IO one by one aren’t working anymore. There’s no occlusions on the back side
+- [ ] There isn’t a toggle tags shortcut on the IO one by one and Physeo-IO one by one cards
 
 ## Contributing
 
