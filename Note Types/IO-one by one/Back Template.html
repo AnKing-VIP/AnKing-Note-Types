@@ -52,6 +52,26 @@
 <!-- ANKING HYPERLINK IMAGE -->
 <a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
 
+<!-- NOT-PERSISTING EVENT LISTENER -->
+<script>
+  if (window.ankingEventListeners) {
+    for (const listener of ankingEventListeners) {
+      const target = listener[0]
+      const type = listener[1]
+      const handler = listener[2]
+      if(target && target.removeEventListener) {
+        target.removeEventListener(type, handler)
+      }
+    }
+  }
+  window.ankingEventListeners = []
+  
+  window.ankingAddEventListener = function(target, type, handler) {
+    target.addEventListener(type, handler)
+    window.ankingEventListeners.push([target, type, handler])
+  }
+</script>
+
 
 <!-- Shortcut Matcher Function -->
 <script>
@@ -137,7 +157,7 @@
         if (!globalThis.ToggleTagsListening) {
             globalThis.ToggleTagsListening = true
             var isShortcut = shortcutMatcher(toggleTagsShortcut)
-            document.addEventListener('keydown', function (e) {
+            ankingAddEventListener(document, 'keydown', function (e) {
               if (e.repeat) return
                 if (isShortcut(e)) {
                     showtags();
@@ -207,7 +227,7 @@
 
                     var isShortcut = shortcutMatcher(ButtonShortcuts[fieldName])
                     var isToggleAllShortcut = shortcutMatcher(ToggleAllButtonsShortcut)
-                    document.addEventListener("keydown", (evt) => {
+                    ankingAddEventListener(document, "keydown", (evt) => {
                         if (evt.repeat) return
                         if (isShortcut(evt) || isToggleAllShortcut(evt)) {
                         this.toggle()

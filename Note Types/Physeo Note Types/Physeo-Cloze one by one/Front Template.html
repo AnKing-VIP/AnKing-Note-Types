@@ -59,6 +59,26 @@ if(autoflip) {
 </script>
 
 
+<!-- NOT-PERSISTING EVENT LISTENER -->
+<script>
+  if (window.ankingEventListeners) {
+    for (const listener of ankingEventListeners) {
+      const target = listener[0]
+      const type = listener[1]
+      const handler = listener[2]
+      if(target && target.removeEventListener) {
+        target.removeEventListener(type, handler)
+      }
+    }
+  }
+  window.ankingEventListeners = []
+  
+  window.ankingAddEventListener = function(target, type, handler) {
+    target.addEventListener(type, handler)
+    window.ankingEventListeners.push([target, type, handler])
+  }
+</script>
+
 <!-- Shortcut Matcher Function -->
 <script>
   var specialCharCodes = {
@@ -179,7 +199,7 @@ countdown("s2", minutes, seconds ); //2nd value is the minute, 3rd is the second
     }
 
     var isShortcut = shortcutMatcher(toggleTagsShortcut)
-    document.addEventListener('keyup', function (e) {
+    ankingAddEventListener(document, 'keyup', function (e) {
         if (isShortcut(e)) {
             showtags();
         }
