@@ -222,8 +222,8 @@ All note types in this repo use many or all of the features listed below. Some w
 
 Note type problems:
 - [ ] Autoflip needs to not flip if there is a hint, otherwise they can’t ever see the hint
-- [ ] Cloze-AnKingDerm, AnKingMCAT, AnKingOverhaul, Basic-AnKing Language aren’t working with any shortcuts for the buttons (alt+# or ’)
-- [ ] IO-one by one and Physeo-IO one by one aren’t working anymore. There’s no occlusions on the back side
+- [ ] Cloze-AnKingDerm, AnKingMCAT, AnKingOverhaul, Basic-AnKing Language aren’t working with any shortcuts for the buttons (alt+# or ’) WHEN Edit Field During Review Cloze is installed.
+- [ ] IO-one by one isn’t working anymore with the button shortcuts. Physeo-one by one however is working
 - [ ] There isn’t a toggle tags shortcut on the IO one by one and Physeo-IO one by one cards
 - [ ] IO-one by one autoflip isn’t really working. Just shows a blank screen. Also there is a toggle tags on the front of IO-one by one and not the back, but doesn’t need to be on the front cause there’s no tags field
 
