@@ -44,7 +44,7 @@ components/shortcutMatcher
   }
   
   var isShortcut = shortcutMatcher(toggleTagsShortcut)
-  ankingAddEventListener(document, 'keyup', function (e) {
+  ankingAddEventListener('keyup', function (e) {
       if (isShortcut(e)) {
           showtags();
       }

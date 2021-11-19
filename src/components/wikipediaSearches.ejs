@@ -167,7 +167,7 @@ components/ankingAddEventListener
 
   var pcc = document.getElementById("popup-container");
   var prevSel = "";
-  ankingAddEventListener(document, 'click', function () {
+  ankingAddEventListener('click', function () {
     var currentSelection = getSelectionText();
     if (currentSelection !== "") { prevSel = currentSelection; }
     if (currentSelection && !mustClickW) {
@@ -175,7 +175,7 @@ components/ankingAddEventListener
     } else { closePopup(); }
   });
 
-  ankingAddEventListener(document, 'keyup', function (e) {
+  ankingAddEventListener('keyup', function (e) {
     if (e.key == "w") {
       if (pcc.style.display === "block") { closePopup(); } else { getSummaryFor(prevSel); }
     }

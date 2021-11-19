@@ -98,23 +98,21 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <!-- ANKING HYPERLINK IMAGE -->
 <a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
 
+ 
 <!-- NOT-PERSISTING EVENT LISTENER -->
 <script>
   if (window.ankingEventListeners) {
     for (const listener of ankingEventListeners) {
-      const target = listener[0]
-      const type = listener[1]
-      const handler = listener[2]
-      if(target && target.removeEventListener) {
-        target.removeEventListener(type, handler)
-      }
+      const type = listener[0]
+      const handler = listener[1]
+      document.removeEventListener(type, handler)
     }
   }
   window.ankingEventListeners = []
   
-  window.ankingAddEventListener = function(target, type, handler) {
-    target.addEventListener(type, handler)
-    window.ankingEventListeners.push([target, type, handler])
+  window.ankingAddEventListener = function(type, handler) {
+    document.addEventListener(type, handler)
+    window.ankingEventListeners.push([type, handler])
   }
 </script>
 
@@ -206,7 +204,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   }
   
   var isShortcut = shortcutMatcher(toggleTagsShortcut)
-  ankingAddEventListener(document, 'keyup', function (e) {
+  ankingAddEventListener('keyup', function (e) {
       if (isShortcut(e)) {
           showtags();
       }

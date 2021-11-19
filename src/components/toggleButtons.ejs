@@ -73,7 +73,7 @@ components/shortcutMatcher
         
         var isShortcut = shortcutMatcher(ButtonShortcuts[fieldName])
         var isToggleAllShortcut = shortcutMatcher(ToggleAllButtonsShortcut)
-        ankingAddEventListener(document, "keydown", (evt) => {
+        ankingAddEventListener("keydown", (evt) => {
           if (evt.repeat) return
           if (isShortcut(evt) || isToggleAllShortcut(evt)) {
             this.toggle()

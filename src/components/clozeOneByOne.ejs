@@ -105,8 +105,8 @@ components/shortcutMatcher
         }
         hideCloze(cloze)
         if (initial === true) {
-          ankingAddEventListener(cloze, "touchend", revealClozeClicked)
-          ankingAddEventListener(cloze, "click", revealClozeClicked)
+          cloze.addEventListener("touchend", revealClozeClicked)
+          cloze.addEventListener("click", revealClozeClicked)
         }
       }
     }
@@ -144,7 +144,7 @@ components/shortcutMatcher
     let showAllShortcut = shortcutMatcher(window.revealClozeShortcut)
     let showWordShortcut = shortcutMatcher(window.revealClozeWordShortcut)
 
-    ankingAddEventListener(document, "keydown", (ev) => {
+    ankingAddEventListener("keydown", (ev) => {
       if(showAllShortcut(ev)) {
         let elem = document.querySelector(".cloze[data-content]")
         if (elem) {

@@ -89,23 +89,21 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <!-- PHYSEO HYPERLINK IMAGE -->
 <a href="https://www.physeo.com"><img src="_PhyseoRoundLogo.png" alt="Physeo" id="pic"></a>
 
+ 
 <!-- NOT-PERSISTING EVENT LISTENER -->
 <script>
   if (window.ankingEventListeners) {
     for (const listener of ankingEventListeners) {
-      const target = listener[0]
-      const type = listener[1]
-      const handler = listener[2]
-      if(target && target.removeEventListener) {
-        target.removeEventListener(type, handler)
-      }
+      const type = listener[0]
+      const handler = listener[1]
+      document.removeEventListener(type, handler)
     }
   }
   window.ankingEventListeners = []
   
-  window.ankingAddEventListener = function(target, type, handler) {
-    target.addEventListener(type, handler)
-    window.ankingEventListeners.push([target, type, handler])
+  window.ankingAddEventListener = function(type, handler) {
+    document.addEventListener(type, handler)
+    window.ankingEventListeners.push([type, handler])
   }
 </script>
 
@@ -216,7 +214,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         
         var isShortcut = shortcutMatcher(ButtonShortcuts[fieldName])
         var isToggleAllShortcut = shortcutMatcher(ToggleAllButtonsShortcut)
-        ankingAddEventListener(document, "keydown", (evt) => {
+        ankingAddEventListener("keydown", (evt) => {
           if (evt.repeat) return
           if (isShortcut(evt) || isToggleAllShortcut(evt)) {
             this.toggle()
@@ -351,8 +349,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         }
         hideCloze(cloze)
         if (initial === true) {
-          ankingAddEventListener(cloze, "touchend", revealClozeClicked)
-          ankingAddEventListener(cloze, "click", revealClozeClicked)
+          cloze.addEventListener("touchend", revealClozeClicked)
+          cloze.addEventListener("click", revealClozeClicked)
         }
       }
     }
@@ -390,7 +388,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     let showAllShortcut = shortcutMatcher(window.revealClozeShortcut)
     let showWordShortcut = shortcutMatcher(window.revealClozeWordShortcut)
 
-    ankingAddEventListener(document, "keydown", (ev) => {
+    ankingAddEventListener("keydown", (ev) => {
       if(showAllShortcut(ev)) {
         let elem = document.querySelector(".cloze[data-content]")
         if (elem) {
@@ -449,7 +447,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   }
   
   var isShortcut = shortcutMatcher(toggleTagsShortcut)
-  ankingAddEventListener(document, 'keyup', function (e) {
+  ankingAddEventListener('keyup', function (e) {
       if (isShortcut(e)) {
           showtags();
       }
@@ -622,7 +620,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
   var pcc = document.getElementById("popup-container");
   var prevSel = "";
-  ankingAddEventListener(document, 'click', function () {
+  ankingAddEventListener('click', function () {
     var currentSelection = getSelectionText();
     if (currentSelection !== "") { prevSel = currentSelection; }
     if (currentSelection && !mustClickW) {
@@ -630,7 +628,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     } else { closePopup(); }
   });
 
-  ankingAddEventListener(document, 'keyup', function (e) {
+  ankingAddEventListener('keyup', function (e) {
     if (e.key == "w") {
       if (pcc.style.display === "block") { closePopup(); } else { getSummaryFor(prevSel); }
     }
