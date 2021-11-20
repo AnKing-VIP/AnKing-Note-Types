@@ -5,7 +5,6 @@
 If true, only cloze-one-by-one mode if {{One by one}} field is not empty. 
 
 # Components
-components/clozeOneByOneUserConf
 components/clozeOneByOneButtons
 components/ankingAddEventListener
 components/shortcutMatcher
@@ -13,6 +12,8 @@ components/shortcutMatcher
 # Global Variables
 - revealClozeShortcut: shortcut string
 - revealClozeWordShortcut: shortcut string
+- clozeHider: (elem) -> string
+- clozeHints?: Array[string]
 
 # Notes
 - Removes `#qa` element `display` property.
@@ -31,27 +32,19 @@ _%>
     var clozeOneByOneEnabled = true;
     <%_ if (optional === true) { _%>
     try {
-        clozeOneByOneEnabled = `{{One by one}}`.trim() !== ""
+        clozeOneByOneEnabled = `{{One by one}}` !== ""
     } catch (exception) {
       console.log(exception)
     }
     <%_ } _%>
 
-    const hideCloze = function(cloze) {
-      if (!clozeOneByOneEnabled) {
-        return
-      }
-      cloze.dataset.content = cloze.innerHTML
-        if(window.clozeHints && window.clozeHints[i]) {
-            cloze.innerHTML = window.clozeHints[i]
-        } else {
-            cloze.innerHTML = clozeHider(cloze)
-        }
+    if (!clozeOneByOneEnabled) {
+      return
     }
     
     const revealCloze = function(elem) {
       // Checking for dataset.content is undefined may not be needed anymore?
-      if (!clozeOneByOneEnabled || elem.dataset.content === undefined) {
+      if (elem.dataset.content === undefined) {
         return
       }
       elem.innerHTML = elem.dataset.content
@@ -59,7 +52,7 @@ _%>
     }
 
     const revealClozeWord = function(elem) {
-      if (!clozeOneByOneEnabled || elem.dataset.content === undefined) {
+      if (elem.dataset.content === undefined) {
         return
       }
       if (elem.dataset.hidden !== undefined) {
@@ -98,12 +91,19 @@ _%>
 
     const hideAllCloze = function(initial) {
       let clozes = document.getElementsByClassName("cloze")
+      let count = 0 // hidden cloze count
       for (let i = 0; i < clozes.length; i++) {
         let cloze = clozes[i]
         if (cloze.offsetWidth === 0) {
           continue
         }
-        hideCloze(cloze)
+        cloze.dataset.content = cloze.innerHTML
+        if(window.clozeHints && window.clozeHints[count]) {
+          cloze.innerHTML = window.clozeHints[count]
+        } else {
+          cloze.innerHTML = clozeHider(cloze)
+        }
+        count += 1
         if (initial === true) {
           cloze.addEventListener("touchend", revealClozeClicked)
           cloze.addEventListener("click", revealClozeClicked)
@@ -141,27 +141,28 @@ _%>
     document.getElementById("qa").style.removeProperty("display")
     hideAllCloze(initial=true)
 
-    let showAllShortcut = shortcutMatcher(window.revealClozeShortcut)
-    let showWordShortcut = shortcutMatcher(window.revealClozeWordShortcut)
-
+    let isShowNextShortcut = shortcutMatcher(window.revealNextShortcut)
+    let isShowWordShortcut = shortcutMatcher(window.revealNextWordShortcut)
+    let isToggleAllShortcut = shortcutMatcher(window.toggleAllShortcut)
     ankingAddEventListener("keydown", (ev) => {
-      if(showAllShortcut(ev)) {
+      let next = isShowNextShortcut(ev)
+      let word = isShowWordShortcut(ev)
+      let all = isToggleAllShortcut(ev)
+      if (next || word) {
         let elem = document.querySelector(".cloze[data-content]")
         if (elem) {
-          revealCloze(elem)
+          if (next) {
+            revealCloze(elem)
+          } else {
+            revealClozeWord(elem)
+          }
           ev.stopPropagation()
           ev.preventDefault()
-          return
         }
-      }
-      if (showWordShortcut(ev)) {
-        let elem = document.querySelector(".cloze[data-content]")
-        if (elem) {
-          revealClozeWord(elem)
-          ev.stopPropagation()
-          ev.preventDefault()
-          return
-        }
+      } else if (all) {
+        toggleAllCloze()
+        ev.stopPropagation()
+        ev.preventDefault()
       }
     });
   })()

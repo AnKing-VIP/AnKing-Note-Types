@@ -1,42 +1,46 @@
 <script>
-    // ##############  HINT REVEAL SHORTCUTS  ##############
-    // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
-    var ButtonShortcuts = {
-        "Lecture Notes" : "Alt + 1",
-        "Missed Questions" : "Alt + 2",
-        "Pathoma" : "Alt + 3",
-        "Boards and Beyond" : "Alt + 4",
-        "First Aid" : "Alt + 5",
-        "Sketchy" : "Alt + 6",
-        "Pixorize" : "Alt + 7",
-        "Physeo" : "Alt + 8",
-        "OME" : "Alt + F1",
-        "Additional Resources" : 'Alt + 9',
-    }
-    var ToggleAllButtonsShortcut = "'"
+// ##############  HINT REVEAL SHORTCUTS  ##############
+// All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
+var ButtonShortcuts = {
+    "Lecture Notes" : "Alt + 1",
+    "Missed Questions" : "Alt + 2",
+    "Pathoma" : "Alt + 3",
+    "Boards and Beyond" : "Alt + 4",
+    "First Aid" : "Alt + 5",
+    "Sketchy" : "Alt + 6",
+    "Pixorize" : "Alt + 7",
+    "Physeo" : "Alt + 8",
+    "OME" : "Alt + F1",
+    "Additional Resources" : 'Alt + 9',
+}
+var ToggleAllButtonsShortcut = "'"
 
-    // ##############  SHOW HINTS AUTOMATICALLY  ##############
-    var ButtonAutoReveal = {
-        "Lecture Notes" : false,
-        "Missed Questions" : false,
-        "Pathoma" : false,
-        "Boards and Beyond" : false,
-        "First Aid" : false,
-        "Sketchy" : false,
-        "Pixorize" : false,
-        "Physeo" : false,
-        "OME" : false, // not currently a button
-        "Additional Resources" : false,
-    }
+// ##############  SHOW HINTS AUTOMATICALLY  ##############
+var ButtonAutoReveal = {
+    "Lecture Notes" : false,
+    "Missed Questions" : false,
+    "Pathoma" : false,
+    "Boards and Beyond" : false,
+    "First Aid" : false,
+    "Sketchy" : false,
+    "Pixorize" : false,
+    "Physeo" : false,
+    "OME" : false, // not currently a button
+    "Additional Resources" : false,
+}
 
-    var ScrollToButton = true;
+var ScrollToButton = true;
 
-    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
-    var tagID = "XXXYYYZZZ"
+// ##############  TAG SHORTCUT  ##############
+var toggleTagsShortcut = "C";
 
-    // ~~~~~~~~~~~~~  CLOZE ONE BY ONE  ~~~~~~~~~~~~~
-var revealClozeShortcut = "N" // Shortcut to reveal next cloze
-var revealClozeWordShortcut = "Shift + N" // Shortcut to reveal next hidden word in cloze
+// ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+var tagID = "XXXYYYZZZ"
+
+// ~~~~~~~~~~~~~  CLOZE ONE BY ONE  ~~~~~~~~~~~~~
+var revealNextShortcut = "N" 
+var revealNextWordShortcut = "Shift + N"
+var toggleAllShortcut = ","
 
 // Changes how "Reveal Next" and clicking behaves. Either "cloze" or "word".
 // "word" reveals word by word. 
@@ -82,8 +86,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <!-- BUTTON FIELDS -->
 <!-- ClOZE ONE BY ONE BUTTONS -->
 {{#One by one}}
-<button id="button-reveal-next" class="button-general" onclick="revealNextCloze()">Reveal Next Cloze</button>
-<button id="button-toggle-all" class="button-general" onclick="toggleAllCloze()">Toggle All Cloze</button>
+<button id="button-reveal-next" class="button-general" onclick="revealNextCloze()">Reveal Next</button>
+<button id="button-toggle-all" class="button-general" onclick="toggleAllCloze()">Toggle All</button>
 <br />
 {{/One by one}}
 
@@ -196,6 +200,19 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     return matchShortcut
   }
 </script>
+
+
+<!-- No idea why, but some script tags are run twice 
+    when Edit Field During Review (Cloze) add-on is on.
+    For each hint-button tag, one script tag is run again
+    starting from TOGGLE BUTTONS script and working its way upwards.
+    
+    So we put a lot of empty script tags that will be run twice
+    to prevent the above scripts from being run twice.  -->
+<script></script><script></script><script></script><script></script><script></script>
+<script></script><script></script><script></script><script></script><script></script>
+<script></script><script></script><script></script><script></script><script></script>
+<script></script><script></script><script></script><script></script><script></script>
 
 <!-- TOGGLE BUTTONS -->
 <script>
@@ -317,26 +334,18 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   (function() {
     var clozeOneByOneEnabled = true;
     try {
-        clozeOneByOneEnabled = `{{One by one}}`.trim() !== ""
+        clozeOneByOneEnabled = `{{One by one}}` !== ""
     } catch (exception) {
       console.log(exception)
     }
 
-    const hideCloze = function(cloze) {
-      if (!clozeOneByOneEnabled) {
-        return
-      }
-      cloze.dataset.content = cloze.innerHTML
-        if(window.clozeHints && window.clozeHints[i]) {
-            cloze.innerHTML = window.clozeHints[i]
-        } else {
-            cloze.innerHTML = clozeHider(cloze)
-        }
+    if (!clozeOneByOneEnabled) {
+      return
     }
     
     const revealCloze = function(elem) {
       // Checking for dataset.content is undefined may not be needed anymore?
-      if (!clozeOneByOneEnabled || elem.dataset.content === undefined) {
+      if (elem.dataset.content === undefined) {
         return
       }
       elem.innerHTML = elem.dataset.content
@@ -344,7 +353,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     }
 
     const revealClozeWord = function(elem) {
-      if (!clozeOneByOneEnabled || elem.dataset.content === undefined) {
+      if (elem.dataset.content === undefined) {
         return
       }
       if (elem.dataset.hidden !== undefined) {
@@ -383,12 +392,19 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
     const hideAllCloze = function(initial) {
       let clozes = document.getElementsByClassName("cloze")
+      let count = 0 // hidden cloze count
       for (let i = 0; i < clozes.length; i++) {
         let cloze = clozes[i]
         if (cloze.offsetWidth === 0) {
           continue
         }
-        hideCloze(cloze)
+        cloze.dataset.content = cloze.innerHTML
+        if(window.clozeHints && window.clozeHints[count]) {
+          cloze.innerHTML = window.clozeHints[count]
+        } else {
+          cloze.innerHTML = clozeHider(cloze)
+        }
+        count += 1
         if (initial === true) {
           cloze.addEventListener("touchend", revealClozeClicked)
           cloze.addEventListener("click", revealClozeClicked)
@@ -426,27 +442,28 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     document.getElementById("qa").style.removeProperty("display")
     hideAllCloze(initial=true)
 
-    let showAllShortcut = shortcutMatcher(window.revealClozeShortcut)
-    let showWordShortcut = shortcutMatcher(window.revealClozeWordShortcut)
-
+    let isShowNextShortcut = shortcutMatcher(window.revealNextShortcut)
+    let isShowWordShortcut = shortcutMatcher(window.revealNextWordShortcut)
+    let isToggleAllShortcut = shortcutMatcher(window.toggleAllShortcut)
     ankingAddEventListener("keydown", (ev) => {
-      if(showAllShortcut(ev)) {
+      let next = isShowNextShortcut(ev)
+      let word = isShowWordShortcut(ev)
+      let all = isToggleAllShortcut(ev)
+      if (next || word) {
         let elem = document.querySelector(".cloze[data-content]")
         if (elem) {
-          revealCloze(elem)
+          if (next) {
+            revealCloze(elem)
+          } else {
+            revealClozeWord(elem)
+          }
           ev.stopPropagation()
           ev.preventDefault()
-          return
         }
-      }
-      if (showWordShortcut(ev)) {
-        let elem = document.querySelector(".cloze[data-content]")
-        if (elem) {
-          revealClozeWord(elem)
-          ev.stopPropagation()
-          ev.preventDefault()
-          return
-        }
+      } else if (all) {
+        toggleAllCloze()
+        ev.stopPropagation()
+        ev.preventDefault()
       }
     });
   })()

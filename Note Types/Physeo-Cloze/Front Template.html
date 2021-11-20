@@ -8,29 +8,29 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 {{tts en_US voices=Apple_Samantha speed=1.4:cloze:Text}}
 
 <script>
-    // ############## USER CONFIGURATION START ##############
-    // Auto flip to back when One by one mode.
-    var autoflip = false 
+// ############## USER CONFIGURATION START ##############
+// Auto flip to back when One by one mode.
+var autoflip = false 
 
-    // Timer config (timer length, timer finished message)
-    var minutes = 0
-    var seconds = 9
-    var timeOverMsg = "<span style='color:#CC5B5B'>!<br/>!<br/>!<br/>!<br/>!<br/>!</span>"
+// Timer config (timer length, timer finished message)
+var minutes = 0
+var seconds = 9
+var timeOverMsg = "<span style='color:#CC5B5B'>!<br/>!<br/>!<br/>!<br/>!<br/>!</span>"
 
-    // ##############  TAG SHORTCUT  ##############
-    var toggleTagsShortcut = "C";
+// ##############  TAG SHORTCUT  ##############
+var toggleTagsShortcut = "C";
 
-    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
-    var tagID = "XXXYYYZZZ"
+// ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+var tagID = "XXXYYYZZZ"
 
-    // ############## USER CONFIGURATION END ##############
+// ############## USER CONFIGURATION END ##############
 </script>
 
 <!-- CLOZE ONE BY ONE AUTOFLIP -->
 <script>
   var clozeOneByOneEnabled = true;
   try {
-    clozeOneByOneEnabled = `{{One by one}}`.trim() !== ""
+    clozeOneByOneEnabled = `{{One by one}}` !== ""
   } catch (exception) {
     console.log(exception)
   }
