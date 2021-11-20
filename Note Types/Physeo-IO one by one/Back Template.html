@@ -305,13 +305,14 @@ var tagID = "XXXYYYZZZ"
           rect.addEventListener("click", reveal)
         }
         if (!globalThis.AnKingIOListening) {
+          let isRevealIncShortcut = shortcutMatcher(RevealIncrementalShortcut)
+          let isToggleAllShortcut = shortcutMatcher(ToggleAllOcclusionsShortcut)
           document.addEventListener("keydown", (evt) => {
             if (evt.repeat) return
             evt = evt || window.event
-            if (evt.keyCode == RevealIncremental) {
+            if (isRevealIncShortcut(evt)) {
               toggleNext()
-            }
-            else if (evt.keyCode == ToggleAllOcclusions) {
+            } else if (isToggleAllShortcut(evt)) {
               toggleAll()
             }
           })
