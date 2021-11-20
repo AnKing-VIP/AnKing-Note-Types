@@ -1,0 +1,156 @@
+
+<!-- INCREMENTAL IMAGE OCCLUSION SCRIPT -->
+<script data-name="Incremental IO" data-version="v0.1">
+  /* Script by Matthias Metelka @kleinerpirat */
+  
+  function setupIncrementalIO() {
+    var observer = new MutationObserver(() => {
+      document.getElementById("button-toggle-all").addEventListener("click", toggleAll)
+      document.getElementById("button-reveal-next").addEventListener("click", toggleNext)
+      
+      let rect = document.querySelector(".closet-rect.is-active")
+      if (rect) {
+        activate(rect)
+        observer.disconnect()
+        globalThis.AnkingIORects = document.querySelectorAll(".closet-rect.is-active")
+        for (let rect of globalThis.AnkingIORects) {
+          rect.addEventListener("click", reveal)
+        }
+        if (!globalThis.AnKingIOListening) {
+          document.addEventListener("keydown", (evt) => {
+            if (evt.repeat) return
+            evt = evt || window.event
+            if (evt.keyCode == RevealIncremental) {
+              toggleNext()
+            }
+            else if (evt.keyCode == ToggleAllOcclusions) {
+              toggleAll()
+            }
+          })
+          globalThis.AnKingIOListening = true
+        }
+        
+        let buttons = document.getElementsByClassName("extra-btn")
+        function toggle() {
+          if (!this.classList.contains("uncollapsed")) {
+            this.nextElementSibling.classList.remove("hidden")
+            this.classList.add("uncollapsed")
+          }
+          else {
+            this.nextElementSibling.classList.add("hidden")
+            this.classList.remove("uncollapsed")
+          }
+        }
+        for (let button of buttons) {
+          button.addEventListener("click", toggle)
+        }
+        
+      }
+    })
+    observer.observe(document.getElementById("qa"), {
+      childList: true,
+      subtree: true
+    })
+    
+    
+    function toggleNext() {
+      let active = document.querySelector(".closet-rect.is-highlighted")
+      if (active) incrementalReveal.call(active)
+    }
+    
+    function toggleAll() {
+      let allRevealed = true
+      for (let rect of globalThis.AnkingIORects) {
+        if (!rect.classList.contains("revealed")) allRevealed = false
+      }
+      if (allRevealed) {
+        for (let rect of globalThis.AnkingIORects) {
+          hide.call(rect)
+        }
+        let newActiveRect = document.querySelector(".closet-rect.is-active")
+        activate(newActiveRect)
+      } else {
+        for (let rect of globalThis.AnkingIORects) {
+          reveal.call(rect)
+        }
+      }
+    }
+    
+    function incrementalReveal() {
+      reveal.call(this)
+      let next = this.nextElementSibling
+      if (next) {
+        while (next.classList.contains("revealed") && next.nextElementSibling) {
+          next = next.nextElementSibling
+        }
+        if (!next.classList.contains("revealed")) activate(next)
+      }
+      else if (document.getElementById("extra-content")) {
+        document.getElementById("extra-content").classList.remove("hidden")
+      }
+    }
+    
+    function reveal() {
+      this.classList.remove("is-highlighted")
+      this.classList.add("revealed")
+    }
+    
+    function hide() {
+      this.classList.remove("revealed")
+      this.removeEventListener("click", incrementalReveal)
+    }
+    
+    function activate(rect) {
+      rect.classList.add("is-highlighted")
+      rect.addEventListener("click", incrementalReveal)
+    }
+    
+  }
+  setupIncrementalIO()
+</script>
+
+<script data-name="Closet Setup" data-version="v0.1">
+  function closetUserLogic(closet, preset, chooseMemory) {
+    const elements = closet.template.anki.getQaChildNodes();
+    const memory = chooseMemory("closet__1");
+    const filterManager = closet.FilterManager.make(preset, memory.map);
+    
+    const output = [[elements, memory, filterManager]];
+    
+    filterManager.install(
+      closet.recipes.shuffle({ tagname: "mix" }),
+      closet.recipes.order({ tagname: "ord" }),
+      
+      closet.flashcard.recipes.cloze({
+        tagname: "c",
+        defaultBehavior: closet.flashcard.behaviors.Show,
+      }),
+      closet.flashcard.recipes.multipleChoice({
+        tagname: "mc",
+        defaultBehavior: closet.flashcard.behaviors.Show,
+      }),
+      closet.flashcard.recipes.sort({
+        tagname: "sort",
+        defaultBehavior: closet.flashcard.behaviors.Show,
+      }),
+      closet.browser.recipes.rect({
+        tagname: "rect",
+        defaultBehavior: closet.flashcard.behaviors.Hide,
+      }),
+    );;
+    return output;
+  }
+  
+  var getAnkiPrefix = () => globalThis.ankiPlatform === "desktop" ? "" : globalThis.AnkiDroidJS ? "https://appassets.androidplatform.net" : ".";
+  
+  var closetPromise = import(`${getAnkiPrefix()}/__closet-0.5.3.js`);
+  closetPromise
+  .then(
+    ({ closet }) => closet.template.anki.initialize(closet, closetUserLogic, "{{Card}}", "{{Tags}}", "back"),
+    (error) => console.log("An error occured while loading Closet:", error))
+  .catch((error) => console.log("An error occured while executing Closet:", error));
+  
+  if (globalThis.onUpdateHook) {
+    onUpdateHook.push(() => closetPromise);
+  }
+</script>
