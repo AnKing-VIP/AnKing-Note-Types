@@ -317,26 +317,18 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   (function() {
     var clozeOneByOneEnabled = true;
     try {
-        clozeOneByOneEnabled = `{{One by one}}`.trim() !== ""
+        clozeOneByOneEnabled = `{{One by one}}` !== ""
     } catch (exception) {
       console.log(exception)
     }
 
-    const hideCloze = function(cloze) {
-      if (!clozeOneByOneEnabled) {
-        return
-      }
-      cloze.dataset.content = cloze.innerHTML
-        if(window.clozeHints && window.clozeHints[i]) {
-            cloze.innerHTML = window.clozeHints[i]
-        } else {
-            cloze.innerHTML = clozeHider(cloze)
-        }
+    if (!clozeOneByOneEnabled) {
+      return
     }
     
     const revealCloze = function(elem) {
       // Checking for dataset.content is undefined may not be needed anymore?
-      if (!clozeOneByOneEnabled || elem.dataset.content === undefined) {
+      if (elem.dataset.content === undefined) {
         return
       }
       elem.innerHTML = elem.dataset.content
@@ -344,7 +336,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     }
 
     const revealClozeWord = function(elem) {
-      if (!clozeOneByOneEnabled || elem.dataset.content === undefined) {
+      if (elem.dataset.content === undefined) {
         return
       }
       if (elem.dataset.hidden !== undefined) {
@@ -383,12 +375,19 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
     const hideAllCloze = function(initial) {
       let clozes = document.getElementsByClassName("cloze")
+      let count = 0 // hidden cloze count
       for (let i = 0; i < clozes.length; i++) {
         let cloze = clozes[i]
         if (cloze.offsetWidth === 0) {
           continue
         }
-        hideCloze(cloze)
+        cloze.dataset.content = cloze.innerHTML
+        if(window.clozeHints && window.clozeHints[count]) {
+          cloze.innerHTML = window.clozeHints[count]
+        } else {
+          cloze.innerHTML = clozeHider(cloze)
+        }
+        count += 1
         if (initial === true) {
           cloze.addEventListener("touchend", revealClozeClicked)
           cloze.addEventListener("click", revealClozeClicked)
@@ -428,7 +427,6 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
     let showAllShortcut = shortcutMatcher(window.revealClozeShortcut)
     let showWordShortcut = shortcutMatcher(window.revealClozeWordShortcut)
-
     ankingAddEventListener("keydown", (ev) => {
       if(showAllShortcut(ev)) {
         let elem = document.querySelector(".cloze[data-content]")
