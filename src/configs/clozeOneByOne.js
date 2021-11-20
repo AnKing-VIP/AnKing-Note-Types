@@ -1,6 +1,7 @@
 // ~~~~~~~~~~~~~  CLOZE ONE BY ONE  ~~~~~~~~~~~~~
-var revealClozeShortcut = "N" // Shortcut to reveal next cloze
-var revealClozeWordShortcut = "Shift + N" // Shortcut to reveal next hidden word in cloze
+var revealNextShortcut = "N" 
+var revealNextWordShortcut = "Shift + N"
+var toggleAllShortcut = ","
 
 // Changes how "Reveal Next" and clicking behaves. Either "cloze" or "word".
 // "word" reveals word by word. 

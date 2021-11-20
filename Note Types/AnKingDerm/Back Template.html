@@ -26,8 +26,9 @@ var toggleTagsShortcut = "C";
 var tagID = "XXXYYYZZZ"
 
 // ~~~~~~~~~~~~~  CLOZE ONE BY ONE  ~~~~~~~~~~~~~
-var revealClozeShortcut = "N" // Shortcut to reveal next cloze
-var revealClozeWordShortcut = "Shift + N" // Shortcut to reveal next hidden word in cloze
+var revealNextShortcut = "N" 
+var revealNextWordShortcut = "Shift + N"
+var toggleAllShortcut = ","
 
 // Changes how "Reveal Next" and clicking behaves. Either "cloze" or "word".
 // "word" reveals word by word. 
@@ -411,26 +412,28 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     document.getElementById("qa").style.removeProperty("display")
     hideAllCloze(initial=true)
 
-    let showAllShortcut = shortcutMatcher(window.revealClozeShortcut)
-    let showWordShortcut = shortcutMatcher(window.revealClozeWordShortcut)
+    let isShowNextShortcut = shortcutMatcher(window.revealNextShortcut)
+    let isShowWordShortcut = shortcutMatcher(window.revealNextWordShortcut)
+    let isToggleAllShortcut = shortcutMatcher(window.toggleAllShortcut)
     ankingAddEventListener("keydown", (ev) => {
-      if(showAllShortcut(ev)) {
+      let next = isShowNextShortcut(ev)
+      let word = isShowWordShortcut(ev)
+      let all = isToggleAllShortcut(ev)
+      if (next || word) {
         let elem = document.querySelector(".cloze[data-content]")
         if (elem) {
-          revealCloze(elem)
+          if (next) {
+            revealCloze(elem)
+          } else {
+            revealClozeWord(elem)
+          }
           ev.stopPropagation()
           ev.preventDefault()
-          return
         }
-      }
-      if (showWordShortcut(ev)) {
-        let elem = document.querySelector(".cloze[data-content]")
-        if (elem) {
-          revealClozeWord(elem)
-          ev.stopPropagation()
-          ev.preventDefault()
-          return
-        }
+      } else if (all) {
+        toggleAllCloze()
+        ev.stopPropagation()
+        ev.preventDefault()
       }
     });
   })()
