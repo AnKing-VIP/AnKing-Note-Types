@@ -1,28 +1,31 @@
 <script>
-    // ##############  HINT REVEAL SHORTCUTS  ##############
-    // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
-    var ButtonShortcuts = {
-        "Lecture Notes" : "Alt + 1",
-        "Missed Questions" : "Alt + 2",
-        "Pixorize" : "Alt + 3",
-        "Additional Resources" : "Alt + 4",
-    }
-    var ToggleAllButtonsShortcut = '222' // '
+// ##############  HINT REVEAL SHORTCUTS  ##############
+// All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
+var ButtonShortcuts = {
+    "Lecture Notes" : "Alt + 1",
+    "Missed Questions" : "Alt + 2",
+    "Pixorize" : "Alt + 3",
+    "Additional Resources" : "Alt + 4",
+}
+var ToggleAllButtonsShortcut = '222' // '
 
-    // ##############  SHOW HINTS AUTOMATICALLY  ##############
-    var ButtonAutoReveal = {
-        "Lecture Notes": false,
-        "Missed Questions": false,
-        "Pixorize": false,
-        "Additional Resources": false,
-    }
+// ##############  SHOW HINTS AUTOMATICALLY  ##############
+var ButtonAutoReveal = {
+    "Lecture Notes": false,
+    "Missed Questions": false,
+    "Pixorize": false,
+    "Additional Resources": false,
+}
 
-    var ScrollToButton = true;
+var ScrollToButton = true;
 
-    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
-    var tagID = "XXXYYYZZZ"
+// ##############  TAG SHORTCUT  ##############
+var toggleTagsShortcut = "C";
 
-    // ~~~~~~~~~~~~~  CLOZE ONE BY ONE  ~~~~~~~~~~~~~
+// ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+var tagID = "XXXYYYZZZ"
+
+// ~~~~~~~~~~~~~  CLOZE ONE BY ONE  ~~~~~~~~~~~~~
 var revealClozeShortcut = "N" // Shortcut to reveal next cloze
 var revealClozeWordShortcut = "Shift + N" // Shortcut to reveal next hidden word in cloze
 
@@ -44,7 +47,6 @@ var clozeHider = (elem) => "[" + elem.textContent.split(" ").map((t) => "█".re
 // Color-filled box (doesn't hide images):
 var clozeHider = (elem) => `<span style="background-color: red; color: transparent;">${elem.innerHTML}</span>`
 */
-
 </script>
 
 

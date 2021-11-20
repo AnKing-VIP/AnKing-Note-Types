@@ -1,16 +1,20 @@
 <script>
-   // ############## USER CONFIGURATION START ##############
-   // Auto flip to back when One by one mode.
-   var autoflip = false 
+// ############## USER CONFIGURATION START ##############
+// Auto flip to back when One by one mode.
+var autoflip = false 
 
-   // ##############  TAG SHORTCUT  ##############
-   var toggleTagsShortcut = "C";
-   
-   // ############## USER CONFIGURATION END ##############
+<%- include('src/configs/colorfulTags.js') %>
+
+// ############## USER CONFIGURATION END ##############
 </script>
 
 <%- include('src/components/clozeOneByOneAutoFlip.ejs', {optional: false}) %>
 
+<%- include('src/components/shortcutMatcher.ejs') %>
+
+<%- include('src/components/ankingAddEventListener.ejs') %>
+
+<%- include('src/components/colorfulTags.ejs') %>
 
 {{#I0}}
 {{#Image}}

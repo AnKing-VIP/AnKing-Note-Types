@@ -1,40 +1,43 @@
 <script>
-    // ##############  HINT REVEAL SHORTCUTS  ##############
-    // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
-    var ButtonShortcuts = {
-        "Lecture Notes" : "Alt + 1",
-        "Missed Questions" : "Alt + 2",
-        "Pathoma" : "Alt + 3",
-        "Boards and Beyond" : "Alt + 4",
-        "First Aid" : "Alt + 5",
-        "Sketchy" : "Alt + 6",
-        "Pixorize" : "Alt + 7",
-        "Physeo" : "Alt + 8",
-        "OME" : "Alt + F1",
-        "Additional Resources" : 'Alt + 9',
-    }
-    var ToggleAllButtonsShortcut = "'"
+// ##############  HINT REVEAL SHORTCUTS  ##############
+// All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
+var ButtonShortcuts = {
+    "Lecture Notes" : "Alt + 1",
+    "Missed Questions" : "Alt + 2",
+    "Pathoma" : "Alt + 3",
+    "Boards and Beyond" : "Alt + 4",
+    "First Aid" : "Alt + 5",
+    "Sketchy" : "Alt + 6",
+    "Pixorize" : "Alt + 7",
+    "Physeo" : "Alt + 8",
+    "OME" : "Alt + F1",
+    "Additional Resources" : 'Alt + 9',
+}
+var ToggleAllButtonsShortcut = "'"
 
-    // ##############  SHOW HINTS AUTOMATICALLY  ##############
-    var ButtonAutoReveal = {
-        "Lecture Notes" : false,
-        "Missed Questions" : false,
-        "Pathoma" : false,
-        "Boards and Beyond" : false,
-        "First Aid" : false,
-        "Sketchy" : false,
-        "Pixorize" : false,
-        "Physeo" : false,
-        "OME" : false, // not currently a button
-        "Additional Resources" : false,
-    }
+// ##############  SHOW HINTS AUTOMATICALLY  ##############
+var ButtonAutoReveal = {
+    "Lecture Notes" : false,
+    "Missed Questions" : false,
+    "Pathoma" : false,
+    "Boards and Beyond" : false,
+    "First Aid" : false,
+    "Sketchy" : false,
+    "Pixorize" : false,
+    "Physeo" : false,
+    "OME" : false, // not currently a button
+    "Additional Resources" : false,
+}
 
-    var ScrollToButton = true;
+var ScrollToButton = true;
 
-    //ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
-    var tagID = "XXXYYYZZZ"
+// ##############  TAG SHORTCUT  ##############
+var toggleTagsShortcut = "C";
 
-    // ~~~~~~~~~~~~~  CLOZE ONE BY ONE  ~~~~~~~~~~~~~
+// ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+var tagID = "XXXYYYZZZ"
+
+// ~~~~~~~~~~~~~  CLOZE ONE BY ONE  ~~~~~~~~~~~~~
 var revealClozeShortcut = "N" // Shortcut to reveal next cloze
 var revealClozeWordShortcut = "Shift + N" // Shortcut to reveal next hidden word in cloze
 

@@ -1,12 +1,15 @@
 <script>
-   // ############## USER CONFIGURATION START ##############
-   // Auto flip to back when One by one mode.
-   var autoflip = false 
+// ############## USER CONFIGURATION START ##############
+// Auto flip to back when One by one mode.
+var autoflip = false 
 
-   // ##############  TAG SHORTCUT  ##############
-   var toggleTagsShortcut = "C";
-   
-   // ############## USER CONFIGURATION END ##############
+// ##############  TAG SHORTCUT  ##############
+var toggleTagsShortcut = "C";
+
+// ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
+var tagID = "XXXYYYZZZ"
+
+// ############## USER CONFIGURATION END ##############
 </script>
 
 <!-- CLOZE ONE BY ONE AUTOFLIP -->
@@ -42,6 +45,113 @@
   }
 </script>
 
+<!-- Shortcut Matcher Function -->
+<script>
+  var specialCharCodes = {
+    "-": "minus",
+    "=": "equal",
+    "[": "bracketleft",
+    "]": "bracketright",
+    ";": "semicolon",
+    "'": "quote",
+    "`": "backquote",
+    "\\": "backslash",
+    ",": "comma",
+    ".": "period",
+    "/": "slash",
+  };
+  // Returns function that match keyboard event to see if it matches given shortcut.
+  function shortcutMatcher(shortcut) {
+    let shortcutKeys = shortcut.toLowerCase().split(/[+]/).map(key => key.trim())
+    let mainKey = shortcutKeys[shortcutKeys.length - 1]
+    if (mainKey.length === 1) {
+      if (/\d/.test(mainKey)) {
+        mainKey = "digit" + mainKey
+      } else if (/[a-zA-Z]/.test(mainKey)) {
+        mainKey = "key" + mainKey
+      } else {
+        let code = specialCharCodes[mainKey];
+        if (code) {
+          mainKey = code
+        }
+      }
+    }
+    let ctrl = shortcutKeys.includes("ctrl")
+    let shift = shortcutKeys.includes("shift")
+    let alt = shortcutKeys.includes("alt")
+
+    let matchShortcut = function (ctrl, shift, alt, mainKey, event) {
+      if (mainKey !== event.code.toLowerCase()) return false
+      if (ctrl !== (event.ctrlKey || event.metaKey)) return false
+      if (shift !== event.shiftKey) return false
+      if (alt !== event.altKey) return false
+      return true
+    }.bind(window, ctrl, shift, alt, mainKey)
+    
+    return matchShortcut
+  }
+</script>
+
+<!-- NOT-PERSISTING EVENT LISTENER -->
+<script>
+  if (window.ankingEventListeners) {
+    for (const listener of ankingEventListeners) {
+      const type = listener[0]
+      const handler = listener[1]
+      document.removeEventListener(type, handler)
+    }
+  }
+  window.ankingEventListeners = []
+  
+  window.ankingAddEventListener = function(type, handler) {
+    document.addEventListener(type, handler)
+    window.ankingEventListeners.push([type, handler])
+  }
+</script>
+
+<!-- CLICKABLE COLORFUL TAGS -->
+{{#Tags}}
+<div id="tags-container">{{clickable::Tags}}</div>
+<script>
+  var tagContainer = document.getElementById("tags-container")
+  if (tagContainer.childElementCount == 0) {
+    var tagList = tagContainer.innerHTML.split(" ");
+    var kbdList = [];
+    var newTagContent = document.createElement("div");
+
+    for (var i = 0; i < tagList.length; i++) {
+      var newTag = document.createElement("kbd");
+      newTag.innerHTML = tagList[i];
+      newTagContent.append(newTag)
+    }
+    tagContainer.innerHTML = newTagContent.innerHTML;
+    tagContainer.style.cursor = "default";
+  }
+  if (tagContainer.innerHTML.indexOf(tagID) != -1) {
+    tagContainer.style.backgroundColor = "rgba(251,11,11,.15)";
+  }
+
+  function showtags() {
+    var tagContainerShortcut = document.getElementById("tags-container");
+
+    if (tagContainerShortcut.style.display
+      === "none") {
+      tagContainerShortcut.style.display = "block";
+    } else {
+      tagContainerShortcut.style.display =
+        "none";
+    }
+  }
+  
+  var isShortcut = shortcutMatcher(toggleTagsShortcut)
+  ankingAddEventListener('keyup', function (e) {
+      if (isShortcut(e)) {
+          showtags();
+      }
+  });
+
+</script>
+{{/Tags}}
 
 {{#I0}}
 {{#Image}}
