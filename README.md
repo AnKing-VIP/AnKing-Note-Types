@@ -221,11 +221,12 @@ All note types in this repo use many or all of the features listed below. Some w
 - [ ] Record video explaining how to use all these
 
 Note type problems:
-- [ ] Autoflip needs to not flip if there is a hint, otherwise they can’t ever see the hint
-- [ ] Cloze-AnKingDerm, AnKingMCAT, AnKingOverhaul, Basic-AnKing Language aren’t working with any shortcuts for the buttons (alt+# or ’) WHEN Edit Field During Review Cloze is installed.
-- [ ] IO-one by one isn’t working anymore with the button shortcuts. Physeo-one by one however is working
-- [ ] There isn’t a toggle tags shortcut on the IO one by one and Physeo-IO one by one cards
-- [ ] IO-one by one autoflip isn’t really working. Just shows a blank screen. Also there is a toggle tags on the front of IO-one by one and not the back, but doesn’t need to be on the front cause there’s no tags field
+- [ ] Change AnKingMCAT shortcut to toggle all buttons
+- [ ] Fix AnKingMaster OME field so that it's hidden on mobile (wait for OME discussion)
+- [ ] Turn clickable tags off by default on AnKingOverhaul
+- [ ] Update all individual note types .apkg and create new alpha releases
+- [ ] IO-one by one isn’t working with the clickable tags add-on
+- [ ] Weird bug running scripts twice with buttons
 
 ## Contributing
 
