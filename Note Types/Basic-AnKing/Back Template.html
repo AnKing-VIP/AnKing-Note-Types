@@ -117,6 +117,19 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   }
 </script>
 
+
+<!-- No idea why, but some script tags are run twice 
+    when Edit Field During Review (Cloze) add-on is on.
+    For each hint-button tag, one script tag is run again
+    starting from TOGGLE BUTTONS script and working its way upwards.
+    
+    So we put a lot of empty script tags that will be run twice
+    to prevent the above scripts from being run twice.  -->
+<script></script><script></script><script></script><script></script><script></script>
+<script></script><script></script><script></script><script></script><script></script>
+<script></script><script></script><script></script><script></script><script></script>
+<script></script><script></script><script></script><script></script><script></script>
+
 <!-- TOGGLE BUTTONS -->
 <script>
   function defineHintButton() {
