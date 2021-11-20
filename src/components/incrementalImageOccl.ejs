@@ -1,8 +1,24 @@
+<%# 
+
+# Requires
+components/shortcutMatcher
+
+# Global Variables
+- RevealIncrementalShortcut: shortcut string
+- ToggleAllOcclusionsShortcut: shortcut string
+
+# Notes
+- Removes `#qa` element `display` property. (autohide sets it to "none")
+
+_%> 
 
 <!-- INCREMENTAL IMAGE OCCLUSION SCRIPT -->
+<script>
+  document.getElementById("qa").style.removeProperty("display")
+</script>
 <script data-name="Incremental IO" data-version="v0.1">
-  /* Script by Matthias Metelka @kleinerpirat */
-  
+  /* Script by Matthias Metelka @kleinerpirat */  
+
   function setupIncrementalIO() {
     var observer = new MutationObserver(() => {
       document.getElementById("button-toggle-all").addEventListener("click", toggleAll)
