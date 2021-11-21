@@ -1,0 +1,77 @@
+<%#
+
+# Components
+components/ankingAddEventListener
+components/shortcutMatcher
+
+# Global Variables
+- ButtonShortcuts: Object[Shortcut string]
+- ToggleAllButtonsShortcut: Shortcut string
+- ButtonAutoReveal: Object[boolean]
+- ScrollToButton: boolean
+
+# Notes
+- All and only hint buttons need to have .hints class on its hint div, with its id `h-${id}`.
+  Also assumes class names of `l-${id}`, `b-${id}`, `h-${id}`.
+
+_%>
+<!-- HINT BUTTONS SETUP -->
+<script>
+(function() {
+  const toggleHintBtn = function(id) {
+    const link = document.getElementById(`l-${id}`)
+    const button = document.getElementById(`b-${id}`)
+    const hint = document.getElementById(`h-${id}`)
+
+    if (hint.style.display == "none") {
+      button.classList.add("expanded-button")
+      hint.style.display = "block"
+      link.style.display = "none"
+      if (ScrollToButton) {
+        hint.scrollIntoView({
+          behavior: "smooth", // "auto" for instant scrolling
+          block: "start",
+          inline: "nearest"
+        });
+      }
+    } else {
+      button.classList.remove("expanded-button")
+      hint.style.display = "none"
+      link.style.display = ""
+    }
+  }
+
+  const setupHintBtn = function(id) {
+    const hint = document.getElementById(`h-${id}`)
+    const button = document.getElementById(`b-${id}`)
+    const fieldName = id.replace(/_/g, " ")
+    
+    if (ButtonAutoReveal[fieldName]) {
+      toggleHintBtn(id)
+    }
+
+    const isShortcut = shortcutMatcher(ButtonShortcuts[fieldName])
+    const isToggleAllShortcut = shortcutMatcher(ToggleAllButtonsShortcut)
+    ankingAddEventListener("keydown", (evt) => {
+      if (evt.repeat) return
+      if (isShortcut(evt) || isToggleAllShortcut(evt)) {
+        toggleHintBtn(id)
+      }
+    })
+    const clickHandler = (e) => {
+      toggleHintBtn(id);
+      e.stopPropagation();
+      e.preventDefault();
+    }
+    hint.addEventListener("click", clickHandler)
+    button.addEventListener("click", clickHandler)
+  }
+
+  const hints = document.getElementsByClassName("hints")
+  for (let i = 0; i < hints.length; i++) {
+    const hint = hints[i]
+    const id = hint.id.substring("h-".length)
+    setupHintBtn(id)
+  }
+})()
+</script>

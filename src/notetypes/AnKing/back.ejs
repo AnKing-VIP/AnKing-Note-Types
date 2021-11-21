@@ -45,11 +45,9 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <!-- BUTTON FIELDS -->
 <%- include('src/components/clozeOneByOneButtons.ejs', {optional: true}) %>
 
-{{#Personal Notes}}<hint-button field-name="Personal Notes" short="ln" hint-id="notes"></hint-button>
-<div id="dummy-ln" style="display: none;">{{edit:Personal Notes}}</div>{{/Personal Notes}}
+<%- include('src/components/hintButton.ejs', {"name": "Personal Notes", "icon": "_Anking_v3.png"}) %>
 
-{{#Missed Questions}}<hint-button field-name="Missed Questions" short="mq" hint-id="missed"></hint-button>
-<div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>{{/Missed Questions}}
+<%- include('src/components/hintButton.ejs', {"name": "Missed Questions", "icon": "_Anking_v3.png"}) %>
 
 <!-- Extra field -->
 <p></p>{{#Extra}}
@@ -64,7 +62,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <%- include('src/components/shortcutMatcher.ejs') %>
 
-<%- include('src/components/toggleButtons.ejs', {defaultIconFile: "_Anking_v3.png"}) %>
+<%- include('src/components/hintButtonsSetup.ejs') %>
 
 <%- include('src/components/clozeOneByOne.ejs', {optional: true}) %>
 

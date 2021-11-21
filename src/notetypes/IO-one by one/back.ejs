@@ -38,14 +38,11 @@ var ScrollToButton = true
 <div class="btn-spacer" hidden></div>
 
 <!-- TOGGLE HINT BUTTONS -->
-{{#Extra}}<hint-button field-name="Extra" short="ex" hint-id="extra"></hint-button>
-<div id="dummy-ex" style="display: none;">{{edit:Extra}}</div>{{/Extra}}
+<%- include('src/components/hintButton.ejs', {"name": "Extra", "icon": "_Anking_v3.png"}) %>
 
-{{#Personal Notes}}<hint-button field-name="Personal Notes" short="ln" hint-id="personal-notes"></hint-button>
-<div id="dummy-ln" style="display: none;">{{edit:Personal Notes}}</div>{{/Personal Notes}}
+<%- include('src/components/hintButton.ejs', {"name": "Personal Notes", "icon": "_Anking_v3.png"}) %>
 
-{{#Missed Questions}}<hint-button field-name="Missed Questions" short="mq" hint-id="missed-questions"></hint-button>
-<div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>{{/Missed Questions}}
+<%- include('src/components/hintButton.ejs', {"name": "Missed Questions", "icon": "_Anking_v3.png"}) %>
 
 
 <!-- ANKING HYPERLINK IMAGE -->
@@ -57,9 +54,9 @@ var ScrollToButton = true
 
 <div id="anki-am" data-name="Assets by ASSET MANAGER" data-version="2.1">
 
+<%- include('src/components/hintButtonsSetup.ejs') %>
+
 <%- include('src/components/colorfulTags.ejs') %>
     
-<%- include('src/components/toggleButtons.ejs', {defaultIconFile: "_Anking_v3.png"}) %>
-
 <%- include('src/components/incrementalImageOccl.ejs') %>
 </div>

@@ -41,16 +41,11 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <!--tts en_US voices=Apple_Samantha speed=1.4:Back -->
 
 <!-- BUTTON FIELDS -->
-{{#Definitions}}<hint-button field-name="Definitions" short="df" hint-id="definitions"></hint-button>
-<div id="dummy-df" style="display: none;">{{edit:Definitions}}</div>{{/Definitions}}
+<%- include('src/components/hintButton.ejs', {"name": "Definitions", "icon": "_Anking_v3.png"}) %>
 
-{{#Examples}}<hint-button field-name="Examples" short="exp" hint-id="examples"></hint-button>
-<div id="dummy-exp" style="display: none;">{{edit:Examples}}</div>{{/Examples}}
+<%- include('src/components/hintButton.ejs', {"name": "Examples", "icon": "_Anking_v3.png"}) %>
 
-{{#Alternative Translations}}<hint-button field-name="Alternative Translations" short="alt" hint-id="alt"></hint-button>
-<div id="dummy-alt" style="display: none;">{{edit:Alternative Translations}}</div>{{/Alternative Translations}}
-
-
+<%- include('src/components/hintButton.ejs', {"name": "Alternative Translations", "icon": "_Anking_v3.png"}) %>
 
 
 <!-- ANKING HYPERLINK IMAGE -->
@@ -60,7 +55,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <%- include('src/components/shortcutMatcher.ejs') %>
 
-<%- include('src/components/toggleButtons.ejs', {defaultIconFile: "_Anking_v3.png"}) %>
+<%- include('src/components/hintButtonsSetup.ejs') %>
 
 <%- include('src/components/colorfulTags.ejs') %>
 

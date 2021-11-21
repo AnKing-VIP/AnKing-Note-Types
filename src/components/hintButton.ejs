@@ -1,0 +1,23 @@
+<%# 
+
+# Parameters
+- name: string
+Name of the field for this hint button.
+- icon?: string?
+Icon file name. Defaults to "_Anking_v3.png".
+_%> 
+<% 
+  const iconSrc = icon ? icon : "_Anking_v3.png"
+
+  const id = name.replace(/ /g, "_")
+  const linkId = `l-${id}`
+  const buttonId = `b-${id}`
+  const hintId = `h-${id}`
+_%>
+{{#<%- name %>}}
+<a id="<%- linkId %>" href="#" class="hint"></a>
+<button id="<%- buttonId %>" class="button-general">
+  <img src="<%- iconSrc %>"> <%- name %>
+</button>
+<div id="<%- hintId %>" class="hints" style="display: none;">{{edit:<%- name %>}}</div>
+{{/<%- name %>}}
