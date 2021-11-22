@@ -122,6 +122,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <!-- NOT-PERSISTING EVENT LISTENER -->
 <script>
+(function(){
   if (window.ankingEventListeners) {
     for (const listener of ankingEventListeners) {
       const type = listener[0]
@@ -135,11 +136,13 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     document.addEventListener(type, handler)
     window.ankingEventListeners.push([type, handler])
   }
+})()
 </script>
 
 <!-- Shortcut Matcher Function -->
 <script>
-  var specialCharCodes = {
+(function(){
+  const specialCharCodes = {
     "-": "minus",
     "=": "equal",
     "[": "bracketleft",
@@ -153,7 +156,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     "/": "slash",
   };
   // Returns function that match keyboard event to see if it matches given shortcut.
-  function shortcutMatcher(shortcut) {
+  window.shortcutMatcher = function(shortcut) {
     let shortcutKeys = shortcut.toLowerCase().split(/[+]/).map(key => key.trim())
     let mainKey = shortcutKeys[shortcutKeys.length - 1]
     if (mainKey.length === 1) {
@@ -182,6 +185,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     
     return matchShortcut
   }
+})()
 </script>
 
 <!-- HINT BUTTONS SETUP -->
@@ -395,41 +399,41 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 {{#Tags}}
 <div id="tags-container">{{clickable::Tags}}</div>
 <script>
-  (function(){
-    const tagContainer = document.getElementById("tags-container")
-    if (tagContainer.childElementCount == 0) {
-      const tagList = tagContainer.innerHTML.split(" ");
-      const newTagContent = document.createElement("div");
+(function(){
+  const tagContainer = document.getElementById("tags-container")
+  if (tagContainer.childElementCount == 0) {
+    const tagList = tagContainer.innerHTML.split(" ");
+    const newTagContent = document.createElement("div");
 
-      for (let i = 0; i < tagList.length; i++) {
-        const newTag = document.createElement("kbd");
-        newTag.innerHTML = tagList[i];
-        newTagContent.append(newTag)
+    for (let i = 0; i < tagList.length; i++) {
+      const newTag = document.createElement("kbd");
+      newTag.innerHTML = tagList[i];
+      newTagContent.append(newTag)
+    }
+    tagContainer.innerHTML = newTagContent.innerHTML;
+    tagContainer.style.cursor = "default";
+  }
+  if (tagContainer.innerHTML.indexOf(tagID) != -1) {
+    tagContainer.style.backgroundColor = "rgba(251,11,11,.15)";
+  }
+
+  function showtags() {
+    const tagContainer = document.getElementById("tags-container");
+
+    if (tagContainer.style.display === "none") {
+      tagContainer.style.display = "block";
+    } else {
+      tagContainer.style.display = "none";
+    }
+  }
+  
+  var isShortcut = shortcutMatcher(toggleTagsShortcut)
+  ankingAddEventListener('keyup', function (e) {
+      if (isShortcut(e)) {
+          showtags();
       }
-      tagContainer.innerHTML = newTagContent.innerHTML;
-      tagContainer.style.cursor = "default";
-    }
-    if (tagContainer.innerHTML.indexOf(tagID) != -1) {
-      tagContainer.style.backgroundColor = "rgba(251,11,11,.15)";
-    }
-
-    function showtags() {
-      const tagContainer = document.getElementById("tags-container");
-
-      if (tagContainer.style.display === "none") {
-        tagContainer.style.display = "block";
-      } else {
-        tagContainer.style.display = "none";
-      }
-    }
-    
-    var isShortcut = shortcutMatcher(toggleTagsShortcut)
-    ankingAddEventListener('keyup', function (e) {
-        if (isShortcut(e)) {
-            showtags();
-        }
-    });
-  })()
+  });
+})()
 </script>
 {{/Tags}}
 

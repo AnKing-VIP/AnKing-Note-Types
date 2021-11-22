@@ -1,6 +1,7 @@
 <!-- Shortcut Matcher Function -->
 <script>
-  var specialCharCodes = {
+(function(){
+  const specialCharCodes = {
     "-": "minus",
     "=": "equal",
     "[": "bracketleft",
@@ -14,7 +15,7 @@
     "/": "slash",
   };
   // Returns function that match keyboard event to see if it matches given shortcut.
-  function shortcutMatcher(shortcut) {
+  window.shortcutMatcher = function(shortcut) {
     let shortcutKeys = shortcut.toLowerCase().split(/[+]/).map(key => key.trim())
     let mainKey = shortcutKeys[shortcutKeys.length - 1]
     if (mainKey.length === 1) {
@@ -43,4 +44,5 @@
     
     return matchShortcut
   }
+})()
 </script>

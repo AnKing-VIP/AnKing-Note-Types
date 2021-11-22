@@ -9,6 +9,7 @@
 _%>
 <!-- NOT-PERSISTING EVENT LISTENER -->
 <script>
+(function(){
   if (window.ankingEventListeners) {
     for (const listener of ankingEventListeners) {
       const type = listener[0]
@@ -22,4 +23,5 @@ _%>
     document.addEventListener(type, handler)
     window.ankingEventListeners.push([type, handler])
   }
+})()
 </script>
