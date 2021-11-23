@@ -5,8 +5,14 @@
 Name of the field for this hint button.
 - icon?: string?
 Icon file name. Defaults to "_Anking_v3.png".
+- noText?: boolean
+If true, don't display text on button. Defaults to `false`.
+
 _%> 
 <% 
+  if(noText === undefined) {
+    var noText = false
+  }
   const iconSrc = icon ? icon : "_Anking_v3.png"
 
   const id = name.replace(/ /g, "_")
@@ -17,7 +23,7 @@ _%>
 {{#<%- name %>}}
 <a id="<%- linkId %>" href="#" class="hint"></a>
 <button id="<%- buttonId %>" class="button-general">
-  <img src="<%- iconSrc %>"> <%- name %>
+  <img src="<%- iconSrc %>"> <% if (!noText) { %><%- name %><% } %>
 </button>
 <div id="<%- hintId %>" class="hints" style="display: none;">{{edit:<%- name %>}}</div>
 {{/<%- name %>}}
