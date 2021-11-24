@@ -21,7 +21,7 @@ _%>
 _%> 
 {{#<%- name %>}}
 <span id = "<%- containerId %>" class="hintBtn" data-name="<%-name%>">
-  <a href="#" ckass="hint" onclick="toggleHintBtn('<%- containerId %>')"></a>
+  <a href="#" class="hint" onclick="toggleHintBtn('<%- containerId %>')"></a>
   <button id="<%- btnId %>" class="button-general" onclick="toggleHintBtn('<%- containerId %>')">
     <img src="<%- icon %>"> <% if (!noText) { %><%- name %><% } %>
   </button>
