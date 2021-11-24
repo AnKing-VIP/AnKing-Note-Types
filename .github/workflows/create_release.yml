@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       file_name:
-        description: apkg file name (Basic-AnKing, Basic-AnKingLanguage, Cloze-AnKing, Cloze-AnKingDerm, Cloze-AnKingMCAT, Cloze-AnKingMaster-v3, Cloze_one-by-one, IO-one_by_one, Physeo-Note-Types)
+        description: apkg file name (Basic-AnKing, Basic-AnKingLanguage, AnKing, AnKingDerm, AnKingMCAT, AnKingOverhaul, IO-one_by_one, Physeo-Note-Types)
         required: true
       version:
         description: release version string (eg. 6.1)
