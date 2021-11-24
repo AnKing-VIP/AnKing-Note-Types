@@ -39,25 +39,20 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 
 <!-- BUTTON FIELDS -->
-{{#Personal Notes}}<hint-button field-name="Personal Notes" short="ln" hint-id="notes"></hint-button>
-<div id="dummy-ln" style="display: none;">{{edit:Personal Notes}}</div>{{/Personal Notes}}
+<%- include("src/components/hintButton.ejs", {name: "Personal Notes", short:"ln", hintId: "notes"}) %>
 
-{{#Missed Questions}}<hint-button field-name="Missed Questions" short="mq" hint-id="missed"></hint-button>
-<div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>{{/Missed Questions}}
-
+<%- include("src/components/hintButton.ejs", {name: "Missed Questions", short:"mq", hintId: "missed"}) %>
 
 
 <!-- ANKING HYPERLINK IMAGE -->
 <a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
 
 
-
-
 <%- include('src/components/ankingAddEventListener.ejs') %>
 
 <%- include('src/components/shortcutMatcher.ejs') %>
 
-<%- include('src/components/toggleButtons.ejs', {defaultIconFile: "_Anking_v3.png"}) %>
+<%- include('src/components/hintButtonsSetup.ejs') %>
   
 <%- include('src/components/colorfulTags.ejs') %>
 

@@ -64,42 +64,34 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <div class="banner-ome">{{#OME}}{{OME}}{{/OME}}</div>
 
 <!-- BUTTON FIELDS -->
-{{#Lecture Notes}}<hint-button field-name="Lecture Notes" short="ln" hint-id="notes"></hint-button>
-<div id="dummy-ln" style="display: none;">{{edit:Lecture Notes}}</div>{{/Lecture Notes}}
+<%- include("src/components/hintButton.ejs", {name: "Lecture Notes", short:"ln", hintId: "notes" }) %>
 
-{{#Missed Questions}}<hint-button field-name="Missed Questions" short="mq" hint-id="missed"></hint-button>
-<div id="dummy-mq" style="display: none;">{{edit:Missed Questions}}</div>{{/Missed Questions}}
+<%- include("src/components/hintButton.ejs", {name: "Missed Questions", short:"mq", hintId: "missed" }) %>
 
-{{#Pathoma}}<hint-button field-name="Pathoma" short="pat" hint-id="pathoma" icon="_pathoma.icon.png" no-text></hint-button>
-<div id="dummy-pat" style="display: none;">{{edit:Pathoma}}</div>{{/Pathoma}}
+<%- include("src/components/hintButton.ejs", {name: "Pathoma", short:"pat", hintId: "pathoma", icon:"_pathoma.icon.png", noText: true }) %>
 
-{{#Boards and Beyond}}<hint-button field-name="Boards and Beyond" short="bb" hint-id="bnb" icon="_b&b.icon.png"></hint-button>
-<div id="dummy-bb" style="display: none;">{{edit:Boards and Beyond}}</div>{{/Boards and Beyond}}
+<%- include("src/components/hintButton.ejs", {name: "Boards and Beyond", short:"bb", hintId: "bnb", icon:"_b&b.icon.png" }) %>
+
 
 <!-- Extra field -->
 <p></p>{{#Extra}}
 <div id="extra">{{edit:Extra}}</div>
 {{/Extra}}<br>
 
-{{#First Aid}}<hint-button field-name="First Aid" short="fa" hint-id="firstaid" icon="_first-aid.icon_v2.1.png"></hint-button>
-<div id="dummy-fa" style="display: none;">{{edit:First Aid}}</div>{{/First Aid}}
+<%- include("src/components/hintButton.ejs", {name: "First Aid", short:"fa", hintId: "firstaid", icon: "_first-aid.icon_v2.1.png" }) %>
 
-{{#Sketchy}}<hint-button field-name="Sketchy" short="sketchy" hint-id="sketchy" icon="_sketchy.icon.png"></hint-button>
-<div id="dummy-sketchy" style="display: none;">{{edit:Sketchy}}</div>{{/Sketchy}}
+<%- include("src/components/hintButton.ejs", {name: "Sketchy", short:"sketchy", hintId: "sketchy", icon: "_sketchy.icon.png" }) %>
 
-{{#Pixorize}}<hint-button field-name="Pixorize" short="pixorize" hint-id="pixorize" icon="_pixorize.png"></hint-button>
-<div id="dummy-pixorize" style="display: none;">{{edit:Pixorize}}</div>{{/Pixorize}}
+<%- include("src/components/hintButton.ejs", {name: "Pixorize", short:"pixorize", hintId: "pixorize", icon: "_pixorize.png" }) %>
 
-{{#Physeo}}<hint-button field-name="Physeo" short="physeo" hint-id="physeo" icon="_physeologo.icon.png" no-text></hint-button>
-<div id="dummy-physeo" style="display: none;">{{edit:Physeo}}</div>{{/Physeo}}
+<%- include("src/components/hintButton.ejs", {name: "Physeo", short:"physeo", hintId: "physeo", icon: "_physeologo.icon.png", noText: true }) %>
+
 
 <!-- OME FIELD (DISABLED BY DEFAULT) 
-{{#OME}}<hint-button field-name="OME" short="ome" hint-id="ome"></hint-button>
-<div id="dummy-ome" style="display: none;">{{edit:OME}}</div>{{/OME}}
+<%- include("src/components/hintButton.ejs", {name: "OME", short:"ome", hintId: "ome" }) %>
 -->
 
-{{#Additional Resources}}<hint-button field-name="Additional Resources" short="ar" hint-id="additional"></hint-button>
-<div id="dummy-ar" style="display: none;">{{edit:Additional Resources}}</div>{{/Additional Resources}}
+<%- include("src/components/hintButton.ejs", {name: "Additional Resources", short:"ar", hintId: "additional" }) %>
 
 
 <!-- ANKING HYPERLINK IMAGE -->
@@ -109,7 +101,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <%- include('src/components/shortcutMatcher.ejs') %>
 
-<%- include('src/components/toggleButtons.ejs', {defaultIconFile: "_Anking_v3.png"}) %>
+<%- include('src/components/hintButtonsSetup.ejs') %>
 
 <%- include('src/components/clozeOneByOne.ejs', {optional: true}) %>
 
