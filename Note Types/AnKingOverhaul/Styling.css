@@ -445,7 +445,7 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   display: none;
 }
 .mobile #button-ome {
-  display: block;
+  display: inline;
 }
 
 /* ~~~~~~~~~BUTTON LAYOUT~~~~~~~~~ */
