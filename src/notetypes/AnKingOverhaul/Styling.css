@@ -17,7 +17,7 @@
 
 /* TAGS ON/OFF DESKTOP & MOBILE*/
 #tags-container {
-  display: block; /* ‘none’ or ‘block’ */
+  display: none; /* ‘none’ or ‘block’ */
 }
 
 .mobile #tags-container {
@@ -436,6 +436,16 @@ kbd:nth-of-type(10n+0) { border-color: #607D8B; color: #607D8B!important; }
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+.mobile .banner-ome {
+  display: none;
+}
+
+#button-ome {
+  display: none;
+}
+.mobile #button-ome {
+  display: inline;
 }
 
 
