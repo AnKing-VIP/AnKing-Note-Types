@@ -25,6 +25,7 @@ var tagID = "XXXYYYZZZ"
 // ############## USER CONFIGURATION END ##############
 </script>
 
+
 <!-- NOT-PERSISTING EVENT LISTENER -->
 <script>
   if (window.ankingEventListeners) {
@@ -92,30 +93,29 @@ var tagID = "XXXYYYZZZ"
 <!-- COUNTDOWN TIMER -->
 <div class="timer" id="s2"></div>
 <script>
-function countdown(elementName, minutes, seconds) {
+  function countdown(elementName, minutes, seconds) {
     var element, endTime, mins, msLeft, time;
     function twoDigits( n ) {
-        return (n <= 9 ? "0" + n : n); 
+      return (n <= 9 ? "0" + n : n); 
     }
     function updateTimer() {
-        msLeft = endTime - (+new Date);
-
-        if ( msLeft < 1000 ) {
-            element.innerHTML = timeOverMsg;
-        } else {
-            time = new Date( msLeft );
-            mins = time.getUTCMinutes();
-            element.innerHTML = mins + ':' + twoDigits(time.getUTCSeconds());
-            setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
-        }
+      msLeft = endTime - (+new Date);
+      
+      if ( msLeft < 1000 ) {
+        element.innerHTML = timeOverMsg;
+      } else {
+        time = new Date( msLeft );
+        mins = time.getUTCMinutes();
+        element.innerHTML = mins + ':' + twoDigits(time.getUTCSeconds());
+        setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+      }
     }
     element = document.getElementById(elementName);
     endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
     updateTimer();
-}
-countdown("s2", minutes, seconds ); //2nd value is the minute, 3rd is the seconds
+  }
+  countdown("s2", minutes, seconds ); //2nd value is the minute, 3rd is the seconds
 </script>
-
 
 <!-- ANKING HYPERLINK IMAGE -->
 <a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
