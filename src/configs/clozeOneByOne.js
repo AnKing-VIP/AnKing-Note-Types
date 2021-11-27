@@ -1,4 +1,4 @@
-// ~~~~~~~~~~~~~  CLOZE ONE BY ONE  ~~~~~~~~~~~~~
+// ##############  CLOZE ONE BY ONE  ##############
 var revealNextShortcut = "N" 
 var revealNextWordShortcut = "Shift + N"
 var toggleAllShortcut = ","
