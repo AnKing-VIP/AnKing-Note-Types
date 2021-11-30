@@ -32,6 +32,10 @@ assignees: ''
 ```
 2.1.##
 ```
+#### What Operating system are you using? (i.e. MacOS, Windows, Linux)
+
+*Please include OS version as well if possible*
+
 
 #### Error message (if any)
 
