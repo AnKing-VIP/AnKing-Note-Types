@@ -229,6 +229,9 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   .cloze[data-content]:hover {
     cursor: pointer;
   }
+  .cloze[data-hint] {
+    color: #009400 !important;
+  }
 </style>
 
 <script>
@@ -251,6 +254,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
       }
       elem.innerHTML = elem.dataset.content
       delete elem.dataset.content
+      delete elem.dataset.hint
     }
 
     const revealClozeWord = function(elem) {
@@ -269,6 +273,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
           let temp = document.createElement("div");
           temp.innerHTML = elem.dataset.hidden;
           elem.innerHTML = elem.dataset.revealed + " " + clozeHider(temp);
+          delete elem.dataset.hint
         }
       } else {
         let temp = document.createElement("div");
@@ -302,6 +307,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         cloze.dataset.content = cloze.innerHTML
         if(window.clozeHints && window.clozeHints[count]) {
           cloze.innerHTML = window.clozeHints[count]
+          cloze.dataset.hint = true
         } else {
           cloze.innerHTML = clozeHider(cloze)
         }
