@@ -1,0 +1,114 @@
+{
+    "id": 1610414929689,
+    "name": "AnKingDerm",
+    "type": 1,
+    "mod": 1638144691,
+    "usn": -1,
+    "sortf": 0,
+    "did": 1613264378898,
+    "tmpls": [
+        {
+            "name": "Cloze",
+            "ord": 0,
+            "qfmt": "",
+            "afmt": "",
+            "bqfmt": "{{cloze:Text}}",
+            "bafmt": "{{cloze:Text}}",
+            "did": null,
+            "bfont": "Arial",
+            "bsize": 12,
+            "scratchPad": false
+        }
+    ],
+    "flds": [
+        {
+            "name": "Text",
+            "ord": 0,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "collapsibleFieldsCollapseByDefault": false,
+            "media": [],
+            "meta": null
+        },
+        {
+            "name": "Extra",
+            "ord": 1,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "media": [],
+            "meta": null
+        },
+        {
+            "name": "Personal Notes",
+            "ord": 2,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "collapsibleFieldsCollapseByDefault": false,
+            "media": [],
+            "meta": null
+        },
+        {
+            "name": "Missed Questions",
+            "ord": 3,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "meta": null,
+            "media": []
+        },
+        {
+            "name": "Textbook",
+            "ord": 4,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 20,
+            "collapsibleFieldsCollapseByDefault": false,
+            "meta": null
+        },
+        {
+            "name": "Additional Resources",
+            "ord": 5,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "meta": null,
+            "media": [],
+            "collapsibleFieldsCollapseByDefault": false
+        },
+        {
+            "name": "One by one",
+            "ord": 6,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 8,
+            "meta": null,
+            "collapsibleFieldsCollapseByDefault": false
+        }
+    ],
+    "css": "",
+    "latexPre": "\\documentclass[12pt]{article}\n\\special{papersize=3in,5in}\n\\usepackage{amssymb,amsmath}\n\\pagestyle{empty}\n\\setlength{\\parindent}{0in}\n\\begin{document}\n",
+    "latexPost": "\\end{document}",
+    "latexsvg": false,
+    "req": [
+        [
+            0,
+            "any",
+            [
+                0,
+                6
+            ]
+        ]
+    ],
+    "vers": [],
+    "tags": []
+}
