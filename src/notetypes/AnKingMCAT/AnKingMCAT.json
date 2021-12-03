@@ -27,7 +27,7 @@
             "sticky": false,
             "rtl": false,
             "font": "Arial",
-            "size": 16,
+            "size": 18,
             "meta": null,
             "collapsibleFieldsCollapseByDefault": false,
             "media": []
@@ -38,7 +38,7 @@
             "sticky": false,
             "rtl": false,
             "font": "Arial",
-            "size": 16,
+            "size": 18,
             "media": [],
             "meta": null
         },
@@ -48,7 +48,7 @@
             "sticky": false,
             "rtl": false,
             "font": "Arial",
-            "size": 16,
+            "size": 18,
             "media": []
         },
         {
@@ -67,7 +67,7 @@
             "sticky": false,
             "rtl": false,
             "font": "Arial",
-            "size": 20,
+            "size": 18,
             "meta": null
         },
         {

@@ -25,7 +25,7 @@
             "ord": 0,
             "sticky": false,
             "rtl": false,
-            "font": "Helvetica",
+            "font": "Arial",
             "size": 18,
             "collapsibleFieldsCollapseByDefault": false,
             "media": [],
@@ -36,7 +36,7 @@
             "ord": 1,
             "sticky": false,
             "rtl": false,
-            "font": "Helvetica",
+            "font": "Arial",
             "size": 18,
             "media": []
         },
