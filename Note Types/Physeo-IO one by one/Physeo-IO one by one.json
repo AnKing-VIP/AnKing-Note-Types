@@ -1,0 +1,179 @@
+{
+    "id": 1634781926713,
+    "name": "Physeo-IO one by one",
+    "type": 0,
+    "mod": 1638144691,
+    "usn": -1,
+    "sortf": 1,
+    "did": 1,
+    "tmpls": [
+        {
+            "name": "Card 1",
+            "ord": 0,
+            "qfmt": "",
+            "afmt": "",
+            "bqfmt": "",
+            "bafmt": "",
+            "did": null,
+            "bfont": "",
+            "bsize": 0,
+            "scratchPad": true
+        }
+    ],
+    "flds": [
+        {
+            "name": "Image",
+            "ord": 0,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "media": [],
+            "collapsibleFieldsCollapseByDefault": false,
+            "meta": null
+        },
+        {
+            "name": "Header",
+            "ord": 1,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "collapsibleFieldsCollapseByDefault": false,
+            "meta": null
+        },
+        {
+            "name": "Extra",
+            "ord": 2,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "media": [],
+            "meta": null,
+            "collapsibleFieldsCollapseByDefault": false
+        },
+        {
+            "name": "Personal Notes",
+            "ord": 3,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "meta": null,
+            "collapsibleFieldsCollapseByDefault": false
+        },
+        {
+            "name": "Missed Questions",
+            "ord": 4,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "meta": null,
+            "collapsibleFieldsCollapseByDefault": false
+        },
+        {
+            "name": "I0",
+            "ord": 5,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 8,
+            "meta": null,
+            "collapsibleFieldsCollapseByDefault": true,
+            "media": []
+        }
+    ],
+    "css": "",
+    "latexPre": "\\documentclass[12pt]{article}\n\\special{papersize=3in,5in}\n\\usepackage[utf8]{inputenc}\n\\usepackage{amssymb,amsmath}\n\\pagestyle{empty}\n\\setlength{\\parindent}{0in}\n\\begin{document}\n",
+    "latexPost": "\\end{document}",
+    "latexsvg": false,
+    "req": [
+        [
+            0,
+            "all",
+            [
+                0,
+                5
+            ]
+        ]
+    ],
+    "closetVersion": "0.5.3",
+    "assetManager": {
+        "enabled": true,
+        "indentSize": 4,
+        "insertStub": false,
+        "scripts": [
+            {
+                "code": "(function() {\n    //TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND\n    var tagID = \"XXXYYYZZZ\"\n\n    var tagContainer = document.getElementById(\"tags\")\n    var tags = document.getElementById(\"tags\").innerText.split(\" \")\n    tagContainer.innerHTML = \"\"\n\n    tags.forEach((tag) => {\n        let kbd = document.createElement(\"kbd\")\n        kbd.innerHTML = tag\n        tagContainer.appendChild(kbd)\n    })\n})()",
+                "conditions": [
+                    "side",
+                    "=",
+                    "back"
+                ],
+                "description": "Script by Matthias Metelka | @kleinerpirat",
+                "enabled": true,
+                "label": "",
+                "name": "Tags",
+                "position": "into_template",
+                "type": "js",
+                "version": "v0.1"
+            },
+            {
+                "code": "/* Script by Matthias Metelka @kleinerpirat */\n\n(function () {\n    var observer = new MutationObserver(() => {\n        let rect = document.querySelector(\".closet-rect.is-active\")\n        if (rect) {\n            activate(rect)\n            observer.disconnect()\n            let rects = document.querySelectorAll(\".closet-rect.is-active\")\n            for (let rect of rects) {\n                rect.addEventListener(\"click\", reveal)\n            }\n            if (!globalThis.AnKingIOListening) {\n                document.addEventListener(\"keydown\", (event) => {\n                    if (event.key == \"n\") {\n                        let active = document.querySelector(\".closet-rect.is-highlighted\")\n                        if (active) incrementalReveal.call(active)\n                    }\n                    else if (event.key == \"g\") {\n                        for (let rect of rects) {\n                            incrementalReveal.call(rect)\n                        }\n                    }\n                })\n                globalThis.AnKingIOListening = true\n            }\n            let buttons = document.getElementsByClassName(\"extra-btn\")\n\n            function toggle() {\n                if (!this.classList.contains(\"uncollapsed\")) {\n                    this.nextElementSibling.classList.remove(\"hidden\")\n                    this.classList.add(\"uncollapsed\")\n                }\n                else {\n                    this.nextElementSibling.classList.add(\"hidden\")\n                    this.classList.remove(\"uncollapsed\")\n                }\n            }\n            for (let button of buttons) {\n                button.addEventListener(\"click\", toggle)\n            }\n        }\n    })\n    observer.observe(document.getElementById(\"qa\"), {\n        childList: true,\n        subtree: true\n    })\n\n    function activate(rect) {\n        rect.classList.add(\"is-highlighted\")\n        rect.addEventListener(\"click\", incrementalReveal)\n    }\n\n    function incrementalReveal() {\n        reveal.call(this)\n        let next = this.nextElementSibling\n        if (next) {\n            while (next.classList.contains(\"revealed\") && next.nextElementSibling) {\n                next = next.nextElementSibling\n            }\n            if (!next.classList.contains(\"revealed\")) activate(next)\n        }\n        else {\n            document.getElementById(\"extra-content\").classList.remove(\"hidden\")\n        }\n    }\n\n    function reveal() {\n        this.classList.remove(\"is-highlighted\")\n        this.classList.add(\"revealed\")\n    }\n})()",
+                "conditions": [
+                    "side",
+                    "=",
+                    "back"
+                ],
+                "description": "Script by Matthias Metelka | @kleinerpirat",
+                "enabled": true,
+                "label": "",
+                "name": "Incremental IO",
+                "position": "into_template",
+                "type": "js",
+                "version": "v0.1"
+            },
+            {
+                "id": "1596977558630",
+                "storage": {
+                    "code": "const elements = closet.template.anki.getQaChildNodes();\nconst memory = chooseMemory(\"closet__1\");\nconst filterManager = closet.FilterManager.make(preset, memory.map);\n\nconst output = [[elements, memory, filterManager]];\n\n\nfilterManager.install(\n    closet.recipes.shuffle({ tagname: \"mix\" }),\n    closet.recipes.order({ tagname: \"ord\" }),\n\n    closet.flashcard.recipes.cloze({\n        tagname: \"c\",\n        defaultBehavior: closet.flashcard.behaviors.Show,\n    }),\n    closet.flashcard.recipes.multipleChoice({\n        tagname: \"mc\",\n        defaultBehavior: closet.flashcard.behaviors.Show,\n    }),\n    closet.flashcard.recipes.sort({\n        tagname: \"sort\",\n        defaultBehavior: closet.flashcard.behaviors.Show,\n    }),\n\n    closet.browser.recipes.rect({\n        tagname: \"rect\",\n        defaultBehavior: closet.flashcard.behaviors.Hide,\n    }),\n);",
+                    "conditions": [],
+                    "description": "defaultBehavior: closet.flashcard.behaviors.Hide for \"rect\" is very important here.",
+                    "enabled": true,
+                    "version": "v0.1"
+                },
+                "tag": "ClosetUserScript"
+            }
+        ]
+    },
+    "vers": [],
+    "tags": [
+        "Testing"
+    ],
+    "assetManagerHtml": {
+        "enabled": true,
+        "fragments": [
+            {
+                "code": "{{#I0}}\n{{#Image}}\n<div id=\"front-info\">\n<a href=\"https://www.ankingmed.com\"><img src=\"_AnKingRound.png\"></a>\n<div>IO-one by one card: Please flip to the backside.</div>\n<div class=\"help\">\n   <p>On the backside, your task is to incrementally reveal an image occlusion.\nClick on the active rectangle to reveal it and activate the next.</p>\n</div>\n</div>\n\n<div hidden>{{Image}}</div>\n{{/Image}}\n{{/I0}}\n",
+                "conditions": [],
+                "description": "This is the entrance for the front side",
+                "enabled": true,
+                "label": "Front",
+                "name": "FrontSide",
+                "version": "v1"
+            },
+            {
+                "code": "<div id=\"extras\" hidden>{{I0}}</div>\n\n<div class=\"header\">{{Header}}</div>\n<div class=\"io\">{{Image}}</div>\n\n<div class=\"hidden\" id=\"extra-content\">\n    <!-- LECTURE NOTES FIELD -->\n    {{#Personal Notes}}<button class=\"extra-btn\"><img src=\"_Anking_v3.png\"> Lecture Notes</button>\n    <div class=\"hints hidden\">{{edit:Personal Notes}}</div>{{/Personal Notes}}\n\n    <!-- MISSED QUESTIONS FIELD -->\n    {{#Missed Questions}}<button class=\"extra-btn\"><img src=\"_Anking_v3.png\"> Missed Questions</button>\n    <div class=\"hints hidden\">{{edit:Missed Questions}}</div>{{/Missed Questions}}\n\n    <div id=\"tags\">{{clickable::Tags}}</div>\n</div>\n\n<a class=\"logo\" href=\"https://www.ankingmed.com\">\n   <img src=\"_AnKingRound.png\" alt=\"The AnKing\">\n</a>\n\n{{%scripts}}\n\n",
+                "conditions": [],
+                "description": "This is the entrance for the back side",
+                "enabled": true,
+                "label": "Back",
+                "name": "BackSide",
+                "version": "v1"
+            }
+        ],
+        "minify": false
+    }
+}

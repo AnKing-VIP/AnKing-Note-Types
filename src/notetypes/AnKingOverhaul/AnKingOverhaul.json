@@ -1,0 +1,164 @@
+{
+    "id": 1606536512075,
+    "name": "AnKingOverhaul",
+    "type": 1,
+    "mod": 1638144713,
+    "usn": -1,
+    "sortf": 0,
+    "did": 1542938001933,
+    "tmpls": [
+        {
+            "name": "Cloze",
+            "ord": 0,
+            "qfmt": "",
+            "afmt": "",
+            "bqfmt": "{{cloze:Text}}",
+            "bafmt": "{{cloze:Text}}",
+            "did": null,
+            "bfont": "Arial",
+            "bsize": 12,
+            "scratchPad": false
+        }
+    ],
+    "flds": [
+        {
+            "name": "Text",
+            "ord": 0,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial Black",
+            "size": 16,
+            "collapsibleFieldsCollapseByDefault": false,
+            "meta": null,
+            "media": []
+        },
+        {
+            "name": "Extra",
+            "ord": 1,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "media": []
+        },
+        {
+            "name": "Lecture Notes",
+            "ord": 2,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "media": []
+        },
+        {
+            "name": "Missed Questions",
+            "ord": 3,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "media": []
+        },
+        {
+            "name": "Pathoma",
+            "ord": 4,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "media": []
+        },
+        {
+            "name": "Boards and Beyond",
+            "ord": 5,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "media": []
+        },
+        {
+            "name": "First Aid",
+            "ord": 6,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "media": []
+        },
+        {
+            "name": "Sketchy",
+            "ord": 7,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "media": []
+        },
+        {
+            "name": "Pixorize",
+            "ord": 8,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 20,
+            "meta": null
+        },
+        {
+            "name": "Physeo",
+            "ord": 9,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "media": []
+        },
+        {
+            "name": "OME",
+            "ord": 10,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 20,
+            "collapsibleFieldsCollapseByDefault": false,
+            "meta": null
+        },
+        {
+            "name": "Additional Resources",
+            "ord": 11,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "collapsibleFieldsCollapseByDefault": false,
+            "meta": null,
+            "media": []
+        },
+        {
+            "name": "One by one",
+            "ord": 12,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 8,
+            "meta": null,
+            "collapsibleFieldsCollapseByDefault": false
+        }
+    ],
+    "css": "",
+    "latexPre": "\\documentclass[12pt]{article}\n\\special{papersize=3in,5in}\n\\usepackage{amssymb,amsmath}\n\\pagestyle{empty}\n\\setlength{\\parindent}{0in}\n\\begin{document}\n",
+    "latexPost": "\\end{document}",
+    "latexsvg": false,
+    "req": [
+        [
+            0,
+            "any",
+            [
+                0,
+                12
+            ]
+        ]
+    ],
+    "tags": [],
+    "vers": []
+}
