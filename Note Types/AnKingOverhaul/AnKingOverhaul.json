@@ -26,7 +26,7 @@
             "ord": 0,
             "sticky": false,
             "rtl": false,
-            "font": "Arial Black",
+            "font": "Arial",
             "size": 16,
             "collapsibleFieldsCollapseByDefault": false,
             "meta": null,
@@ -56,7 +56,7 @@
             "sticky": false,
             "rtl": false,
             "font": "Arial",
-            "size": 18,
+            "size": 16,
             "media": []
         },
         {
@@ -65,7 +65,7 @@
             "sticky": false,
             "rtl": false,
             "font": "Arial",
-            "size": 18,
+            "size": 16,
             "media": []
         },
         {
@@ -74,7 +74,7 @@
             "sticky": false,
             "rtl": false,
             "font": "Arial",
-            "size": 18,
+            "size": 16,
             "media": []
         },
         {
@@ -83,7 +83,7 @@
             "sticky": false,
             "rtl": false,
             "font": "Arial",
-            "size": 18,
+            "size": 16,
             "media": []
         },
         {
@@ -92,7 +92,7 @@
             "sticky": false,
             "rtl": false,
             "font": "Arial",
-            "size": 18,
+            "size": 16,
             "media": []
         },
         {
@@ -101,7 +101,7 @@
             "sticky": false,
             "rtl": false,
             "font": "Arial",
-            "size": 20,
+            "size": 16,
             "meta": null
         },
         {
@@ -110,7 +110,7 @@
             "sticky": false,
             "rtl": false,
             "font": "Arial",
-            "size": 18,
+            "size": 16,
             "media": []
         },
         {
@@ -119,7 +119,7 @@
             "sticky": false,
             "rtl": false,
             "font": "Arial",
-            "size": 20,
+            "size": 16,
             "collapsibleFieldsCollapseByDefault": false,
             "meta": null
         },
@@ -129,7 +129,7 @@
             "sticky": false,
             "rtl": false,
             "font": "Arial",
-            "size": 18,
+            "size": 16,
             "collapsibleFieldsCollapseByDefault": false,
             "meta": null,
             "media": []
