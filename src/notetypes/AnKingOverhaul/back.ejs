@@ -86,8 +86,16 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <%- include("src/components/hintButton.ejs", {name: "Physeo", short:"physeo", hintId: "physeo", icon: "_physeologo.icon.png", noText: true }) %>
 
-<!-- OME FIELD -->
-<%- include("src/components/hintButton.ejs", {name: "OME", short:"ome", hintId: "ome", icon: "_omelogo.icon.png" }) %>
+<!-- OME FIELD (only shows on mobile)-->
+{{#OME}}
+<span id = "hint-ome" class="hintBtn" data-name="OME">
+  <a onclick="toggleHintBtn('hint-ome')"></a>
+  <button id="button-ome" class="button-general" onclick="toggleHintBtn('hint-ome')">
+    <img src="_omelogo.icon.png"> OME
+  </button>
+  <div id="ome" class="hints" style="display: none;">{{edit:OME}}</div>
+</span>
+{{/OME}}
 
 <%- include("src/components/hintButton.ejs", {name: "Additional Resources", short:"ar", hintId: "additional" }) %>
 
