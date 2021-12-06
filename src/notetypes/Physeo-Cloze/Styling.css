@@ -62,8 +62,8 @@ kbd {
 
 /*~~~~~~~MAX IMAGE HEIGHT/WIDGTH~~~~~~~*/
 img {
-  max-height: none;
   max-width: 85%;
+  max-height: none;
 }
 
 /*~~~~~~~~~COLORS~~~~~~~~~/
