@@ -5,10 +5,6 @@
 ################  USER CUSTOMIZATION START  ##############*/
 /* You can choose colors at www.htmlcolorcodes.com */
 
-/* TIMER ON/OFF */
-.timer {
-  display: block; /* ‘none’ or ‘block’ */
-}
 
 /* TAGS ON/OFF DESKTOP & MOBILE*/
 #tags-container {
