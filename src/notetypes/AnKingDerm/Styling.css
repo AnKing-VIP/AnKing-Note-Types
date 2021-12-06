@@ -78,7 +78,7 @@ kbd {
 /*~~~~~~~MAX IMAGE HEIGHT/WIDTH~~~~~~~*/
 img {
   max-width: 85%;
-  max-height: none;
+  max-height: 100%;
 }
 
 

@@ -72,7 +72,7 @@ kbd {
 
 /*~~~~~~~MAX IMAGE HEIGHT/WIDTH~~~~~~~*/
 img {
-  max-height: none;
+  max-height: 100%;
 }
 
 #extra img, 
