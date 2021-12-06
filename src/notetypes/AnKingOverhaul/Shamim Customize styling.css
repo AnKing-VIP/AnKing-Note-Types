@@ -80,9 +80,9 @@ kbd {
   font-family: Menlo, baskerville, sans; /*Step exam's font is Arial Greek*/
 }
 
-/*~~~~~~~MAX IMAGE HEIGHT/WIDGTH~~~~~~~*/
+/*~~~~~~~MAX IMAGE HEIGHT/WIDTH~~~~~~~*/
 img {
-  max-height: none;
+  max-height: 100%;
 }
 
 #extra img,

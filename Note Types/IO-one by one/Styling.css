@@ -5,10 +5,6 @@
 ################  USER CUSTOMIZATION START  ##############*/
 /* You can choose colors at www.htmlcolorcodes.com */
 
-/* TIMER ON/OFF */
-.timer {
-  display: block; /* ‘none’ or ‘block’ */
-}
 
 /* TAGS ON/OFF DESKTOP & MOBILE*/
 #tags-container {
@@ -57,10 +53,10 @@ kbd {
   font-family: Arial Greek, Arial; /*Step exam's font is Arial Greek*/
 }
 
-/*~~~~~~~MAX IMAGE HEIGHT/WIDGTH~~~~~~~*/
+/*~~~~~~~MAX IMAGE HEIGHT/WIDTH~~~~~~~*/
 img {
-  max-height: none;
   max-width: 100%; /* note: changing this may impact the occlusions */
+  max-height: 100%;
 }
 
 
