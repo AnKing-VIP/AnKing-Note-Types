@@ -216,17 +216,8 @@ All note types in this repo use many or all of the features listed below. Some w
   </details>
 
 ## TODO
-- [ ] Update Readme files with big 11/19 update introducing renaming and the 'one by one' field
-  - [ ] Include any changes to user customization on front and back templates
-- [ ] Record video explaining how to use all these
-
-Note type problems:
-- [ ] Change AnKingMCAT shortcut to toggle all buttons
-- [ ] Fix AnKingMaster OME field so that it's hidden on mobile (wait for OME discussion)
-- [ ] Turn clickable tags off by default on AnKingOverhaul
-- [ ] Update all individual note types .apkg and create new alpha releases
-- [ ] IO-one by one isn’t working with the clickable tags add-on
-- [ ] Weird bug running scripts twice with buttons
+- [ ] Update Readme files with big December update including the add-on
+- [x] Record video explaining how to use all these
 
 ## Contributing
 
