@@ -48,12 +48,14 @@ html {
 
 /*Extra Field Font Sizes*/
 #pixorize, 
+#sketchy,
 #additional { 
   font-size: 1rem !important; 
 } 
 
 /*Extra Field Font Sizes on Mobile*/
 .mobile #pixorize, 
+.mobile #sketchy,
 .mobile #additional { 
   font-size: 20px!important; 
 }
@@ -77,6 +79,7 @@ img {
 }
 
 #pixorize img, 
+#sketchy img,
 #additional img {
   max-width: 60%!important;
 }
@@ -236,6 +239,7 @@ hr { opacity: .7 }
 }
 
 #pixorize img:active, 
+#sketchy img:active,
 #additional img:active { 
   transform:scale(1.5); 
 }
@@ -422,6 +426,9 @@ html:not(.mobile) #button-pixorize:hover {
   background-color: #ea8eed !important;
 }
 
+html:not(.mobile) #button-sketchy:hover {
+  background-color: #7EDEC0 !important;
+}
 
 
 /* ~~~~~~~Pixorize Styling~~~~~~~ */
