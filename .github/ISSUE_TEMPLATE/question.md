@@ -15,6 +15,7 @@ assignees: ''
 
  - [ ] I've verified that I use the latest version of the note type by redownloading it from AnkiWeb
  - [ ] I've checked if anyone else asked this question before by looking through the issue reports.
+ - [ ] I've read through the README documents on this github and/or watched the tutorial video on the note types
 
 #### What Anki version are you using?
 
