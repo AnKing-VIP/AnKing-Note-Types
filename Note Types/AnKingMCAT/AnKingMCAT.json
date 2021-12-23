@@ -71,8 +71,17 @@
             "meta": null
         },
         {
-            "name": "Additional Resources",
+            "name": "Sketchy",
             "ord": 5,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "meta": null
+        },
+        {
+            "name": "Additional Resources",
+            "ord": 6,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
@@ -82,7 +91,7 @@
         },
         {
             "name": "One by one",
-            "ord": 6,
+            "ord": 7,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
