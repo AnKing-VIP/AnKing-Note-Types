@@ -25,7 +25,7 @@ NOTE: This method is less preferred because updates may be in progress and incom
    - You can click the `Copy Raw Content` (box on top of a box) button in the top right to easily copy everything _(it's just left of the pencil icon)_ 
 
 ## Thank You
-Huge thank you to @BlueGreenMagick, @Kleinerpirat, @RisingOrange, u/Ankiphil, and u/holythesea who have helped significantly with the development of these notes over the last few years
+Huge thank you to @BlueGreenMagick, @Kleinerpirat, @RisingOrange, u/Ankiphil, and u/holythesea who have helped significantly with the development of these notes over the last few years. Also thank you to u/passwordisnotaco who posted the [initial version](https://www.reddit.com/r/Anki/comments/pia8e5/how_to_incrementally_reveal_an_image_occlusion/?utm_source=share&utm_medium=ios_app&utm_name=iossmf) of the IO-one by one note type.
 
 ## How to Use & Customize These Note Types
 - <a href="https://www.youtube.com/watch?v=HgKDRTTTnh4&t=37s">This video</a> goes over how to customize card styling (including basic html/css)
