@@ -21,7 +21,11 @@ _%>
 
     for (var i = 0; i < tagList.length; i++) {
       var newTag = document.createElement("kbd");
-      newTag.innerHTML = tagList[i];
+      var tag = tagList[i];
+      if(showOnlyLastPartOfTag){
+        tag = tag.split('::').slice(-1)[0];
+      }
+      newTag.innerHTML = tag;
       newTagContent.append(newTag)
     }
     tagContainer.innerHTML = newTagContent.innerHTML;

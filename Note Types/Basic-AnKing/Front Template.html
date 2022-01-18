@@ -22,6 +22,10 @@ var toggleTagsShortcut = "C";
 // ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
 var tagID = "XXXYYYZZZ"
 
+// WHETHER THE WHOLE TAG OR ONLY THE LAST PART SHOULD BE SHOWN
+
+var showOnlyLastPartOfTag = false;
+
 // ############## USER CONFIGURATION END ##############
 </script>
 
@@ -138,7 +142,11 @@ var tagID = "XXXYYYZZZ"
 
     for (var i = 0; i < tagList.length; i++) {
       var newTag = document.createElement("kbd");
-      newTag.innerHTML = tagList[i];
+      var tag = tagList[i];
+      if(showOnlyLastPartOfTag){
+        tag = tag.split('::').slice(-1)[0];
+      }
+      newTag.innerHTML = tag;
       newTagContent.append(newTag)
     }
     tagContainer.innerHTML = newTagContent.innerHTML;
