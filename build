@@ -5,6 +5,8 @@ shopt -s extglob
 # When no file matches glob, don't treat the pattern as literal string
 shopt -s nullglob
 
+commit_hash=`git rev-parse --short HEAD`
+
 for dir in ./src/notetypes/*/ ; do
     NOTETYPE_DIR="./Note Types/$(basename "${dir}")"
     
@@ -12,8 +14,13 @@ for dir in ./src/notetypes/*/ ; do
         rm "$file"
     done
 
-    npx ejs "$dir"/front.ejs -o "${NOTETYPE_DIR}/Front Template.html"
-    npx ejs "$dir"/back.ejs -o "${NOTETYPE_DIR}/Back Template.html"
+    front_file="${NOTETYPE_DIR}/Front Template.html"
+    back_file="${NOTETYPE_DIR}/Back Template.html"
+
+    npx ejs "$dir"/front.ejs -o "$front_file"
+    npx ejs "$dir"/back.ejs -o "$back_file"
+
+    echo "<!-- version ${commit_hash} -->" | cat - "${front_file}" > /tmp/out && mv /tmp/out "${front_file}"
 
     for file in "${dir}"!(*.ejs) ; do
         cp "$file" "${NOTETYPE_DIR}/$(basename "$file")"
