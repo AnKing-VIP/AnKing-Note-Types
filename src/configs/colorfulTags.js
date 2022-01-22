@@ -6,4 +6,4 @@ var tagID = "XXXYYYZZZ"
 
 // WHETHER THE WHOLE TAG OR ONLY THE LAST PART SHOULD BE SHOWN
 
-var showOnlyLastPartOfTag = false;
+var numTagLevelsToShow = 0;

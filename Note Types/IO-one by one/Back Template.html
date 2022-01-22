@@ -30,7 +30,7 @@ var tagID = "XXXYYYZZZ"
 
 // WHETHER THE WHOLE TAG OR ONLY THE LAST PART SHOULD BE SHOWN
 
-var showOnlyLastPartOfTag = false;
+var numTagLevelsToShow = 0;
 
 </script>
 
@@ -160,8 +160,9 @@ var showOnlyLastPartOfTag = false;
     for (var i = 0; i < tagList.length; i++) {
       var newTag = document.createElement("kbd");
       var tag = tagList[i];
-      if(showOnlyLastPartOfTag){
-        tag = tag.split('::').slice(-1)[0];
+      // numTagLevelsToShow == 0 means the whole tag should be shown
+      if(numTagLevelsToShow != 0){
+        tag = tag.split('::').slice(-numTagLevelsToShow).join("::");
       }
       newTag.innerHTML = tag;
       newTagContent.append(newTag)
