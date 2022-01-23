@@ -150,7 +150,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <!-- HINT BUTTONS SETUP -->
 <script>
     (function() {
-      window.toggleHintBtn = function(containerId) {
+      window.toggleHintBtn = function(containerId, noScrolling=false) {
         const container = document.getElementById(containerId)
         const link = container.getElementsByTagName("a")[0]
         const button = container.getElementsByTagName("button")[0]
@@ -160,7 +160,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
           button.classList.add("expanded-button")
           hint.style.display = "block"
           link.style.display = "none"
-          if (ScrollToButton) {
+          if (ScrollToButton && !noScrolling) {
             hint.scrollIntoView({
               behavior: "smooth", // "auto" for instant scrolling
               block: "start",
@@ -180,7 +180,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         const button = elem.getElementsByClassName("button")[0]
         
         if (ButtonAutoReveal[fieldName]) {
-          toggleHintBtn(containerId)
+          toggleHintBtn(containerId, noScrolling=true)
         }
     
         const isShortcut = shortcutMatcher(ButtonShortcuts[fieldName])

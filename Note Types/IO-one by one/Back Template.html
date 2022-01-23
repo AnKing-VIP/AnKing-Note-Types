@@ -199,7 +199,7 @@ var numTagLevelsToShow = 0;
 <!-- HINT BUTTONS SETUP -->
 <script>
     (function() {
-      window.toggleHintBtn = function(containerId) {
+      window.toggleHintBtn = function(containerId, noScrolling=false) {
         const container = document.getElementById(containerId)
         const link = container.getElementsByTagName("a")[0]
         const button = container.getElementsByTagName("button")[0]
@@ -209,7 +209,7 @@ var numTagLevelsToShow = 0;
           button.classList.add("expanded-button")
           hint.style.display = "block"
           link.style.display = "none"
-          if (ScrollToButton) {
+          if (ScrollToButton && !noScrolling) {
             hint.scrollIntoView({
               behavior: "smooth", // "auto" for instant scrolling
               block: "start",
@@ -229,7 +229,7 @@ var numTagLevelsToShow = 0;
         const button = elem.getElementsByClassName("button")[0]
         
         if (ButtonAutoReveal[fieldName]) {
-          toggleHintBtn(containerId)
+          toggleHintBtn(containerId, noScrolling=true)
         }
     
         const isShortcut = shortcutMatcher(ButtonShortcuts[fieldName])
