@@ -4,7 +4,9 @@ For simplicity and ease-of-use, I have uploaded all of my note types here. This 
 ## How to Use These Note Types
 **To download a note type,** find the latest version in the [Releases](https://github.com/AnKingMed/AnKing-Note-Types/releases) tab
 
-**To learn how to use and customize a note type,** open the [Note Types Folder](https://github.com/AnKingMed/AnKing-Note-Types/tree/master/Note%20Types). Each Folder has it's own README file that explains the note and it's features
+**To learn how to use and customize a note type,** watch [this video](https://youtu.be/NYUhNMyAZNs).  For written instructions, open the [Note Types Folder](https://github.com/AnKingMed/AnKing-Note-Types/tree/master/Note%20Types). Each Folder has it's own README file that explains the note and it's features
+
+**To install the AnKing Note Types add-on,** (allows for very easy and user-friendly customization) visit this page: https://ankiweb.net/shared/info/952691989
 
 ## How to Update These Note Types
 There are two methods to update if you already have any of these notes in your collection
@@ -23,7 +25,7 @@ NOTE: This method is less preferred because updates may be in progress and incom
    - You can click the `Copy Raw Content` (box on top of a box) button in the top right to easily copy everything _(it's just left of the pencil icon)_ 
 
 ## Thank You
-Huge thank you to @BlueGreenMagick, @Kleinerpirat, @RisingOrange, u/Ankiphil, and u/holythesea who have helped significantly with the development of these notes over the last few years
+Huge thank you to @BlueGreenMagick, @Kleinerpirat, @RisingOrange, u/Ankiphil, and u/holythesea who have helped significantly with the development of these notes over the last few years. Also thank you to u/passwordisnotaco who posted the [initial version](https://www.reddit.com/r/Anki/comments/pia8e5/how_to_incrementally_reveal_an_image_occlusion/?utm_source=share&utm_medium=ios_app&utm_name=iossmf) of the IO-one by one note type.
 
 ## How to Use & Customize These Note Types
 - <a href="https://www.youtube.com/watch?v=HgKDRTTTnh4&t=37s">This video</a> goes over how to customize card styling (including basic html/css)
@@ -217,7 +219,7 @@ All note types in this repo use many or all of the features listed below. Some w
 
 ## TODO
 - [ ] Update Readme files with big December update including the add-on
-- [x] Record video explaining how to use all these
+- [ ] Update Cloze-one by one feature so Extra field stays hidden till all are revealed
 
 ## Contributing
 
