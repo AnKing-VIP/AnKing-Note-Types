@@ -50,10 +50,10 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <%- include("src/components/hintButton.ejs", {name: "Missed Questions", short:"mq", hintId: "missed" }) %>
 
-<!-- EXTRA FIELD -->
-<p></p>{{#Extra}}
+<!-- Extra field -->
+{{#Extra}}<p></p>
 <div id="extra">{{edit:Extra}}</div>
-{{/Extra}}<br>
+<br>{{/Extra}}
 
 <%- include("src/components/hintButton.ejs", {name: "Pixorize", short:"pixorize", hintId: "pixorize", icon: "_pixorize.png" }) %>
 
