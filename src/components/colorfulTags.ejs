@@ -7,6 +7,7 @@ components/shortcutMatcher
 # Global Variables
 - toggleTagsShortcut: string
 - tagID: string
+- numTagLevelsToShow: int
 
 _%> 
 <!-- CLICKABLE COLORFUL TAGS -->
@@ -21,7 +22,12 @@ _%>
 
     for (var i = 0; i < tagList.length; i++) {
       var newTag = document.createElement("kbd");
-      newTag.innerHTML = tagList[i];
+      var tag = tagList[i];
+      // numTagLevelsToShow == 0 means the whole tag should be shown
+      if(numTagLevelsToShow != 0){
+        tag = tag.split('::').slice(-numTagLevelsToShow).join("::");
+      }
+      newTag.innerHTML = tag;
       newTagContent.append(newTag)
     }
     tagContainer.innerHTML = newTagContent.innerHTML;

@@ -37,6 +37,10 @@ var toggleTagsShortcut = "C";
 // ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
 var tagID = "XXXYYYZZZ"
 
+// WHETHER THE WHOLE TAG OR ONLY THE LAST PART SHOULD BE SHOWN
+
+var numTagLevelsToShow = 0;
+
 // ##############  CLOZE ONE BY ONE  ##############
 var revealNextShortcut = "N" 
 var revealNextWordShortcut = "Shift + N"
@@ -138,9 +142,9 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 
 <!-- Extra field -->
-<p></p>{{#Extra}}
+{{#Extra}}<p></p>
 <div id="extra">{{edit:Extra}}</div>
-{{/Extra}}<br>
+<br>{{/Extra}}
 
 {{#First Aid}}
 <span id = "hint-fa" class="hintBtn" data-name="First Aid">
@@ -274,7 +278,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <!-- HINT BUTTONS SETUP -->
 <script>
     (function() {
-      window.toggleHintBtn = function(containerId) {
+      window.toggleHintBtn = function(containerId, noScrolling=false) {
         const container = document.getElementById(containerId)
         const link = container.getElementsByTagName("a")[0]
         const button = container.getElementsByTagName("button")[0]
@@ -284,7 +288,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
           button.classList.add("expanded-button")
           hint.style.display = "block"
           link.style.display = "none"
-          if (ScrollToButton) {
+          if (ScrollToButton && !noScrolling) {
             hint.scrollIntoView({
               behavior: "smooth", // "auto" for instant scrolling
               block: "start",
@@ -304,7 +308,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         const button = elem.getElementsByClassName("button")[0]
         
         if (ButtonAutoReveal[fieldName]) {
-          toggleHintBtn(containerId)
+          toggleHintBtn(containerId, noScrolling=true)
         }
     
         const isShortcut = shortcutMatcher(ButtonShortcuts[fieldName])
@@ -488,7 +492,12 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
     for (var i = 0; i < tagList.length; i++) {
       var newTag = document.createElement("kbd");
-      newTag.innerHTML = tagList[i];
+      var tag = tagList[i];
+      // numTagLevelsToShow == 0 means the whole tag should be shown
+      if(numTagLevelsToShow != 0){
+        tag = tag.split('::').slice(-numTagLevelsToShow).join("::");
+      }
+      newTag.innerHTML = tag;
       newTagContent.append(newTag)
     }
     tagContainer.innerHTML = newTagContent.innerHTML;
