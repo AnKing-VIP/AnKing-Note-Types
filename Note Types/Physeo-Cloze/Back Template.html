@@ -257,6 +257,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         return
       }
       elem.innerHTML = elem.dataset.content
+      rerunMathJax()
+
       delete elem.dataset.content
       delete elem.dataset.hint
     }
@@ -286,6 +288,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         elem.dataset.revealed = "";
         revealClozeWord(elem)
       }
+      rerunMathJax()
     }
 
     window.revealNextCloze = function() {
@@ -348,6 +351,18 @@ replace the arrows/dashes from the statement below with double curly brackets-->
       ev.stopPropagation()
       ev.preventDefault()
     }      
+
+    const rerunMathJax = function() {
+      // rerun mathjax on the document so that the cloze text gets formatted
+      // ... for MathJax 2
+      try {
+          MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+      } catch {}
+      // ... for MathJax 3     
+      try {
+          MathJax.typesetPromise()
+      } catch {}
+    }
     
     // autoflip hides card in front template
     document.getElementById("qa").style.removeProperty("display")
