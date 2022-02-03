@@ -11,8 +11,8 @@ var ButtonShortcuts = {
     "Missed Questions": "Alt + 3",
 }
 
-var toggleAllButtonsShortcut = "'"
-var toggleNextButtonShortcut = "H";
+var ToggleAllButtonsShortcut = "'"
+var ToggleNextButtonShortcut = "H";
 // change values from false to true to have the fields revealed from the start
 var ButtonAutoReveal = {
     "Extra": false,
@@ -240,7 +240,7 @@ var numTagLevelsToShow = 0;
         }
       }
         
-      const isToggleNextShortcut = shortcutMatcher(toggleNextButtonShortcut)
+      const isToggleNextShortcut = shortcutMatcher(ToggleNextButtonShortcut)
       ankingAddEventListener("keydown", (evt) => {
         if (evt.repeat) return
         if (isToggleNextShortcut(evt)) {
@@ -258,7 +258,7 @@ var numTagLevelsToShow = 0;
         }
     
         const isShortcut = shortcutMatcher(ButtonShortcuts[fieldName])
-        const isToggleAllShortcut = shortcutMatcher(toggleAllButtonsShortcut)
+        const isToggleAllShortcut = shortcutMatcher(ToggleAllButtonsShortcut)
         ankingAddEventListener("keydown", (evt) => {
           if (evt.repeat) return
           if (isShortcut(evt) || isToggleAllShortcut(evt)) {

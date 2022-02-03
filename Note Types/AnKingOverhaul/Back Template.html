@@ -13,8 +13,8 @@ var ButtonShortcuts = {
     "OME" : "Alt + F1",
     "Additional Resources" : "Alt + 9",
 }
-var toggleAllButtonsShortcut = "'"
-var toggleNextButtonShortcut = "H";
+var ToggleAllButtonsShortcut = "'"
+var ToggleNextButtonShortcut = "H";
 // ##############  SHOW HINTS AUTOMATICALLY  ##############
 var ButtonAutoReveal = {
     "Lecture Notes" : false,
@@ -319,7 +319,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         }
       }
         
-      const isToggleNextShortcut = shortcutMatcher(toggleNextButtonShortcut)
+      const isToggleNextShortcut = shortcutMatcher(ToggleNextButtonShortcut)
       ankingAddEventListener("keydown", (evt) => {
         if (evt.repeat) return
         if (isToggleNextShortcut(evt)) {
@@ -337,7 +337,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         }
     
         const isShortcut = shortcutMatcher(ButtonShortcuts[fieldName])
-        const isToggleAllShortcut = shortcutMatcher(toggleAllButtonsShortcut)
+        const isToggleAllShortcut = shortcutMatcher(ToggleAllButtonsShortcut)
         ankingAddEventListener("keydown", (evt) => {
           if (evt.repeat) return
           if (isShortcut(evt) || isToggleAllShortcut(evt)) {
