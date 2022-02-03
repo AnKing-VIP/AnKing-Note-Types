@@ -12,7 +12,7 @@ var ButtonShortcuts = {
 }
 
 var ToggleAllButtonsShortcut = "'"
-
+var ToggleNextButtonShortcut = "H";
 // change values from false to true to have the fields revealed from the start
 var ButtonAutoReveal = {
     "Extra": false,
@@ -49,7 +49,7 @@ var numTagLevelsToShow = 0;
 <!-- TOGGLE HINT BUTTONS -->
 {{#Extra}}
 <span id = "hint-ex" class="hintBtn" data-name="Extra">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-ex')"></a>
+  <a class="hint" onclick="toggleHintBtn('hint-ex')"></a>
   <button id="button-ex" class="button-general" onclick="toggleHintBtn('hint-ex')">
     <img src="_Anking_v3.png"> Extra
   </button>
@@ -59,7 +59,7 @@ var numTagLevelsToShow = 0;
 
 {{#Personal Notes}}
 <span id = "hint-ln" class="hintBtn" data-name="Personal Notes">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-ln')"></a>
+  <a class="hint" onclick="toggleHintBtn('hint-ln')"></a>
   <button id="button-ln" class="button-general" onclick="toggleHintBtn('hint-ln')">
     <img src="_Anking_v3.png"> Personal Notes
   </button>
@@ -69,7 +69,7 @@ var numTagLevelsToShow = 0;
 
 {{#Missed Questions}}
 <span id = "hint-mq" class="hintBtn" data-name="Missed Questions">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-mq')"></a>
+  <a class="hint" onclick="toggleHintBtn('hint-mq')"></a>
   <button id="button-mq" class="button-general" onclick="toggleHintBtn('hint-mq')">
     <img src="_Anking_v3.png"> Missed Questions
   </button>
@@ -222,6 +222,31 @@ var numTagLevelsToShow = 0;
           link.style.display = ""
         }
       }
+
+      window.toggleNextButton = function(){
+        // adapted from Hint Hotkey add-on
+        var customEvent = document.createEvent('MouseEvents');
+        customEvent.initEvent('click', false, true);
+        var arr = document.getElementsByTagName('a');
+        for (var i=0; i<arr.length; i++) {
+          var el = arr[i];
+          if (el.style.display === 'none') {
+            continue;
+          }
+          if (el.classList.contains("hint")) {
+            el.dispatchEvent(customEvent);
+            break
+          }
+        }
+      }
+        
+      const isToggleNextShortcut = shortcutMatcher(ToggleNextButtonShortcut)
+      ankingAddEventListener("keydown", (evt) => {
+        if (evt.repeat) return
+        if (isToggleNextShortcut(evt)) {
+          toggleNextButton()
+        }
+      })
     
       const setupHintBtn = function(elem) {
         const containerId = elem.id

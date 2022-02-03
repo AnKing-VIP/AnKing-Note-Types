@@ -8,7 +8,7 @@ var ButtonShortcuts = {
 }
 
 var ToggleAllButtonsShortcut = "'"
-
+var ToggleNextButtonShortcut = "H";
 // ##############  SHOW HINTS AUTOMATICALLY  ##############
 var ButtonAutoReveal = {
   "Definitions": false,
@@ -51,7 +51,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <!-- BUTTON FIELDS -->
 {{#Definitions}}
 <span id = "hint-df" class="hintBtn" data-name="Definitions">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-df')"></a>
+  <a class="hint" onclick="toggleHintBtn('hint-df')"></a>
   <button id="button-df" class="button-general" onclick="toggleHintBtn('hint-df')">
     <img src="_Anking_v3.png"> Definitions
   </button>
@@ -61,7 +61,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 {{#Examples}}
 <span id = "hint-exp" class="hintBtn" data-name="Examples">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-exp')"></a>
+  <a class="hint" onclick="toggleHintBtn('hint-exp')"></a>
   <button id="button-exp" class="button-general" onclick="toggleHintBtn('hint-exp')">
     <img src="_Anking_v3.png"> Examples
   </button>
@@ -71,7 +71,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 {{#Alternative Translations}}
 <span id = "hint-alt" class="hintBtn" data-name="Alternative Translations">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-alt')"></a>
+  <a class="hint" onclick="toggleHintBtn('hint-alt')"></a>
   <button id="button-alt" class="button-general" onclick="toggleHintBtn('hint-alt')">
     <img src="_Anking_v3.png"> Alternative Translations
   </button>
@@ -173,6 +173,31 @@ replace the arrows/dashes from the statement below with double curly brackets-->
           link.style.display = ""
         }
       }
+
+      window.toggleNextButton = function(){
+        // adapted from Hint Hotkey add-on
+        var customEvent = document.createEvent('MouseEvents');
+        customEvent.initEvent('click', false, true);
+        var arr = document.getElementsByTagName('a');
+        for (var i=0; i<arr.length; i++) {
+          var el = arr[i];
+          if (el.style.display === 'none') {
+            continue;
+          }
+          if (el.classList.contains("hint")) {
+            el.dispatchEvent(customEvent);
+            break
+          }
+        }
+      }
+        
+      const isToggleNextShortcut = shortcutMatcher(ToggleNextButtonShortcut)
+      ankingAddEventListener("keydown", (evt) => {
+        if (evt.repeat) return
+        if (isToggleNextShortcut(evt)) {
+          toggleNextButton()
+        }
+      })
     
       const setupHintBtn = function(elem) {
         const containerId = elem.id

@@ -8,7 +8,7 @@ var ButtonShortcuts = {
     "Additional Resources" : "Alt + 4",
 }
 var ToggleAllButtonsShortcut = "'"
-
+var ToggleNextButtonShortcut = "H";
 // ##############  SHOW HINTS AUTOMATICALLY  ##############
 var ButtonAutoReveal = {
     "Personal Notes" : false,
@@ -89,7 +89,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 {{#Personal Notes}}
 <span id = "hint-ln" class="hintBtn" data-name="Personal Notes">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-ln')"></a>
+  <a class="hint" onclick="toggleHintBtn('hint-ln')"></a>
   <button id="button-ln" class="button-general" onclick="toggleHintBtn('hint-ln')">
     <img src="_Anking_v3.png"> Personal Notes
   </button>
@@ -99,7 +99,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 {{#Missed Questions}}
 <span id = "hint-mq" class="hintBtn" data-name="Missed Questions">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-mq')"></a>
+  <a class="hint" onclick="toggleHintBtn('hint-mq')"></a>
   <button id="button-mq" class="button-general" onclick="toggleHintBtn('hint-mq')">
     <img src="_Anking_v3.png"> Missed Questions
   </button>
@@ -114,7 +114,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 {{#Textbook}}
 <span id = "hint-tx" class="hintBtn" data-name="Textbook">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-tx')"></a>
+  <a class="hint" onclick="toggleHintBtn('hint-tx')"></a>
   <button id="button-tx" class="button-general" onclick="toggleHintBtn('hint-tx')">
     <img src="_dermki.png"> Textbook
   </button>
@@ -124,7 +124,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 {{#Additional Resources}}
 <span id = "hint-ar" class="hintBtn" data-name="Additional Resources">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-ar')"></a>
+  <a class="hint" onclick="toggleHintBtn('hint-ar')"></a>
   <button id="button-ar" class="button-general" onclick="toggleHintBtn('hint-ar')">
     <img src="_dermki.png"> Additional Resources
   </button>
@@ -226,6 +226,31 @@ replace the arrows/dashes from the statement below with double curly brackets-->
           link.style.display = ""
         }
       }
+
+      window.toggleNextButton = function(){
+        // adapted from Hint Hotkey add-on
+        var customEvent = document.createEvent('MouseEvents');
+        customEvent.initEvent('click', false, true);
+        var arr = document.getElementsByTagName('a');
+        for (var i=0; i<arr.length; i++) {
+          var el = arr[i];
+          if (el.style.display === 'none') {
+            continue;
+          }
+          if (el.classList.contains("hint")) {
+            el.dispatchEvent(customEvent);
+            break
+          }
+        }
+      }
+        
+      const isToggleNextShortcut = shortcutMatcher(ToggleNextButtonShortcut)
+      ankingAddEventListener("keydown", (evt) => {
+        if (evt.repeat) return
+        if (isToggleNextShortcut(evt)) {
+          toggleNextButton()
+        }
+      })
     
       const setupHintBtn = function(elem) {
         const containerId = elem.id
@@ -282,6 +307,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         return
       }
       elem.innerHTML = elem.dataset.content
+      rerunMathJax()
+
       delete elem.dataset.content
       delete elem.dataset.hint
     }
@@ -311,6 +338,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         elem.dataset.revealed = "";
         revealClozeWord(elem)
       }
+      rerunMathJax()
     }
 
     window.revealNextCloze = function() {
@@ -373,6 +401,18 @@ replace the arrows/dashes from the statement below with double curly brackets-->
       ev.stopPropagation()
       ev.preventDefault()
     }      
+
+    const rerunMathJax = function() {
+      // rerun mathjax on the document so that the cloze text gets formatted
+      // ... for MathJax 2
+      try {
+          MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+      } catch {}
+      // ... for MathJax 3     
+      try {
+          MathJax.typesetPromise()
+      } catch {}
+    }
     
     // autoflip hides card in front template
     document.getElementById("qa").style.removeProperty("display")

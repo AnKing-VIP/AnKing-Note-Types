@@ -14,7 +14,7 @@ var ButtonShortcuts = {
     "Additional Resources" : "Alt + 9",
 }
 var ToggleAllButtonsShortcut = "'"
-
+var ToggleNextButtonShortcut = "H";
 // ##############  SHOW HINTS AUTOMATICALLY  ##############
 var ButtonAutoReveal = {
     "Lecture Notes" : false,
@@ -102,7 +102,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <!-- BUTTON FIELDS -->
 {{#Lecture Notes}}
 <span id = "hint-ln" class="hintBtn" data-name="Lecture Notes">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-ln')"></a>
+  <a class="hint" onclick="toggleHintBtn('hint-ln')"></a>
   <button id="button-ln" class="button-general" onclick="toggleHintBtn('hint-ln')">
     <img src="_Anking_v3.png"> Lecture Notes
   </button>
@@ -112,7 +112,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 {{#Missed Questions}}
 <span id = "hint-mq" class="hintBtn" data-name="Missed Questions">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-mq')"></a>
+  <a class="hint" onclick="toggleHintBtn('hint-mq')"></a>
   <button id="button-mq" class="button-general" onclick="toggleHintBtn('hint-mq')">
     <img src="_Anking_v3.png"> Missed Questions
   </button>
@@ -122,7 +122,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 {{#Pathoma}}
 <span id = "hint-pat" class="hintBtn" data-name="Pathoma">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-pat')"></a>
+  <a class="hint" onclick="toggleHintBtn('hint-pat')"></a>
   <button id="button-pat" class="button-general" onclick="toggleHintBtn('hint-pat')">
     <img src="_pathoma.icon.png"> 
   </button>
@@ -132,7 +132,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 {{#Boards and Beyond}}
 <span id = "hint-bb" class="hintBtn" data-name="Boards and Beyond">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-bb')"></a>
+  <a class="hint" onclick="toggleHintBtn('hint-bb')"></a>
   <button id="button-bb" class="button-general" onclick="toggleHintBtn('hint-bb')">
     <img src="_b&b.icon.png"> Boards and Beyond
   </button>
@@ -148,7 +148,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 {{#First Aid}}
 <span id = "hint-fa" class="hintBtn" data-name="First Aid">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-fa')"></a>
+  <a class="hint" onclick="toggleHintBtn('hint-fa')"></a>
   <button id="button-fa" class="button-general" onclick="toggleHintBtn('hint-fa')">
     <img src="_first-aid.icon_v2.1.png"> First Aid
   </button>
@@ -158,7 +158,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 {{#Sketchy}}
 <span id = "hint-sketchy" class="hintBtn" data-name="Sketchy">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-sketchy')"></a>
+  <a class="hint" onclick="toggleHintBtn('hint-sketchy')"></a>
   <button id="button-sketchy" class="button-general" onclick="toggleHintBtn('hint-sketchy')">
     <img src="_sketchy.icon.png"> Sketchy
   </button>
@@ -168,7 +168,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 {{#Pixorize}}
 <span id = "hint-pixorize" class="hintBtn" data-name="Pixorize">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-pixorize')"></a>
+  <a class="hint" onclick="toggleHintBtn('hint-pixorize')"></a>
   <button id="button-pixorize" class="button-general" onclick="toggleHintBtn('hint-pixorize')">
     <img src="_pixorize.png"> Pixorize
   </button>
@@ -178,7 +178,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 {{#Physeo}}
 <span id = "hint-physeo" class="hintBtn" data-name="Physeo">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-physeo')"></a>
+  <a class="hint" onclick="toggleHintBtn('hint-physeo')"></a>
   <button id="button-physeo" class="button-general" onclick="toggleHintBtn('hint-physeo')">
     <img src="_physeologo.icon.png"> 
   </button>
@@ -199,7 +199,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 {{#Additional Resources}}
 <span id = "hint-ar" class="hintBtn" data-name="Additional Resources">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-ar')"></a>
+  <a class="hint" onclick="toggleHintBtn('hint-ar')"></a>
   <button id="button-ar" class="button-general" onclick="toggleHintBtn('hint-ar')">
     <img src="_Anking_v3.png"> Additional Resources
   </button>
@@ -301,6 +301,31 @@ replace the arrows/dashes from the statement below with double curly brackets-->
           link.style.display = ""
         }
       }
+
+      window.toggleNextButton = function(){
+        // adapted from Hint Hotkey add-on
+        var customEvent = document.createEvent('MouseEvents');
+        customEvent.initEvent('click', false, true);
+        var arr = document.getElementsByTagName('a');
+        for (var i=0; i<arr.length; i++) {
+          var el = arr[i];
+          if (el.style.display === 'none') {
+            continue;
+          }
+          if (el.classList.contains("hint")) {
+            el.dispatchEvent(customEvent);
+            break
+          }
+        }
+      }
+        
+      const isToggleNextShortcut = shortcutMatcher(ToggleNextButtonShortcut)
+      ankingAddEventListener("keydown", (evt) => {
+        if (evt.repeat) return
+        if (isToggleNextShortcut(evt)) {
+          toggleNextButton()
+        }
+      })
     
       const setupHintBtn = function(elem) {
         const containerId = elem.id
@@ -357,6 +382,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         return
       }
       elem.innerHTML = elem.dataset.content
+      rerunMathJax()
+
       delete elem.dataset.content
       delete elem.dataset.hint
     }
@@ -386,6 +413,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         elem.dataset.revealed = "";
         revealClozeWord(elem)
       }
+      rerunMathJax()
     }
 
     window.revealNextCloze = function() {
@@ -448,6 +476,18 @@ replace the arrows/dashes from the statement below with double curly brackets-->
       ev.stopPropagation()
       ev.preventDefault()
     }      
+
+    const rerunMathJax = function() {
+      // rerun mathjax on the document so that the cloze text gets formatted
+      // ... for MathJax 2
+      try {
+          MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+      } catch {}
+      // ... for MathJax 3     
+      try {
+          MathJax.typesetPromise()
+      } catch {}
+    }
     
     // autoflip hides card in front template
     document.getElementById("qa").style.removeProperty("display")
