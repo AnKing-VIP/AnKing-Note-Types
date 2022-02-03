@@ -8,6 +8,7 @@ components/hintButton
 # Global Variables
 - ButtonShortcuts: Object[Shortcut string]
 - ToggleAllButtonsShortcut: Shortcut string
+- ToggleNextButtonShortcut: Shortcut string
 - ButtonAutoReveal: Object[boolean]
 - ScrollToButton: boolean
 
@@ -38,6 +39,31 @@ _%>
           link.style.display = ""
         }
       }
+
+      window.toggleNextButton = function(){
+        // adapted from Hint Hotkey add-on
+        var customEvent = document.createEvent('MouseEvents');
+        customEvent.initEvent('click', false, true);
+        var arr = document.getElementsByTagName('a');
+        for (var i=0; i<arr.length; i++) {
+          var el = arr[i];
+          if (el.style.display === 'none') {
+            continue;
+          }
+          if (el.classList.contains("hint")) {
+            el.dispatchEvent(customEvent);
+            break
+          }
+        }
+      }
+        
+      const isToggleNextShortcut = shortcutMatcher(ToggleNextButtonShortcut)
+      ankingAddEventListener("keydown", (evt) => {
+        if (evt.repeat) return
+        if (isToggleNextShortcut(evt)) {
+          toggleNextButton()
+        }
+      })
     
       const setupHintBtn = function(elem) {
         const containerId = elem.id
