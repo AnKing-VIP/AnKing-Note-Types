@@ -232,6 +232,8 @@ After editing the files in `/src`, run `npm run build` to generate the files. Al
 
 If you get a `Permission denied` message, you may need to run `sudo chmod 755 ./build` to make the `/build` file executable.
 
+The json files for the note types (for example https://github.com/AnKingMed/AnKing-Note-Types/blob/master/Note%20Types/AnKing/AnKing.json) are how Anki stores models / note types internally. The scheme is described in the AnkiDroid wiki https://github.com/ankidroid/Anki-Android/wiki/Database-Structure#models-jsonobjects. The [AnKing Notes Add-on](https://github.com/AnKingMed/anking_notes_addon) combines such a json file with a front template, a back template and the styling information and loads the resulting note type into Anki.
+
 ***
 
 ### If you like these, please consider donating to this project
