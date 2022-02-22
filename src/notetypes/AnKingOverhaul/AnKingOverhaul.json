@@ -96,16 +96,16 @@
             "media": []
         },
         {
-            "name": "Pixorize",
+            "name": "Sketchy 2",
             "ord": 8,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
             "size": 16,
-            "meta": null
+            "media": []
         },
         {
-            "name": "Physeo",
+            "name": "Sketchy Extra",
             "ord": 9,
             "sticky": false,
             "rtl": false,
@@ -114,8 +114,26 @@
             "media": []
         },
         {
-            "name": "OME",
+            "name": "Pixorize",
             "ord": 10,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "meta": null
+        },
+        {
+            "name": "Physeo",
+            "ord": 11,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "media": []
+        },
+        {
+            "name": "OME",
+            "ord": 12,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
@@ -125,7 +143,7 @@
         },
         {
             "name": "Additional Resources",
-            "ord": 11,
+            "ord": 13,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
@@ -136,7 +154,7 @@
         },
         {
             "name": "One by one",
-            "ord": 12,
+            "ord": 14,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
