@@ -114,8 +114,17 @@
             "media": []
         },
         {
-            "name": "Pixorize",
+            "name": "Picmonic",
             "ord": 10,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "media": []
+        },
+        {
+            "name": "Pixorize",
+            "ord": 11,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
@@ -124,7 +133,7 @@
         },
         {
             "name": "Physeo",
-            "ord": 11,
+            "ord": 12,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
@@ -133,7 +142,7 @@
         },
         {
             "name": "OME",
-            "ord": 12,
+            "ord": 13,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
@@ -143,7 +152,7 @@
         },
         {
             "name": "Additional Resources",
-            "ord": 13,
+            "ord": 14,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
@@ -154,7 +163,7 @@
         },
         {
             "name": "One by one",
-            "ord": 14,
+            "ord": 15,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
