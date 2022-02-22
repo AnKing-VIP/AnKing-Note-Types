@@ -10,7 +10,12 @@ For simplicity and ease-of-use, I have uploaded all of my note types here. This 
 
 ## How to Update These Note Types
 There are two methods to update if you already have any of these notes in your collection
+
 ##### Method 1 (Preferred)
+1. Download the [AnKing Note Types (Easy Customization)](https://ankiweb.net/shared/info/952691989) add-on from AnkiWeb. Be sure to restart Anki after installing.
+2. Go to the AnKing->AnKing Note Types menu and then select `Update Note Types` in the dialog
+
+##### Method 2 
 1. Download the latest file from the [Releases](https://github.com/AnKingMed/AnKing-Note-Types/releases) tab
 2. Install the [Special Fields add-on](https://ankiweb.net/shared/info/1102281552) (restart Anki after installing)
 3. Go to Tools->Special Fields
@@ -18,7 +23,7 @@ There are two methods to update if you already have any of these notes in your c
 5. Import the downloaded file. This should update the note styling
 _After importing, we recommended that you go back to Tools->Special Fields and click the `Import Tags Settings` button to prevent any future updates from altering note styling_
 
-##### Method 2
+##### Method 3
 NOTE: This method is less preferred because updates may be in progress and incomplete.
 1. Locate the appropriate file in the [Note Types Folder](https://github.com/AnKingMed/AnKing-Note-Types/tree/master/Note%20Types)
 2. Copy the text from the file into the Front Template, Back Template and Styling of the note type
@@ -107,7 +112,7 @@ All note types in this repo use many or all of the features listed below. Some w
   - Highlight text and then use the shortcut `w` (if nothing shows up, it's because your search returned no results in wikipedia)
 
 - <b>Button shortcuts and/or hint hotkeys add-on</b> (need Refocous Cards when Reviewing add-on unless on Anki 2.1.36+)
-  - The Hint Hotkeys add-on will open buttons with `h`
+  - The Hint Hotkeys add-on is no longer necessary
   <details><summary>Individual shortcuts can be customized <i>(Back template)</i></summary>
     <p>
 
@@ -119,6 +124,7 @@ All note types in this repo use many or all of the features listed below. Some w
         "Missed Questions" : "Alt + 2",
     }
     var ToggleAllButtons = "'"
+    var ToggleNextButtonShortcut = "H";
     ```
     </p>
   </details>
