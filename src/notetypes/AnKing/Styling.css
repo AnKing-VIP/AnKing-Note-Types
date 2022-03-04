@@ -257,6 +257,33 @@ img:active {
 }
 
 
+/* ~~~~~~~~~ LISTS ~~~~~~~~~ */
+ul {
+  padding-left: 40px;
+  display: inline-block;
+  max-width: 50%;
+  margin: auto;
+  text-align: left;
+}
+ol {
+  padding-left: 40px;
+  display: inline-block;
+  max-width: 50%;
+  margin: auto;
+  text-align: left;
+}
+.mobile ul {
+  display: inline-block;
+  text-align: left; 
+  max-width: 100%;
+}
+.mobile ol {
+  display: inline-block;
+  text-align: left; 
+  max-width: 100%;
+}
+
+
 /* ~~~~~~~~~ ADD-ON CONFIGURATIONS ~~~~~~~~~ */
 /*Compatibility with Image Style Editor add-on*/
 .card {
