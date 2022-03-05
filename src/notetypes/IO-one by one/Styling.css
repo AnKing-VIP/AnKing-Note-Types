@@ -68,8 +68,6 @@ img {
   --active-rect-bg: salmon;
   --active-rect-border: yellow;
 }
-
-
 /* Default Text Color */
 .card {
   color: black;
@@ -85,6 +83,11 @@ img {
 /* Missed Questions Hint Reveal Color */
 #missed {
   color: red;
+}
+/* Empty Link Color */
+a:not([href]) {
+  text-decoration: none;
+  color: inherit;
 }
 
 
