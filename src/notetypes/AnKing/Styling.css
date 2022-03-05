@@ -97,6 +97,11 @@ img {
 .timer {
   color: transparent;
 }
+/* Empty Link Color */
+a:not([href]) {
+  text-decoration: none;
+  color: inherit;
+}
 
 
 /*~~~~~~~~NIGHT MODE COLORS~~~~~~~~*/
