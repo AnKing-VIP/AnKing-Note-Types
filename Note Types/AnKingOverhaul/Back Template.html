@@ -8,6 +8,8 @@ var ButtonShortcuts = {
     "Boards and Beyond" : "Alt + 4",
     "First Aid" : "Alt + 5",
     "Sketchy" : "Alt + 6",
+    "Sketchy 2": "",
+    "Sketchy Extra": "",
     "Pixorize" : "Alt + 7",
     "Physeo" : "Alt + 8",
     "OME" : "Alt + F1",
@@ -23,6 +25,8 @@ var ButtonAutoReveal = {
     "Boards and Beyond" : false,
     "First Aid" : false,
     "Sketchy" : false,
+    "Sketchy 2": false,
+    "Sketchy Extra": false,
     "Pixorize" : false,
     "Physeo" : false,
     "OME" : false, // not currently a button
@@ -165,6 +169,26 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div id="sketchy" class="hints" style="display: none;">{{edit:Sketchy}}</div>
 </span>
 {{/Sketchy}}
+
+{{#Sketchy 2}}
+<span id = "hint-sketchy2" class="hintBtn" data-name="Sketchy 2">
+  <a href="#" class="hint" onclick="toggleHintBtn('hint-sketchy2')"></a>
+  <button id="button-sketchy2" class="button-general" onclick="toggleHintBtn('hint-sketchy2')">
+    <img src="_sketchy.icon.png"> Sketchy 2
+  </button>
+  <div id="sketchy2" class="hints" style="display: none;">{{edit:Sketchy 2}}</div>
+</span>
+{{/Sketchy 2}}
+
+{{#Sketchy Extra}}
+<span id = "hint-sketchyextra" class="hintBtn" data-name="Sketchy Extra">
+  <a href="#" class="hint" onclick="toggleHintBtn('hint-sketchyextra')"></a>
+  <button id="button-sketchyextra" class="button-general" onclick="toggleHintBtn('hint-sketchyextra')">
+    <img src="_sketchy.icon.png"> Sketchy Extra
+  </button>
+  <div id="sketchyextra" class="hints" style="display: none;">{{edit:Sketchy Extra}}</div>
+</span>
+{{/Sketchy Extra}}
 
 {{#Pixorize}}
 <span id = "hint-pixorize" class="hintBtn" data-name="Pixorize">
