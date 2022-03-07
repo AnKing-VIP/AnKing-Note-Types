@@ -54,6 +54,7 @@ html {
 .ipad #sketchy,
 .ipad #sketchy2,
 .ipad #sketchyextra,
+.ipad #picmonic,
 .ipad #pixorize,
 .ipad #physeo,
 .ipad #additional {
@@ -71,6 +72,7 @@ html {
 #sketchy,
 #sketchy2,
 #sketchyextra,
+#picmonic,
 #pixorize,
 #physeo,
 #additional {
@@ -82,6 +84,7 @@ html {
 .mobile #sketchy,
 .mobile #sketchy2,
 .mobile #sketchyextra,
+.mobile #picmonic,
 .mobile #pixorize,
 .mobile #physeo,
 .mobile #additional {
@@ -112,6 +115,7 @@ img {
 #sketchy img,
 #sketchy2 img,
 #sketchyextra img,
+#picmonic img,
 #pixorize img,
 #physeo img,
 #additional img {
@@ -310,6 +314,7 @@ hr { opacity: .7 }
 #sketchy img:active,
 #sketchy2 img:active,
 #sketchyextra img:active,
+#picmonic img:active,
 #pixorize img:active,
 #physeo img:active,
 #additional img:active {
