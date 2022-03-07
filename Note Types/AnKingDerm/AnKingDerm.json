@@ -64,8 +64,18 @@
             "media": []
         },
         {
-            "name": "Textbook",
+            "name": "DermNet",
             "ord": 4,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "meta": null,
+            "media": []
+        },
+        {
+            "name": "Textbook",
+            "ord": 5,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
@@ -75,7 +85,7 @@
         },
         {
             "name": "Additional Resources",
-            "ord": 5,
+            "ord": 6,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
@@ -86,7 +96,7 @@
         },
         {
             "name": "One by one",
-            "ord": 6,
+            "ord": 7,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
