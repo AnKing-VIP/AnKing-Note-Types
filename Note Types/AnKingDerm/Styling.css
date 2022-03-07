@@ -229,6 +229,10 @@ hr { opacity: .7 }
   min-width: 30%;
 }
 
+#dermnet img {
+  max-width: 80%;
+}
+
 /*Image hover zoom*/  
 img:active {
   transform: scale(1.4);
