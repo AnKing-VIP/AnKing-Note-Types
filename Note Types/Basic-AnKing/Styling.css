@@ -189,6 +189,14 @@ hr { opacity: .7 }
   max-width: 100% !important;
 }
 
+/*Image hover zoom*/ 
+img:active {
+  transform: scale(1.2);
+}
+.mobile img:active {
+  transform: scale(1.0) !important;
+}
+
 
 /* ~~~~~~~MNEMONICS LEFT JUSTIFIED~~~~~~~ */
 .mnemonics {
