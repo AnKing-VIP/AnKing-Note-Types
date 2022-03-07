@@ -52,6 +52,8 @@ html {
 }
 .ipad #firstaid,
 .ipad #sketchy,
+.ipad #sketchy2,
+.ipad #sketchyextra,
 .ipad #pixorize,
 .ipad #physeo,
 .ipad #additional {
@@ -67,6 +69,8 @@ html {
 /*Other Fields Font Size*/
 #firstaid,
 #sketchy,
+#sketchy2,
+#sketchyextra,
 #pixorize,
 #physeo,
 #additional {
@@ -76,6 +80,8 @@ html {
 /*Other Fields Font Size on Mobile*/
 .mobile #firstaid,
 .mobile #sketchy,
+.mobile #sketchy2,
+.mobile #sketchyextra,
 .mobile #pixorize,
 .mobile #physeo,
 .mobile #additional {
@@ -104,6 +110,8 @@ img {
 
 #firstaid img,
 #sketchy img,
+#sketchy2 img,
+#sketchyextra img,
 #pixorize img,
 #physeo img,
 #additional img {
@@ -300,6 +308,8 @@ hr { opacity: .7 }
 
 #firstaid img:active,
 #sketchy img:active,
+#sketchy2 img:active,
+#sketchyextra img:active,
 #pixorize img:active,
 #physeo img:active,
 #additional img:active {
