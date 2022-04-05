@@ -85,7 +85,8 @@ img {
   color: red;
 }
 /* Empty Link Color */
-a:not([href]) {
+a:not([href]),
+a[href^="javascript:"] {
   text-decoration: none;
   color: inherit;
 }
