@@ -13,6 +13,7 @@ var ButtonShortcuts = {
     "Picmonic": "",
     "Pixorize" : "Alt + 7",
     "Physeo" : "Alt + 8",
+    "Bootcamp" : "Alt + F2",
     "OME" : "Alt + F1",
     "Additional Resources" : "Alt + 9",
 }
@@ -31,6 +32,7 @@ var ButtonAutoReveal = {
     "Picmonic": false,
     "Pixorize" : false,
     "Physeo" : false,
+    "Bootcamp" : false,
     "OME" : false, // not currently a button
     "Additional Resources" : false,
 }
@@ -221,6 +223,17 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div id="physeo" class="hints" style="display: none;">{{edit:Physeo}}</div>
 </span>
 {{/Physeo}}
+
+{{#Bootcamp}}
+<span id = "hint-bootcamp" class="hintBtn" data-name="Bootcamp">
+  <a href="#" class="hint" onclick="toggleHintBtn('hint-bootcamp')"></a>
+  <button id="button-bootcamp" class="button-general" onclick="toggleHintBtn('hint-bootcamp')">
+    <img src="_bootcamp.png"> Bootcamp
+  </button>
+  <div id="bootcamp" class="hints" style="display: none;">{{edit:Bootcamp}}</div>
+</span>
+{{/Bootcamp}}
+
 
 <!-- OME FIELD (only shows on mobile)-->
 {{#OME}}
