@@ -13,6 +13,7 @@ var ButtonShortcuts = {
     "Picmonic": "",
     "Pixorize" : "Alt + 7",
     "Physeo" : "Alt + 8",
+    "Bootcamp" : "Alt + F2",
     "OME" : "Alt + F1",
     "Additional Resources" : "Alt + 9",
 }
@@ -31,6 +32,7 @@ var ButtonAutoReveal = {
     "Picmonic": false,
     "Pixorize" : false,
     "Physeo" : false,
+    "Bootcamp" : false,
     "OME" : false, // not currently a button
     "Additional Resources" : false,
 }
@@ -97,6 +99,9 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <%- include("src/components/hintButton.ejs", {name: "Pixorize", short:"pixorize", hintId: "pixorize", icon: "_pixorize.png" }) %>
 
 <%- include("src/components/hintButton.ejs", {name: "Physeo", short:"physeo", hintId: "physeo", icon: "_physeologo.icon.png", noText: true }) %>
+
+<%- include("src/components/hintButton.ejs", {name: "Bootcamp", short:"bootcamp", hintId: "bootcamp", icon: "_bootcamp.png" }) %>
+
 
 <!-- OME FIELD (only shows on mobile)-->
 {{#OME}}

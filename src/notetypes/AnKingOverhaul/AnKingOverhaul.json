@@ -141,8 +141,17 @@
             "media": []
         },
         {
-            "name": "OME",
+            "name": "Bootcamp",
             "ord": 13,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "media": []
+        },
+        {
+            "name": "OME",
+            "ord": 14,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
@@ -152,7 +161,7 @@
         },
         {
             "name": "Additional Resources",
-            "ord": 14,
+            "ord": 15,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
@@ -163,7 +172,7 @@
         },
         {
             "name": "One by one",
-            "ord": 15,
+            "ord": 16,
             "sticky": false,
             "rtl": false,
             "font": "Arial",

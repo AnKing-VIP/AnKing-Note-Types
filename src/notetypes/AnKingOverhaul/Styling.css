@@ -566,6 +566,10 @@ html:not(.mobile) #button-physeo:hover {
   background-color: #A1C0C6 !important;
 }
 
+html:not(.mobile) #button-bootcamp:hover {
+  background-color: #0b8198 !important;
+}
+
 html:not(.mobile) #button-ome:hover {
   background-color: #47C3F3 !important;
 }
