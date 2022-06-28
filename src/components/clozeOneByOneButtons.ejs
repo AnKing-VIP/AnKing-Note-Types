@@ -6,12 +6,23 @@ Parameters:
 
 _%> 
 <!-- ClOZE ONE BY ONE BUTTONS -->
-<%_ if(optional) { _%>
-{{#One by one}}
-<%_ } _%>
-<button id="button-reveal-next" class="button-general" onclick="revealNextCloze()">Reveal Next</button>
-<button id="button-toggle-all" class="button-general" onclick="toggleAllCloze()">Toggle All</button>
-<br />
-<%_ if(optional) { _%>
-{{/One by one}}
-<%_ } _%>
+
+<div id="one-by-one" style="display: none;">{{One by one}}</div>
+
+<div id="1by1-btns" style="display: none;">
+  <button id="button-reveal-next" class="button-general" onclick="revealNextCloze()">Reveal Next</button>
+  <button id="button-toggle-all" class="button-general" onclick="toggleAllCloze()">Toggle All</button>
+</div>
+
+<script>
+  (() => {
+    let clozeOneByOneEnabled = true;
+    <%_ if (optional === true) { _%>
+      clozeOneByOneEnabled = document.getElementById("one-by-one").textContent !== "";
+    <%_ } _%>
+    
+    if (clozeOneByOneEnabled) {
+      document.getElementById("1by1-btns").style.display = "block";
+    }
+    })()
+  </script>

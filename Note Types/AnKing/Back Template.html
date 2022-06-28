@@ -74,12 +74,24 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <!-- BUTTON FIELDS -->
 <!-- ClOZE ONE BY ONE BUTTONS -->
-{{#One by one}}
-<button id="button-reveal-next" class="button-general" onclick="revealNextCloze()">Reveal Next</button>
-<button id="button-toggle-all" class="button-general" onclick="toggleAllCloze()">Toggle All</button>
-<br />
-{{/One by one}}
 
+<div id="one-by-one" style="display: none;">{{One by one}}</div>
+
+<div id="1by1-btns" style="display: none;">
+  <button id="button-reveal-next" class="button-general" onclick="revealNextCloze()">Reveal Next</button>
+  <button id="button-toggle-all" class="button-general" onclick="toggleAllCloze()">Toggle All</button>
+</div>
+
+<script>
+  (() => {
+    let clozeOneByOneEnabled = true;
+      clozeOneByOneEnabled = document.getElementById("one-by-one").textContent !== "";
+    
+    if (clozeOneByOneEnabled) {
+      document.getElementById("1by1-btns").style.display = "block";
+    }
+    })()
+  </script>
 
 {{#Personal Notes}}
 <span id = "hint-ln" class="hintBtn" data-name="Personal Notes">
@@ -265,11 +277,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <script>
   (function() {
     var clozeOneByOneEnabled = true;
-    try {
-        clozeOneByOneEnabled = `{{One by one}}` !== ""
-    } catch (exception) {
-      console.log(exception)
-    }
+      clozeOneByOneEnabled = document.getElementById("one-by-one").textContent !== "";
 
     if (!clozeOneByOneEnabled) {
       return

@@ -1,4 +1,4 @@
-<!-- version 7f9b2fe -->
+<!-- version 088a898 -->
 <div id="text">{{cloze:Text}}</div>
 
 <br>
@@ -34,13 +34,11 @@ var numTagLevelsToShow = 0;
 
 
 <!-- CLOZE ONE BY ONE AUTOFLIP -->
+<div id="one-by-one" style="display: none;">{{One by one}}</div>
+
 <script>
   var clozeOneByOneEnabled = true;
-  try {
-    clozeOneByOneEnabled = `{{One by one}}` !== ""
-  } catch (exception) {
-    console.log(exception)
-  }
+    clozeOneByOneEnabled = document.getElementById("one-by-one").textContent !== "";
   
   window.clozeHints = [];
   if (clozeOneByOneEnabled) {
