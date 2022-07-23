@@ -1,4 +1,4 @@
-<%# Saves cloze hints and autoflips card
+<%# Saves cloze hints, autoflips to back of card
 
 # Parameters
 - optional: boolean
@@ -14,7 +14,7 @@ if false, always one by one mode
   Backside MUST have code that resets the `display`.
 
 _%>
-<!-- CLOZE ONE BY ONE AUTOFLIP -->
+<!-- CLOZE ONE BY ONE FRONT -->
 <div id="one-by-one" style="display: none;">{{One by one}}</div>
 
 <script>
@@ -35,17 +35,6 @@ _%>
       }
     }
 
-    if(autoflip) {
-      // avoid flickering. Must unset this in the back.
-      document.getElementById("qa").style.display = "none";
-
-      if (window.pycmd) {
-        pycmd("ans")
-      } else if (window.showAnswer) {
-        showAnswer()
-      }    
-      // AnkiMobile JS API doesn't have one for show answer. 
-      // Best alternative is to use Taps/Swipes to show answer.
-    }
+    <%- include('src/components/autoflipFront.ejs') %>
   }
 </script>

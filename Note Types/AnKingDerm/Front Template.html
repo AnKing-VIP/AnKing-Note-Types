@@ -1,4 +1,4 @@
-<!-- version 47c1c17 -->
+<!-- version 9dabbeb -->
 <div id="text">{{cloze:Text}}</div>
 
 
@@ -34,7 +34,7 @@ var numTagLevelsToShow = 0;
 </script>
 
 
-<!-- CLOZE ONE BY ONE AUTOFLIP -->
+<!-- CLOZE ONE BY ONE FRONT -->
 <div id="one-by-one" style="display: none;">{{One by one}}</div>
 
 <script>
@@ -53,18 +53,18 @@ var numTagLevelsToShow = 0;
       }
     }
 
-    if(autoflip) {
-      // avoid flickering. Must unset this in the back.
-      document.getElementById("qa").style.display = "none";
+    if (autoflip) {
+    // avoid flickering. Must unset this in the back.
+    document.getElementById("qa").style.display = "none";
 
-      if (window.pycmd) {
+    if (window.pycmd) {
         pycmd("ans")
-      } else if (window.showAnswer) {
+    } else if (window.showAnswer) {
         showAnswer()
-      }    
-      // AnkiMobile JS API doesn't have one for show answer. 
-      // Best alternative is to use Taps/Swipes to show answer.
     }
+}
+// AnkiMobile JS API doesn't have one for show answer.
+// Best alternative is to use Taps/Swipes to show answer.
   }
 </script>
 
