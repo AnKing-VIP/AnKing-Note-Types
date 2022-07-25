@@ -8,8 +8,10 @@ var autoflip = false
 // ############## USER CONFIGURATION END ##############
 </script>
 
-
-<%- include('src/components/clozeOneByOneFront.ejs', {optional: false}) %>
+<!-- AUTO FLIP FRONT -->
+<script>
+   <%- include('src/components/autoflipFront.ejs') %>
+</script>
 
 {{#I0}}
 {{#Image}}
