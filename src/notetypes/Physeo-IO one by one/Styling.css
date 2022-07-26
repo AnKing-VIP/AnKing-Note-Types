@@ -494,4 +494,5 @@ html:not(.mobile) #button-mq:hover {
 	font: inherit !important;
 	cursor: inherit !important;
 	outline: inherit !important;
+  filter: none !important;
 }
