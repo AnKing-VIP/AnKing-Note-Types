@@ -428,7 +428,7 @@ var numTagLevelsToShow = 0;
   
   var getAnkiPrefix = () => globalThis.ankiPlatform === "desktop" ? "" : globalThis.AnkiDroidJS ? "https://appassets.androidplatform.net" : ".";
   
-  var closetPromise = import(`${getAnkiPrefix()}/__closet-0.5.3.js`);
+  var closetPromise = import(`${getAnkiPrefix()}/__closet-0.6.1.js`);
   closetPromise
   .then(
     ({ closet }) => closet.template.anki.initialize(closet, closetUserLogic, "{{Card}}", "{{Tags}}", "back"),
