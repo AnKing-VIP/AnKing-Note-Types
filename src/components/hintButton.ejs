@@ -25,6 +25,6 @@ _%>
   <button id="<%- btnId %>" class="button-general" onclick="toggleHintBtn('<%- containerId %>')">
     <img src="<%- icon %>"> <% if (!noText) { %><%- name %><% } %>
   </button>
-  <div id="<%- hintId %>" class="hints" style="display: none;">{{edit:<%- name %>}}</div>
+  <div dir="auto" id="<%- hintId %>" class="hints" style="display: none;">{{edit:<%- name %>}}</div>
 </span>
 {{/<%- name %>}}
