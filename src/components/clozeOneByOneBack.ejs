@@ -24,10 +24,13 @@ _%>
 
 <!-- CLOZE ONE BY ONE SCRIPT -->
 <style>
-  .cloze[data-content]:hover {
+  .cloze-hider:hover {
     cursor: pointer;
   }
-  .cloze[data-hint] {
+  .cloze-hidden {
+    display: none;
+  }
+  .cloze-hint {
     color: #009400 !important;
   }
 </style>
@@ -43,75 +46,116 @@ _%>
       return
     }
     
-    const revealCloze = function(elem) {
-      // Checking for dataset.content is undefined may not be needed anymore?
-      if (elem.dataset.content === undefined) {
-        return
-      }
-      elem.innerHTML = elem.dataset.content
-      rerunMathJax()
+    const revealCloze = function(cloze) {
+      const clozeHider = cloze.getElementsByClassName("cloze-hider")[0]
+      const clozeHidden = cloze.getElementsByClassName("cloze-hidden")[0]
+      if (!clozeHider || !clozeHidden) return;
 
-      delete elem.dataset.content
-      delete elem.dataset.hint
+      cloze.removeChild(clozeHider)
+      cloze.removeChild(clozeHidden)
+      for(const child of clozeHidden) {
+        cloze.appendChild(child)
+      }
+      rerunMathJax() // Is this still needed?
     }
 
-    const revealClozeWord = function(elem) {
-      if (elem.dataset.content === undefined) {
-        return
-      }
-      if (elem.dataset.hidden !== undefined) {
-        let words = elem.dataset.hidden.split(" ");
-        if (words.length == 1) {
-          revealCloze(elem)
-          delete elem.dataset.hidden
-          delete elem.dataset.revealed
-        } else {
-          elem.dataset.revealed = elem.dataset.revealed + " " + words[0]
-          elem.dataset.hidden = words.slice(1).join(" ");
-          let temp = document.createElement("div");
-          temp.innerHTML = elem.dataset.hidden;
-          elem.innerHTML = elem.dataset.revealed + " " + clozeHider(temp);
-          delete elem.dataset.hint
+    const revealClozeWord = function(cloze) {
+      const clozeHider = cloze.getElementsByClassName("cloze-hider")[0]
+      const clozeHidden = cloze.getElementsByClassName("cloze-hidden")[0]
+      if (!clozeHider || !clozeHidden) return;
+
+      const range = new Range()
+      range.setStart(clozeHidden, 0)
+      let enable = true
+      while(enable) {
+        const found = setRangeEndToFirstSpace(range, clozeHidden)
+        if (!found) {
+          range.setEnd(clozeHidden, clozeHidden.childNodes.length)
         }
-      } else {
-        let temp = document.createElement("div");
-        temp.innerHTML = elem.dataset.content;
-        elem.dataset.hidden = temp.textContent;
-        elem.dataset.revealed = "";
-        revealClozeWord(elem)
+        const onlyWhitespace = /^\s*$/.test(range.toString())
+        enable = found && onlyWhitespace
+
+        const fragment = range.extractContents()
+        cloze.insertBefore(fragment, clozeHider)
+        clozeHider.innerHTML = clozeHider(clozeHidden)
+        if (!found) {
+          cloze.removeChild(clozeHidden)
+          cloze.removeChild(clozeHider)
+        }
       }
       rerunMathJax()
     }
 
     window.revealNextCloze = function() {
-      let nextHidden = document.querySelector(".cloze[data-content]")
+      const nextHidden = document.querySelector(".cloze-hidden")
       if(!nextHidden) {
           return
       } 
+      let cloze = nextHidden;
+      while (!cloze.classList.contains("cloze")) {
+        cloze = cloze.parentElement;
+      }
       if (revealNextClozeMode === "word") {
-          revealClozeWord(nextHidden)
+          revealClozeWord(cloze)
       } else {
-          revealCloze(nextHidden)
+          revealCloze(cloze)
       }
     }
 
+    /**
+     * Call range.setEnd() to before first whitespace character in node.
+     * Return `true` whitespace exists and setEnd() was called, otherwise `false`
+     */
+    const setRangeEndToFirstSpace = function(range, node) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        let firstWhitespace = -1;
+        for (const whitespace of [" ", "\n", "\t"]) {
+          const index = text.indexOf(whitespace);
+          if (index !== -1 && (firstWhitespace === -1 || index < firstWhitespace)) {
+            firstWhitespace = index;
+          }
+        }
+        if (firstWhitespace !== -1) {
+          range.setEnd(node, firstWhitespace);
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        for (const child of node.children) {
+          if (setRangeEndToFirstSpace(range, child)) {
+            return true;
+          }
+        }
+        return false;
+      }
+    }
+
+    // Hide cloze into .cloze-hidden, add cloze-hider
     const hideAllCloze = function(initial) {
       let clozes = document.getElementsByClassName("cloze")
       let count = 0 // hidden cloze count
-      for (let i = 0; i < clozes.length; i++) {
-        let cloze = clozes[i]
+      for (const cloze of clozes) {
         if (cloze.offsetWidth === 0) {
           continue
         }
-        cloze.dataset.content = cloze.innerHTML
-        if(window.clozeHints && window.clozeHints[count]) {
-          cloze.innerHTML = window.clozeHints[count]
-          cloze.dataset.hint = true
-        } else {
-          cloze.innerHTML = clozeHider(cloze)
+        const clozeHider = document.createElement("span")
+        const clozeHidden = document.createElement("span")
+        clozeHider.classList.add("cloze-hider")
+        clozeHidden.classList.add("cloze-hidden")
+        clozeHider.innerHTML = clozeHider(cloze)
+        for(const child of cloze.childNodes) {
+          clozeHidden.appendChild(child);
+        }
+        cloze.appendChild(clozeHider)
+        cloze.appendChild(clozeHidden)
+
+        if (window.clozeHints && window.clozeHints[count]) {
+          clozeHider.classList.add("cloez-hider")
+          clozeHider.innerHTML = window.clozeHints[count]
         }
         count += 1
-        if (initial === true) {
+        if (initial) {
           cloze.addEventListener("touchend", revealClozeClicked)
           cloze.addEventListener("click", revealClozeClicked)
         }
@@ -119,11 +163,10 @@ _%>
     }
 
     window.toggleAllCloze = function() {
-      let elems = document.querySelectorAll(".cloze[data-content]")
-      let button = document.getElementById("button-toggle-all")
+      let elems = document.querySelectorAll(".cloze-hidden")
       if(elems.length > 0) {
-        for (let i = 0; i < elems.length; i++) {
-            revealCloze(elems[i])
+        for (const elem of elems) {
+          elem.classList.remove("hidden");
         }
       } else {
         hideAllCloze(initial=false)
