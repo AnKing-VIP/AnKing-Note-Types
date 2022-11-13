@@ -74,26 +74,31 @@ _%>
 
       let range = new Range()
       range.setStart(clozeHidden, 0)
-      const whitespaces = setRangeEndToAfterLastSpace(range, clozeHidden);
-      if (whitespaces) {
-        const fragment = range.extractContents();
-        cloze.insertBefore(fragment, clozeReplacer)
-      }
-
-      range = new Range()
-      range.setStart(clozeHidden, 0)
-      const found = setRangeEndToBeforeFirstSpace(range, clozeHidden)
-      if (!found) {
+      const foundSpace = setRangeEndToBeforeFirstSpace(range, clozeHidden)
+      if (!foundSpace) {
         range.setEnd(clozeHidden, clozeHidden.childNodes.length)
       }
-      const fragment = range.extractContents()
+      let fragment = range.extractContents()
       cloze.insertBefore(fragment, clozeReplacer)
-      if (found) {
-        clozeReplacer.innerHTML = clozeHider(clozeHidden)
-      } else {
+      // Extract whitespaces after word
+      range = new Range()
+      range.setStart(clozeHidden, 0)
+      const foundWord = setRangeEndToAfterLastSpace(range, clozeHidden);
+      if (!foundWord) {
+        range.setEnd(clozeHidden, clozeHidden.childNodes.length)
+      }    
+      fragment = range.extractContents();
+      cloze.insertBefore(fragment, clozeReplacer)
+      if (!foundWord) {
         cloze.removeChild(clozeHidden)
         cloze.removeChild(clozeReplacer)
+        return
       }
+'1 '
+      clozeReplacer.innerHTML = clozeHider(clozeHidden)
+      if (clozeReplacer.classList.contains("cloze-hint")) [
+        clozeReplacer.classList.remove("cloze-hint")
+      ]
     }
 
     const clozeElOfClozeHidden = (cloze) => {
