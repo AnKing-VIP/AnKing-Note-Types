@@ -73,24 +73,27 @@ _%>
       const clozeHidden = cloze.getElementsByClassName("cloze-hidden")[0]
       if (!clozeReplacer || !clozeHidden) return;
 
-      const range = new Range()
+      let range = new Range()
       range.setStart(clozeHidden, 0)
-      let enable = true
-      while(enable) {
-        const found = setRangeEndToFirstSpace(range, clozeHidden)
-        if (!found) {
-          range.setEnd(clozeHidden, clozeHidden.childNodes.length)
-        }
-        const onlyWhitespace = /^\s*$/.test(range.toString())
-        enable = found && onlyWhitespace
-
-        const fragment = range.extractContents()
+      const whitespaces = setRangeEndToAfterLastSpace(range, clozeHidden);
+      if (whitespaces) {
+        const fragment = range.extractContents();
         cloze.insertBefore(fragment, clozeReplacer)
+      }
+
+      range = new Range()
+      range.setStart(clozeHidden, 0)
+      const found = setRangeEndToBeforeFirstSpace(range, clozeHidden)
+      if (!found) {
+        range.setEnd(clozeHidden, clozeHidden.childNodes.length)
+      }
+      const fragment = range.extractContents()
+      cloze.insertBefore(fragment, clozeReplacer)
+      if (found) {
         clozeReplacer.innerHTML = clozeHider(clozeHidden)
-        if (!found) {
-          cloze.removeChild(clozeHidden)
-          cloze.removeChild(clozeReplacer)
-        }
+      } else {
+        cloze.removeChild(clozeHidden)
+        cloze.removeChild(clozeReplacer)
       }
       rerunMathJax()
     }
@@ -122,27 +125,39 @@ _%>
     }
 
     /**
-     * Call range.setEnd() to before first whitespace character in node.
      * Return `true` whitespace exists and setEnd() was called, otherwise `false`
      */
-    const setRangeEndToFirstSpace = function(range, node) {
+    const setRangeEndToBeforeFirstSpace = function(range, node) {
       if (node.nodeType === Node.TEXT_NODE) {
-        let firstWhitespace = -1;
-        for (const whitespace of [" ", "\n", "\t"]) {
-          const index = text.indexOf(whitespace);
-          if (index !== -1 && (firstWhitespace === -1 || index < firstWhitespace)) {
-            firstWhitespace = index;
-          }
-        }
-        if (firstWhitespace !== -1) {
-          range.setEnd(node, firstWhitespace);
+        const match = node.wholeText.match(/\s/)
+        if (match) {
+          range.setEnd(node, match.index);
           return true;
         } else {
           return false;
         }
       } else {
         for (const child of node.childNodes) {
-          if (setRangeEndToFirstSpace(range, child)) {
+          if (setRangeEndToBeforeFirstSpace(range, child)) {
+            return true;
+          }
+        }
+        return false;
+      }
+    }
+
+    const setRangeEndToAfterLastSpace = function(range, node) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const match = node.wholeText.match(/\S/)
+        if (match) {
+          range.setEnd(node, match.index);
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        for (const child of node.childNodes) {
+          if (setRangeEndToAfterLastSpace(range, child)) {
             return true;
           }
         }
