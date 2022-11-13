@@ -62,7 +62,7 @@ _%>
 
       cloze.removeChild(clozeReplacer)
       cloze.removeChild(clozeHidden)
-      while (clozeHidden.children.length > 0) {
+      while (clozeHidden.childNodes.length > 0) {
         cloze.appendChild(clozeHidden.childNodes[0])
       }
       rerunMathJax() // Is this still needed?
