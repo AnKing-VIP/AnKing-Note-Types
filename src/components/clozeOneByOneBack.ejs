@@ -169,6 +169,10 @@ _%>
       let clozes = document.getElementsByClassName("cloze")
       let count = 0 // hidden cloze count
       for (const cloze of clozes) {
+        const existingHidden = cloze.getElementsByClassName("cloze-hidden")[0]
+        if (existingHidden) {
+          revealCloze(cloze);
+        }
         if (cloze.offsetWidth === 0) {
           continue
         }
