@@ -129,7 +129,7 @@ _%>
      */
     const setRangeEndToBeforeFirstSpace = function(range, node) {
       if (node.nodeType === Node.TEXT_NODE) {
-        const match = node.wholeText.match(/\s/)
+        const match = node.textContent.match(/\s/)
         if (match) {
           range.setEnd(node, match.index);
           return true;
@@ -148,7 +148,7 @@ _%>
 
     const setRangeEndToAfterLastSpace = function(range, node) {
       if (node.nodeType === Node.TEXT_NODE) {
-        const match = node.wholeText.match(/\S/)
+        const match = node.textContent.match(/\S/)
         if (match) {
           range.setEnd(node, match.index);
           return true;
