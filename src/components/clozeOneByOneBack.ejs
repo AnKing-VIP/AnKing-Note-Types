@@ -65,7 +65,6 @@ _%>
       while (clozeHidden.childNodes.length > 0) {
         cloze.appendChild(clozeHidden.childNodes[0])
       }
-      rerunMathJax() // Is this still needed?
     }
 
     const revealClozeWord = function(cloze) {
@@ -95,7 +94,6 @@ _%>
         cloze.removeChild(clozeHidden)
         cloze.removeChild(clozeReplacer)
       }
-      rerunMathJax()
     }
 
     const clozeElOfClozeHidden = (cloze) => {
@@ -222,18 +220,6 @@ _%>
       ev.preventDefault()
     }      
 
-    const rerunMathJax = function() {
-      // rerun mathjax on the document so that the cloze text gets formatted
-      // ... for MathJax 2
-      try {
-          MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-      } catch {}
-      // ... for MathJax 3     
-      try {
-          MathJax.typesetPromise()
-      } catch {}
-    }
-    
     hideAllCloze(initial=true)
 
     let isShowNextShortcut = shortcutMatcher(window.revealNextShortcut)
