@@ -19,12 +19,21 @@ components/shortcutMatcher
 - Removes `#qa` element `display` property.
 - Exposes `toggleAllCloze` and `revealNextCloze` function
 
+# How it works
+|                .cloze                   |
+| shown | .cloze-replacer | .cloze-hidden |
+
+When hideAllCloze() is called, all childNodes of .cloze is moved into .cloze-hidden, 
+and .cloze has two children: div.cloze-replacer that hides cloze with `clozeHider(div.cloze-hidden)`, 
+div.cloze-hidden with original cloze content that is hidden with display:none.
+
+When revealNextWord() is called, a word is selected from .cloze-hidden and is inserted before div.cloze-replacer
 _%>
 <%- include('src/components/autoflipBack.ejs') %>
 
 <!-- CLOZE ONE BY ONE SCRIPT -->
 <style>
-  .cloze-hider:hover {
+  .cloze-replacer:hover {
     cursor: pointer;
   }
   .cloze-hidden {
@@ -47,11 +56,11 @@ _%>
     }
     
     const revealCloze = function(cloze) {
-      const clozeHider = cloze.getElementsByClassName("cloze-hider")[0]
+      const clozeReplacer = cloze.getElementsByClassName("cloze-replacer")[0]
       const clozeHidden = cloze.getElementsByClassName("cloze-hidden")[0]
-      if (!clozeHider || !clozeHidden) return;
+      if (!clozeReplacer || !clozeHidden) return;
 
-      cloze.removeChild(clozeHider)
+      cloze.removeChild(clozeReplacer)
       cloze.removeChild(clozeHidden)
       for(const child of clozeHidden) {
         cloze.appendChild(child)
@@ -60,9 +69,9 @@ _%>
     }
 
     const revealClozeWord = function(cloze) {
-      const clozeHider = cloze.getElementsByClassName("cloze-hider")[0]
+      const clozeReplacer = cloze.getElementsByClassName("cloze-replacer")[0]
       const clozeHidden = cloze.getElementsByClassName("cloze-hidden")[0]
-      if (!clozeHider || !clozeHidden) return;
+      if (!clozeReplacer || !clozeHidden) return;
 
       const range = new Range()
       range.setStart(clozeHidden, 0)
@@ -76,11 +85,11 @@ _%>
         enable = found && onlyWhitespace
 
         const fragment = range.extractContents()
-        cloze.insertBefore(fragment, clozeHider)
-        clozeHider.innerHTML = clozeHider(clozeHidden)
+        cloze.insertBefore(fragment, clozeReplacer)
+        clozeReplacer.innerHTML = clozeHider(clozeHidden)
         if (!found) {
           cloze.removeChild(clozeHidden)
-          cloze.removeChild(clozeHider)
+          cloze.removeChild(clozeReplacer)
         }
       }
       rerunMathJax()
@@ -131,7 +140,6 @@ _%>
       }
     }
 
-    // Hide cloze into .cloze-hidden, add cloze-hider
     const hideAllCloze = function(initial) {
       let clozes = document.getElementsByClassName("cloze")
       let count = 0 // hidden cloze count
@@ -139,20 +147,20 @@ _%>
         if (cloze.offsetWidth === 0) {
           continue
         }
-        const clozeHider = document.createElement("span")
+        const clozeReplacer = document.createElement("span")
         const clozeHidden = document.createElement("span")
-        clozeHider.classList.add("cloze-hider")
+        clozeReplacer.classList.add("cloze-replacer")
         clozeHidden.classList.add("cloze-hidden")
-        clozeHider.innerHTML = clozeHider(cloze)
+        clozeReplacer.innerHTML = clozeHider(cloze)
         for(const child of cloze.childNodes) {
           clozeHidden.appendChild(child);
         }
-        cloze.appendChild(clozeHider)
+        cloze.appendChild(clozeReplacer)
         cloze.appendChild(clozeHidden)
 
         if (window.clozeHints && window.clozeHints[count]) {
-          clozeHider.classList.add("cloez-hider")
-          clozeHider.innerHTML = window.clozeHints[count]
+          clozeReplacer.classList.add("cloze-hint")
+          clozeReplacer.innerHTML = window.clozeHints[count]
         }
         count += 1
         if (initial) {
