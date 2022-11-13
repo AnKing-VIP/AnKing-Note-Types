@@ -62,7 +62,7 @@ _%>
 
       cloze.removeChild(clozeReplacer)
       cloze.removeChild(clozeHidden)
-      for(const child of clozeHidden) {
+      for(const child of clozeHidden.childNodes) {
         cloze.appendChild(child)
       }
       rerunMathJax() // Is this still needed?
@@ -95,20 +95,30 @@ _%>
       rerunMathJax()
     }
 
-    window.revealNextCloze = function() {
+    const clozeElOfClozeHidden = (cloze) => {
+      while (!cloze.classList.contains("cloze")) {
+        cloze = cloze.parentElement;
+      }
+      return cloze;
+    }
+
+    const revealNextClozeOf = (type) => {
       const nextHidden = document.querySelector(".cloze-hidden")
       if(!nextHidden) {
           return
       } 
-      let cloze = nextHidden;
-      while (!cloze.classList.contains("cloze")) {
-        cloze = cloze.parentElement;
-      }
-      if (revealNextClozeMode === "word") {
+      const cloze = clozeElOfClozeHidden(nextHidden);
+      if (type === "word") {
           revealClozeWord(cloze)
-      } else {
+      } else if (type === "cloze") {
           revealCloze(cloze)
+      } else {
+        console.error("Invalid type: " + type)
       }
+    }
+
+    window.revealNextCloze = function() {
+      revealNextClozeOf(revealNextClozeMode)
     }
 
     /**
@@ -131,7 +141,7 @@ _%>
           return false;
         }
       } else {
-        for (const child of node.children) {
+        for (const child of node.childNodes) {
           if (setRangeEndToFirstSpace(range, child)) {
             return true;
           }
@@ -174,7 +184,8 @@ _%>
       let elems = document.querySelectorAll(".cloze-hidden")
       if(elems.length > 0) {
         for (const elem of elems) {
-          elem.classList.remove("hidden");
+          const cloze = clozeElOfClozeHidden(elem)
+          revealCloze(cloze)
         }
       } else {
         hideAllCloze(initial=false)
@@ -183,9 +194,6 @@ _%>
 
     const revealClozeClicked = function(ev) {
       let elem = ev.currentTarget
-      if (elem.dataset.content === undefined) {
-        return
-      }
       if (!ev.altKey && (revealNextClozeMode !== "word")) {
         revealCloze(elem)
       } else {
@@ -216,22 +224,17 @@ _%>
       let next = isShowNextShortcut(ev)
       let word = isShowWordShortcut(ev)
       let all = isToggleAllShortcut(ev)
-      if (next || word) {
-        let elem = document.querySelector(".cloze[data-content]")
-        if (elem) {
-          if (next) {
-            revealCloze(elem)
-          } else {
-            revealClozeWord(elem)
-          }
-          ev.stopPropagation()
-          ev.preventDefault()
-        }
+      if (next) {
+        revealNextClozeOf("cloze")
+      } else if (word) {
+        revealNextClozeOf("word")
       } else if (all) {
         toggleAllCloze()
-        ev.stopPropagation()
-        ev.preventDefault()
+      } else {
+        return;
       }
+      ev.stopPropagation()
+      ev.preventDefault()
     });
   })()
 </script>
