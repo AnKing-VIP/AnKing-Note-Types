@@ -62,8 +62,8 @@ _%>
 
       cloze.removeChild(clozeReplacer)
       cloze.removeChild(clozeHidden)
-      for(const child of clozeHidden.childNodes) {
-        cloze.appendChild(child)
+      while (clozeHidden.children.length > 0) {
+        cloze.appendChild(clozeHidden.childNodes[0])
       }
       rerunMathJax() // Is this still needed?
     }
@@ -177,8 +177,8 @@ _%>
         clozeReplacer.classList.add("cloze-replacer")
         clozeHidden.classList.add("cloze-hidden")
         clozeReplacer.innerHTML = clozeHider(cloze)
-        for(const child of cloze.childNodes) {
-          clozeHidden.appendChild(child);
+        while (cloze.childNodes.length > 0) {
+          clozeHidden.appendChild(cloze.childNodes[0])
         }
         cloze.appendChild(clozeReplacer)
         cloze.appendChild(clozeHidden)
