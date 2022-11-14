@@ -70,7 +70,6 @@ _%>
         const clozeHidden = document.createElement("span")
         clozeReplacer.classList.add("cloze-replacer")
         clozeHidden.classList.add("cloze-hidden")
-        clozeReplacer.innerHTML = clozeHider(cloze)
         while (cloze.childNodes.length > 0) {
           clozeHidden.appendChild(cloze.childNodes[0])
         }
@@ -80,6 +79,8 @@ _%>
         if (window.clozeHints && window.clozeHints[count]) {
           clozeReplacer.classList.add("cloze-hint")
           clozeReplacer.innerHTML = window.clozeHints[count]
+        } else {
+          clozeReplacer.innerHTML = clozeHider(cloze)
         }
         count += 1
         if (initial) {
