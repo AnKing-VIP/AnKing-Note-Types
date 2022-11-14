@@ -311,6 +311,9 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   .cloze-hidden {
     display: none;
   }
+  .cloze-replacer .hidden {
+    display: none;
+  }
   .cloze-hint {
     color: #009400 !important;
   }
@@ -324,6 +327,9 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     if (!clozeOneByOneEnabled) {
       return
     }
+
+    // Needed for amboss to recognize first word in .cloze-hidden
+    const CLOZE_REPLACER_SEP = "<span class='hiddenQ'> </span>"
 
     const hideAllCloze = function(initial) {
       let clozes = document.getElementsByClassName("cloze")
@@ -348,9 +354,9 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
         if (window.clozeHints && window.clozeHints[count]) {
           clozeReplacer.classList.add("cloze-hint")
-          clozeReplacer.innerHTML = window.clozeHints[count]
+          clozeReplacer.innerHTML = window.clozeHints[count] + CLOZE_REPLACER_SEP
         } else {
-          clozeReplacer.innerHTML = clozeHider(cloze)
+          clozeReplacer.innerHTML = clozeHider(cloze) + CLOZE_REPLACER_SEP
         }
         count += 1
         if (initial) {
@@ -399,7 +405,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         cloze.removeChild(clozeReplacer)
         return
       }
-      clozeReplacer.innerHTML = clozeHider(clozeHidden)
+      clozeReplacer.innerHTML = clozeHider(clozeHidden) + CLOZE_REPLACER_SEP
       if (clozeReplacer.classList.contains("cloze-hint")) [
         clozeReplacer.classList.remove("cloze-hint")
       ]
