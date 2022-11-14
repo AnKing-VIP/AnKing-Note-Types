@@ -198,7 +198,7 @@ _%>
         } else {
           return false;
         }
-      } else {
+      } else if (!ignoreSpaceInNode(node)) {
         for (const child of node.childNodes) {
           if (setRangeEnd(range, child, mode)) {
             return true;
@@ -206,6 +206,10 @@ _%>
         }
         return false;
       }
+    }
+
+    const ignoreSpaceInNode = function (node) {
+      return node.tagName === "MJX-ASSISTIVE-MML"
     }
 
 
