@@ -222,7 +222,7 @@ _%>
     }
 
     const isWordNode = function(node) {
-      return node.tagName in ["IMG", "MJX-CONTAINER"]
+      return ["IMG", "MJX-CONTAINER"].includes(node.tagName)
     }
 
     hideAllCloze(initial=true)
