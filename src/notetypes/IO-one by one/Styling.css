@@ -1,4 +1,4 @@
-@import url("__closet-0.5.3.css");
+@import url("__closet-0.6.1.css");
 
 
 /*#########################################################
@@ -494,4 +494,5 @@ html:not(.mobile) #button-mq:hover{
 	font: inherit !important;
 	cursor: inherit !important;
 	outline: inherit !important;
+  filter: none !important;
 }

@@ -99,7 +99,7 @@
             ]
         ]
     ],
-    "closetVersion": "0.5.3",
+    "closetVersion": "0.6.1",
     "assetManager": {
         "enabled": true,
         "indentSize": 4,
