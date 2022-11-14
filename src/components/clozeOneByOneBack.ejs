@@ -19,15 +19,27 @@ components/shortcutMatcher
 - Removes `#qa` element `display` property.
 - Exposes `toggleAllCloze` and `revealNextCloze` function
 
+# How it works
+|                .cloze                   |
+| shown | .cloze-replacer | .cloze-hidden |
+
+When hideAllCloze() is called, all childNodes of .cloze is moved into .cloze-hidden, 
+and .cloze has two children: div.cloze-replacer that hides cloze with `clozeHider(div.cloze-hidden)`, 
+div.cloze-hidden with original cloze content that is hidden with display:none.
+
+When revealNextWord() is called, a word is selected from .cloze-hidden and is inserted before div.cloze-replacer
 _%>
 <%- include('src/components/autoflipBack.ejs') %>
 
 <!-- CLOZE ONE BY ONE SCRIPT -->
 <style>
-  .cloze[data-content]:hover {
+  .cloze-replacer:hover {
     cursor: pointer;
   }
-  .cloze[data-hint] {
+  .cloze-hidden {
+    display: none;
+  }
+  .cloze-hint {
     color: #009400 !important;
   }
 </style>
@@ -42,99 +54,104 @@ _%>
     if (!clozeOneByOneEnabled) {
       return
     }
-    
-    const revealCloze = function(elem) {
-      // Checking for dataset.content is undefined may not be needed anymore?
-      if (elem.dataset.content === undefined) {
-        return
-      }
-      elem.innerHTML = elem.dataset.content
-      rerunMathJax()
-
-      delete elem.dataset.content
-      delete elem.dataset.hint
-    }
-
-    const revealClozeWord = function(elem) {
-      if (elem.dataset.content === undefined) {
-        return
-      }
-      if (elem.dataset.hidden !== undefined) {
-        let words = elem.dataset.hidden.split(" ");
-        if (words.length == 1) {
-          revealCloze(elem)
-          delete elem.dataset.hidden
-          delete elem.dataset.revealed
-        } else {
-          elem.dataset.revealed = elem.dataset.revealed + " " + words[0]
-          elem.dataset.hidden = words.slice(1).join(" ");
-          let temp = document.createElement("div");
-          temp.innerHTML = elem.dataset.hidden;
-          elem.innerHTML = elem.dataset.revealed + " " + clozeHider(temp);
-          delete elem.dataset.hint
-        }
-      } else {
-        let temp = document.createElement("div");
-        temp.innerHTML = elem.dataset.content;
-        elem.dataset.hidden = temp.textContent;
-        elem.dataset.revealed = "";
-        revealClozeWord(elem)
-      }
-      rerunMathJax()
-    }
-
-    window.revealNextCloze = function() {
-      let nextHidden = document.querySelector(".cloze[data-content]")
-      if(!nextHidden) {
-          return
-      } 
-      if (revealNextClozeMode === "word") {
-          revealClozeWord(nextHidden)
-      } else {
-          revealCloze(nextHidden)
-      }
-    }
 
     const hideAllCloze = function(initial) {
       let clozes = document.getElementsByClassName("cloze")
       let count = 0 // hidden cloze count
-      for (let i = 0; i < clozes.length; i++) {
-        let cloze = clozes[i]
+      for (const cloze of clozes) {
+        const existingHidden = cloze.getElementsByClassName("cloze-hidden")[0]
+        if (existingHidden) {
+          revealCloze(cloze);
+        }
         if (cloze.offsetWidth === 0) {
           continue
         }
-        cloze.dataset.content = cloze.innerHTML
-        if(window.clozeHints && window.clozeHints[count]) {
-          cloze.innerHTML = window.clozeHints[count]
-          cloze.dataset.hint = true
+        const clozeReplacer = document.createElement("span")
+        const clozeHidden = document.createElement("span")
+        clozeReplacer.classList.add("cloze-replacer")
+        clozeHidden.classList.add("cloze-hidden")
+        while (cloze.childNodes.length > 0) {
+          clozeHidden.appendChild(cloze.childNodes[0])
+        }
+        cloze.appendChild(clozeReplacer)
+        cloze.appendChild(clozeHidden)
+
+        if (window.clozeHints && window.clozeHints[count]) {
+          clozeReplacer.classList.add("cloze-hint")
+          clozeReplacer.innerHTML = window.clozeHints[count]
         } else {
-          cloze.innerHTML = clozeHider(cloze)
+          clozeReplacer.innerHTML = clozeHider(cloze)
         }
         count += 1
-        if (initial === true) {
+        if (initial) {
           cloze.addEventListener("touchend", revealClozeClicked)
           cloze.addEventListener("click", revealClozeClicked)
         }
       }
     }
+    
+    const revealCloze = function(cloze) {
+      const clozeReplacer = cloze.getElementsByClassName("cloze-replacer")[0]
+      const clozeHidden = cloze.getElementsByClassName("cloze-hidden")[0]
+      if (!clozeReplacer || !clozeHidden) return;
 
-    window.toggleAllCloze = function() {
-      let elems = document.querySelectorAll(".cloze[data-content]")
-      let button = document.getElementById("button-toggle-all")
-      if(elems.length > 0) {
-        for (let i = 0; i < elems.length; i++) {
-            revealCloze(elems[i])
-        }
+      cloze.removeChild(clozeReplacer)
+      cloze.removeChild(clozeHidden)
+      while (clozeHidden.childNodes.length > 0) {
+        cloze.appendChild(clozeHidden.childNodes[0])
+      }
+    }
+
+    const revealClozeWord = function(cloze) {
+      const clozeReplacer = cloze.getElementsByClassName("cloze-replacer")[0]
+      const clozeHidden = cloze.getElementsByClassName("cloze-hidden")[0]
+      if (!clozeReplacer || !clozeHidden) return;
+
+      let range = new Range()
+      range.setStart(clozeHidden, 0)
+      const foundSpace = setRangeEnd(range, clozeHidden, "beforeFirstSpace")
+      if (!foundSpace) {
+        range.setEnd(clozeHidden, clozeHidden.childNodes.length)
+      }
+      let fragment = range.extractContents()
+      cloze.insertBefore(fragment, clozeReplacer)
+      // Extract whitespaces after word
+      range = new Range()
+      range.setStart(clozeHidden, 0)
+      const foundWord = setRangeEnd(range, clozeHidden, "beforeFirstChar")
+      if (!foundWord) {
+        range.setEnd(clozeHidden, clozeHidden.childNodes.length)
+      }    
+      fragment = range.extractContents();
+      cloze.insertBefore(fragment, clozeReplacer)
+      if (!foundWord) {
+        cloze.removeChild(clozeHidden)
+        cloze.removeChild(clozeReplacer)
+        return
+      }
+      clozeReplacer.innerHTML = clozeHider(clozeHidden)
+      if (clozeReplacer.classList.contains("cloze-hint")) [
+        clozeReplacer.classList.remove("cloze-hint")
+      ]
+    }
+
+    const revealNextClozeOf = (type) => {
+      const nextHidden = document.querySelector(".cloze-hidden")
+      if(!nextHidden) {
+          return
+      } 
+      const cloze = clozeElOfClozeHidden(nextHidden);
+      if (type === "word") {
+          revealClozeWord(cloze)
+      } else if (type === "cloze") {
+          revealCloze(cloze)
       } else {
-        hideAllCloze(initial=false)
+        console.error("Invalid type: " + type)
       }
     }
 
     const revealClozeClicked = function(ev) {
       let elem = ev.currentTarget
-      if (elem.dataset.content === undefined) {
-        return
-      }
       if (!ev.altKey && (revealNextClozeMode !== "word")) {
         revealCloze(elem)
       } else {
@@ -142,20 +159,73 @@ _%>
       }
       ev.stopPropagation()
       ev.preventDefault()
-    }      
-
-    const rerunMathJax = function() {
-      // rerun mathjax on the document so that the cloze text gets formatted
-      // ... for MathJax 2
-      try {
-          MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-      } catch {}
-      // ... for MathJax 3     
-      try {
-          MathJax.typesetPromise()
-      } catch {}
     }
-    
+
+    window.revealNextCloze = function() {
+      revealNextClozeOf(revealNextClozeMode)
+    }
+
+    window.toggleAllCloze = function() {
+      let elems = document.querySelectorAll(".cloze-hidden")
+      if(elems.length > 0) {
+        for (const elem of elems) {
+          const cloze = clozeElOfClozeHidden(elem)
+          revealCloze(cloze)
+        }
+      } else {
+        hideAllCloze(initial=false)
+      }
+    }
+
+    const clozeElOfClozeHidden = (cloze) => {
+      while (!cloze.classList.contains("cloze")) {
+        cloze = cloze.parentElement;
+      }
+      return cloze;
+    }
+
+    /**
+     * mode: 'beforeFirstSpace' or 'beforeFirstChar'
+     * Return `true` if it exists and setEnd() was called, otherwise `false`
+     */
+    const setRangeEnd = function(range, node, mode) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const regex = mode === 'beforeFirstSpace' ? /\s/ : /\S/
+        const match = node.textContent.match(regex)
+        if (match) {
+          if (match.index === 0) {
+            while (node.previousSibling === null) {
+              node = node.parentElement
+            }
+            range.setEndBefore(node)
+          } else {
+            range.setEnd(node, match.index);
+          }
+          return true;
+        } else {
+          return false;
+        }
+      } else if (mode === 'beforeFirstChar' && isCharNode(node)) {
+        range.setEndBefore(node)
+        return true
+      } else if (!ignoreSpaceInNode(node)) {
+        for (const child of node.childNodes) {
+          if (setRangeEnd(range, child, mode)) {
+            return true;
+          }
+        }
+        return false;
+      }
+    }
+
+    const ignoreSpaceInNode = function (node) {
+      return node.tagName === "MJX-ASSISTIVE-MML"
+    }
+
+    const isCharNode = function(node) {
+      return ["IMG", "MJX-CONTAINER"].includes(node.tagName)
+    }
+
     hideAllCloze(initial=true)
 
     let isShowNextShortcut = shortcutMatcher(window.revealNextShortcut)
@@ -165,22 +235,17 @@ _%>
       let next = isShowNextShortcut(ev)
       let word = isShowWordShortcut(ev)
       let all = isToggleAllShortcut(ev)
-      if (next || word) {
-        let elem = document.querySelector(".cloze[data-content]")
-        if (elem) {
-          if (next) {
-            revealCloze(elem)
-          } else {
-            revealClozeWord(elem)
-          }
-          ev.stopPropagation()
-          ev.preventDefault()
-        }
+      if (next) {
+        revealNextClozeOf("cloze")
+      } else if (word) {
+        revealNextClozeOf("word")
       } else if (all) {
         toggleAllCloze()
-        ev.stopPropagation()
-        ev.preventDefault()
+      } else {
+        return;
       }
+      ev.stopPropagation()
+      ev.preventDefault()
     });
   })()
 </script>
