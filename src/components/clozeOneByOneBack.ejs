@@ -74,7 +74,7 @@ _%>
 
       let range = new Range()
       range.setStart(clozeHidden, 0)
-      const foundSpace = setRangeEndToBeforeFirstSpace(range, clozeHidden)
+      const foundSpace = setRangeEnd(range, clozeHidden, "beforeFirstSpace")
       if (!foundSpace) {
         range.setEnd(clozeHidden, clozeHidden.childNodes.length)
       }
@@ -83,7 +83,7 @@ _%>
       // Extract whitespaces after word
       range = new Range()
       range.setStart(clozeHidden, 0)
-      const foundWord = setRangeEndToAfterLastSpace(range, clozeHidden);
+      const foundWord = setRangeEnd(range, clozeHidden, "afterLastSpace")
       if (!foundWord) {
         range.setEnd(clozeHidden, clozeHidden.childNodes.length)
       }    
@@ -128,11 +128,13 @@ _%>
     }
 
     /**
-     * Return `true` whitespace exists and setEnd() was called, otherwise `false`
+     * mode: 'beforeFirstSpace' or 'afterLastSpace'
+     * Return `true` if it exists and setEnd() was called, otherwise `false`
      */
-    const setRangeEndToBeforeFirstSpace = function(range, node) {
+    const setRangeEnd = function(range, node, mode) {
       if (node.nodeType === Node.TEXT_NODE) {
-        const match = node.textContent.match(/\s/)
+        const regex = mode == 'beforeFirstSpace' ? /\s/ : /\S/
+        const match = node.textContent.match(regex)
         if (match) {
           range.setEnd(node, match.index);
           return true;
@@ -141,26 +143,7 @@ _%>
         }
       } else {
         for (const child of node.childNodes) {
-          if (setRangeEndToBeforeFirstSpace(range, child)) {
-            return true;
-          }
-        }
-        return false;
-      }
-    }
-
-    const setRangeEndToAfterLastSpace = function(range, node) {
-      if (node.nodeType === Node.TEXT_NODE) {
-        const match = node.textContent.match(/\S/)
-        if (match) {
-          range.setEnd(node, match.index);
-          return true;
-        } else {
-          return false;
-        }
-      } else {
-        for (const child of node.childNodes) {
-          if (setRangeEndToAfterLastSpace(range, child)) {
+          if (setRangeEnd(range, child, mode)) {
             return true;
           }
         }
