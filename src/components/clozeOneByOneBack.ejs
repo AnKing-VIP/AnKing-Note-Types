@@ -54,6 +54,40 @@ _%>
     if (!clozeOneByOneEnabled) {
       return
     }
+
+    const hideAllCloze = function(initial) {
+      let clozes = document.getElementsByClassName("cloze")
+      let count = 0 // hidden cloze count
+      for (const cloze of clozes) {
+        const existingHidden = cloze.getElementsByClassName("cloze-hidden")[0]
+        if (existingHidden) {
+          revealCloze(cloze);
+        }
+        if (cloze.offsetWidth === 0) {
+          continue
+        }
+        const clozeReplacer = document.createElement("span")
+        const clozeHidden = document.createElement("span")
+        clozeReplacer.classList.add("cloze-replacer")
+        clozeHidden.classList.add("cloze-hidden")
+        clozeReplacer.innerHTML = clozeHider(cloze)
+        while (cloze.childNodes.length > 0) {
+          clozeHidden.appendChild(cloze.childNodes[0])
+        }
+        cloze.appendChild(clozeReplacer)
+        cloze.appendChild(clozeHidden)
+
+        if (window.clozeHints && window.clozeHints[count]) {
+          clozeReplacer.classList.add("cloze-hint")
+          clozeReplacer.innerHTML = window.clozeHints[count]
+        }
+        count += 1
+        if (initial) {
+          cloze.addEventListener("touchend", revealClozeClicked)
+          cloze.addEventListener("click", revealClozeClicked)
+        }
+      }
+    }
     
     const revealCloze = function(cloze) {
       const clozeReplacer = cloze.getElementsByClassName("cloze-replacer")[0]
@@ -101,13 +135,6 @@ _%>
       ]
     }
 
-    const clozeElOfClozeHidden = (cloze) => {
-      while (!cloze.classList.contains("cloze")) {
-        cloze = cloze.parentElement;
-      }
-      return cloze;
-    }
-
     const revealNextClozeOf = (type) => {
       const nextHidden = document.querySelector(".cloze-hidden")
       if(!nextHidden) {
@@ -123,8 +150,38 @@ _%>
       }
     }
 
+    const revealClozeClicked = function(ev) {
+      let elem = ev.currentTarget
+      if (!ev.altKey && (revealNextClozeMode !== "word")) {
+        revealCloze(elem)
+      } else {
+        revealClozeWord(elem)
+      }
+      ev.stopPropagation()
+      ev.preventDefault()
+    }
+
     window.revealNextCloze = function() {
       revealNextClozeOf(revealNextClozeMode)
+    }
+
+    window.toggleAllCloze = function() {
+      let elems = document.querySelectorAll(".cloze-hidden")
+      if(elems.length > 0) {
+        for (const elem of elems) {
+          const cloze = clozeElOfClozeHidden(elem)
+          revealCloze(cloze)
+        }
+      } else {
+        hideAllCloze(initial=false)
+      }
+    }
+
+    const clozeElOfClozeHidden = (cloze) => {
+      while (!cloze.classList.contains("cloze")) {
+        cloze = cloze.parentElement;
+      }
+      return cloze;
     }
 
     /**
@@ -151,62 +208,6 @@ _%>
       }
     }
 
-    const hideAllCloze = function(initial) {
-      let clozes = document.getElementsByClassName("cloze")
-      let count = 0 // hidden cloze count
-      for (const cloze of clozes) {
-        const existingHidden = cloze.getElementsByClassName("cloze-hidden")[0]
-        if (existingHidden) {
-          revealCloze(cloze);
-        }
-        if (cloze.offsetWidth === 0) {
-          continue
-        }
-        const clozeReplacer = document.createElement("span")
-        const clozeHidden = document.createElement("span")
-        clozeReplacer.classList.add("cloze-replacer")
-        clozeHidden.classList.add("cloze-hidden")
-        clozeReplacer.innerHTML = clozeHider(cloze)
-        while (cloze.childNodes.length > 0) {
-          clozeHidden.appendChild(cloze.childNodes[0])
-        }
-        cloze.appendChild(clozeReplacer)
-        cloze.appendChild(clozeHidden)
-
-        if (window.clozeHints && window.clozeHints[count]) {
-          clozeReplacer.classList.add("cloze-hint")
-          clozeReplacer.innerHTML = window.clozeHints[count]
-        }
-        count += 1
-        if (initial) {
-          cloze.addEventListener("touchend", revealClozeClicked)
-          cloze.addEventListener("click", revealClozeClicked)
-        }
-      }
-    }
-
-    window.toggleAllCloze = function() {
-      let elems = document.querySelectorAll(".cloze-hidden")
-      if(elems.length > 0) {
-        for (const elem of elems) {
-          const cloze = clozeElOfClozeHidden(elem)
-          revealCloze(cloze)
-        }
-      } else {
-        hideAllCloze(initial=false)
-      }
-    }
-
-    const revealClozeClicked = function(ev) {
-      let elem = ev.currentTarget
-      if (!ev.altKey && (revealNextClozeMode !== "word")) {
-        revealCloze(elem)
-      } else {
-        revealClozeWord(elem)
-      }
-      ev.stopPropagation()
-      ev.preventDefault()
-    }      
 
     hideAllCloze(initial=true)
 
