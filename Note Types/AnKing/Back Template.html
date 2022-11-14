@@ -355,7 +355,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
       // Extract whitespaces after word
       range = new Range()
       range.setStart(clozeHidden, 0)
-      const foundWord = setRangeEnd(range, clozeHidden, "afterLastSpace")
+      const foundWord = setRangeEnd(range, clozeHidden, "beforeFirstChar")
       if (!foundWord) {
         range.setEnd(clozeHidden, clozeHidden.childNodes.length)
       }    
@@ -422,7 +422,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     }
 
     /**
-     * mode: 'beforeFirstSpace' or 'afterLastSpace'
+     * mode: 'beforeFirstSpace' or 'beforeFirstChar'
      * Return `true` if it exists and setEnd() was called, otherwise `false`
      */
     const setRangeEnd = function(range, node, mode) {
@@ -442,7 +442,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         } else {
           return false;
         }
-      } else if (mode === 'afterLastSpace' && isWordNode(node)) {
+      } else if (mode === 'beforeFirstChar' && isCharNode(node)) {
         range.setEndBefore(node)
         return true
       } else if (!ignoreSpaceInNode(node)) {
@@ -459,7 +459,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
       return node.tagName === "MJX-ASSISTIVE-MML"
     }
 
-    const isWordNode = function(node) {
+    const isCharNode = function(node) {
       return ["IMG", "MJX-CONTAINER"].includes(node.tagName)
     }
 
