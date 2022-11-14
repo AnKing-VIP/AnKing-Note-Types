@@ -189,7 +189,7 @@ _%>
      */
     const setRangeEnd = function(range, node, mode) {
       if (node.nodeType === Node.TEXT_NODE) {
-        const regex = mode == 'beforeFirstSpace' ? /\s/ : /\S/
+        const regex = mode === 'beforeFirstSpace' ? /\s/ : /\S/
         const match = node.textContent.match(regex)
         if (match) {
           range.setEnd(node, match.index);
@@ -197,6 +197,9 @@ _%>
         } else {
           return false;
         }
+      } else if (mode === 'afterLastSpace' && isWordNode(node)) {
+        range.setEndBefore(node)
+        return true
       } else if (!ignoreSpaceInNode(node)) {
         for (const child of node.childNodes) {
           if (setRangeEnd(range, child, mode)) {
@@ -211,6 +214,9 @@ _%>
       return node.tagName === "MJX-ASSISTIVE-MML"
     }
 
+    const isWordNode = function(node) {
+      return node.tagName in ["IMG", "MJX-CONTAINER"]
+    }
 
     hideAllCloze(initial=true)
 
