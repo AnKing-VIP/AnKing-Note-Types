@@ -192,7 +192,14 @@ _%>
         const regex = mode === 'beforeFirstSpace' ? /\s/ : /\S/
         const match = node.textContent.match(regex)
         if (match) {
-          range.setEnd(node, match.index);
+          if (match.index === 0) {
+            while (node.previousSibling === null) {
+              node = node.parentElement
+            }
+            range.setEndBefore(node)
+          } else {
+            range.setEnd(node, match.index);
+          }
           return true;
         } else {
           return false;
