@@ -434,6 +434,9 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   .cloze-hint {
     color: #009400 !important;
   }
+  #extra.hidden {
+    display: none;
+  }
 </style>
 
 <script>
@@ -446,7 +449,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     }
 
     // Needed for amboss to recognize first word in .cloze-hidden
-    const CLOZE_REPLACER_SEP = "<span class='hiddenQ'> </span>"
+    const CLOZE_REPLACER_SEP = "<span class='hidden'> </span>"
 
     const hideAllCloze = function(initial) {
       let clozes = document.getElementsByClassName("cloze")
@@ -481,6 +484,10 @@ replace the arrows/dashes from the statement below with double curly brackets-->
           cloze.addEventListener("click", revealClozeClicked)
         }
       }
+      const extra = document.getElementById("extra");
+      if (extra) {
+        extra.classList.add("hidden");
+      }
     }
     
     const revealCloze = function(cloze) {
@@ -493,6 +500,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
       while (clozeHidden.childNodes.length > 0) {
         cloze.appendChild(clozeHidden.childNodes[0])
       }
+      maybeRevealExtraField()
     }
 
     const revealClozeWord = function(cloze) {
@@ -520,12 +528,14 @@ replace the arrows/dashes from the statement below with double curly brackets-->
       if (!foundWord) {
         cloze.removeChild(clozeHidden)
         cloze.removeChild(clozeReplacer)
+        maybeRevealExtraField()
         return
       }
       clozeReplacer.innerHTML = clozeHider(clozeHidden) + CLOZE_REPLACER_SEP
       if (clozeReplacer.classList.contains("cloze-hint")) [
         clozeReplacer.classList.remove("cloze-hint")
       ]
+      maybeRevealExtraField()
     }
 
     const revealNextClozeOf = (type) => {
@@ -575,6 +585,16 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         cloze = cloze.parentElement;
       }
       return cloze;
+    }
+
+    const maybeRevealExtraField = () => {
+      let elems = document.querySelectorAll(".cloze-hidden")
+      if (elems.length == 0) {
+        const extra = document.getElementById("extra")
+        if (extra) {
+          extra.classList.remove("hidden")
+        }
+      }
     }
 
     /**
