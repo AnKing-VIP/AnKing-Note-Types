@@ -16,8 +16,8 @@ components/shortcutMatcher
 - clozeHints?: Array[string]
 
 # Notes
-- Removes `#qa` element `display` property.
 - Exposes `toggleAllCloze` and `revealNextCloze` function
+- Hides #extra until all clozes are shown
 
 # How it works
 |                .cloze                   |
@@ -45,6 +45,9 @@ _%>
   .cloze-hint {
     color: #009400 !important;
   }
+  #extra.hidden {
+    display: none;
+  }
 </style>
 
 <script>
@@ -59,7 +62,7 @@ _%>
     }
 
     // Needed for amboss to recognize first word in .cloze-hidden
-    const CLOZE_REPLACER_SEP = "<span class='hiddenQ'> </span>"
+    const CLOZE_REPLACER_SEP = "<span class='hidden'> </span>"
 
     const hideAllCloze = function(initial) {
       let clozes = document.getElementsByClassName("cloze")
@@ -94,6 +97,10 @@ _%>
           cloze.addEventListener("click", revealClozeClicked)
         }
       }
+      const extra = document.getElementById("extra");
+      if (extra) {
+        extra.classList.add("hidden");
+      }
     }
     
     const revealCloze = function(cloze) {
@@ -106,6 +113,7 @@ _%>
       while (clozeHidden.childNodes.length > 0) {
         cloze.appendChild(clozeHidden.childNodes[0])
       }
+      maybeRevealExtraField()
     }
 
     const revealClozeWord = function(cloze) {
@@ -133,12 +141,14 @@ _%>
       if (!foundWord) {
         cloze.removeChild(clozeHidden)
         cloze.removeChild(clozeReplacer)
+        maybeRevealExtraField()
         return
       }
       clozeReplacer.innerHTML = clozeHider(clozeHidden) + CLOZE_REPLACER_SEP
       if (clozeReplacer.classList.contains("cloze-hint")) [
         clozeReplacer.classList.remove("cloze-hint")
       ]
+      maybeRevealExtraField()
     }
 
     const revealNextClozeOf = (type) => {
@@ -188,6 +198,16 @@ _%>
         cloze = cloze.parentElement;
       }
       return cloze;
+    }
+
+    const maybeRevealExtraField = () => {
+      let elems = document.querySelectorAll(".cloze-hidden")
+      if (elems.length == 0) {
+        const extra = document.getElementById("extra")
+        if (extra) {
+          extra.classList.remove("hidden")
+        }
+      }
     }
 
     /**
