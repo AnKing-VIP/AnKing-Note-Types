@@ -116,8 +116,12 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     })()
   </script>
 
-<!-- OME AUTO OPEN FIELD -->
-<div class="banner-ome"><a href="https://hubs.ly/Q01w9Y7d0"><img src="_OME_banner_memorize_understand.png"></a></div>
+{{#OME}}
+<div class="banner-ome"><a href="https://hubs.ly/Q01w9Y7d0">
+  <img src="_OME_banner_memorize_understand.png"></a>
+</div>
+<span style="display: none">{{OME}}</span>
+{{/OME}}
 
 <!-- BUTTON FIELDS -->
 {{#Lecture Notes}}
@@ -245,18 +249,6 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="bootcamp" class="hints" style="display: none;">{{edit:Bootcamp}}</div>
 </span>
 {{/Bootcamp}}
-
-
-<!-- OME FIELD (only shows on mobile) commented out for now
-{{#OME}}
-<span id = "hint-ome" class="hintBtn" data-name="OME">
-  <a onclick="toggleHintBtn('hint-ome')"></a>
-  <button id="button-ome" class="button-general" onclick="toggleHintBtn('hint-ome')">
-    <img src="_omelogo.icon.png"> OnlineMedEd
-  </button>
-  <div id="ome" class="hints" style="display: none;">{{edit:OME}}</div>
-</span>
-{{/OME}} -->
 
 {{#Additional Resources}}
 <span id = "hint-ar" class="hintBtn" data-name="Additional Resources">
