@@ -116,11 +116,21 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     })()
   </script>
 
+<!-- Remove 'style="display: none"' in the line saying '<span style="display: none">' to show the OME field -->
 {{#OME}}
-<div id="ome" class="banner-ome"><a href="https://hubs.ly/Q01w9Y7d0">
+<div class="banner-ome"><a href="https://hubs.ly/Q01w9Y7d0">
   <img src="_OME_banner_memorize_understand.png"></a>
 </div>
-<span style="display: none">{{OME}}</span>
+
+<span style="display: none">
+  <span id="hint-ome" class="hintBtn" data-name="OME">
+    <a onclick="toggleHintBtn('hint-ome')"></a>
+    <button id="button-ome" class="button-general" onclick="toggleHintBtn('hint-ome')">
+      <img src="_omelogo.icon.png"> OnlineMedEd
+    </button>
+    <div id="ome" class="hints" style="display: none;">{{edit:OME}}</div>
+  </span>
+</span>
 {{/OME}}
 
 <!-- BUTTON FIELDS -->
