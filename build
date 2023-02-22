@@ -21,6 +21,7 @@ for dir in ./src/notetypes/*/ ; do
     npx ejs "$dir"/back.ejs -o "$back_file"
 
     echo "<!-- version ${commit_hash} -->" | cat - "${front_file}" > /tmp/out && mv /tmp/out "${front_file}"
+    echo "<!-- version ${commit_hash} -->" | cat - "${back_file}" > /tmp/out && mv /tmp/out "${back_file}"
 
     for file in "${dir}"!(*.ejs) ; do
         cp "$file" "${NOTETYPE_DIR}/$(basename "$file")"
