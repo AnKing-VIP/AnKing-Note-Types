@@ -1,4 +1,4 @@
-<!-- version 7aeffd3 -->
+<!-- version ce3b742 -->
 <script>
 // ##############  OCCLUSION SHORTCUTS  ##############
 var RevealIncrementalShortcut = "N";
@@ -340,12 +340,12 @@ var numTagLevelsToShow = 0;
     })
     
     
-    function toggleNext() {
+    window.toggleNext = function() {
       let active = document.querySelector(".closet-rect.is-highlighted")
       if (active) incrementalReveal.call(active)
     }
     
-    function toggleAll() {
+    window.toggleAll = function() {
       let allRevealed = true
       for (let rect of globalThis.AnkingIORects) {
         if (!rect.classList.contains("revealed")) allRevealed = false
