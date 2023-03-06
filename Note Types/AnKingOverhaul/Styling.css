@@ -413,7 +413,7 @@ ol {
   height: 50px;
   border: 0;
   position: fixed;
-  bottom: 10px;
+  bottom: 40px;
   right: 10px;
   display: block;
 }
@@ -583,4 +583,25 @@ html:not(.mobile) #button-bootcamp:hover {
 
 html:not(.mobile) #button-ome:hover {
   background-color: #47C3F3 !important;
+}
+
+/* ~~~~~~~~~ VIEW NOTE IN ANKIHUB ~~~~~~~~~ */
+a:link, a:visited	{
+	background-color: #cde3f8;
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	color: black;
+	padding: 5px 20px;
+	display: inline-block;
+	border-radius: 50px;
+	font-size: 10px;
+}
+
+a:hover, a:active	{
+	background-color: #ebf3fa;
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	font-size: 10px;
 }
