@@ -8,16 +8,19 @@
 
 /* TAGS ON/OFF DESKTOP & MOBILE*/
 #tags-container {
-  display: block; /* ‘none’ or ‘block’ */
+  display: block;
+  /* ‘none’ or ‘block’ */
 }
 
 .mobile #tags-container {
-  display: none; /* ‘none’ or ‘block’ */
+  display: none;
+  /* ‘none’ or ‘block’ */
 }
 
 /* MOVE TAGS UP FOR 'NO-DISTRACTIONS' ADD-ON */
 #tags-container {
-  padding-bottom: 0px; /* 0 normal, 55 to move up */
+  padding-bottom: 0px;
+  /* 0 normal, 55 to move up */
 }
 
 /*~~~~~~~~~FONT SIZE~~~~~~~~~*/
@@ -27,6 +30,7 @@
 html {
   font-size: 28px;
 }
+
 /* Mobile */
 .mobile {
   font-size: 28px;
@@ -50,12 +54,14 @@ html {
 /*~~~~~~~~~FONT STYLE~~~~~~~~~*/
 .card,
 kbd {
-  font-family: Arial Greek, Arial; /*Step exam's font is Arial Greek*/
+  font-family: Arial Greek, Arial;
+  /*Step exam's font is Arial Greek*/
 }
 
 /*~~~~~~~MAX IMAGE HEIGHT/WIDTH~~~~~~~*/
 img {
-  max-width: 100%; /* note: changing this may impact the occlusions */
+  max-width: 100%;
+  /* note: changing this may impact the occlusions */
   max-height: 100%;
 }
 
@@ -68,22 +74,27 @@ img {
   --active-rect-bg: salmon;
   --active-rect-border: yellow;
 }
+
 /* Default Text Color */
 .card {
   color: #56868a;
 }
+
 /* Background Color */
 .card {
   background-color: #f8f9fd;
 }
+
 /* Hint Reveal Color */
 .hints {
   color: #56868a;
 }
+
 /* Missed Questions Hint Reveal Color */
 #missed {
   color: #ff684d;
 }
+
 /* Empty Link Color */
 a:not([href]),
 a[href^="javascript:"] {
@@ -98,11 +109,13 @@ a[href^="javascript:"] {
 .night_mode .card {
   color: #FFFAFA !important;
 }
+
 /* NM Background Color */
 .nightMode.card,
 .night_mode .card {
   background-color: #272828 !important;
 }
+
 /* NM Hint Reveal Color */
 .nightMode .hints,
 .night_mode .hints {
@@ -137,6 +150,7 @@ i {
   padding-bottom: 1em;
   margin-top: 15px;
 }
+
 .mobile .card {
   padding-bottom: 5em;
   margin: 1ex .3px;
@@ -153,8 +167,10 @@ i {
 /* ~~~~~~~MNEMONICS LEFT JUSTIFIED~~~~~~~ */
 .mnemonics {
   display: inline-block;
-  text-align: left; /* can change to center to 'turn off' this feature */
+  text-align: left;
+  /* can change to center to 'turn off' this feature */
 }
+
 .centerbox {
   text-align: center;
 }
@@ -163,26 +179,27 @@ i {
 /* ~~~~~~~~~ LISTS ~~~~~~~~~ */
 ul {
   padding-left: 40px;
-  display: inline-block;
   max-width: 50%;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   text-align: left;
 }
+
 ol {
   padding-left: 40px;
-  display: inline-block;
   max-width: 50%;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   text-align: left;
 }
+
 .mobile ul {
-  display: inline-block;
-  text-align: left; 
+  text-align: left;
   max-width: 100%;
 }
+
 .mobile ol {
-  display: inline-block;
-  text-align: left; 
+  text-align: left;
   max-width: 100%;
 }
 
@@ -192,6 +209,7 @@ ol {
 .card {
   --w: 0%;
 }
+
 .mobile .card {
   --w: 100% !important;
 }
@@ -205,6 +223,7 @@ ol {
 .resizer {
   min-width: 0% !important;
 }
+
 .mobile .resizer {
   min-width: 100% !important;
 }
@@ -367,13 +386,13 @@ ol {
 
 /* ~~~~~~~~~ TAGS ~~~~~~~~~ */
 /* Container To Fix Tags At Bottom Of Screen */
-#tags-container{
+#tags-container {
   position: fixed;
   bottom: .5px;
   width: 100%;
   line-height: .45rem;
   margin-left: -15px;
-  background-color: transparent; 
+  background-color: transparent;
 }
 
 /* Clickable Tags (need to download the add-on) */
@@ -392,8 +411,8 @@ kbd {
   box-shadow: none !important;
   opacity: 0.5;
   vertical-align: middle;
-  line-height: auto!important;
-  height: auto!important;
+  line-height: auto !important;
+  height: auto !important;
 }
 
 /* Tag Becomes More Visible On Hover */
@@ -403,16 +422,55 @@ kbd:hover {
 }
 
 /* Tag Colors */
-kbd:nth-of-type(1n+0) { border-color: #78c0ca; color: #588f96!important; }
-kbd:nth-of-type(2n+0) { border-color: #78c0ca; color: #588f96!important; }
-kbd:nth-of-type(3n+0) { border-color: #78c0ca; color: #588f96!important; }
-kbd:nth-of-type(4n+0) { border-color: #78c0ca; color: #588f96!important; }
-kbd:nth-of-type(5n+0) { border-color: #78c0ca; color: #588f96!important; }
-kbd:nth-of-type(6n+0) { border-color: #78c0ca; color: #588f96!important; }
-kbd:nth-of-type(7n+0) { border-color: #78c0ca; color: #588f96!important; }
-kbd:nth-of-type(8n+0) { border-color: #78c0ca; color: #588f96!important; }
-kbd:nth-of-type(9n+0) { border-color: #78c0ca; color: #588f96!important; }
-kbd:nth-of-type(10n+0) { border-color: #78c0ca; color: #588f96!important; }
+kbd:nth-of-type(1n+0) {
+  border-color: #78c0ca;
+  color: #588f96 !important;
+}
+
+kbd:nth-of-type(2n+0) {
+  border-color: #78c0ca;
+  color: #588f96 !important;
+}
+
+kbd:nth-of-type(3n+0) {
+  border-color: #78c0ca;
+  color: #588f96 !important;
+}
+
+kbd:nth-of-type(4n+0) {
+  border-color: #78c0ca;
+  color: #588f96 !important;
+}
+
+kbd:nth-of-type(5n+0) {
+  border-color: #78c0ca;
+  color: #588f96 !important;
+}
+
+kbd:nth-of-type(6n+0) {
+  border-color: #78c0ca;
+  color: #588f96 !important;
+}
+
+kbd:nth-of-type(7n+0) {
+  border-color: #78c0ca;
+  color: #588f96 !important;
+}
+
+kbd:nth-of-type(8n+0) {
+  border-color: #78c0ca;
+  color: #588f96 !important;
+}
+
+kbd:nth-of-type(9n+0) {
+  border-color: #78c0ca;
+  color: #588f96 !important;
+}
+
+kbd:nth-of-type(10n+0) {
+  border-color: #78c0ca;
+  color: #588f96 !important;
+}
 
 /* Tag Mobile Adjustments */
 .mobile kbd {
@@ -421,6 +479,7 @@ kbd:nth-of-type(10n+0) { border-color: #78c0ca; color: #588f96!important; }
   display: inline-block;
   font-size: 10px !important;
 }
+
 .mobile #tags-container {
   line-height: 0.6rem;
   margin-left: 0px;
@@ -440,8 +499,10 @@ kbd:nth-of-type(10n+0) { border-color: #78c0ca; color: #588f96!important; }
   color: #AFAFAF !important;
   margin-top: 8px;
 }
-.mobile .button-general { 
-  font-size: 18px; padding: 9px 7px; 
+
+.mobile .button-general {
+  font-size: 18px;
+  padding: 9px 7px;
 }
 
 .expanded-button {
@@ -468,11 +529,11 @@ html:not(.mobile) .button-general:hover {
   color: #363638 !important;
 }
 
-html:not(.mobile) #button-ex:hover{
+html:not(.mobile) #button-ex:hover {
   background-color: #588f96 !important;
 }
 
-html:not(.mobile) #button-ln:hover{
+html:not(.mobile) #button-ln:hover {
   background-color: #588f96 !important;
 }
 
@@ -487,12 +548,12 @@ html:not(.mobile) #button-mq:hover {
 
 /* Make it so tapping buttons doesn't trigger answering the card on mobile */
 .dummy-btn {
-	background: none !important;
-	color: inherit !important;
-	border: none !important;
-	padding: 0 !important;
-	font: inherit !important;
-	cursor: inherit !important;
-	outline: inherit !important;
+  background: none !important;
+  color: inherit !important;
+  border: none !important;
+  padding: 0 !important;
+  font: inherit !important;
+  cursor: inherit !important;
+  outline: inherit !important;
   filter: none !important;
 }
