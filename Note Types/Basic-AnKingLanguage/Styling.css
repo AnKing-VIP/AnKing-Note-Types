@@ -248,12 +248,22 @@ ul {
   text-align: left;
 }
 
+ul ul {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 ol {
   padding-left: 40px;
   max-width: 50%;
   margin-left: auto;
   margin-right: auto;
   text-align: left;
+}
+
+ol ol {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .mobile ul {
