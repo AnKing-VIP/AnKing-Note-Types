@@ -266,25 +266,23 @@ img:active {
 /* ~~~~~~~~~ LISTS ~~~~~~~~~ */
 ul {
   padding-left: 40px;
-  display: inline-block;
   max-width: 50%;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   text-align: left;
 }
 ol {
   padding-left: 40px;
-  display: inline-block;
   max-width: 50%;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   text-align: left;
 }
 .mobile ul {
-  display: inline-block;
   text-align: left; 
   max-width: 100%;
 }
 .mobile ol {
-  display: inline-block;
   text-align: left; 
   max-width: 100%;
 }
@@ -301,7 +299,7 @@ ol {
 
 /*Max image width for resize images in editor add-on */
 .card [class^=ui-] img {
-  max-width: 100% !important;
+  max-width: 10% !important;
 }
 
 /*Compatibility with resize images in editor add-on */
@@ -345,7 +343,7 @@ ol {
 
 /* ~~~~~~~~~ TAGS ~~~~~~~~~ */
 /* Container To Fix Tags At Bottom Of Screen */
-#tags-container{
+#tags-container {
   position: fixed;
   bottom: .5px;
   width: 100%;
