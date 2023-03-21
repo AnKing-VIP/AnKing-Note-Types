@@ -272,6 +272,7 @@ ul {
   text-align: left;
 }
 ul ul {
+  max-width: 100%;
   margin-left: 0;
   margin-right: 0;
 }
