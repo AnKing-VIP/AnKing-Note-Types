@@ -4,8 +4,9 @@
 var ButtonShortcuts = {
     "Personal Notes" : "Alt + 1",
     "Missed Questions" : "Alt + 2",
-    "Textbook" : "Alt + 3",
-    "Additional Resources" : "Alt + 4",
+    "VisualDx" : "Alt + 3"
+    "Textbook" : "Alt + 4",
+    "Additional Resources" : "Alt + 5",
 }
 var ToggleAllButtonsShortcut = "'"
 var ToggleNextButtonShortcut = "H";
@@ -55,6 +56,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <%- include("src/components/hintButton.ejs", {name: "Missed Questions", short:"mq", hintId: "missed" }) %>
 
+<%- include("src/components/hintButton.ejs", {name: "VisualDx", short:"vd", hintId: "visualdx", icon: "_dermki.png" }) %>
+
 <!-- Extra field -->
 {{#Extra}}<p></p>
 <div id="extra">{{edit:Extra}}</div>
@@ -64,6 +67,11 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 {{#DermNet}}<p></p>
 <div id="dermnet">{{edit:DermNet}}</div><a href="https://dermnetnz.org" style="font-size:6px; font-style:italic;">Image provided courtesy of DermNetNZ.org</a>
 <br>{{/DermNet}}
+
+<!-- Full Spectrum of Dermatology field - images from https://jddonline.com/project-atlas -->
+{{#Full Spectrum of Dermatology}}<p></p>
+<div id="fullspectrum">{{edit:Full Spectrum of Dermatology}}</div><a href="https://jddonline.com/project-atlas" style="font-size:6px; font-style:italic;">Image source: The Full Spectrum of Dermatology: A Diverse and Inclusive Atlas</a>
+<br>{{/Full Spectrum of Dermatology}}
 
 <%- include("src/components/hintButton.ejs", {name: "Textbook", short:"tx", hintId: "textbook", icon: "_dermki.png" }) %>
 
