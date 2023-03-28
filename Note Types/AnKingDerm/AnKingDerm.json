@@ -64,8 +64,28 @@
             "media": []
         },
         {
+            "name": "VisualDx",
+            "ord": 5,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "meta": null,
+            "media": []
+        },
+        {
             "name": "DermNet",
-            "ord": 4,
+            "ord": 5,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "meta": null,
+            "media": []
+        },
+        {
+            "name": "Full Spectrum of Dermatology",
+            "ord": 6,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
@@ -75,7 +95,7 @@
         },
         {
             "name": "Textbook",
-            "ord": 5,
+            "ord": 7,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
@@ -85,7 +105,7 @@
         },
         {
             "name": "Additional Resources",
-            "ord": 6,
+            "ord": 8,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
@@ -96,7 +116,7 @@
         },
         {
             "name": "One by one",
-            "ord": 7,
+            "ord": 9,
             "sticky": false,
             "rtl": false,
             "font": "Arial",

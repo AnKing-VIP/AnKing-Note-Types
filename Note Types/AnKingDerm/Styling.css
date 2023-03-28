@@ -529,3 +529,7 @@ html:not(.mobile) #button-tx:hover {
 html:not(.mobile) #button-ar:hover {
   background-color: #FFF1B8 !important;
 }
+
+html:not(.mobile) #button-vd:hover {
+  background-color: #3c76fd !important;
+}
