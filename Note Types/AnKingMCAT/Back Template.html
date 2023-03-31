@@ -1,4 +1,4 @@
-<!-- version 3be3b56 -->
+<!-- version 281f23f -->
 <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -372,6 +372,19 @@ replace the arrows/dashes from the statement below with double curly brackets-->
       if (extra) {
         extra.classList.add("hidden");
       }
+      for (const [field, autoReveal] of Object.entries(ButtonAutoReveal)) {
+        if (autoReveal) {
+          const container = document.querySelector(`[data-name="${field}"]`)
+          if (container) {
+            const link = container.getElementsByTagName("a")[0]
+            const button = container.getElementsByTagName("button")[0]
+            const hint = container.getElementsByTagName("div")[0]
+            button.classList.remove("expanded-button")
+            hint.style.display = "none"
+            link.style.display = ""
+          }
+        }
+      }
     }
     
     const revealCloze = function(cloze) {
@@ -477,6 +490,20 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         const extra = document.getElementById("extra")
         if (extra) {
           extra.classList.remove("hidden")
+        }
+        // Also reveal autoReveal fields
+        for (const [field, autoReveal] of Object.entries(ButtonAutoReveal)) {
+          if (autoReveal) {
+            const container = document.querySelector(`[data-name="${field}"]`)
+            if (container) {
+              const link = container.getElementsByTagName("a")[0]
+              const button = container.getElementsByTagName("button")[0]
+              const hint = container.getElementsByTagName("div")[0]
+              button.classList.add("expanded-button")
+              hint.style.display = "block"
+              link.style.display = "none"
+            }
+          }
         }
       }
     }
