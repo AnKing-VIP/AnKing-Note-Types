@@ -65,7 +65,7 @@
         },
         {
             "name": "VisualDx",
-            "ord": 5,
+            "ord": 4,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
