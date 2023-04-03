@@ -64,7 +64,7 @@
             "media": []
         },
         {
-            "name": "VisualDx",
+            "name": "DermPath",
             "ord": 4,
             "sticky": false,
             "rtl": false,
@@ -74,7 +74,7 @@
             "media": []
         },
         {
-            "name": "DermNet",
+            "name": "Dermoscopy",
             "ord": 5,
             "sticky": false,
             "rtl": false,
@@ -84,7 +84,7 @@
             "media": []
         },
         {
-            "name": "Full Spectrum of Dermatology",
+            "name": "VisualDx",
             "ord": 6,
             "sticky": false,
             "rtl": false,
@@ -94,8 +94,28 @@
             "media": []
         },
         {
-            "name": "Textbook",
+            "name": "DermNet",
             "ord": 7,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "meta": null,
+            "media": []
+        },
+        {
+            "name": "Full Spectrum of Dermatology",
+            "ord": 8,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "meta": null,
+            "media": []
+        },
+        {
+            "name": "Textbook",
+            "ord": 9,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
@@ -105,7 +125,7 @@
         },
         {
             "name": "Additional Resources",
-            "ord": 8,
+            "ord": 10,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
@@ -116,7 +136,7 @@
         },
         {
             "name": "One by one",
-            "ord": 9,
+            "ord": 11,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
