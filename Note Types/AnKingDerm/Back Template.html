@@ -1,13 +1,15 @@
-<!-- version 053b105 -->
+<!-- version 16d4750 -->
 <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
 var ButtonShortcuts = {
     "Personal Notes" : "Alt + 1",
     "Missed Questions" : "Alt + 2",
-    "VisualDx" : "Alt + 3",
-    "Textbook" : "Alt + 4",
-    "Additional Resources" : "Alt + 5",
+    "DermPath": "Alt + 3",
+    "Dermoscopy": "Alt + 4"
+    "VisualDx" : "Alt + 5",
+    "Textbook" : "Alt + 6",
+    "Additional Resources" : "Alt + 7",
 }
 var ToggleAllButtonsShortcut = "'"
 var ToggleNextButtonShortcut = "H";
@@ -15,6 +17,8 @@ var ToggleNextButtonShortcut = "H";
 var ButtonAutoReveal = {
     "Personal Notes" : false,
     "Missed Questions" : false,
+    "DermPath": false,
+    "Dermoscopy": false,
     "VisualDx" : false,
     "Textbook" : false,
     "Additional Resources" : false,
@@ -121,6 +125,26 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="missed" class="hints" style="display: none;">{{edit:Missed Questions}}</div>
 </span>
 {{/Missed Questions}}
+
+{{#DermPath}}
+<span id = "hint-dp" class="hintBtn" data-name="DermPath">
+  <a href="#" class="hint" onclick="toggleHintBtn('hint-dp')"></a>
+  <button id="button-dp" class="button-general" onclick="toggleHintBtn('hint-dp')">
+    <img src="_dermki_round.png" style="height:12px;"> DermPath
+  </button>
+  <div dir="auto" id="dermpath" class="hints" style="display: none;">{{edit:DermPath}}</div>
+</span>
+{{/DermPath}}
+
+{{#Dermoscopy}}
+<span id = "hint-ds" class="hintBtn" data-name="Dermoscopy">
+  <a href="#" class="hint" onclick="toggleHintBtn('hint-ds')"></a>
+  <button id="button-ds" class="button-general" onclick="toggleHintBtn('hint-ds')">
+    <img src="_dermki_round.png" style="height:12px;"> Dermoscopy
+  </button>
+  <div dir="auto" id="dermoscopy" class="hints" style="display: none;">{{edit:Dermoscopy}}</div>
+</span>
+{{/Dermoscopy}}
 
 {{#VisualDx}}
 <span id = "hint-vd" class="hintBtn" data-name="VisualDx">
