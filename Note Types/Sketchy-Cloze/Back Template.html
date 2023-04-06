@@ -1,26 +1,21 @@
-<!-- version 16d4750 -->
-<script>
-// ##############  OCCLUSION SHORTCUTS  ##############
-var RevealIncrementalShortcut = "N";
-var ToggleAllOcclusionsShortcut = ",";
-
-// ##############  BUTTON SETTINGS  ##############
-// All buttons will also open with "H" if using the Hint Hotkeys add-on 
+<!-- version 64ca528 -->
+ <script>
+// ##############  BUTTON REVEAL SHORTCUTS  ##############
+// All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
 var ButtonShortcuts = {
-    "Extra": "Alt + 1",
-    "Personal Notes": "Alt + 2",
-    "Missed Questions": "Alt + 3",
+    "Personal Notes" : "Alt + 1",
+    "Missed Questions" : "Alt + 2"
 }
-var ToggleAllButtonsShortcut = "'"
 
-// change values from false to true to have the fields revealed from the start
+var ToggleAllButtonsShortcut = "'"
+var ToggleNextButtonShortcut = "H";
+// ##############  SHOW BUTTON HINTS AUTOMATICALLY  ##############
 var ButtonAutoReveal = {
-    "Extra": false,
     "Personal Notes": false,
     "Missed Questions": false,
 }
 
-var ScrollToButton = true
+var ScrollToButton = true;
 
 // ##############  TAG SHORTCUT  ##############
 var toggleTagsShortcut = "C";
@@ -32,44 +27,78 @@ var tagID = "XXXYYYZZZ"
 
 var numTagLevelsToShow = 0;
 
+// ##############  CLOZE ONE BY ONE  ##############
+var revealNextShortcut = "N" 
+var revealNextWordShortcut = "Shift + N"
+var toggleAllShortcut = ","
+
+// Changes how "Reveal Next" and clicking behaves. Either "cloze" or "word".
+// "word" reveals word by word. 
+var revealNextClozeMode = "cloze" 
+
+// What cloze is hidden with
+var clozeHider = (elem) => "👑"
+/* 
+You can replace the above line with below examples. '█' or '_' works well for hiding clozes.
+
+// Fixed length:
+var clozeHider = (elem) => "███"
+// Replace each character with "█":
+var clozeHider = (elem) => "█".repeat(elem.textContent.length)
+// Show whitespaces:
+var clozeHider = (elem) => "[" + elem.textContent.split(" ").map((t) => "█".repeat(t.length)).join(" ") + "]"
+// Color-filled box (doesn't hide images):
+var clozeHider = (elem) => `<span style="background-color: red; color: transparent;">${elem.innerHTML}</span>`
+*/
+
 </script>
 
+<div class="clozefield" id="text">{{cloze:Text}}</div>
 
-<div id="extras" hidden>{{I0}}</div>
-<div class="header">{{Header}}</div>
-<button class="dummy-btn">
-    <div class="io">{{Image}}</div>
-</button>
-<br>
-<button id="button-reveal-next" class="button-general">Reveal Next</button>
-<button id="button-toggle-all" class="button-general">Toggle All</button>
-<br>
-<div class="btn-spacer" hidden></div>
+<!-- ##############  EDIT CLOZE DURING REVIEW  ##############
+			-change below (not above) to  "edit:cloze:Text" for editable field, 
+				but be sure to have the correct add-on installed-->
 
-<!-- AUTOFLIP BACK SCRIPT -->
+<div class="editcloze" id="text">{{edit:cloze:Text}}</div>
+
+<br>
+
+<!-- ##############  TEXT-TO-SPEECH ##############
+replace the arrows/dashes from the statement below with double curly brackets-->
+
+<!--tts en_US voices=Apple_Samantha,Microsoft_Zira speed=1.4:cloze-only:Text-->
+
+
+<hr>
+
+<!-- BUTTON FIELDS -->
+<!-- ClOZE ONE BY ONE BUTTONS -->
+
+<div id="one-by-one" style="display: none;">{{One by one}}</div>
+
+<div id="1by1-btns" style="display: none;">
+  <button id="button-reveal-next" class="button-general" onclick="revealNextCloze()">Reveal Next</button>
+  <button id="button-toggle-all" class="button-general" onclick="toggleAllCloze()">Toggle All</button>
+</div>
+
 <script>
-    // autoflip hides card in front template
-    document.getElementById("qa").style.removeProperty("display")
-</script>
-
-<!-- TOGGLE HINT BUTTONS -->
-{{#Extra}}
-<span id = "hint-ex" class="hintBtn" data-name="Extra">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-ex')"></a>
-  <button id="button-ex" class="button-general" onclick="toggleHintBtn('hint-ex')">
-    <img src="_PhyseoRoundSmall.png"> Extra
-  </button>
-  <div dir="auto" id="extra" class="hints" style="display: none;">{{edit:Extra}}</div>
-</span>
-{{/Extra}}
+  (() => {
+    let clozeOneByOneEnabled = true;
+      clozeOneByOneEnabled = document.getElementById("one-by-one").textContent !== "";
+    
+    if (clozeOneByOneEnabled) {
+      document.getElementById("1by1-btns").style.display = "block";
+    }
+    })()
+  </script>
 
 {{#Personal Notes}}
 <span id = "hint-ln" class="hintBtn" data-name="Personal Notes">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-ln')"></a>
   <button id="button-ln" class="button-general" onclick="toggleHintBtn('hint-ln')">
-    <img src="_PhyseoRoundSmall.png"> Personal Notes
+    <img src="_Sketchy_White_logo.png" style="height:12px;"> Personal Notes
   </button>
-  <div dir="auto" id="personal-notes" class="hints" style="display: none;">{{edit:Personal Notes}}</div>
+  <div dir="auto" id="notes" class="hints" style="display: none;">{{edit:Personal Notes}}</div>
 </span>
 {{/Personal Notes}}
 
@@ -77,18 +106,31 @@ var numTagLevelsToShow = 0;
 <span id = "hint-mq" class="hintBtn" data-name="Missed Questions">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-mq')"></a>
   <button id="button-mq" class="button-general" onclick="toggleHintBtn('hint-mq')">
-    <img src="_PhyseoRoundSmall.png"> Missed Questions
+    <img src="_Sketchy_White_logo.png" style="height:12px;"> Missed Questions
   </button>
-  <div dir="auto" id="missed-questions" class="hints" style="display: none;">{{edit:Missed Questions}}</div>
+  <div dir="auto" id="missed" class="hints" style="display: none;">{{edit:Missed Questions}}</div>
 </span>
 {{/Missed Questions}}
 
+<br>
+<!-- Extra field -->
+{{#Extra}}<p></p>
+<div id="extra">{{edit:Extra}}</div>
+<br>{{/Extra}}
 
-<!-- PHYSEO HYPERLINK IMAGE -->
-<a href="https://www.physeo.com"><img src="_PhyseoRoundLogo.png" alt="Physeo" id="pic"></a>
+<div id="imagefield" class="row">
+    <div class="column1">
+        {{#Thumbnail}}{{Thumbnail}}{{/Thumbnail}}
+    </div>
+    <div class="column2">
+        {{#Link}}{{Link}}{{/Link}}
+    </div>
+</div>
 
-<div id="anki-am" data-name="Assets by ASSET MANAGER" data-version="2.1">
-    
+
+<!-- SKETCHY HYPERLINK IMAGE -->
+<a href="https://www.sketchy.com/explore/mcat?utm_medium=affiliate&utm_source=ankideck&utm_campaign=mcat-deck-global-logo&utm_term=anking"><img src="_Sketchy_White_logo.png" alt="Sketchy" id="pic"></a>
+
 <!-- NOT-PERSISTING EVENT LISTENER -->
 <script>
   if (window.ankingEventListeners) {
@@ -153,55 +195,6 @@ var numTagLevelsToShow = 0;
   }
 </script>
 
-<!-- CLICKABLE COLORFUL TAGS -->
-{{#Tags}}
-<div id="tags-container">{{clickable::Tags}}</div>
-<script>
-  var tagContainer = document.getElementById("tags-container")
-  if (tagContainer.childElementCount == 0) {
-    var tagList = tagContainer.innerHTML.split(" ");
-    var kbdList = [];
-    var newTagContent = document.createElement("div");
-
-    for (var i = 0; i < tagList.length; i++) {
-      var newTag = document.createElement("kbd");
-      var tag = tagList[i];
-      // numTagLevelsToShow == 0 means the whole tag should be shown
-      if(numTagLevelsToShow != 0){
-        tag = tag.split('::').slice(-numTagLevelsToShow).join("::");
-      }
-      newTag.innerHTML = tag;
-      newTagContent.append(newTag)
-    }
-    tagContainer.innerHTML = newTagContent.innerHTML;
-    tagContainer.style.cursor = "default";
-  }
-  if (tagContainer.innerHTML.indexOf(tagID) != -1) {
-    tagContainer.style.backgroundColor = "rgba(251,11,11,.15)";
-  }
-
-  function showtags() {
-    var tagContainerShortcut = document.getElementById("tags-container");
-
-    if (tagContainerShortcut.style.display
-      === "none") {
-      tagContainerShortcut.style.display = "block";
-    } else {
-      tagContainerShortcut.style.display =
-        "none";
-    }
-  }
-  
-  var isShortcut = shortcutMatcher(toggleTagsShortcut)
-  ankingAddEventListener('keyup', function (e) {
-      if (isShortcut(e)) {
-          showtags();
-      }
-  });
-
-</script>
-{{/Tags}}
-    
 <!-- HINT BUTTONS SETUP -->
 <script>
     (function() {
@@ -280,167 +273,533 @@ var numTagLevelsToShow = 0;
     })()
     </script>
 
-
-<!-- INCREMENTAL IMAGE OCCLUSION SCRIPT -->
+<!-- AUTOFLIP BACK SCRIPT -->
 <script>
-  document.getElementById("qa").style.removeProperty("display")
+    // autoflip hides card in front template
+    document.getElementById("qa").style.removeProperty("display")
 </script>
-<script data-name="Incremental IO" data-version="v0.1">
-  /* Script by Matthias Metelka @kleinerpirat */  
 
-  function setupIncrementalIO() {
-    var observer = new MutationObserver(() => {
-      document.getElementById("button-toggle-all").addEventListener("click", toggleAll)
-      document.getElementById("button-reveal-next").addEventListener("click", toggleNext)
-      
-      let rect = document.querySelector(".closet-rect.is-active")
-      if (rect) {
-        activate(rect)
-        observer.disconnect()
-        globalThis.AnkingIORects = document.querySelectorAll(".closet-rect.is-active")
-        for (let rect of globalThis.AnkingIORects) {
-          rect.addEventListener("click", reveal)
+<!-- CLOZE ONE BY ONE SCRIPT -->
+<style>
+  .cloze-replacer:hover {
+    cursor: pointer;
+  }
+  .cloze-hidden {
+    display: none;
+  }
+  .cloze-replacer .hidden {
+    display: none;
+  }
+  .cloze-hint {
+    color: #009400 !important;
+  }
+  #extra.hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  (function() {
+    var clozeOneByOneEnabled = true;
+      clozeOneByOneEnabled = document.getElementById("one-by-one").textContent !== "";
+
+    if (!clozeOneByOneEnabled) {
+      return
+    }
+
+    // Needed for amboss to recognize first word in .cloze-hidden
+    const CLOZE_REPLACER_SEP = "<span class='hidden'> </span>"
+
+    const hideAllCloze = function(initial) {
+      let clozes = document.getElementsByClassName("cloze")
+      let count = 0 // hidden cloze count
+      for (const cloze of clozes) {
+        const existingHidden = cloze.getElementsByClassName("cloze-hidden")[0]
+        if (existingHidden) {
+          revealCloze(cloze);
         }
-        if (!globalThis.AnKingIOListening) {
-          let isRevealIncShortcut = shortcutMatcher(RevealIncrementalShortcut)
-          let isToggleAllShortcut = shortcutMatcher(ToggleAllOcclusionsShortcut)
-          document.addEventListener("keydown", (evt) => {
-            if (evt.repeat) return
-            evt = evt || window.event
-            if (isRevealIncShortcut(evt)) {
-              toggleNext()
-            } else if (isToggleAllShortcut(evt)) {
-              toggleAll()
-            }
-          })
-          globalThis.AnKingIOListening = true
+        if (cloze.offsetWidth === 0) {
+          continue
         }
-        
-        let buttons = document.getElementsByClassName("extra-btn")
-        function toggle() {
-          if (!this.classList.contains("uncollapsed")) {
-            this.nextElementSibling.classList.remove("hidden")
-            this.classList.add("uncollapsed")
-          }
-          else {
-            this.nextElementSibling.classList.add("hidden")
-            this.classList.remove("uncollapsed")
-          }
+        const clozeReplacer = document.createElement("span")
+        const clozeHidden = document.createElement("span")
+        clozeReplacer.classList.add("cloze-replacer")
+        clozeHidden.classList.add("cloze-hidden")
+        while (cloze.childNodes.length > 0) {
+          clozeHidden.appendChild(cloze.childNodes[0])
         }
-        for (let button of buttons) {
-          button.addEventListener("click", toggle)
+        cloze.appendChild(clozeReplacer)
+        cloze.appendChild(clozeHidden)
+
+        if (window.clozeHints && window.clozeHints[count]) {
+          clozeReplacer.classList.add("cloze-hint")
+          clozeReplacer.innerHTML = window.clozeHints[count] + CLOZE_REPLACER_SEP
+        } else {
+          clozeReplacer.innerHTML = clozeHider(cloze) + CLOZE_REPLACER_SEP
         }
-        
+        count += 1
+        if (initial) {
+          cloze.addEventListener("touchend", revealClozeClicked)
+          cloze.addEventListener("click", revealClozeClicked)
+        }
       }
-    })
-    observer.observe(document.getElementById("qa"), {
-      childList: true,
-      subtree: true
-    })
-    
-    
-    window.toggleNext = function() {
-      let active = document.querySelector(".closet-rect.is-highlighted")
-      if (active) incrementalReveal.call(active)
+      const extra = document.getElementById("extra");
+      if (extra) {
+        extra.classList.add("hidden");
+      }
+      for (const [field, autoReveal] of Object.entries(ButtonAutoReveal)) {
+        if (autoReveal) {
+          const container = document.querySelector(`[data-name="${field}"]`)
+          if (container) {
+            const link = container.getElementsByTagName("a")[0]
+            const button = container.getElementsByTagName("button")[0]
+            const hint = container.getElementsByTagName("div")[0]
+            button.classList.remove("expanded-button")
+            hint.style.display = "none"
+            link.style.display = ""
+          }
+        }
+      }
     }
     
-    window.toggleAll = function() {
-      let allRevealed = true
-      for (let rect of globalThis.AnkingIORects) {
-        if (!rect.classList.contains("revealed")) allRevealed = false
+    const revealCloze = function(cloze) {
+      const clozeReplacer = cloze.getElementsByClassName("cloze-replacer")[0]
+      const clozeHidden = cloze.getElementsByClassName("cloze-hidden")[0]
+      if (!clozeReplacer || !clozeHidden) return;
+
+      cloze.removeChild(clozeReplacer)
+      cloze.removeChild(clozeHidden)
+      while (clozeHidden.childNodes.length > 0) {
+        cloze.appendChild(clozeHidden.childNodes[0])
       }
-      if (allRevealed) {
-        for (let rect of globalThis.AnkingIORects) {
-          hide.call(rect)
-        }
-        let newActiveRect = document.querySelector(".closet-rect.is-active")
-        activate(newActiveRect)
+      maybeRevealExtraField()
+    }
+
+    const revealClozeWord = function(cloze) {
+      const clozeReplacer = cloze.getElementsByClassName("cloze-replacer")[0]
+      const clozeHidden = cloze.getElementsByClassName("cloze-hidden")[0]
+      if (!clozeReplacer || !clozeHidden) return;
+
+      let range = new Range()
+      range.setStart(clozeHidden, 0)
+      const foundSpace = setRangeEnd(range, clozeHidden, "beforeFirstSpace")
+      if (!foundSpace) {
+        range.setEnd(clozeHidden, clozeHidden.childNodes.length)
+      }
+      let fragment = range.extractContents()
+      cloze.insertBefore(fragment, clozeReplacer)
+      // Extract whitespaces after word
+      range = new Range()
+      range.setStart(clozeHidden, 0)
+      const foundWord = setRangeEnd(range, clozeHidden, "beforeFirstChar")
+      if (!foundWord) {
+        range.setEnd(clozeHidden, clozeHidden.childNodes.length)
+      }    
+      fragment = range.extractContents();
+      cloze.insertBefore(fragment, clozeReplacer)
+      if (!foundWord) {
+        cloze.removeChild(clozeHidden)
+        cloze.removeChild(clozeReplacer)
+        maybeRevealExtraField()
+        return
+      }
+      clozeReplacer.innerHTML = clozeHider(clozeHidden) + CLOZE_REPLACER_SEP
+      if (clozeReplacer.classList.contains("cloze-hint")) [
+        clozeReplacer.classList.remove("cloze-hint")
+      ]
+      maybeRevealExtraField()
+    }
+
+    const revealNextClozeOf = (type) => {
+      const nextHidden = document.querySelector(".cloze-hidden")
+      if(!nextHidden) {
+          return
+      } 
+      const cloze = clozeElOfClozeHidden(nextHidden);
+      if (type === "word") {
+          revealClozeWord(cloze)
+      } else if (type === "cloze") {
+          revealCloze(cloze)
       } else {
-        for (let rect of globalThis.AnkingIORects) {
-          reveal.call(rect)
+        console.error("Invalid type: " + type)
+      }
+    }
+
+    const revealClozeClicked = function(ev) {
+      let elem = ev.currentTarget
+      if (!ev.altKey && (revealNextClozeMode !== "word")) {
+        revealCloze(elem)
+      } else {
+        revealClozeWord(elem)
+      }
+      ev.stopPropagation()
+      ev.preventDefault()
+    }
+
+    window.revealNextCloze = function() {
+      revealNextClozeOf(revealNextClozeMode)
+    }
+
+    window.toggleAllCloze = function() {
+      let elems = document.querySelectorAll(".cloze-hidden")
+      if(elems.length > 0) {
+        for (const elem of elems) {
+          const cloze = clozeElOfClozeHidden(elem)
+          revealCloze(cloze)
+        }
+      } else {
+        hideAllCloze(initial=false)
+      }
+    }
+
+    const clozeElOfClozeHidden = (cloze) => {
+      while (!cloze.classList.contains("cloze")) {
+        cloze = cloze.parentElement;
+      }
+      return cloze;
+    }
+
+    const maybeRevealExtraField = () => {
+      let elems = document.querySelectorAll(".cloze-hidden")
+      if (elems.length == 0) {
+        const extra = document.getElementById("extra")
+        if (extra) {
+          extra.classList.remove("hidden")
+        }
+        // Also reveal autoReveal fields
+        for (const [field, autoReveal] of Object.entries(ButtonAutoReveal)) {
+          if (autoReveal) {
+            const container = document.querySelector(`[data-name="${field}"]`)
+            if (container) {
+              const link = container.getElementsByTagName("a")[0]
+              const button = container.getElementsByTagName("button")[0]
+              const hint = container.getElementsByTagName("div")[0]
+              button.classList.add("expanded-button")
+              hint.style.display = "block"
+              link.style.display = "none"
+            }
+          }
         }
       }
     }
-    
-    function incrementalReveal() {
-      reveal.call(this)
-      let next = this.nextElementSibling
+
+    /**
+     * mode: 'beforeFirstSpace' or 'beforeFirstChar'
+     * Return `true` if it exists and setEnd() was called, otherwise `false`
+     */
+    const setRangeEnd = function(range, node, mode) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const regex = mode === 'beforeFirstSpace' ? /\s/ : /\S/
+        const match = node.textContent.match(regex)
+        if (match) {
+          if (match.index === 0) {
+            while (node.previousSibling === null) {
+              node = node.parentElement
+            }
+            range.setEndBefore(node)
+          } else {
+            range.setEnd(node, match.index);
+          }
+          return true;
+        } else {
+          return false;
+        }
+      } else if (mode === 'beforeFirstChar' && isCharNode(node)) {
+        range.setEndBefore(node)
+        return true
+      } else if (!ignoreSpaceInNode(node)) {
+        for (const child of node.childNodes) {
+          if (setRangeEnd(range, child, mode)) {
+            return true;
+          }
+        }
+        return false;
+      }
+    }
+
+    const ignoreSpaceInNode = function (node) {
+      return node.tagName === "MJX-ASSISTIVE-MML"
+    }
+
+    const isCharNode = function(node) {
+      return ["IMG", "MJX-CONTAINER"].includes(node.tagName)
+    }
+
+    hideAllCloze(initial=true)
+
+    let isShowNextShortcut = shortcutMatcher(window.revealNextShortcut)
+    let isShowWordShortcut = shortcutMatcher(window.revealNextWordShortcut)
+    let isToggleAllShortcut = shortcutMatcher(window.toggleAllShortcut)
+    ankingAddEventListener("keydown", (ev) => {
+      let next = isShowNextShortcut(ev)
+      let word = isShowWordShortcut(ev)
+      let all = isToggleAllShortcut(ev)
       if (next) {
-        while (next.classList.contains("revealed") && next.nextElementSibling) {
-          next = next.nextElementSibling
-        }
-        if (!next.classList.contains("revealed")) activate(next)
+        revealNextClozeOf("cloze")
+      } else if (word) {
+        revealNextClozeOf("word")
+      } else if (all) {
+        toggleAllCloze()
+      } else {
+        return;
       }
-      else if (document.getElementById("extra-content")) {
-        document.getElementById("extra-content").classList.remove("hidden")
-      }
-    }
-    
-    function reveal() {
-      this.classList.remove("is-highlighted")
-      this.classList.add("revealed")
-    }
-    
-    function hide() {
-      this.classList.remove("revealed")
-      this.removeEventListener("click", incrementalReveal)
-    }
-    
-    function activate(rect) {
-      rect.classList.add("is-highlighted")
-      rect.addEventListener("click", incrementalReveal)
-    }
-    
-  }
-  setupIncrementalIO()
+      ev.stopPropagation()
+      ev.preventDefault()
+    });
+  })()
 </script>
 
-<script data-name="Closet Setup" data-version="v0.1">
-  function closetUserLogic(closet, preset, chooseMemory) {
-    const elements = closet.template.anki.getQaChildNodes();
-    const memory = chooseMemory("closet__1");
-    const filterManager = closet.FilterManager.make(preset, memory.map);
-    
-    const output = [[elements, memory, filterManager]];
-    
-    filterManager.install(
-      closet.recipes.shuffle({ tagname: "mix" }),
-      closet.recipes.order({ tagname: "ord" }),
-      
-      closet.flashcard.recipes.cloze({
-        tagname: "c",
-        defaultBehavior: closet.flashcard.behaviors.Show,
-      }),
-      closet.flashcard.recipes.multipleChoice({
-        tagname: "mc",
-        defaultBehavior: closet.flashcard.behaviors.Show,
-      }),
-      closet.flashcard.recipes.sort({
-        tagname: "sort",
-        defaultBehavior: closet.flashcard.behaviors.Show,
-      }),
-      closet.browser.recipes.rect({
-        tagname: "rect",
-        defaultBehavior: closet.flashcard.behaviors.Hide,
-      }),
-    );;
-    return output;
+<!-- CLICKABLE COLORFUL TAGS -->
+{{#Tags}}
+<div id="tags-container">{{clickable::Tags}}</div>
+<script>
+  var tagContainer = document.getElementById("tags-container")
+  if (tagContainer.childElementCount == 0) {
+    var tagList = tagContainer.innerHTML.split(" ");
+    var kbdList = [];
+    var newTagContent = document.createElement("div");
+
+    for (var i = 0; i < tagList.length; i++) {
+      var newTag = document.createElement("kbd");
+      var tag = tagList[i];
+      // numTagLevelsToShow == 0 means the whole tag should be shown
+      if(numTagLevelsToShow != 0){
+        tag = tag.split('::').slice(-numTagLevelsToShow).join("::");
+      }
+      newTag.innerHTML = tag;
+      newTagContent.append(newTag)
+    }
+    tagContainer.innerHTML = newTagContent.innerHTML;
+    tagContainer.style.cursor = "default";
+  }
+  if (tagContainer.innerHTML.indexOf(tagID) != -1) {
+    tagContainer.style.backgroundColor = "rgba(251,11,11,.15)";
+  }
+
+  function showtags() {
+    var tagContainerShortcut = document.getElementById("tags-container");
+
+    if (tagContainerShortcut.style.display
+      === "none") {
+      tagContainerShortcut.style.display = "block";
+    } else {
+      tagContainerShortcut.style.display =
+        "none";
+    }
   }
   
-  var getAnkiPrefix = () => globalThis.ankiPlatform === "desktop" ? "" : globalThis.AnkiDroidJS ? "https://appassets.androidplatform.net" : ".";
-  
-  var closetPromise = import(`${getAnkiPrefix()}/__closet-0.6.1.js`);
-  closetPromise
-  .then(
-    ({ closet }) => closet.template.anki.initialize(closet, closetUserLogic, "{{Card}}", "{{Tags}}", "back"),
-    (error) => console.log("An error occured while loading Closet:", error))
-  .catch((error) => console.log("An error occured while executing Closet:", error));
-  
-  if (globalThis.onUpdateHook) {
-    onUpdateHook.push(() => closetPromise);
-  }
+  var isShortcut = shortcutMatcher(toggleTagsShortcut)
+  ankingAddEventListener('keyup', function (e) {
+      if (isShortcut(e)) {
+          showtags();
+      }
+  });
+
 </script>
+{{/Tags}}
+
+<!-- WIKIPEDIA SEARCHES -->
+<div id="popup-container">
+  <button id="close-popup-btn" onclick="closePopup(true)">&times;</button>
+  <a id="open-wiki-btn" href="">&#8618;</a>
+  <div id="tc"></div>
+  <div id="fadebottom_v"></div>
+  <div id="ic"><img id="popup-image"></div>
 </div>
+<style>
+  #tc {
+    color: #222222;
+    position: absolute;
+    top: 16px;
+    margin: 0px;
+    left: 15px;
+    text-decoration: none;
+    height: 320px;
+    overflow: hidden;
+    overflow-y: scroll;
+    white-space: pre-wrap;
+    width: 300px;
+  }
+  
+  #tc p {
+    margin: 0px;
+  }
+  
+  #tc::-webkit-scrollbar {
+    display: none;
+  }
+  
+  #fadebottom_v {
+    height: 30px;
+    width: 300px;
+    background: -webkit-linear-gradient(270deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 1));
+    z-index: 111;
+    position: absolute;
+    bottom: 0px;
+    left: 15px;
+  }
+  
+  #hc {
+    color: #666;
+    font-weight: bold;
+  }
+  
+  #ic {
+    right: 0px;
+    top: 30px;
+    position: absolute;
+  }
+  
+  #ic img {
+    width: 160px;
+    height: auto;
+    object-fit: cover;
+    overflow: hidden;
+  }
+  
+  #popup-image {
+    width: 140px;
+    height: auto;
+  }
+  
+  #popup-container {
+    background: #fff;
+    position: absolute;
+    bottom: 30px;
+    right: 10px;
+    z-index: 110;
+    -webkit-box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+    padding: 0;
+    display: none;
+    font-size: 17px;
+    line-height: 20px;
+    border-radius: 2px;
+    width: 480px;
+    height: 340px;
+    overflow: hidden;
+    font-family: Arial;
+    text-align: left;
+    border: 1px solid #d0d0d0;
+    border-radius: 5px;
+  }
+  
+  #close-popup-btn {
+    position: absolute;
+    top: 1px;
+    right: 5px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+    outline: none;
+    text-align: right;
+    z-index: 112;
+  }
+  
+  #open-wiki-btn {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    width: 15px;
+    height: 32px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: #222222;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 17px;
+    outline: none;
+    text-align: left;
+    z-index: 112;
+  }
+</style>
+
+<script>
+  function getSummaryFor(word) {
+    word = word.replace(/^[\.,\/#\!$%\^&\*;:{}=\-_`~() \'\s]+|[\.,\/#\!$%\^&\*;:{}=\-_`~()\'\s]+$/g, "");
+    var pc = document.getElementById("popup-container");
+    var hc = document.getElementById("hc");
+    var tc = document.getElementById("tc");
+    var ic = document.getElementById("ic");
+    var imgelem = document.getElementById("popup-image");
+    imgelem.src = "";
+    var shortsum = "";
+    
+    fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + word)
+    .then(function (response) { return response.json(); })
+    .then(function (response) {
+      shortsum = response.description;
+      shortsum = shortsum.replace(/(Disambiguation.*)/g, "Disambiguation");
+      tc.innerHTML = "<span id='hc'>" + capfl(shortsum) + "</span>" + "\n" + response.extract_html + "\n";
+      tc.style.width = "420px";
+      if (response.extract_html && !response.extract.endsWith("to:")) {
+        pc.style.display = "block";
+        document.getElementById("open-wiki-btn").href = response.content_urls.desktop.page;
+      } else { 
+        pc.style.display = "none"; 
+      }
+      if (!response.thumbnail.source || response.type === "disambiguation") {
+        tc.style.width = "420px";
+      } else { 
+        tc.style.width = "300px"; imgelem.src = response.thumbnail.source; 
+      }
+    })
+    .catch(function (error) { 
+      console.log(error); 
+    });
+  }
+  
+  function closePopup(deselectAlso = false) {
+    pcc.style.display = 'none';
+    if (deselectAlso) { clearSelection(); }
+  }
+
+  var pcc = document.getElementById("popup-container");
+  var prevSel = "";
+  ankingAddEventListener('click', function () {
+    var currentSelection = getSelectionText();
+    if (currentSelection !== "") { prevSel = currentSelection; }
+    if (currentSelection && !mustClickW) {
+      getSummaryFor(currentSelection);
+    } else { closePopup(); }
+  });
+
+  ankingAddEventListener('keyup', function (e) {
+    if (e.key == "w") {
+      if (pcc.style.display === "block") { closePopup(); } else { getSummaryFor(prevSel); }
+    }
+  });
+
+  function getSelectionText() {
+    var text = "";
+    if (window.getSelection) {
+      text = window.getSelection().toString();
+    } else if (document.selection && document.selection.type != "Control") { text = document.selection.createRange().text; }
+    return text;
+  }
+
+  function capfl(s) {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+
+  function clearSelection() {
+    if (window.getSelection) { window.getSelection().removeAllRanges(); }
+    else if (document.selection) { document.selection.empty(); }
+  }
+  
+  //CUSTOMIZATION
+  //this is a variable controlling whether user must click the "w" key to open the popup.
+  //if set to true: user must select text, then click the "w" key to open wikipedia popup. Clicking "w" key again will close the popup. 
+  //if set to false: user only needs to select text. popup will open automatically. Clicking "w" is an alternative but not obligatory way of opening/closing the popup in this mode.
+  //BELOW SET to true or to false. 
+  var mustClickW = true;
+  //END CUSTOMIZATION
+</script>
 
 <!-- ANKIMOBILE USER ACTIONS -->
 <script>
