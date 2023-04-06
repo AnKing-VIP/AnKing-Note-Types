@@ -1,0 +1,34 @@
+<div id="text">{{cloze:Text}}</div>
+
+<br>
+
+<!-- ##############  Text-to-speech  ##############
+replace the arrows/dashes from the statement below with double curly brackets-->
+
+<!--{{tts en_US voices=Apple_Samantha,Microsoft_Zira speed=1.4:cloze:Text}}-->
+
+<script>
+// ############## USER CONFIGURATION START ##############
+// Auto flip to back when One by one mode.
+var autoflip = false 
+
+<%- include('src/configs/countdownTimer.js') %>
+
+<%- include('src/configs/colorfulTags.js') %>
+
+// ############## USER CONFIGURATION END ##############
+</script>
+
+
+<%- include('src/components/clozeOneByOneFront.ejs', {optional: true}) %>
+
+<%- include('src/components/countdownTimer.ejs') %>
+
+<!-- SKETCHY HYPERLINK IMAGE -->
+<a href="https://www.sketchy.com/explore/mcat?utm_medium=affiliate&utm_source=ankideck&utm_campaign=mcat-deck-global-logo&utm_term=anking"><img src="_Sketchy_White_logo.png" alt="Sketchy" id="pic"></a>
+
+<%- include('src/components/ankingAddEventListener.ejs') %>
+
+<%- include('src/components/shortcutMatcher.ejs') %>
+
+<%- include('src/components/colorfulTags.ejs') %>
