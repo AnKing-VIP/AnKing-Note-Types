@@ -5,7 +5,7 @@ var ButtonShortcuts = {
     "Personal Notes" : "Alt + 1",
     "Missed Questions" : "Alt + 2",
     "DermPath": "Alt + 3",
-    "Dermoscopy": "Alt + 4"
+    "Dermoscopy": "Alt + 4",
     "VisualDx" : "Alt + 5",
     "Textbook" : "Alt + 6",
     "Additional Resources" : "Alt + 7",
@@ -74,13 +74,15 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <!-- DermNet field - images from dermnet.nz -->
 {{#DermNet}}<p></p>
-<span id="dermnet">{{edit:DermNet}}</span><a href="https://dermnetnz.org" style="font-size:8px; font-style:italic;">Image provided courtesy of DermNetNZ.org</a>
-<br>{{/DermNet}}
+<span id="dermnet">{{edit:DermNet}}</span>
+<a href="https://dermnetnz.org" style="font-size:8px; font-style:italic;">Above Image(s) provided courtesy of DermNetNZ.org</a>
+<hr>{{/DermNet}}
 
 <!-- Full Spectrum of Dermatology field - images from https://jddonline.com/project-atlas -->
 {{#Full Spectrum of Dermatology}}<p></p>
-<span id="fullspectrum">{{edit:Full Spectrum of Dermatology}}</span><a href="https://jddonline.com/project-atlas" style="font-size:8px; font-style:italic;">Image source: The Full Spectrum of Dermatology: A Diverse and Inclusive Atlas</a>
-<br>{{/Full Spectrum of Dermatology}}
+<span id="fullspectrum">{{edit:Full Spectrum of Dermatology}}</span>
+<a href="https://jddonline.com/project-atlas" style="font-size:8px; font-style:italic;">Above Image(s) source: The Full Spectrum of Dermatology: A Diverse and Inclusive Atlas</a>
+<hr>{{/Full Spectrum of Dermatology}}
 
 
 <%- include("src/components/hintButton.ejs", {name: "Textbook", short:"tx", hintId: "textbook", icon: "_dermki_round.png\" style=\"height:12px;" }) %>
