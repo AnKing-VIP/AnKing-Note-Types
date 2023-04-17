@@ -109,13 +109,13 @@ img {
   max-height: 100%;
 }
 
-#extra img,
+/* #extra img,
 #notes img,
 #missed img,
 #pathoma img,
 #bnb img {
   max-width: 85%;
-}
+} */
 
 #firstaid img,
 #sketchy img,
