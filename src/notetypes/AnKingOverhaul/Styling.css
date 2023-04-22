@@ -318,7 +318,7 @@ table td:last-child {
 }
 
 /* Table dynamic padding */
-table tr, td {
+  table tr, td {
   padding-top: 1vh;
   padding-bottom: 1vh;
   padding-left: 3vw;
@@ -326,7 +326,7 @@ table tr, td {
 }
 
 /* Horizontal Header Style, applies to any row that spans all columns */ 
-table tr td:first-child[colspan]:last-child[colspan] {
+  table tr td:first-child[colspan]:last-child[colspan] {
   background-color: #ffffff;
   color: #367390;
   border-top: 3px solid #367390;
