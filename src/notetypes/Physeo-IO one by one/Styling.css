@@ -164,6 +164,68 @@ i {
 }
 
 
+/* ~~~~~~~~~TABLE STYLES~~~~~~~~~ */
+
+/* Table dynamic resize, includes mobile and tablet support */
+table {
+  overflow-x: auto;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  overflow: scroll;
+  white-space: normal;
+  font-size: clamp(0.1rem, 3vw, 1rem);
+}
+
+/* Left and right border cleanup */
+table td:first-child {
+  border-left: 1px solid white;
+}
+table td:last-child {
+  border-right: 1px solid white;
+}
+
+/* Table dynamic padding */
+table tr, td {
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  padding-left: 3vw;
+  padding-right: 3vw;
+}
+
+/* Horizontal Header Style, applies to any row that spans all columns */ 
+table tr td:first-child[colspan]:last-child[colspan] {
+  background-color: #ffffff;
+  color: #367390;
+  border-top: 3px solid #367390;
+  border-bottom: 3px solid #367390;
+  text-align: middle;
+  padding-top: 0.5vh;
+  padding-bottom: 0.5vh;
+}
+
+/* Alternate Header Style, set in T5 addon settings */
+table th {
+  background-color: #ddecf2;
+  color: #266988;
+  border: 1px solid #ffffff;
+  font-weight: normal;
+}
+
+/* Alternate grey rows */
+table tr:nth-child(even) {
+  color: #000000;
+  background-color: #f8f8f8;
+}
+
+/* Default styles if not overridden by above */
+table {
+  color: #000000;
+  border: 1px solid #a4cde0;
+  background-color: #ffffff;
+}
+
+
 /* ~~~~~~~MNEMONICS LEFT JUSTIFIED~~~~~~~ */
 .mnemonics {
   display: inline-block;
