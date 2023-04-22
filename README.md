@@ -228,10 +228,10 @@ All note types in this repo use many or all of the features listed below. Some w
     <p>
 
     When inserting HTML tables into note types, the following features are included: 
-    1.) Alternating rows will automatically format to a white/light grey color scheme for readability
-    2.) Any row that spans an entire column through merged cells will automatically be formatted as a primary header
-    3.) Any cell that is formatted with a <th> tag will automatically be formatted as a secondary header
-    4.) All styles can be overridden by specifying inline styles through addons such as T5
+    1. Alternating rows will automatically format to a white/light grey color scheme for readability
+    2. Any row that spans an entire column through merged cells will automatically be formatted as a primary header
+    3. Any cell that is formatted with a <th> tag will automatically be formatted as a secondary header
+    4. All styles can be overridden by specifying inline styles through addons such as T5
     
     </p>
   </details>
