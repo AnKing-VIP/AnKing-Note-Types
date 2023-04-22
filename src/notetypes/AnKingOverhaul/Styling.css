@@ -282,19 +282,6 @@ hr {
   font-size: 1rem;
 }
 
-table.one {
-  font-style: normal !important;
-  color: black;
-  font-size: 10pt;
-  background-color: #ffffff;
-  border-color: #000000;
-  border-style: solid;
-}
-
-.mobile:not(.ipad) table.one {
-  width: 100% !important;
-}
-
 
 /* ~~~~~~~~~TABLE STYLES~~~~~~~~~ */
 
