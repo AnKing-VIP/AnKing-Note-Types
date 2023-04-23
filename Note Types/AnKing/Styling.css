@@ -229,6 +229,75 @@ hr {
 }
 
 
+/* ~~~~~~~~~TABLE STYLES~~~~~~~~~ */
+
+/* Table dynamic resize, includes mobile and tablet support */
+table {
+overflow-x: auto;
+margin-left: auto;
+margin-right: auto;
+border-collapse: collapse;
+overflow: scroll;
+white-space: normal;
+font-size: clamp(0.1rem, 1.7vw, 0.9rem) !important;
+max-width: 95vw;
+}
+
+/* Left and right border cleanup */
+table td:first-child {
+  border-left: 1px solid white;
+}
+table td:last-child {
+  border-right: 1px solid white;
+}
+
+/* Table dynamic padding */
+table tr, td, th {
+padding-top: clamp(0.05rem, 1vw, 1rem);
+padding-bottom: clamp(0.05rem, 1vw, 1rem);
+padding-left: clamp(0.05rem, 1vw, 1rem);
+padding-right: clamp(0.05rem, 1vw, 1rem);
+}
+
+/* Span Correct */
+table span {
+font-size: clamp(0.1rem, 1.7vw, 0.9rem) !important;
+}
+
+/* Horizontal Header Style, applies to any row that spans all columns */ 
+table tr td:first-child[colspan]:last-child[colspan] {
+background-color: #ffffff;
+color: #367390;
+border-top: 3px solid #367390;
+border-bottom: 3px solid #367390;
+text-align: middle;
+padding-top: 1vw;
+padding-bottom: 1vw;
+}
+
+/* Alternate Header Style, set in T5 addon settings */
+table th {
+background-color: #ddecf2;
+color: #266988;
+border: 1px solid #ffffff;
+font-weight: normal;
+text-align: middle;
+}
+
+/* Alternate grey rows */
+table tr:nth-child(even) {
+color: #000000;
+background-color: #f8f8f8;
+}
+
+/* Default styles if not overridden by above */
+table {
+color: #000000;
+border: 1px solid #a4cde0;
+background-color: #ffffff;
+}
+
+
 /* ~~~~~~~~~DETAILS FOR IMAGES~~~~~~~~~ */
 .mobile .card img {
   max-width: 100% !important;
