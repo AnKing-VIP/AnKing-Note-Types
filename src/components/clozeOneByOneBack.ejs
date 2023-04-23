@@ -102,15 +102,16 @@ _%>
         extra.classList.add("hidden");
       }
       for (const [field, autoReveal] of Object.entries(ButtonAutoReveal)) {
-        if (autoReveal) {
-          const container = document.querySelector(`[data-name="${field}"]`)
+        const container = document.querySelector(`[data-name="${field}"]`)
           if (container) {
-            const link = container.getElementsByTagName("a")[0]
-            const button = container.getElementsByTagName("button")[0]
-            const hint = container.getElementsByTagName("div")[0]
-            button.classList.remove("expanded-button")
-            hint.style.display = "none"
-            link.style.display = ""
+            const tag = `autoopen::${containerId.substring(containerId.indexOf('-') + 1)}`
+            if (autoReveal || globalThis.tagList.includes(tag)) {
+              const link = container.getElementsByTagName("a")[0]
+              const button = container.getElementsByTagName("button")[0]
+              const hint = container.getElementsByTagName("div")[0]
+              button.classList.remove("expanded-button")
+              hint.style.display = "none"
+              link.style.display = ""
           }
         }
       }
@@ -222,9 +223,10 @@ _%>
         }
         // Also reveal autoReveal fields
         for (const [field, autoReveal] of Object.entries(ButtonAutoReveal)) {
-          if (autoReveal) {
-            const container = document.querySelector(`[data-name="${field}"]`)
-            if (container) {
+          const container = document.querySelector(`[data-name="${field}"]`)
+          if (container) {
+            const tag = `autoopen::${containerId.substring(containerId.indexOf('-') + 1)}`
+            if (autoReveal || globalThis.tagList.includes(tag)) {
               const link = container.getElementsByTagName("a")[0]
               const button = container.getElementsByTagName("button")[0]
               const hint = container.getElementsByTagName("div")[0]
