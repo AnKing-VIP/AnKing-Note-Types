@@ -162,7 +162,7 @@ All note types in this repo use many or all of the features listed below. Some w
     <details><summary>Auto open only on certain notes</summary>
     <p>
 
-    Add the tag `autoopen::Field_Name` to a note and that Field will open automatically just on that note (use `_` in place of spaces and ensure the same capitalization & spelling)
+    Add the tag `autoopen::Field_Name` to a note and that Field will open automatically just on that note (use `_` in place of spaces and ensure the same spelling)
     </p>
   </details>
 
