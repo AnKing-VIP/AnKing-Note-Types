@@ -69,7 +69,7 @@ _%>
         const containerId = elem.id
         const fieldName = elem.dataset.name
         const button = elem.getElementsByClassName("button")[0]
-        const tag = `autoopen::${containerId.substring(containerId.indexOf('-') + 1)}`
+        const tag = `autoopen::${fieldName.toLowerCase().replace(' ', '_')}`
         if (ButtonAutoReveal[fieldName] || globalThis.tagList.includes(tag)) {
           toggleHintBtn(containerId, noScrolling=true)
         }

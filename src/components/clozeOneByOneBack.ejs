@@ -104,7 +104,7 @@ _%>
       for (const [field, autoReveal] of Object.entries(ButtonAutoReveal)) {
         const container = document.querySelector(`[data-name="${field}"]`)
           if (container) {
-            const tag = `autoopen::${containerId.substring(containerId.indexOf('-') + 1)}`
+            const tag = `autoopen::${field.toLowerCase().replace(' ', '_')}`
             if (autoReveal || globalThis.tagList.includes(tag)) {
               const link = container.getElementsByTagName("a")[0]
               const button = container.getElementsByTagName("button")[0]
@@ -225,7 +225,7 @@ _%>
         for (const [field, autoReveal] of Object.entries(ButtonAutoReveal)) {
           const container = document.querySelector(`[data-name="${field}"]`)
           if (container) {
-            const tag = `autoopen::${containerId.substring(containerId.indexOf('-') + 1)}`
+            const tag = `autoopen::${field.toLowerCase().replace(' ', '_')}`
             if (autoReveal || globalThis.tagList.includes(tag)) {
               const link = container.getElementsByTagName("a")[0]
               const button = container.getElementsByTagName("button")[0]
