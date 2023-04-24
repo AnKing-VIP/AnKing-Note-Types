@@ -1,4 +1,4 @@
-<!-- version a9adf73 -->
+<!-- version 91d373c -->
 <div id="text">{{cloze:Text}}</div>
 
 <br>
@@ -175,6 +175,7 @@ var numTagLevelsToShow = 0;
   var tagContainer = document.getElementById("tags-container")
   if (tagContainer.childElementCount == 0) {
     var tagList = tagContainer.innerHTML.split(" ");
+    globalThis.tagList = tagList.map(t => t.toLowerCase());
     var kbdList = [];
     var newTagContent = document.createElement("div");
 
