@@ -1,4 +1,4 @@
-<!-- version b31808b -->
+<!-- version 9806c2e -->
  <script>
 // ##############  BUTTON REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -549,9 +549,9 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <div id="tags-container">{{clickable::Tags}}</div>
 <script>
   var tagContainer = document.getElementById("tags-container")
+  var tagList;
   if (tagContainer.childElementCount == 0) {
-    var tagList = tagContainer.innerHTML.split(" ");
-    globalThis.tagList = tagList.map(t => t.toLowerCase());
+    tagList = tagContainer.innerHTML.split(" ");
     var kbdList = [];
     var newTagContent = document.createElement("div");
 
@@ -568,6 +568,10 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     tagContainer.innerHTML = newTagContent.innerHTML;
     tagContainer.style.cursor = "default";
   }
+  else {
+    tagList = Array.from(tagContainer.children).map(e => e.innerText);
+  }
+  globalThis.tagList = tagList.map(t => t.trim().toLowerCase());
   if (tagContainer.innerHTML.indexOf(tagID) != -1) {
     tagContainer.style.backgroundColor = "rgba(251,11,11,.15)";
   }

@@ -1,4 +1,4 @@
-<!-- version b31808b -->
+<!-- version 9806c2e -->
 <script>
 // ############## USER CONFIGURATION START ##############
 // Auto flip to back when One by one mode.
@@ -102,9 +102,9 @@ var numTagLevelsToShow = 0;
 <div id="tags-container">{{clickable::Tags}}</div>
 <script>
   var tagContainer = document.getElementById("tags-container")
+  var tagList;
   if (tagContainer.childElementCount == 0) {
-    var tagList = tagContainer.innerHTML.split(" ");
-    globalThis.tagList = tagList.map(t => t.toLowerCase());
+    tagList = tagContainer.innerHTML.split(" ");
     var kbdList = [];
     var newTagContent = document.createElement("div");
 
@@ -121,6 +121,10 @@ var numTagLevelsToShow = 0;
     tagContainer.innerHTML = newTagContent.innerHTML;
     tagContainer.style.cursor = "default";
   }
+  else {
+    tagList = Array.from(tagContainer.children).map(e => e.innerText);
+  }
+  globalThis.tagList = tagList.map(t => t.trim().toLowerCase());
   if (tagContainer.innerHTML.indexOf(tagID) != -1) {
     tagContainer.style.backgroundColor = "rgba(251,11,11,.15)";
   }
