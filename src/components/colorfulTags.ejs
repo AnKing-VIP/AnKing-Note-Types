@@ -17,6 +17,7 @@ _%>
   var tagContainer = document.getElementById("tags-container")
   if (tagContainer.childElementCount == 0) {
     var tagList = tagContainer.innerHTML.split(" ");
+    globalThis.tagList = tagList.map(t => t.toLowerCase());
     var kbdList = [];
     var newTagContent = document.createElement("div");
 

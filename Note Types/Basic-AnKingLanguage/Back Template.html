@@ -1,4 +1,4 @@
-<!-- version a9adf73 -->
+<!-- version 91d373c -->
 <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -204,8 +204,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         const containerId = elem.id
         const fieldName = elem.dataset.name
         const button = elem.getElementsByClassName("button")[0]
-        
-        if (ButtonAutoReveal[fieldName]) {
+        const tag = `autoopen::${fieldName.toLowerCase().replace(' ', '_')}`
+        if (ButtonAutoReveal[fieldName] || globalThis.tagList.includes(tag)) {
           toggleHintBtn(containerId, noScrolling=true)
         }
     
@@ -233,6 +233,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   var tagContainer = document.getElementById("tags-container")
   if (tagContainer.childElementCount == 0) {
     var tagList = tagContainer.innerHTML.split(" ");
+    globalThis.tagList = tagList.map(t => t.toLowerCase());
     var kbdList = [];
     var newTagContent = document.createElement("div");
 

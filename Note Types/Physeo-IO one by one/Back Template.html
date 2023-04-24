@@ -1,4 +1,4 @@
-<!-- version a9adf73 -->
+<!-- version 91d373c -->
 <script>
 // ##############  OCCLUSION SHORTCUTS  ##############
 var RevealIncrementalShortcut = "N";
@@ -160,6 +160,7 @@ var numTagLevelsToShow = 0;
   var tagContainer = document.getElementById("tags-container")
   if (tagContainer.childElementCount == 0) {
     var tagList = tagContainer.innerHTML.split(" ");
+    globalThis.tagList = tagList.map(t => t.toLowerCase());
     var kbdList = [];
     var newTagContent = document.createElement("div");
 
@@ -258,8 +259,8 @@ var numTagLevelsToShow = 0;
         const containerId = elem.id
         const fieldName = elem.dataset.name
         const button = elem.getElementsByClassName("button")[0]
-        
-        if (ButtonAutoReveal[fieldName]) {
+        const tag = `autoopen::${fieldName.toLowerCase().replace(' ', '_')}`
+        if (ButtonAutoReveal[fieldName] || globalThis.tagList.includes(tag)) {
           toggleHintBtn(containerId, noScrolling=true)
         }
     
