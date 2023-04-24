@@ -159,6 +159,12 @@ All note types in this repo use many or all of the features listed below. Some w
     ```
     </p>
   </details>
+    <details><summary>Auto open only on certain notes</summary>
+    <p>
+
+    Add the tag `autoopen::Field_Name` to a note and that Field will open automatically just on that note (use `_` in place of spaces and ensure the same capitalization & spelling)
+    </p>
+  </details>
 
 - <b>TTS</b> - watch <a href="https://www.youtube.com/watch?v=5QFDrY7PDUk&t=4s">this video</a> for more details
   <details><summary>How to enable <i>(Front and back template)</i></summary>
@@ -237,8 +243,7 @@ All note types in this repo use many or all of the features listed below. Some w
   </details>
 
 ## TODO
-- [ ] Update Readme files with big December update including the add-on
-- [ ] Update Cloze-one by one feature so Extra field stays hidden till all are revealed
+- [ ] 
 
 ## Contributing
 
