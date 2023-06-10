@@ -1,0 +1,15 @@
+<script>
+    /* User Action: Toggle hint fields */
+    var userJs1 = () => {
+        for (const link of document.querySelectorAll("a.hint")) {
+            const hint = link.nextElementSibling;
+            if (hint.style.display === "none") {
+                link.style.display = "none";
+                hint.style.display = "block";
+            } else {
+                link.style.display = "block";
+                hint.style.display = "none";
+            }
+        }
+    };
+</script>
