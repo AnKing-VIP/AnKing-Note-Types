@@ -1,5 +1,5 @@
 ### Features Unique to this Note Type
-- <b>Med Shamim alternate styling available</b> <a href="/Note Types/Cloze-AnKingOverhaul/Shamim Customize styling.css">here</a>
+- <b>Med Shamim alternate styling available</b> <a href="/Note Types/AnKingOverhaul/Shamim Customize styling.css">here</a>
   <details><summary>Replace the customizable portion with the contents of the link above <i>(in styling)</i></summary>
     <p>
 
