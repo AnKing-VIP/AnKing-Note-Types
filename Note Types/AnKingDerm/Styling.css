@@ -322,7 +322,19 @@ background-color: #ffffff;
 }
 
 #dermnet img {
-  max-width: 80%;
+  max-width: 50%;
+}
+
+.ipad #dermnet img {
+  max-width: 40%!important;
+}
+
+#fullspectrum img {
+  max-width: 30%;
+}
+
+#textbook img {
+  max-width: 60%!important;
 }
 
 /*Image hover zoom*/
