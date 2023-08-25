@@ -605,12 +605,3 @@ html:not(.mobile) #button-mq:hover {
 .row {
   display: flex;
 }
-
-/* Blur styles */
-img {
-  transition: filter 0.3s ease;
-}
-
-.blur {
-  filter: blur(15px);
-}

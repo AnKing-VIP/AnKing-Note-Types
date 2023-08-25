@@ -1,4 +1,4 @@
-<!-- version aec3f1e -->
+<!-- version f52423c -->
 <div id="text">{{cloze:Text}}</div>
 
 <br>
@@ -130,6 +130,16 @@ var numTagLevelsToShow = 0;
     return matchShortcut
   }
 </script>
+
+<!-- IMAGE BLUR -->
+<script>
+    for (const image of document.querySelectorAll(".blur")) {
+        image.addEventListener("click", () => {
+            image.classList.toggle("blur");
+        });
+    }
+</script>
+
 
 <!-- COUNTDOWN TIMER -->
 <div class="timer" id="s2"></div>

@@ -1,4 +1,4 @@
-<!-- version aec3f1e -->
+<!-- version f52423c -->
  <script>
 // ##############  BUTTON REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -241,6 +241,16 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 </script>
 {{/Tags}}
+
+<!-- IMAGE BLUR -->
+<script>
+    for (const image of document.querySelectorAll(".blur")) {
+        image.addEventListener("click", () => {
+            image.classList.toggle("blur");
+        });
+    }
+</script>
+
 
 <!-- HINT BUTTONS SETUP -->
 <script>
