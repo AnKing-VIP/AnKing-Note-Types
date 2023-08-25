@@ -567,3 +567,12 @@ html:not(.mobile) #button-mq:hover {
   background-color: #FA8072 !important;
   color: black !important;
 }
+
+/* Blur styles */
+img {
+  transition: filter 0.3s ease;
+}
+
+.blur {
+  filter: blur(15px);
+}

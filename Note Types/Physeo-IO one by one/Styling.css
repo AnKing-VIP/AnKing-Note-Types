@@ -638,3 +638,12 @@ html:not(.mobile) #button-mq:hover {
   outline: inherit !important;
   filter: none !important;
 }
+
+/* Blur styles */
+img {
+  transition: filter 0.3s ease;
+}
+
+.blur {
+  filter: blur(15px);
+}

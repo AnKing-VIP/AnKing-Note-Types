@@ -546,3 +546,12 @@ html:not(.mobile) .button-general:hover {
   background-color: #E9E9E9 !important;
   color: #363638 !important;
 }
+
+/* Blur styles */
+img {
+  transition: filter 0.3s ease;
+}
+
+.blur {
+  filter: blur(15px);
+}

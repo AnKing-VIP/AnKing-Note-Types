@@ -613,3 +613,12 @@ html:not(.mobile) #button-ar:hover {
 html:not(.mobile) #button-vd:hover {
   background-color: #3c76fd !important;
 }
+
+/* Blur styles */
+img {
+  transition: filter 0.3s ease;
+}
+
+.blur {
+  filter: blur(15px);
+}
