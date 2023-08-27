@@ -740,3 +740,12 @@ html:not(.mobile) #button-bootcamp:hover {
 html:not(.mobile) #button-ome:hover {
   background-color: #47C3F3 !important;
 }
+
+/* Blur styles */
+img {
+  transition: filter 0.3s ease;
+}
+
+.blur {
+  filter: blur(15px);
+}
