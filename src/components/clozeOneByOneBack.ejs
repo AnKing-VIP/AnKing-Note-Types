@@ -42,6 +42,9 @@ _%>
   .cloze-replacer .hidden {
     display: none;
   }
+  .one-by-one .cloze {
+    color: #009400 !important;
+  }
   .cloze-hint {
     color: #009400 !important;
   }
@@ -59,6 +62,8 @@ _%>
 
     if (!clozeOneByOneEnabled) {
       return
+    } else {
+      document.getElementById("qa").classList.add('one-by-one');
     }
 
     // Needed for amboss to recognize first word in .cloze-hidden

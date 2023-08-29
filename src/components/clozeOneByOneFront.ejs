@@ -17,6 +17,12 @@ _%>
 <!-- CLOZE ONE BY ONE FRONT -->
 <div id="one-by-one" style="display: none;">{{One by one}}</div>
 
+<style>
+  .one-by-one .cloze {
+    color: #009400 !important;
+  }
+</style>
+
 <script>
   var clozeOneByOneEnabled = true;
   <%_ if (optional === true) { _%>
@@ -25,6 +31,7 @@ _%>
   
   window.clozeHints = [];
   if (clozeOneByOneEnabled) {
+    document.getElementById("qa").classList.add('one-by-one');
     // Save cloze hints to display in the back
     let clozes = document.getElementsByClassName("cloze")
     for(var i = 0; i < clozes.length; i++) {
