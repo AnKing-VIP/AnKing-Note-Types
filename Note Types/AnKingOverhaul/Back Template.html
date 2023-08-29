@@ -1,4 +1,4 @@
-<!-- version 340fd72 -->
+<!-- version 7bd30db -->
 <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -488,6 +488,9 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   .cloze-replacer .hidden {
     display: none;
   }
+  .one-by-one .cloze {
+    color: #009400 !important;
+  }
   .cloze-hint {
     color: #009400 !important;
   }
@@ -503,6 +506,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
     if (!clozeOneByOneEnabled) {
       return
+    } else {
+      document.getElementById("qa").classList.add('one-by-one');
     }
 
     // Needed for amboss to recognize first word in .cloze-hidden
