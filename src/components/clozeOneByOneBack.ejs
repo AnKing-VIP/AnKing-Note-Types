@@ -42,7 +42,7 @@ _%>
   .cloze-replacer .hidden {
     display: none;
   }
-  .one-by-one .cloze {
+  .cloze.one-by-one {
     color: #009400 !important;
   }
   .cloze-hint {
@@ -62,8 +62,6 @@ _%>
 
     if (!clozeOneByOneEnabled) {
       return
-    } else {
-      document.getElementById("qa").classList.add('one-by-one');
     }
 
     // Needed for amboss to recognize first word in .cloze-hidden
@@ -100,6 +98,7 @@ _%>
         if (initial) {
           cloze.addEventListener("touchend", revealClozeClicked)
           cloze.addEventListener("click", revealClozeClicked)
+          cloze.classList.add("one-by-one");
         }
       }
       const extra = document.getElementById("extra");
