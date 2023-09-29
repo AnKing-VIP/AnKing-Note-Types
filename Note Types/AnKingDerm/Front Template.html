@@ -1,4 +1,4 @@
-<!-- version 6c9041e -->
+<!-- version dd72cbd -->
 <div id="text">{{cloze:Text}}</div>
 
 
@@ -79,6 +79,7 @@ var numTagLevelsToShow = 0;
 <!-- IMAGE BLUR -->
 <script>
     for (const image of document.querySelectorAll(".blur")) {
+        image.classList.add("tappable");
         image.addEventListener("click", () => {
             image.classList.toggle("blur");
         });
