@@ -1,6 +1,30 @@
 # Additional Cool Note Type Scripts
 I have tried to keep track of multiple other useful note type scripts that can be added to your notes
 
+## Calculate exam date
+Add to front or back template. Adds countdown to test date in the bottom left corner (can be adjusted)
+
+**Edit this portion:** `var dateText= 'June 18 2022';`
+
+## Don't fade between cards
+Potentially makes it faster to flip cards
+
+## Randomize font size
+**Instructions:** Replace {{cloze:Text}} on the front template with this
+
+## Scroll to Cloze
+**Instructions:** Add to back template
+
+## Toggle Basic Hint Fields on mobile with UserAction
+Makes it so you can toggle hint fields on AnkiMobile by setting a gamepad button to UserAction1
+
+**Instructions:** Add to back template
+
+## Toggle IO Enhanced masks on mobile with UserAction
+Makes it so you can toggle all IO Enhanced masks on AnkiMobile by setting a gamepad button to UserAction1
+
+**Instructions:** Add to back template
+
 
 ### Other useful ones
 - [New Image Occlusion with Auto Occlude server](https://gist.github.com/sarsamurmu/4d7762be07c548a1736c60bd98654fed)
