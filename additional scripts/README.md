@@ -2,6 +2,11 @@
 I have tried to keep track of multiple other useful note type scripts that can be added to your notes
 
 
+### Other useful ones
+- [New Image Occlusion with Auto Occlude server](https://gist.github.com/sarsamurmu/4d7762be07c548a1736c60bd98654fed)
+- [Image Occlusion Enhanced One by One Incremental](https://www.reddit.com/r/Anki/comments/17xfpb1/image_occlusion_enhanced_one_by_one_incremental/)
+
+
 ***
 
 ### If you like these, please consider donating to this project
