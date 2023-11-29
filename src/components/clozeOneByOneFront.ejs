@@ -5,11 +5,14 @@
 if true, {{One by one}} value determines whether it's one by one mode.
 if false, always one by one mode
 
+# Components
+components/ankiPersistence
+
 # Global Variables
 - autoflip: boolean
 
 # Notes
-- Sets window.clozeHints to hint values.
+- Saves cloze hints using Anki Persistence
 - Sets `#qa` element `display` to "none".
   Backside MUST have code that resets the `display`.
 
@@ -23,7 +26,7 @@ _%>
     clozeOneByOneEnabled = document.getElementById("one-by-one").textContent !== "";
   <%_ } _%>
   
-  window.clozeHints = [];
+  var clozeHints = [];
   if (clozeOneByOneEnabled) {
     document.getElementById("qa").classList.add('one-by-one');
     // Save cloze hints to display in the back
@@ -31,12 +34,13 @@ _%>
     for(var i = 0; i < clozes.length; i++) {
       clozes[i].classList.add("one-by-one");
       if (clozes[i].innerHTML === "[...]") {
-        window.clozeHints.push("")
+        clozeHints.push("")
       } else {
-        window.clozeHints.push(clozes[i].innerHTML)
+        clozeHints.push(clozes[i].innerHTML)
       }
     }
 
     <%- include('src/components/autoflipFront.ejs') %>
   }
+  Persistence.setItem("clozeHints", clozeHints);
 </script>

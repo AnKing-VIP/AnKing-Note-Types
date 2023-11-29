@@ -8,12 +8,12 @@ If true, only cloze-one-by-one mode if {{One by one}} field is not empty.
 components/clozeOneByOneButtons
 components/ankingAddEventListener
 components/shortcutMatcher
+components/ankiPersistence
 
 # Global Variables
 - revealClozeShortcut: shortcut string
 - revealClozeWordShortcut: shortcut string
 - clozeHider: (elem) -> string
-- clozeHints?: Array[string]
 
 # Notes
 - Exposes `toggleAllCloze` and `revealNextCloze` function
@@ -82,9 +82,10 @@ _%>
         cloze.appendChild(clozeReplacer)
         cloze.appendChild(clozeHidden)
 
-        if (window.clozeHints && window.clozeHints[count]) {
+        var clozeHints = Persistence.getItem("clozeHints");
+        if (clozeHints && clozeHints[count]) {
           clozeReplacer.classList.add("cloze-hint")
-          clozeReplacer.innerHTML = window.clozeHints[count] + CLOZE_REPLACER_SEP
+          clozeReplacer.innerHTML = clozeHints[count] + CLOZE_REPLACER_SEP
         } else {
           clozeReplacer.innerHTML = clozeHider(cloze) + CLOZE_REPLACER_SEP
         }
