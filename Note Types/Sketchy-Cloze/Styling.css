@@ -88,6 +88,16 @@ img {
   color: #0088FA;
 }
 
+/* One by One Cloze Color */
+.cloze.one-by-one {
+  color: #009400 !important;
+}
+
+/* One by One Cloze Hint Color */
+.cloze-hint {
+  color: #009400 !important;
+}
+
 /* "Extra" Field Color */
 #extra {
   color: #0088FA;
