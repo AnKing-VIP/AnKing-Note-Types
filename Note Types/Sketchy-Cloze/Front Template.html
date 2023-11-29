@@ -1,4 +1,4 @@
-<!-- version c4c5454 -->
+<!-- version d73f6d0 -->
 <div id="text">{{cloze:Text}}</div>
 
 <br>
@@ -42,6 +42,126 @@ var numTagLevelsToShow = 0;
 // ############## USER CONFIGURATION END ##############
 </script>
 
+<!-- Credit: Anki Persistence, MIT: https://github.com/SimonLammer/anki-persistence/blob/8190116c95df202773aa692c5e9ae704fb407bc9/script.js -->
+
+<script>
+if (typeof(window.Persistence) === 'undefined') {
+  var _persistenceKey = 'github.com/SimonLammer/anki-persistence/';
+  var _defaultKey = '_default';
+  window.Persistence_sessionStorage = function() { // used in android, iOS, web
+    var isAvailable = false;
+    try {
+      if (typeof(window.sessionStorage) === 'object') {
+        isAvailable = true;
+        this.clear = function() {
+          for (var i = 0; i < sessionStorage.length; i++) {
+            var k = sessionStorage.key(i);
+            if (k.indexOf(_persistenceKey) == 0) {
+              sessionStorage.removeItem(k);
+              i--;
+            }
+          };
+        };
+        this.setItem = function(key, value) {
+          if (value == undefined) {
+            value = key;
+            key = _defaultKey;
+          }
+          sessionStorage.setItem(_persistenceKey + key, JSON.stringify(value));
+        };
+        this.getItem = function(key) {
+          if (key == undefined) {
+            key = _defaultKey;
+          }
+          return JSON.parse(sessionStorage.getItem(_persistenceKey + key));
+        };
+        this.removeItem = function(key) {
+          if (key == undefined) {
+            key = _defaultKey;
+          }
+          sessionStorage.removeItem(_persistenceKey + key);
+        };
+        this.getAllKeys = function () {
+          var keys = [];
+          var prefixedKeys = Object.keys(sessionStorage);
+          for (var i = 0; i < prefixedKeys.length; i++) {
+            var k = prefixedKeys[i];
+            if (k.indexOf(_persistenceKey) == 0) {
+              keys.push(k.substring(_persistenceKey.length, k.length));
+            }
+          };
+          return keys.sort()
+        }
+      }
+    } catch(err) {}
+    this.isAvailable = function() {
+      return isAvailable;
+    };
+  };
+  window.Persistence_windowKey = function(persistentKey) { // used in windows, linux, mac
+    var obj = window[persistentKey];
+    var isAvailable = false;
+    if (typeof(obj) === 'object') {
+      isAvailable = true;
+      this.clear = function() {
+        obj[_persistenceKey] = {};
+      };
+      this.setItem = function(key, value) {
+        if (value == undefined) {
+          value = key;
+          key = _defaultKey;
+        }
+        obj[_persistenceKey][key] = value;
+      };
+      this.getItem = function(key) {
+        if (key == undefined) {
+          key = _defaultKey;
+        }
+        return obj[_persistenceKey][key] == undefined ? null : obj[_persistenceKey][key];
+      };
+      this.removeItem = function(key) {
+        if (key == undefined) {
+          key = _defaultKey;
+        }
+        delete obj[_persistenceKey][key];
+      };
+      this.getAllKeys = function () {
+        return Object.keys(obj[_persistenceKey]);
+      }
+
+      if (obj[_persistenceKey] == undefined) {
+        this.clear();
+      }
+    }
+    this.isAvailable = function() {
+      return isAvailable;
+    };
+  };
+  /*
+   *   client  | sessionStorage | persistentKey | useful location |
+   * ----------|----------------|---------------|-----------------|
+   * web       |       YES      |       -       |       NO        |
+   * windows   |       NO       |       py      |       NO        |
+   * android   |       YES      |       -       |       NO        |
+   * linux 2.0 |       NO       |       qt      |       YES       |
+   * linux 2.1 |       NO       |       qt      |       YES       |
+   * mac 2.0   |       NO       |       py      |       NO        |
+   * mac 2.1   |       NO       |       qt      |       YES       |
+   * iOS       |       YES      |       -       |       NO        |
+   */
+  window.Persistence = new Persistence_sessionStorage(); // android, iOS, web
+  if (!Persistence.isAvailable()) {
+    window.Persistence = new Persistence_windowKey("py"); // windows, mac (2.0)
+  }
+  if (!Persistence.isAvailable()) {
+    var titleStartIndex = window.location.toString().indexOf('title'); // if titleStartIndex > 0, window.location is useful
+    var titleContentIndex = window.location.toString().indexOf('main', titleStartIndex);
+    if (titleStartIndex > 0 && titleContentIndex > 0 && (titleContentIndex - titleStartIndex) < 10) {
+      window.Persistence = new Persistence_windowKey("qt"); // linux, mac (2.1)
+    }
+  }
+}
+</script>
 
 <!-- CLOZE ONE BY ONE FRONT -->
 <div id="one-by-one" style="display: none;">{{One by one}}</div>
@@ -50,7 +170,7 @@ var numTagLevelsToShow = 0;
   var clozeOneByOneEnabled = true;
     clozeOneByOneEnabled = document.getElementById("one-by-one").textContent !== "";
   
-  window.clozeHints = [];
+  var clozeHints = [];
   if (clozeOneByOneEnabled) {
     document.getElementById("qa").classList.add('one-by-one');
     // Save cloze hints to display in the back
@@ -58,9 +178,9 @@ var numTagLevelsToShow = 0;
     for(var i = 0; i < clozes.length; i++) {
       clozes[i].classList.add("one-by-one");
       if (clozes[i].innerHTML === "[...]") {
-        window.clozeHints.push("")
+        clozeHints.push("")
       } else {
-        window.clozeHints.push(clozes[i].innerHTML)
+        clozeHints.push(clozes[i].innerHTML)
       }
     }
 
@@ -77,6 +197,7 @@ var numTagLevelsToShow = 0;
 // AnkiMobile JS API doesn't have one for show answer.
 // Best alternative is to use Taps/Swipes to show answer.
   }
+  Persistence.setItem("clozeHints", clozeHints);
 </script>
 
 <!-- COUNTDOWN TIMER -->
