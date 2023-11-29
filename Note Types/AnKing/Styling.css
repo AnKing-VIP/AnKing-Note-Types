@@ -92,12 +92,12 @@ img {
 
 /* One by One Cloze Color */
 .cloze.one-by-one {
-  color: #009400 !important;
+  color: #009400;
 }
 
 /* One by One Cloze Hint Color */
 .cloze-hint {
-  color: #009400 !important;
+  color: #009400;
 }
 
 /* "Extra" Field Color */
