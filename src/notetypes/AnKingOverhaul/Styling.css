@@ -361,6 +361,40 @@ border: 1px solid #a4cde0;
 background-color: #ffffff;
 }
 
+/* NM table colors */
+
+.night_mode tr td:first-child[colspan]:last-child[colspan], .nightMode tr td:first-child[colspan]:last-child[colspan] {   /* NM Horizontal Header */
+  background-color: #19181d;
+  color: #4491b6;
+  border-top: 3px solid #393743;
+  border-bottom: 3px solid #393743;
+}
+
+.night_mode table th, .nightMode table th { /* NM Alternate Header Style */
+  background-color: #19181d;
+  color: #3086ae;
+  border: 1px solid #393743;
+}
+
+.night_mode table tr:nth-child(even), .nightMode table tr:nth-child(even) {   /* NM Alternate rows */
+  color: #ffffff;
+  background-color: #2e2e36;
+}
+
+.night_mode table td:first-child, .nightMode table td:first-child { /* Left and right border cleanup */
+  border-left: 1px solid black;
+}
+
+.night_mode table td:last-child, .nightMode table td:last-child {
+  border-right: 1px solid black;
+}
+
+.night_mode table, .nightMode table { /* NM Default styles */
+  color: #ffffff;
+  border: 1px solid #393743;
+  background-color: #26252b;
+}
+
 
 /* ~~~~~~~~~DETAILS FOR IMAGES~~~~~~~~~ */
 .mobile .card img {
