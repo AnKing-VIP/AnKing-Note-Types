@@ -165,6 +165,18 @@ a[href^="javascript:"] {
   color: MediumSeaGreen !important;
 }
 
+/* NM One by One Cloze Color */
+.nightMode .cloze.one-by-one,
+.night_mode .cloze.one-by-one {
+    color: #009400 !important;
+}
+
+/* NM One by One Cloze Hint Color */
+.nightMode .cloze-hint,
+.night_mode .cloze-hint {
+    color: #009400 !important;
+}
+
 /* NM "Extra" Field Color */
 .nightMode #extra,
 .night_mode #extra {
