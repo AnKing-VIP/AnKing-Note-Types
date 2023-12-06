@@ -1,4 +1,4 @@
-<!-- version e237c08 -->
+<!-- version d219a6f -->
 <script>
 // ##############  OCCLUSION SHORTCUTS  ##############
 var RevealIncrementalShortcut = "N";
@@ -445,7 +445,7 @@ var numTagLevelsToShow = 0;
   
   var getAnkiPrefix = () => globalThis.ankiPlatform === "desktop" ? "" : globalThis.AnkiDroidJS ? "https://appassets.androidplatform.net" : ".";
   
-  var closetPromise = import(`${getAnkiPrefix()}/__closet-0.6.1.js`);
+  var closetPromise = import(`${getAnkiPrefix()}/__closet-0.6.2.js`);
   closetPromise
   .then(
     ({ closet }) => closet.template.anki.initialize(closet, closetUserLogic, "{{Card}}", "{{Tags}}", "back"),
