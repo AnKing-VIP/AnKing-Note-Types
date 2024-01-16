@@ -1,4 +1,4 @@
-<!-- version d219a6f -->
+<!-- version eeb8baf -->
 <div id="text">{{cloze:Text}}</div>
 
 <br>
@@ -17,17 +17,6 @@ var autoflip = false
 var minutes = 0
 var seconds = 9
 var timeOverMsg = "<span style='color:#CC5B5B'>!<br/>!<br/>!<br/>!<br/>!<br/>!</span>"
-
-<!-- IMAGE BLUR -->
-<script>
-    for (const image of document.querySelectorAll(".blur")) {
-        image.classList.add("tappable");
-        image.addEventListener("click", () => {
-            image.classList.toggle("blur");
-        });
-    }
-</script>
-
 
 // ##############  TAG SHORTCUT  ##############
 var toggleTagsShortcut = "C";
@@ -199,6 +188,17 @@ if (typeof(window.Persistence) === 'undefined') {
   }
   Persistence.setItem("clozeHints", clozeHints);
 </script>
+
+<!-- IMAGE BLUR -->
+<script>
+    for (const image of document.querySelectorAll(".blur")) {
+        image.classList.add("tappable");
+        image.addEventListener("click", () => {
+            image.classList.toggle("blur");
+        });
+    }
+</script>
+
 
 <!-- COUNTDOWN TIMER -->
 <div class="timer" id="s2"></div>
