@@ -78,9 +78,9 @@ img {
   background-color: #D1CFCE;
 }
 
-/* Cloze Color */
-.cloze {
-  color: blue;
+/* Back side Text Color */
+#back {
+  color: black;
 }
 
 /* "Extra" Field Color */
@@ -124,10 +124,10 @@ a[href^="javascript:"] {
   background-color: #272828 !important;
 }
 
-/* NM Cloze Color */
-.nightMode .cloze,
-.night_mode .cloze {
-  color: #4297F9 !important;
+/* NM Back Side Text Color */
+.nightMode #back,
+.night_mode #back {
+  color: #FFFAFA !important;
 }
 
 /* NM "Extra" Field Color */
@@ -189,10 +189,6 @@ hr {
 
 
 /* ~~~~~~~~~ FIELDS ~~~~~~~~~ */
-/* Cloze format */
-.cloze {
-  font-weight: bold;
-}
 
 /* Text When Hint Is Shown*/
 .hints {
