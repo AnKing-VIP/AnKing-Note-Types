@@ -1,0 +1,64 @@
+ <script>
+// ##############  HINT REVEAL SHORTCUTS  ##############
+// Visit https://keycode.info/ to get the number/letter for the key you want to assign. 
+// The shortcuts are  Alt  +  the number/letter below
+// All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
+
+var lecturenotes = '49';
+var missedQ = '50';
+var textbook = '51';
+var additional = '52';
+var OpenCloseAll = '222';
+
+var ScrollToHint = false;
+
+<%- include('src/configs/colorfulTags.js') %>
+</script>
+
+<div class="clozefield" id="text">{{cloze:Text}}</div>
+
+<!-- ##############  EDIT CLOZE DURING REVIEW  ##############
+			-change below (not above) to  "edit:cloze:Text" for editable field, 
+				but be sure to have the correct add-on installed-->
+
+<div class="editcloze" id="text">{{edit:cloze:Text}}</div>
+
+
+<br>
+
+<!-- ##############  TEXT-TO-SPEECH ##############
+replace the arrows/dashes from the statement below with double curly brackets-->
+
+<!--tts en_US voices=Apple_Samantha,Microsoft_Zira speed=1.4:cloze-only:Text-->
+
+
+<hr>
+
+
+<!-- BUTTON FIELDS -->
+<%- include("src/components/hintButton.ejs", {name: "Personal Notes", short:"ln", hintId: "lecture" }) %>
+
+<%- include("src/components/hintButton.ejs", {name: "Missed Questions", short:"mq", hintId: "missed" }) %>
+
+<!-- Extra field -->
+{{#Extra}}<p></p>
+<div id="extra">{{edit:Extra}}</div>
+<br>{{/Extra}}
+
+<%- include("src/components/hintButton.ejs", {name: "Textbook", short:"textbook", hintId: "textbook" }) %>
+
+<%- include("src/components/hintButton.ejs", {name: "Additional Resources", short:"ar", hintId: "additional" }) %>
+
+
+<!-- ANKING HYPERLINK IMAGE -->
+<div id="pic"><a href="https://www.ankingmed.com">
+    <img src="_AnKingRound.png" alt="The AnKing" style="height:50px;border:0;position:fixed;bottom:10px;right:10px;">
+</a></div>
+
+<%- include('src/components/ankingAddEventListener.ejs') %>
+
+<%- include('src/components/shortcutMatcher.ejs') %>
+
+<%- include('src/components/colorfulTags.ejs') %>
+
+<%- include('src/components/hintButtonsSetup.ejs') %>
