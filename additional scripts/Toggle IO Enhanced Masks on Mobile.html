@@ -1,11 +1,23 @@
 <script>
-    /* User Action: Toggle IO Enhanced masks */
-    var userJs1 = () => {
+    function toggleIoMasks() {
         const ioOverlay = document.querySelector("#io-overlay");
         if (window.getComputedStyle(ioOverlay).display === "none") {
             ioOverlay.style.display = "block";
         } else {
             ioOverlay.style.display = "none";
         }
-    };
+    }
+
+    /* User action */
+    var userJs1 = toggleIoMasks;
+
+    /* Hotkey */
+    if (!globalThis.toggleIoMasksHotkeyRegistered) {
+        document.addEventListener("keydown", (event) => {
+            if (event.code === "KeyH") {
+                toggleIoMasks();
+            }
+        });
+        globalThis.toggleIoMasksHotkeyRegistered = true;
+    }
 </script>
