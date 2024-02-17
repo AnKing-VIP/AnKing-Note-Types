@@ -1,6 +1,6 @@
 <script>
     /* User Action: Toggle hint fields */
-    var userJs1 = () => {
+    function toggleHintMasks() {
         for (const link of document.querySelectorAll("a.hint")) {
             const hint = link.nextElementSibling;
             if (hint.style.display === "none") {
@@ -12,4 +12,18 @@
             }
         }
     };
+
+		/* User action */
+    var userJs1 = toggleHintMasks;
+
+    /* Hotkey */
+    if (!globalThis.toggleHintMasksHotkeyRegistered) {
+        document.addEventListener("keydown", (event) => {
+            if (event.code === "KeyH") {
+                toggleHintMasks();
+            }
+        });
+        globalThis.toggleHintMasksHotkeyRegistered = true;
+    }
+    
 </script>
