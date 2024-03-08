@@ -1,0 +1,13 @@
+name: Mark stale issues and pull requests
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  stale:
+    uses: AnKing-VIP/anking_addon_template/.github/workflows/stale.yml@master
+    secrets: inherit
