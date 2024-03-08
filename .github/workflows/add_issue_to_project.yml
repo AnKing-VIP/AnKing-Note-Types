@@ -4,17 +4,11 @@ on:
   issues:
     types:
       - opened
-  workflow_call:
 
 permissions:
   contents: write
 
 jobs:
   add-to-project:
-    name: Add issue to project
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/add-to-project@v0.5.0
-        with:
-          project-url: https://github.com/orgs/AnKing-VIP/projects/1
-          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
+    uses: AnKing-VIP/anking_addon_template/.github/workflows/add_issue_to_project.yml@master
+    secrets: inherit
