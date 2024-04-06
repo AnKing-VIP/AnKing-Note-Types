@@ -156,7 +156,7 @@ img {
 }
 
 /* "Extra" Field Color */
-#extra {
+#extra, #extra i {
   color: navy;
 }
 
@@ -215,8 +215,8 @@ a[href^="javascript:"] {
 }
 
 /* NM "Extra" Field Color */
-.nightMode #extra,
-.night_mode #extra {
+.nightMode #extra, .nightMode #extra i,
+.night_mode #extra, .night_mode #extra i {
   color: magenta;
 }
 
