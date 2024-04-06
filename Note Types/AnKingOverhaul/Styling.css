@@ -141,17 +141,17 @@ img {
 }
 
 /* Cloze Color */
-.cloze {
+.cloze, .cloze b, .cloze u, .cloze i {
   color: blue;
 }
 
 /* One by One Cloze Color */
-.cloze.one-by-one {
+.cloze.one-by-one, .cloze.one-by-one b, .cloze.one-by-one u, .cloze.one-by-one i {
   color: #009400;
 }
 
 /* One by One Cloze Hint Color */
-.cloze-hint {
+.cloze-hint, .cloze-hint b, .cloze-hint u, .cloze-hint i {
   color: #009400;
 }
 
@@ -197,20 +197,20 @@ a[href^="javascript:"] {
 }
 
 /* NM Cloze Color */
-.nightMode .cloze,
-.night_mode .cloze {
+.nightMode .cloze, .nightMode .cloze b, .nightMode .cloze u, .nightMode .cloze i,
+.night_mode .cloze, .night_mode .cloze b, .night_mode .cloze u, .night_mode .cloze i {
   color: #4297F9 !important;
 }
 
 /* NM One by One Cloze Color */
-.nightMode .cloze.one-by-one,
-.night_mode .cloze.one-by-one {
+.nightMode .cloze.one-by-one, .nightMode .cloze.one-by-one b, .nightMode .cloze.one-by-one u, .nightMode .cloze.one-by-one i,
+.night_mode .cloze.one-by-one, .night_mode .cloze.one-by-one b, .night_mode .cloze.one-by-one u, .night_mode .cloze.one-by-one i {
     color: #009400 !important;
 }
 
 /* NM One by One Cloze Hint Color */
-.nightMode .cloze-hint,
-.night_mode .cloze-hint {
+.nightMode .cloze-hint, .nightMode .cloze-hint b, .nightMode .cloze-hint u, .nightMode .cloze-hint i,
+.night_mode .cloze-hint, .night_mode .cloze-hint b, .night_mode .cloze-hint u, .night_mode .cloze-hint i {
     color: #009400 !important;
 }
 
