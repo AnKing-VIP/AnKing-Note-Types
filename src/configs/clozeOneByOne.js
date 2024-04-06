@@ -1,3 +1,12 @@
+<%#
+
+# Parameters
+- clozeHider: string
+_%>
+<%_
+  var clozeHider = clozeHider === undefined ? "👑" : clozeHider
+_%>
+
 // ##############  CLOZE ONE BY ONE  ##############
 var revealNextShortcut = "N" 
 var revealNextWordShortcut = "Shift + N"
@@ -8,7 +17,7 @@ var toggleAllShortcut = ","
 var revealNextClozeMode = "cloze" 
 
 // What cloze is hidden with
-var clozeHider = (elem) => "👑"
+var clozeHider = (elem) => "<%- clozeHider %>"
 /* 
 You can replace the above line with below examples. '█' or '_' works well for hiding clozes.
 
