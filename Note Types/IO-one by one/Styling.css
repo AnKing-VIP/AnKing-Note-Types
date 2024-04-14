@@ -60,9 +60,9 @@ kbd {
 
 /*~~~~~~~MAX IMAGE HEIGHT/WIDTH~~~~~~~*/
 img {
-  max-width: 95vw;
+  max-width: 100%;
   /* note: changing this may impact the occlusions */
-  max-height: 80vh;
+  max-height: 100%;
 }
 
 
