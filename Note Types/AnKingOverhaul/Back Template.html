@@ -1,4 +1,4 @@
-<!-- version c70e058 -->
+<!-- version 7a540f6 -->
 <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -118,22 +118,12 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     })()
   </script>
 
-<!-- Remove 'style="display: none"' in the line saying '<span style="display: none">' to show the OME field -->
-{{#OME}}
-<div class="banner-ome"><a href="https://www.onlinemeded.com/anking">
-  <img src="_OME_banner_memorize_understand.png"></a>
+<!-- OME banner (desktop) -->
+<div class="banner-ome">
+  {{#OME}}{{OME}}{{/OME}}
 </div>
 
-<span style="display: none">
-  <span id="hint-ome" class="hintBtn" data-name="OME">
-    <a onclick="toggleHintBtn('hint-ome')"></a>
-    <button id="button-ome" class="button-general" onclick="toggleHintBtn('hint-ome')">
-      <img src="_omelogo.icon.png"> OnlineMedEd
-    </button>
-    <div id="ome" class="hints" style="display: none;">{{edit:OME}}</div>
-  </span>
-</span>
-{{/OME}}
+
 
 <!-- BUTTON FIELDS -->
 {{#Lecture Notes}}
@@ -261,6 +251,17 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="bootcamp" class="hints" style="display: none;">{{edit:Bootcamp}}</div>
 </span>
 {{/Bootcamp}}
+
+<!-- OME field (only shows on mobile) -->
+{{#OME}}
+  <span id="hint-ome" class="hintBtn" data-name="OME">
+    <a onclick="toggleHintBtn('hint-ome')"></a>
+    <button id="button-ome" class="button-general" onclick="toggleHintBtn('hint-ome')">
+      <img src="_omelogo.icon.png"> OnlineMedEd
+    </button>
+    <div id="ome" class="hints" style="display: none;">{{edit:OME}}</div>
+  </span>
+{{/OME}}
 
 {{#Additional Resources}}
 <span id = "hint-ar" class="hintBtn" data-name="Additional Resources">
