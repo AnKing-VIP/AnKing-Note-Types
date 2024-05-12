@@ -1,4 +1,4 @@
-<!-- version 7a540f6 -->
+<!-- version 595fb94 -->
 <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -157,6 +157,16 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 </span>
 {{/VisualDx}}
 
+{{#Additional Resources}}
+<span id = "hint-ar" class="hintBtn" data-name="Additional Resources">
+  <a href="#" class="hint" onclick="toggleHintBtn('hint-ar')"></a>
+  <button id="button-ar" class="button-general" onclick="toggleHintBtn('hint-ar')">
+    <img src="_dermki_round.png" style="height:12px;"> Dermnemonics
+  </button>
+  <div dir="auto" id="additional" class="hints" style="display: none;">{{edit:Additional Resources}}</div>
+</span>
+{{/Additional Resources}}
+
 <!-- Extra field -->
 {{#Extra}}<p></p>
 <div id="extra">{{edit:Extra}}</div>
@@ -184,16 +194,6 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="textbook" class="hints" style="display: none;">{{edit:Textbook}}</div>
 </span>
 {{/Textbook}}
-
-{{#Additional Resources}}
-<span id = "hint-ar" class="hintBtn" data-name="Additional Resources">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-ar')"></a>
-  <button id="button-ar" class="button-general" onclick="toggleHintBtn('hint-ar')">
-    <img src="_dermki_round.png" style="height:12px;"> Additional Resources
-  </button>
-  <div dir="auto" id="additional" class="hints" style="display: none;">{{edit:Additional Resources}}</div>
-</span>
-{{/Additional Resources}}
 
 
 <!-- ANKING HYPERLINK IMAGE -->
