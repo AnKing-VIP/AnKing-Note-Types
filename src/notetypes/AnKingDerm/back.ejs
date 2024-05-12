@@ -67,6 +67,16 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <%- include("src/components/hintButton.ejs", {name: "VisualDx", short:"vd", hintId: "visualdx", icon: "_dermki_round.png\" style=\"height:12px;" }) %>
 
+{{#Additional Resources}}
+<span id = "hint-ar" class="hintBtn" data-name="Additional Resources">
+  <a href="#" class="hint" onclick="toggleHintBtn('hint-ar')"></a>
+  <button id="button-ar" class="button-general" onclick="toggleHintBtn('hint-ar')">
+    <img src="_dermki_round.png" style="height:12px;"> Dermnemonics
+  </button>
+  <div dir="auto" id="additional" class="hints" style="display: none;">{{edit:Additional Resources}}</div>
+</span>
+{{/Additional Resources}}
+
 <!-- Extra field -->
 {{#Extra}}<p></p>
 <div id="extra">{{edit:Extra}}</div>
@@ -86,8 +96,6 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 
 <%- include("src/components/hintButton.ejs", {name: "Textbook", short:"tx", hintId: "textbook", icon: "_dermki_round.png\" style=\"height:12px;" }) %>
-
-<%- include("src/components/hintButton.ejs", {name: "Additional Resources", short:"ar", hintId: "additional", icon: "_dermki_round.png\" style=\"height:12px;" }) %>
 
 
 <!-- ANKING HYPERLINK IMAGE -->
