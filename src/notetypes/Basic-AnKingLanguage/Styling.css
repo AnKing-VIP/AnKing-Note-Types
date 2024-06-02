@@ -308,7 +308,7 @@ img:active {
 /* ~~~~~~~MNEMONICS LEFT JUSTIFIED~~~~~~~ */
 .mnemonics {
   display: inline-block;
-  text-align: left;
+  text-align: center;
   /* can change to center to 'turn off' this feature */
 }
 
