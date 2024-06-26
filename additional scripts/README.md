@@ -12,6 +12,9 @@ Potentially makes it faster to flip cards
 ## Randomize font size
 **Instructions:** Replace {{cloze:Text}} on the front template with this
 
+## Randomize images in field
+**Instructions:** Add the script to the back template. Wrap {{Field}} (the field you want to replace images in) on the back template as shown in the template
+
 ## Scroll to Cloze
 **Instructions:** Add to back template
 
