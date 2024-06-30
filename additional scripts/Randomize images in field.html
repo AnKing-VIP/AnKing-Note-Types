@@ -13,10 +13,13 @@
         }
     }
     (() => {
-        const imagesElement = document.querySelector("#images");
-        const images = Array.from(imagesElement.querySelectorAll("img"));
-        shuffle(images);
-        imagesElement.innerHTML = "";
-        images.forEach((image) => imagesElement.appendChild(image));
+        const selectors = ["#images"];
+        for (const selector of selectors) {
+            const imagesElement = document.querySelector(selector);
+            const images = Array.from(imagesElement.querySelectorAll("img"));
+            shuffle(images);
+            imagesElement.innerHTML = "";
+            images.forEach((image) => imagesElement.appendChild(image));
+        }
     })();
 </script>
