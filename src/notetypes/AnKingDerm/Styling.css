@@ -340,6 +340,10 @@ background-color: #ffffff;
   max-width: 100% !important;
 }
 
+.ipad .card img {
+  max-width: 75% !important;
+}
+
 #extra img {
   min-width: 30%;
 }
@@ -352,8 +356,12 @@ background-color: #ffffff;
   max-width: 40%!important;
 }
 
+.ipad #additional img, .ipad #visualdx img {
+  max-width: 60%!important;
+}
+
 #fullspectrum img {
-  max-width: 30%;
+  max-width: 40%;
 }
 
 #textbook img {
