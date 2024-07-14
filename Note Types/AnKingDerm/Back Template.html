@@ -1,4 +1,4 @@
-<!-- version 6cd09ec -->
+<!-- version aaacaf7 -->
 <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -147,16 +147,6 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 </span>
 {{/Dermoscopy}}
 
-{{#VisualDx}}
-<span id = "hint-vd" class="hintBtn" data-name="VisualDx">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-vd')"></a>
-  <button id="button-vd" class="button-general" onclick="toggleHintBtn('hint-vd')">
-    <img src="_dermki_round.png" style="height:12px;"> VisualDx
-  </button>
-  <div dir="auto" id="visualdx" class="hints" style="display: none;">{{edit:VisualDx}}</div>
-</span>
-{{/VisualDx}}
-
 {{#Additional Resources}}
 <span id = "hint-ar" class="hintBtn" data-name="Additional Resources">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-ar')"></a>
@@ -166,6 +156,16 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="additional" class="hints" style="display: none;">{{edit:Additional Resources}}</div>
 </span>
 {{/Additional Resources}}
+
+{{#VisualDx}}
+<span id = "hint-vd" class="hintBtn" data-name="VisualDx">
+  <a href="#" class="hint" onclick="toggleHintBtn('hint-vd')"></a>
+  <button id="button-vd" class="button-general" onclick="toggleHintBtn('hint-vd')">
+    <img src="_dermki_round.png" style="height:12px;"> DermatoGraphix
+  </button>
+  <div dir="auto" id="visualdx" class="hints" style="display: none;"><div id="images">{{edit:VisualDx}}</div></div>
+</span>
+{{/VisualDx}}
 
 <!-- Extra field -->
 {{#Extra}}<p></p>
@@ -195,6 +195,30 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 </span>
 {{/Textbook}}
 
+<!-- RANDOMIZE IMAGES -->
+<script>
+  function shuffle(array) {
+      let currentIndex = array.length;
+      while (currentIndex != 0) {
+          let randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+          [array[currentIndex], array[randomIndex]] = [
+              array[randomIndex],
+              array[currentIndex],
+          ];
+      }
+  }
+  (() => {
+      const selectors = ["#dermnet,#dermpath,#dermoscopy,#visualdx,#fullspectrum"];
+      for (const selector of selectors) {
+          const imagesElement = document.querySelector(selector);
+          const images = Array.from(imagesElement.querySelectorAll("img"));
+          shuffle(images);
+          imagesElement.innerHTML = "";
+          images.forEach((image) => imagesElement.appendChild(image));
+      }
+  })();
+</script>
 
 <!-- ANKING HYPERLINK IMAGE -->
 <a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
