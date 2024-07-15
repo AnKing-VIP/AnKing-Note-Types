@@ -1,0 +1,43 @@
+<div id="text">{{cloze:Text}}</div>
+
+<br>
+
+<!-- ##############  Text-to-speech  ##############
+replace the arrows/dashes from the statement below with double curly brackets-->
+
+<!--tts en_US voices=Apple_Samantha,Microsoft_Zira speed=1.4:Front-->
+
+
+<script>
+// ############## USER CONFIGURATION START ##############
+
+<%- include('src/configs/countdownTimer.js') %>
+
+<%- include('src/configs/colorfulTags.js') %>
+
+// ############## USER CONFIGURATION END ##############
+</script>
+
+
+<%- include('src/components/ankingAddEventListener.ejs') %>
+
+<%- include('src/components/shortcutMatcher.ejs') %>
+
+<%- include('src/components/imageBlur.ejs') %>
+
+<%- include('src/components/countdownTimer.ejs') %>
+
+<%- include('src/components/clozeOverlapperFront.ejs') %>
+
+<%- include('src/components/clozeOverlapperSetup.ejs') %>
+
+<!-- ANKING HYPERLINK IMAGE -->
+<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
+
+
+<script>
+    //DONT FADE BETWEEN CARDS
+	qFade=0; if (typeof anki !== 'undefined') anki.qFade=qFade;
+</script>
+
+<%- include('src/components/colorfulTags.ejs') %>
