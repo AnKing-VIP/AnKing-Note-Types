@@ -8,7 +8,7 @@ The options (separated by a space, period, comma, or pipe) are:
 
 1. (default: 1) The number of leading clozes to uncover.
 2. (default: 0) The number of following clozes.
-3. (default: true) Whether to show all cloze markers (`[...]`). Set to `false` to omit them.
+3. (default: true) Whether to show all cloze markers (`[...]`) of inactive clozes. Set to `false` to omit them.
 
 ## Changelog:
 
