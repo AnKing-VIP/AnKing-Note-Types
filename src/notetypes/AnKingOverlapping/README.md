@@ -1,10 +1,16 @@
 ### Features Unique to this Note Type
 
-TODO
+This cloze note type supports overlapping clozes similar to the [Cloze Overlapper](https://ankiweb.net/shared/info/969733775) add-on.
+
+The **Overlapping** field controls overlapping behavior per note.
+
+The options (separated by a space, period, comma, or pipe) are:
+
+1. (default: 1) The number of leading clozes to uncover.
+2. (default: 0) The number of following clozes.
+3. (default: true) Whether to show all cloze markers (`[...]`). Set to `false` to omit them.
 
 ## Changelog:
-
-TODO
 
 ***
 
