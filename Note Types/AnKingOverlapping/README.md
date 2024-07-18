@@ -10,8 +10,6 @@ The options (separated by a space, period, comma, or pipe) are:
 2. (default: 0) The number of following clozes.
 3. (default: true) Whether to show all cloze markers (`[...]`) of inactive clozes. Set to `false` to omit them.
 
-<img src="https://github.com/AnKing-VIP/AnKing-Note-Types/blob/master/screenshots/AnKingOverlapping.gif?raw=true">
-
 ## Changelog:
 
 ***
