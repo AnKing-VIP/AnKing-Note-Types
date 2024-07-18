@@ -70,7 +70,8 @@
             "font": "Arial",
             "size": 8,
             "collapsibleFieldsCollapseByDefault": false,
-            "meta": null
+            "meta": null,
+            "description": "Type anything here to enable one by one clozes"
         }
     ],
     "css": "",
