@@ -71,7 +71,8 @@
             "font": "Arial",
             "size": 16,
             "meta": null,
-            "collapsibleFieldsCollapseByDefault": false
+            "collapsibleFieldsCollapseByDefault": false,
+            "description": "(number of leading clozes - #), (number of following clozes - #), (show all clozes - true/false)"
         }
     ],
     "css": "",
