@@ -1,0 +1,51 @@
+<!-- Credit: Based on https://github.com/michalrus/anki-simple-cloze-overlapper -->
+<script>
+    (function () {
+        let alreadyRendered = false;
+
+        function render() {
+            if (alreadyRendered) return;
+
+            const configString = document.getElementById(
+                "cloze-overlapping-config"
+            ).innerText;
+            if (configString.trim().length === 0) {
+                alreadyRendered = true;
+                return;
+            }
+            const config = configString.split(/[,\s|.]+/);
+            const leadingClozes =
+                config[0] === "0" ? 0 : Number.parseInt(config[0]) || 1;
+            const followingClozes = Number.parseInt(config[1]) || 0;
+            const showAllClozes =
+                (config[2] || "true").toLowerCase() === "true";
+            const currentCloze = Number.parseInt(
+                document.querySelector(".cloze").dataset.ordinal
+            );
+            for (const cloze of document.querySelectorAll(".cloze-inactive")) {
+                const ordinal = Number.parseInt(cloze.dataset.ordinal);
+                if (
+                    ordinal < currentCloze - leadingClozes ||
+                    ordinal > currentCloze + followingClozes
+                ) {
+                    if (showAllClozes) {
+                        cloze.textContent = "[...]";
+                    } else {
+                        cloze.style.display = "none";
+                    }
+                }
+            }
+            alreadyRendered = true;
+        }
+
+        function delayedRender() {
+            if (window.requestAnimationFrame)
+                window.requestAnimationFrame(render);
+            else window.setTimeout(render, 0);
+        }
+
+        window.onload = delayedRender();
+        if (document.readyState === "complete") delayedRender();
+        else document.addEventListener("DOMContentLoaded", delayedRender);
+    })();
+</script>

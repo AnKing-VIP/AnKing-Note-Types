@@ -1,0 +1,70 @@
+<script>
+  // ##############  HINT REVEAL SHORTCUTS  ##############
+  // All shortcuts will also open with "H" if using the Hint Hotkeys add-on
+  var ButtonShortcuts = {
+    "Personal Notes": "Alt + 1",
+    "Missed Questions": "Alt + 2",
+  }
+
+  var ToggleAllButtonsShortcut = "'"
+  var ToggleNextButtonShortcut = "H";
+  // ##############  SHOW HINTS AUTOMATICALLY  ##############
+  var ButtonAutoReveal = {
+    "Personal Notes": false,
+    "Missed Questions": false,
+  }
+
+  var ScrollToButton = true;
+
+  <%- include('src/configs/colorfulTags.js') %>
+
+</script>
+
+<div class="clozefield" id="text">{{cloze:Text}}</div>
+
+<!-- ##############  EDIT CLOZE DURING REVIEW  ##############
+      -change below (not above) to  "edit:cloze:Text" for editable field,
+        but be sure to have the correct add-on installed-->
+
+<div class="editcloze" id="text">{{edit:cloze:Text}}</div>
+
+<br>
+
+<!-- ##############  Text-to-speech  ##############
+replace the arrows/dashes from the statement below with double curly brackets-->
+
+<!--tts en_US voices=Apple_Samantha,Microsoft_Zira speed=1.4:Back-->
+
+
+<!-- BUTTON FIELDS -->
+<%- include("src/components/hintButton.ejs", {name: "Personal Notes", short:"ln", hintId: "notes"}) %>
+
+<%- include("src/components/hintButton.ejs", {name: "Missed Questions", short:"mq", hintId: "missed"}) %>
+
+<!-- Extra field -->
+{{#Extra}}<p></p>
+<div id="extra">{{edit:Extra}}</div>
+<br>{{/Extra}}
+
+
+<!-- ANKING HYPERLINK IMAGE -->
+<a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
+
+
+<%- include('src/components/ankingAddEventListener.ejs') %>
+
+<%- include('src/components/shortcutMatcher.ejs') %>
+
+<%- include('src/components/colorfulTags.ejs') %>
+
+<%- include('src/components/hintButtonsSetup.ejs') %>
+
+<%- include('src/components/wikipediaSearches.ejs') %>
+
+<%- include('src/components/ankiMobileUserActions.ejs') %>
+
+<%- include('src/components/imageBlur.ejs') %>
+
+<%- include('src/components/clozeOverlapperFront.ejs') %>
+
+<%- include('src/components/clozeOverlapperSetup.ejs') %>

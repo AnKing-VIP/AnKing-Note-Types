@@ -1,23 +1,23 @@
 <!-- version ed780a6 -->
 <script>
-// ##############  HINT REVEAL SHORTCUTS  ##############
-// All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
-var ButtonShortcuts = {
-  "Personal Notes": "Alt + 1",
-  "Missed Questions": "Alt + 2",
-}
+  // ##############  HINT REVEAL SHORTCUTS  ##############
+  // All shortcuts will also open with "H" if using the Hint Hotkeys add-on
+  var ButtonShortcuts = {
+    "Personal Notes": "Alt + 1",
+    "Missed Questions": "Alt + 2",
+  }
 
-var ToggleAllButtonsShortcut = "'"
-var ToggleNextButtonShortcut = "H";
-// ##############  SHOW HINTS AUTOMATICALLY  ##############
-var ButtonAutoReveal = {
-  "Personal Notes": false,
-  "Missed Questions": false,
-}
+  var ToggleAllButtonsShortcut = "'"
+  var ToggleNextButtonShortcut = "H";
+  // ##############  SHOW HINTS AUTOMATICALLY  ##############
+  var ButtonAutoReveal = {
+    "Personal Notes": false,
+    "Missed Questions": false,
+  }
 
-var ScrollToButton = true;
+  var ScrollToButton = true;
 
-// ##############  TAG SHORTCUT  ##############
+  // ##############  TAG SHORTCUT  ##############
 var toggleTagsShortcut = "C";
 
 // ENTER THE TAG TERM WHICH, WHEN PRESENT, WILL TRIGGER A RED BACKGROUND
@@ -27,17 +27,15 @@ var tagID = "XXXYYYZZZ"
 
 var numTagLevelsToShow = 0;
 
-
 </script>
-  
-  
-  <div id="front">{{edit:Front}}</div>
-  
-  <hr id=answer>
 
-    <!-- Back field -->
-<p></p>
-<div id="back">{{edit:Back}}</div>
+<div class="clozefield" id="text">{{cloze:Text}}</div>
+
+<!-- ##############  EDIT CLOZE DURING REVIEW  ##############
+      -change below (not above) to  "edit:cloze:Text" for editable field,
+        but be sure to have the correct add-on installed-->
+
+<div class="editcloze" id="text">{{edit:cloze:Text}}</div>
 
 <br>
 
@@ -67,6 +65,11 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="missed" class="hints" style="display: none;">{{edit:Missed Questions}}</div>
 </span>
 {{/Missed Questions}}
+
+<!-- Extra field -->
+{{#Extra}}<p></p>
+<div id="extra">{{edit:Extra}}</div>
+<br>{{/Extra}}
 
 
 <!-- ANKING HYPERLINK IMAGE -->
@@ -493,5 +496,61 @@ var userJs8 = undefined
             image.classList.toggle("blur");
         });
     }
+</script>
+
+
+<div id="cloze-overlapping-config" hidden="">{{Overlapping}}</div>
+
+
+<!-- Credit: Based on https://github.com/michalrus/anki-simple-cloze-overlapper -->
+<script>
+    (function () {
+        let alreadyRendered = false;
+
+        function render() {
+            if (alreadyRendered) return;
+
+            const configString = document.getElementById(
+                "cloze-overlapping-config"
+            ).innerText;
+            if (configString.trim().length === 0) {
+                alreadyRendered = true;
+                return;
+            }
+            const config = configString.split(/[,\s|.]+/);
+            const leadingClozes =
+                config[0] === "0" ? 0 : Number.parseInt(config[0]) || 1;
+            const followingClozes = Number.parseInt(config[1]) || 0;
+            const showAllClozes =
+                (config[2] || "true").toLowerCase() === "true";
+            const currentCloze = Number.parseInt(
+                document.querySelector(".cloze").dataset.ordinal
+            );
+            for (const cloze of document.querySelectorAll(".cloze-inactive")) {
+                const ordinal = Number.parseInt(cloze.dataset.ordinal);
+                if (
+                    ordinal < currentCloze - leadingClozes ||
+                    ordinal > currentCloze + followingClozes
+                ) {
+                    if (showAllClozes) {
+                        cloze.textContent = "[...]";
+                    } else {
+                        cloze.style.display = "none";
+                    }
+                }
+            }
+            alreadyRendered = true;
+        }
+
+        function delayedRender() {
+            if (window.requestAnimationFrame)
+                window.requestAnimationFrame(render);
+            else window.setTimeout(render, 0);
+        }
+
+        window.onload = delayedRender();
+        if (document.readyState === "complete") delayedRender();
+        else document.addEventListener("DOMContentLoaded", delayedRender);
+    })();
 </script>
 
