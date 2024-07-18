@@ -178,7 +178,8 @@
             "font": "Arial",
             "size": 8,
             "meta": null,
-            "collapsibleFieldsCollapseByDefault": false
+            "collapsibleFieldsCollapseByDefault": false,
+            "description": "Type anything here to enable one by one clozes"
         }
     ],
     "css": "",
