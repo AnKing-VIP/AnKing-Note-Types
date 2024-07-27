@@ -1,4 +1,4 @@
-<!-- version 38d2ebb -->
+<!-- version 36ac8a7 -->
 <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -74,6 +74,15 @@ var clozeHider = (elem) => "[" + elem.textContent.split(" ").map((t) => "█".re
 // Color-filled box (doesn't hide images):
 var clozeHider = (elem) => `<span style="background-color: red; color: transparent;">${elem.innerHTML}</span>`
 */
+
+// enables selective cloze one-by-one (e.g. only c1 and c3)
+// seperate wanted numbers by "," in one-by-one field
+var selectiveOneByOne = false;
+
+// if selective one-by-one is disabled, set this to select a min number of clozes necessary to activate 1b1
+// can be set to any number to set lower bound, any falsy value (e.g. 0 or null) disables this setting
+var minNumberOfClozes = 0;
+
 
 </script>
 
@@ -618,8 +627,43 @@ if (typeof(window.Persistence) === 'undefined') {
 
 <script>
   (function() {
+    // enables cloze one-by-one even when one-by-one field is empty
+    // minNumberOfClozes is still considered in this case
+    // overridden in importance by selectiveOneByOne
+    var alwaysOneByOne = true;
     var clozeOneByOneEnabled = true;
-      clozeOneByOneEnabled = document.getElementById("one-by-one").textContent !== "";
+    var oneByOneFieldEmpty = document.getElementById("one-by-one").textContent !== "";
+      clozeOneByOneEnabled = alwaysOneByOne || oneByOneFieldEmpty;
+
+    // --- CHECK IF ONE BY ONE SHOULD BE ENABLED FOR THIS SPECIFIC CARD ---
+    /**
+     * Credit for the getCardNumber function goes to foenixx (GitHub) / ollevolle (AnkiWeb Forum)
+     */
+    const getCardNumber = function () {
+      clz = document.body.className;
+      const regex = /card(\d+)/gm;
+      let m;
+
+      if ((m = regex.exec(clz)) !== null) {
+        return m[1];
+      } else {
+        // Should only fire if card is not cloze
+        console.error("Cannot find cardN class of body element!");
+        return "0";
+      }
+    }
+
+    // parse the cloze numbers for which selectiveOneByOne is enabled
+    var cardNumberIsOneByOne = document.getElementById("one-by-one").textContent.split(',').filter(element => element).map(Number).includes(parseInt(getCardNumber()))
+
+    // check the amount of clozes -> disable OneByOne if less than minimum value wanted (minNumberOfClozes)
+    var numClozesForNumber = (minNumberOfClozes) ? document.querySelectorAll('.clozefield .cloze').length : 0
+
+    // stop OneByOne if selectiveOneByOne is not enabled for this specific card OR if OneByOne is disabled some other way
+    // -> show normal backside
+    if ((selectiveOneByOne && !alwaysOneByOne && !cardNumberIsOneByOne) || (oneByOneFieldEmpty && (numClozesForNumber < minNumberOfClozes))) {
+      clozeOneByOneEnabled = false
+    }
 
     if (!clozeOneByOneEnabled) {
       return
