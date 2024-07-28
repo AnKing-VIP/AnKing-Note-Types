@@ -1,4 +1,4 @@
-<!-- version e7816d1 -->
+<!-- version bcd3da0 -->
 <div id="text">{{cloze:Text}}</div>
 
 <br>
@@ -160,7 +160,7 @@ if (typeof(window.Persistence) === 'undefined') {
   // enables cloze one-by-one even when one-by-one field is empty
   // minNumberOfClozes is still considered in this case
   // overridden in importance by selectiveOneByOne
-  var alwaysOneByOne = true;
+  var alwaysOneByOne = false;
   var clozeOneByOneEnabled = true;
     clozeOneByOneEnabled = alwaysOneByOne || document.getElementById("one-by-one").textContent !== "";
   
