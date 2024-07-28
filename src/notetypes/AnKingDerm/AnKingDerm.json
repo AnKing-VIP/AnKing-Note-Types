@@ -140,10 +140,9 @@
             "sticky": false,
             "rtl": false,
             "font": "Arial",
-            "size": 8,
             "meta": null,
             "collapsibleFieldsCollapseByDefault": false,
-            "description": "Type anything here to enable one by one clozes"
+            "description": "Type anything here (i.e. \"yes\") to enable one by one clozes or enable only certain clozes by typing numbers separated by commas (i.e. \"1,3\")"
         }
     ],
     "css": "",
