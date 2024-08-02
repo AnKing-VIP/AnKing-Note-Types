@@ -1,4 +1,4 @@
-<!-- version 1b5a735 -->
+<!-- version 8c79263 -->
  <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -501,7 +501,8 @@ if (typeof(window.Persistence) === 'undefined') {
     }
 
     // parse the cloze numbers for which selectiveOneByOne is enabled
-    var cardNumberIsOneByOne = document.getElementById("one-by-one").textContent.split(',').filter(element => element).map(Number).includes(parseInt(getCardNumber()))
+    var clozeNumbers = document.getElementById("one-by-one").textContent.split(',').filter(element => element).map(Number)
+    var cardNumberIsOneByOne = !clozeNumbers.filter(n => !Number.isNaN(n)).length || clozeNumbers.includes(parseInt(getCardNumber()))
 
     // check the amount of clozes -> disable OneByOne if less than minimum value wanted (minNumberOfClozes)
     var numClozesForNumber = (minNumberOfClozes) ? document.querySelectorAll('.clozefield .cloze').length : 0
