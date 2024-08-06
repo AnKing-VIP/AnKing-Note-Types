@@ -107,28 +107,31 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <!-- RANDOMIZE IMAGES -->
 <script>
-  function shuffle(array) {
-      let currentIndex = array.length;
-      while (currentIndex != 0) {
-          let randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex--;
-          [array[currentIndex], array[randomIndex]] = [
-              array[randomIndex],
-              array[currentIndex],
-          ];
-      }
-  }
-  (() => {
-      const selectors = ["#dermnet,#dermpath,#dermoscopy,#fullspectrum"];
-      for (const selector of selectors) {
-          const imagesElement = document.querySelector(selector);
-          const images = Array.from(imagesElement.querySelectorAll("img"));
-          shuffle(images);
-          imagesElement.innerHTML = "";
-          images.forEach((image) => imagesElement.appendChild(image));
-      }
-  })();
+    function shuffle(array) {
+        let currentIndex = array.length;
+        while (currentIndex != 0) {
+            let randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex],
+                array[currentIndex],
+            ];
+        }
+    }
+    (() => {
+        const selectors = ["#dermnet,#dermpath,#dermoscopy,#visualdx,#fullspectrum"];
+        for (const selector of selectors) {
+            const imagesElement = document.querySelector(selector);
+            const images = Array.from(imagesElement.querySelectorAll("img"));
+            const shuffledImages = Array.from(images.map(img => img.cloneNode(true)));
+            shuffle(shuffledImages);
+            for (let i = 0; i < images.length; i++) {
+                images[i].replaceWith(shuffledImages[i]);
+            }            
+        }
+    })();
 </script>
+
 
 <!-- ANKING HYPERLINK IMAGE -->
 <a href="https://www.ankingmed.com"><img src="_AnKingRound.png" alt="The AnKing" id="pic"></a>
