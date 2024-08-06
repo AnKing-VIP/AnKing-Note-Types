@@ -17,9 +17,11 @@
         for (const selector of selectors) {
             const imagesElement = document.querySelector(selector);
             const images = Array.from(imagesElement.querySelectorAll("img"));
-            shuffle(images);
-            imagesElement.innerHTML = "";
-            images.forEach((image) => imagesElement.appendChild(image));
+            const shuffledImages = Array.from(images.map(img => img.cloneNode(true)));
+            shuffle(shuffledImages);
+            for (let i = 0; i < images.length; i++) {
+                images[i].replaceWith(shuffledImages[i]);
+            }            
         }
     })();
 </script>
