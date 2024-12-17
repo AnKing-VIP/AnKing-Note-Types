@@ -86,7 +86,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <%- include("src/components/hintButton.ejs", {name: "Pathoma", short:"pat", hintId: "pathoma", icon:"_pathoma.icon.png", noText: true }) %>
 
-<%- include("src/components/hintButtonFromTags.ejs", {
+<%- include("src/components/tagBasedHintButton.ejs", {
   name: "Boards and Beyond Links", 
   short:"bb-links", 
   hintId: "bnb-links", 
@@ -104,7 +104,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <div id="extra">{{edit:Extra}}</div>
 <br>{{/Extra}}
 
-<%- include("src/components/hintButtonFromTags.ejs", {
+<%- include("src/components/tagBasedHintButton.ejs", {
   name: "First Aid Links", 
   short:"fa-links", 
   hintId: "firstaid-links", 
@@ -153,7 +153,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <%- include('src/components/colorfulTags.ejs') %>
 
-<%- include('src/components/hintButtonsFromTagsSetup.ejs') %>
+<%- include('src/components/tagBasedHintButtonsSetup.ejs') %>
 
 <%- include('src/components/hintButtonsSetup.ejs') %>
 

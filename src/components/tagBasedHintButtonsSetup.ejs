@@ -7,11 +7,6 @@
                 if (!stepMatch) return null;
                 const step = parseInt(stepMatch[1]);
 
-                // Extract resource type
-                const resourceTypeMatch = tag.match(/_v12::#(.+?)::/i);
-                if (!resourceTypeMatch) return null;
-                const resourceTypeStr = resourceTypeMatch[1];
-
                 // Process path
                 let path = tag.replace(/.+_v12::#.+?::/i, '');
                 let pathParts = path.split('::');
@@ -43,9 +38,8 @@
             return tags.filter(tag => tag.toLowerCase().includes(searchPattern));
         }
 
-        function setupHintButtonFromTags(hintButton) {
+        function setupTagBasedHintButton(hintButton) {
             const resourceTags = getResourceTags(tags, hintButton.dataset.resourceTypeTagPart);
-
             if (resourceTags && resourceTags.length > 0) {
                 const button = document.getElementById(hintButton.id);
                 const hintsDiv = button.querySelector('.hints');
@@ -63,17 +57,15 @@
                         return null;
                     })
                     .filter(link => link !== null);
-
                 hintsDiv.innerHTML = processedResources.join('<br>');
-            }
 
+            }
         }
 
         const tags = `{{Tags}}`.split(" ");
-
-        const hintButtonsFromTags = document.querySelectorAll(".hintBtn.hintBtnFromTags");
-        for (let i = 0; i < hintButtonsFromTags.length; i++) {
-            setupHintButtonFromTags(hintButtonsFromTags[i])
+        const tagBasedHintButtons = document.querySelectorAll(".hintBtn.tagBasedHintBtn");
+        for (let i = 0; i < tagBasedHintButtons.length; i++) {
+            setupTagBasedHintButton(tagBasedHintButtons[i])
         }
     })()
 </script>
