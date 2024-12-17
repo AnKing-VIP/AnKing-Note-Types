@@ -3,8 +3,6 @@
 - name: string
 - short: string
 - hintId: string
-- resourceTypeTagPart: string
-- resourceSlugStr: string
 - linkPrefix: string 
 - icon?: string
 - noText?: boolean
@@ -20,82 +18,13 @@ _%>
   const btnId = `button-${short}`
 _%> 
 
-<span style="display: none" id="<%- containerId %>" class="hintBtn" data-name="<%-name%>">
+<span style="display: none" id="<%- containerId %>" class="hintBtn hintBtnFromTags" 
+  data-name="<%-name%>" data-resource-type-tag-part="<%-resourceTypeTagPart%>" data-resource-slug="<%-resourceSlug%>"
+  data-link-prefix="<%-linkPrefix%>"
+>
   <a href="#" class="hint" onclick="toggleHintBtn('<%- containerId %>')"></a>
   <button id="<%- btnId %>" class="button-general" onclick="toggleHintBtn('<%- containerId %>')">
     <img src="<%- icon %>"> <% if (!noText) { %><%- name %><% } %>
   </button>
   <div dir="auto" id="<%- hintId %>" class="hints" style="display: none;"></div>
 </span>
-
-<script>
-(function() {
-  function tagToResourceTitleAndSlug(tag) {
-    try {
-      // Extract step number
-      const stepMatch = tag.match(/#AK_Step(\d+)_v12::/i);
-      if (!stepMatch) return null;
-      const step = parseInt(stepMatch[1]);
-
-      // Extract resource type
-      const resourceTypeMatch = tag.match(/_v12::#(.+?)::/i);
-      if (!resourceTypeMatch) return null;
-      const resourceTypeStr = resourceTypeMatch[1];
-      
-      // Process path
-      let path = tag.replace(/.+_v12::#.+?::/i, '');
-      let pathParts = path.split('::');
-      pathParts = pathParts.map(part => part.toLowerCase());
-      
-      // Clean path parts (remove number prefixes)
-      const cleanedPathParts = pathParts.map(part => part.replace(/\d+_/g, ''));
-      
-      // Create slug and title
-      const resourceSlugStr = "<%- resourceSlugStr %>";
-      const slug = `step${step}-${resourceSlugStr}-${cleanedPathParts.join('-')}`;
-      const title = cleanedPathParts[cleanedPathParts.length - 1]
-        .replace(/_/g, ' ')
-        .split(' ')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
-      
-      return { title, slug };
-    } catch (error) {
-      return null;
-    }
-  }
-
-  function createResourceUrl(slug) {
-    return `https://app.ankihub.net/integrations/mcgraw-hill/preview/${slug}`;
-  }
-
-  function getResourceTags(tags, resourceTypeTagPart) {
-    const searchPattern = `v12::${resourceTypeTagPart}`.toLowerCase();
-    return tags.filter(tag => tag.toLowerCase().includes(searchPattern));
-  }
-
-  const tags = `{{Tags}}`.split(" ");
-  const resourceTypeTagPart = "<%- resourceTypeTagPart %>";
-  const resourceTags = getResourceTags(tags, resourceTypeTagPart);
-  
-  if (resourceTags && resourceTags.length > 0) {
-    const button = document.getElementById("<%- containerId %>");
-    const hintsDiv = document.getElementById("<%- hintId %>");
-    button.style.display = "block";
-    
-    // Process tags and create links
-    const processedResources = resourceTags
-      .map(tag => {
-        const resource = tagToResourceTitleAndSlug(tag);
-        if (resource) {
-          const url = createResourceUrl(resource.slug);
-          return `<a href="${url}" target="_blank"><%- linkPrefix %>${resource.title}</a>`;
-        }
-        return null;
-      })
-      .filter(link => link !== null);
-    
-    hintsDiv.innerHTML = processedResources.join('<br>');
-  }
-})()
-</script>

@@ -92,7 +92,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   hintId: "bnb-links", 
   icon:"_b&b.icon.png", 
   resourceTypeTagPart:"#b&b",  
-  resourceSlugStr:"bb",
+  resourceSlug:"bb",
   linkPrefix: "B&B - ",
 }) %>
 
@@ -110,7 +110,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   hintId: "firstaid-links", 
   icon:"_first-aid.icon_v2.1.png", 
   resourceTypeTagPart:"#firstaid",  
-  resourceSlugStr:"fa",
+  resourceSlug:"fa",
   linkPrefix: "FA4 - ",
 }) %>
 
@@ -152,6 +152,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <%- include('src/components/shortcutMatcher.ejs') %>
 
 <%- include('src/components/colorfulTags.ejs') %>
+
+<%- include('src/components/hintButtonsFromTagsSetup.ejs') %>
 
 <%- include('src/components/hintButtonsSetup.ejs') %>
 
