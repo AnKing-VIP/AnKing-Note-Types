@@ -44,7 +44,7 @@
                 const button = document.getElementById(hintButton.id);
                 const hintsDiv = button.querySelector('.hints');
 
-                button.style.display = "block";
+                button.classList.remove('hidden');
 
                 // Process tags and create links
                 const processedResources = resourceTags
