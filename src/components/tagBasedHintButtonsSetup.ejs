@@ -12,6 +12,19 @@
                 let pathParts = path.split('::');
                 pathParts = pathParts.map(part => part.toLowerCase());
 
+                // Remove path parts after first path part starting with "*"
+                for (let index = 0; index < pathParts.length; index++) {
+                    if (pathParts[index].startsWith("*")) {
+                        pathParts = pathParts.slice(0, index);
+                        break;
+                    }
+                }
+
+                // Remove the last part if it is "extra"
+                if (pathParts[pathParts.length - 1] === "extra") {
+                    pathParts = pathParts.slice(0, -1);
+                }
+
                 // Clean path parts (remove number prefixes)
                 const cleanedPathParts = pathParts.map(part => part.replace(/\d+_/g, ''));
 
