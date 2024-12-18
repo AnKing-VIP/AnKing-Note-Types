@@ -5,7 +5,9 @@ var ButtonShortcuts = {
     "Lecture Notes" : "Alt + 1",
     "Missed Questions" : "Alt + 2",
     "Pathoma" : "Alt + 3",
+    "Boards and Beyond Links" : "",
     "Boards and Beyond" : "Alt + 4",
+    "First Aid Links" : "",
     "First Aid" : "Alt + 5",
     "Sketchy" : "Alt + 6",
     "Sketchy 2": "",
@@ -25,7 +27,9 @@ var ButtonAutoReveal = {
     "Missed Questions" : false,
     "Pathoma" : false,
     "Boards and Beyond" : false,
+    "Boards and Beyond Links" : false,
     "First Aid" : false,
+    "First Aid Links" : false,
     "Sketchy" : false,
     "Sketchy 2": false,
     "Sketchy Extra": false,
@@ -82,6 +86,16 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <%- include("src/components/hintButton.ejs", {name: "Pathoma", short:"pat", hintId: "pathoma", icon:"_pathoma.icon.png", noText: true }) %>
 
+<%- include("src/components/tagBasedHintButton.ejs", {
+  name: "Boards and Beyond Links", 
+  short:"bb-links", 
+  hintId: "bnb-links", 
+  icon:"_b&b.icon.png", 
+  resourceTypeTagPart:"#b&b",  
+  resourceSlug:"bb",
+  linkPrefix: "B&B - ",
+}) %>
+
 <%- include("src/components/hintButton.ejs", {name: "Boards and Beyond", short:"bb", hintId: "bnb", icon:"_b&b.icon.png" }) %>
 
 
@@ -89,6 +103,16 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 {{#Extra}}<p></p>
 <div id="extra">{{edit:Extra}}</div>
 <br>{{/Extra}}
+
+<%- include("src/components/tagBasedHintButton.ejs", {
+  name: "First Aid Links", 
+  short:"fa-links", 
+  hintId: "firstaid-links", 
+  icon:"_first-aid.icon_v2.1.png", 
+  resourceTypeTagPart:"#firstaid",  
+  resourceSlug:"fa",
+  linkPrefix: "FA4 - ",
+}) %>
 
 <%- include("src/components/hintButton.ejs", {name: "First Aid", short:"fa", hintId: "firstaid", icon: "_first-aid.icon_v2.1.png" }) %>
 
@@ -128,6 +152,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <%- include('src/components/shortcutMatcher.ejs') %>
 
 <%- include('src/components/colorfulTags.ejs') %>
+
+<%- include('src/components/tagBasedHintButtonsSetup.ejs') %>
 
 <%- include('src/components/hintButtonsSetup.ejs') %>
 

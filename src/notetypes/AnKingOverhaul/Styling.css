@@ -798,6 +798,11 @@ html:not(.mobile) #button-ome:hover {
   background-color: #47C3F3 !important;
 }
 
+/* Show tag based hint buttons only on mobile */
+html:not(.mobile) .tagBasedHintBtn {
+  display: none;
+}
+
 /* Blur styles */
 img {
   transition: filter 0.3s ease;
@@ -805,4 +810,9 @@ img {
 
 .blur {
   filter: blur(15px);
+}
+
+/* Utility classes */
+.hidden {
+  display: none;
 }
