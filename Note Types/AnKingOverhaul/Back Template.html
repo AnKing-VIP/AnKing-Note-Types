@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-<!-- version bb78f1b -->
-=======
-<!-- version ccbaa97 -->
->>>>>>> master
+<!-- version b169a0b -->
 <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -466,7 +462,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
                 }
 
                 // Clean path parts (remove number prefixes)
-                const cleanedPathParts = pathParts.map(part => part.replace(/\d+_/g, ''));
+                const cleanedPathParts = pathParts.map(part => part.replace(/^\d+_/g, ''));
 
                 // Create slug and title
                 const slug = `step${step}-${resourceSlug}-${cleanedPathParts.join('-')}`;
@@ -493,32 +489,35 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
         function setupTagBasedHintButton(hintButton) {
             const resourceTags = getResourceTags(tags, hintButton.dataset.resourceTypeTagPart);
-            if (resourceTags && resourceTags.length > 0) {
-                const button = document.getElementById(hintButton.id);
-                const hintsDiv = button.querySelector('.hints');
+            if (!resourceTags || resourceTags.length == 0) {
+                return;
+            }
 
-                button.classList.remove('hidden');
+            const button = document.getElementById(hintButton.id);
+            const hintsDiv = button.querySelector('.hints');
 
-                // Process tags and create links
-                const resourceLinks = resourceTags
-                    .map(tag => {
-                        const resource = tagToResourceTitleAndSlug(tag, hintButton.dataset.resourceSlug);
-                        if (resource) {
-                            const url = createResourceUrl(resource.slug);
-                            return `<a href="${url}" target="_blank">${hintButton.dataset.linkPrefix}${resource.title}</a>`;
-                        }
-                        return null;
-                    })
-                    .filter(link => link !== null);
+            // Create links from the resource tags
+            const resourceLinks = resourceTags
+                .map(tag => {
+                    const resource = tagToResourceTitleAndSlug(tag, hintButton.dataset.resourceSlug);
+                    if (resource) {
+                        const url = createResourceUrl(resource.slug);
+                        return `<a href="${url}" target="_blank">${hintButton.dataset.linkPrefix}${resource.title}</a>`;
+                    }
+                    return null;
+                })
+                .filter(link => link !== null);
 
-                // Remove duplicates
-                const uniqueResourceLinks = [...new Set(resourceLinks)];
+            // Remove duplicates
+            const uniqueResourceLinks = [...new Set(resourceLinks)];
 
-                // Sort by title
-                uniqueResourceLinks.sort((a, b) => a.localeCompare(b));
+            // Sort by title
+            uniqueResourceLinks.sort((a, b) => a.localeCompare(b));
 
+            // Update button visibility and content
+            if (uniqueResourceLinks.length > 0) {
                 hintsDiv.innerHTML = uniqueResourceLinks.join('<br>');
-
+                button.classList.remove('hidden');
             }
         }
 
