@@ -53,32 +53,35 @@
 
         function setupTagBasedHintButton(hintButton) {
             const resourceTags = getResourceTags(tags, hintButton.dataset.resourceTypeTagPart);
-            if (resourceTags && resourceTags.length > 0) {
-                const button = document.getElementById(hintButton.id);
-                const hintsDiv = button.querySelector('.hints');
+            if (!resourceTags || resourceTags.length == 0) {
+                return;
+            }
 
-                button.classList.remove('hidden');
+            const button = document.getElementById(hintButton.id);
+            const hintsDiv = button.querySelector('.hints');
 
-                // Process tags and create links
-                const resourceLinks = resourceTags
-                    .map(tag => {
-                        const resource = tagToResourceTitleAndSlug(tag, hintButton.dataset.resourceSlug);
-                        if (resource) {
-                            const url = createResourceUrl(resource.slug);
-                            return `<a href="${url}" target="_blank">${hintButton.dataset.linkPrefix}${resource.title}</a>`;
-                        }
-                        return null;
-                    })
-                    .filter(link => link !== null);
+            // Create links from the resource tags
+            const resourceLinks = resourceTags
+                .map(tag => {
+                    const resource = tagToResourceTitleAndSlug(tag, hintButton.dataset.resourceSlug);
+                    if (resource) {
+                        const url = createResourceUrl(resource.slug);
+                        return `<a href="${url}" target="_blank">${hintButton.dataset.linkPrefix}${resource.title}</a>`;
+                    }
+                    return null;
+                })
+                .filter(link => link !== null);
 
-                // Remove duplicates
-                const uniqueResourceLinks = [...new Set(resourceLinks)];
+            // Remove duplicates
+            const uniqueResourceLinks = [...new Set(resourceLinks)];
 
-                // Sort by title
-                uniqueResourceLinks.sort((a, b) => a.localeCompare(b));
+            // Sort by title
+            uniqueResourceLinks.sort((a, b) => a.localeCompare(b));
 
+            // Update button visibility and content
+            if (uniqueResourceLinks.length > 0) {
                 hintsDiv.innerHTML = uniqueResourceLinks.join('<br>');
-
+                button.classList.remove('hidden');
             }
         }
 
