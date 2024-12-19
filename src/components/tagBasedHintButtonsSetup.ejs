@@ -26,7 +26,7 @@
                 }
 
                 // Clean path parts (remove number prefixes)
-                const cleanedPathParts = pathParts.map(part => part.replace(/\d+_/g, ''));
+                const cleanedPathParts = pathParts.map(part => part.replace(/^\d+_/g, ''));
 
                 // Create slug and title
                 const slug = `step${step}-${resourceSlug}-${cleanedPathParts.join('-')}`;
