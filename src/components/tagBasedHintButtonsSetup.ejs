@@ -60,7 +60,7 @@
                 button.classList.remove('hidden');
 
                 // Process tags and create links
-                const processedResources = resourceTags
+                const resourceLinks = resourceTags
                     .map(tag => {
                         const resource = tagToResourceTitleAndSlug(tag, hintButton.dataset.resourceSlug);
                         if (resource) {
@@ -70,7 +70,14 @@
                         return null;
                     })
                     .filter(link => link !== null);
-                hintsDiv.innerHTML = processedResources.join('<br>');
+
+                // Remove duplicates
+                const uniqueResourceLinks = [...new Set(resourceLinks)];
+
+                // Sort by title
+                uniqueResourceLinks.sort((a, b) => a.localeCompare(b));
+
+                hintsDiv.innerHTML = uniqueResourceLinks.join('<br>');
 
             }
         }
