@@ -2,6 +2,7 @@
 
 # Parameters
 - clozeHider: string
+- selective?: boolean
 _%>
 <%_
   var clozeHider = clozeHider === undefined ? "👑" : clozeHider
@@ -33,8 +34,7 @@ var clozeHider = (elem) => `<span style="background-color: red; color: transpare
 
 // enables selective cloze one-by-one (e.g. only c1 and c3)
 // seperate wanted numbers by "," in one-by-one field
-var selectiveOneByOne = false;
-
+var selectiveOneByOne = <%- locals?.selective ? true : false -%>;
 // if selective one-by-one is disabled, set this to select a min number of clozes necessary to activate 1b1
 // can be set to any number to set lower bound, any falsy value (e.g. 0 or null) disables this setting
 var minNumberOfClozes = 0;
