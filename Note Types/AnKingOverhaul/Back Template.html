@@ -1,4 +1,4 @@
-<!-- version 767c732 -->
+<!-- version d0f2c82 -->
 <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -459,13 +459,17 @@ replace the arrows/dashes from the statement below with double curly brackets-->
                 if (pathParts[pathParts.length - 1] === "extra") {
                     pathParts = pathParts.slice(0, -1);
                 }
+                
+                // Create slug
+                const contentNumbers = pathParts
+                    .map(part => part.match(/\d+/))
+                    .map(matchArray => parseInt(matchArray[0], 10));
 
-                // Clean path parts (remove number prefixes)
-                const cleanedPathParts = pathParts.map(part => part.replace(/^\d+_/g, ''));
+                const slug = `step${step}-${resourceSlug}-${contentNumbers.join('-')}`;
 
-                // Create slug and title
-                const slug = `step${step}-${resourceSlug}-${cleanedPathParts.join('-')}`;
-                const title = cleanedPathParts[cleanedPathParts.length - 1]
+                // Create title
+                const title = pathParts[pathParts.length - 1]
+                    .replace(/^\d+_/g, '')
                     .replace(/_/g, ' ')
                     .split(' ')
                     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
