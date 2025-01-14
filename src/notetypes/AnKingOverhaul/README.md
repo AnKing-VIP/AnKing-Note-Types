@@ -20,7 +20,7 @@
 <b>AnKingMaster-v1</b> notetype was introduced to provide the same note for all cards in the AnKing Overhaul Deck for Step 1 and Step 2. It combined fields from the AnKingMed and AnKingSketchy Note Types
 <b>AnKingMaster-v2</b> note type added the Physeo and Pixorize fields
 <b>AnKingMaster-v3</b> note type added the OME field
-Detailed changelog over time has been noted <a href="https://www.ankipalace.com/deck-updates-log">here</a>
+Detailed changelog over time has been noted <a href="https://www.ankihub.net/step-deck">here</a>
 
 2021-09-03: Initial Release on Github
 2021-10-17: Significant overhaul of styling, buttons, formatting and more
