@@ -17,3 +17,4 @@ __pycache__/
 *.code-workspace
 
 **/.history/**
+.DS_Store
