@@ -1,4 +1,4 @@
-<!-- version 37a50fe -->
+<!-- version ed94c9e -->
 <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -138,7 +138,6 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 
 <!-- BUTTON FIELDS -->
-<!-- #Lecture Notes -->
 {{#Lecture Notes}}
 <span id = "hint-ln" class="hintBtn" data-name="Lecture Notes">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-ln')"></a>
@@ -148,10 +147,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="notes" class="hints" style="display: none;">{{edit:Lecture Notes}}</div>
 </span>
 {{/Lecture Notes}}
-<!-- /Lecture Notes -->
 
-
-<!-- #Missed Questions -->
 {{#Missed Questions}}
 <span id = "hint-mq" class="hintBtn" data-name="Missed Questions">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-mq')"></a>
@@ -161,10 +157,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="missed" class="hints" style="display: none;">{{edit:Missed Questions}}</div>
 </span>
 {{/Missed Questions}}
-<!-- /Missed Questions -->
 
-
-<!-- #Pathoma -->
 {{#Pathoma}}
 <span id = "hint-pat" class="hintBtn" data-name="Pathoma">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-pat')"></a>
@@ -174,11 +167,9 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="pathoma" class="hints" style="display: none;">{{edit:Pathoma}}</div>
 </span>
 {{/Pathoma}}
-<!-- /Pathoma -->
 
 
-
-<!-- #Boards and Beyond Links -->
+{{#Tags}}
 <span id="hint-bb-links" class="hintBtn tagBasedHintBtn hidden" 
   data-name="Boards and Beyond Links" data-resource-type-tag-part="#b&b" data-resource-slug="bb"
   data-link-prefix="B&B"
@@ -189,9 +180,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   </button>
   <div dir="auto" id="bnb-links" class="hints" style="display: none;"></div>
 </span>
-<!-- /Boards and Beyond Links -->
+{{/Tags}}
 
-<!-- #Boards and Beyond -->
 {{#Boards and Beyond}}
 <span id = "hint-bb" class="hintBtn" data-name="Boards and Beyond">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-bb')"></a>
@@ -201,8 +191,6 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="bnb" class="hints" style="display: none;">{{edit:Boards and Beyond}}</div>
 </span>
 {{/Boards and Beyond}}
-<!-- /Boards and Beyond -->
-
 
 
 <!-- Extra field -->
@@ -211,7 +199,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <br>{{/Extra}}
 
 
-<!-- #First Aid Links -->
+{{#Tags}}
 <span id="hint-fa-links" class="hintBtn tagBasedHintBtn hidden" 
   data-name="First Aid Links" data-resource-type-tag-part="#firstaid" data-resource-slug="fa"
   data-link-prefix="FA4"
@@ -222,9 +210,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   </button>
   <div dir="auto" id="firstaid-links" class="hints" style="display: none;"></div>
 </span>
-<!-- /First Aid Links -->
+{{/Tags}}
 
-<!-- #First Aid -->
 {{#First Aid}}
 <span id = "hint-fa" class="hintBtn" data-name="First Aid">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-fa')"></a>
@@ -234,10 +221,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="firstaid" class="hints" style="display: none;">{{edit:First Aid}}</div>
 </span>
 {{/First Aid}}
-<!-- /First Aid -->
 
-
-<!-- #Sketchy -->
 {{#Sketchy}}
 <span id = "hint-sketchy" class="hintBtn" data-name="Sketchy">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-sketchy')"></a>
@@ -247,10 +231,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="sketchy" class="hints" style="display: none;">{{edit:Sketchy}}</div>
 </span>
 {{/Sketchy}}
-<!-- /Sketchy -->
 
-
-<!-- #Sketchy 2 -->
 {{#Sketchy 2}}
 <span id = "hint-sketchy2" class="hintBtn" data-name="Sketchy 2">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-sketchy2')"></a>
@@ -260,10 +241,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="sketchy2" class="hints" style="display: none;">{{edit:Sketchy 2}}</div>
 </span>
 {{/Sketchy 2}}
-<!-- /Sketchy 2 -->
 
-
-<!-- #Sketchy Extra -->
 {{#Sketchy Extra}}
 <span id = "hint-sketchyextra" class="hintBtn" data-name="Sketchy Extra">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-sketchyextra')"></a>
@@ -273,10 +251,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="sketchyextra" class="hints" style="display: none;">{{edit:Sketchy Extra}}</div>
 </span>
 {{/Sketchy Extra}}
-<!-- /Sketchy Extra -->
 
-
-<!-- #Picmonic -->
 {{#Picmonic}}
 <span id = "hint-picmonic" class="hintBtn" data-name="Picmonic">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-picmonic')"></a>
@@ -286,10 +261,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="picmonic" class="hints" style="display: none;">{{edit:Picmonic}}</div>
 </span>
 {{/Picmonic}}
-<!-- /Picmonic -->
 
-
-<!-- #Pixorize -->
 {{#Pixorize}}
 <span id = "hint-pixorize" class="hintBtn" data-name="Pixorize">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-pixorize')"></a>
@@ -299,10 +271,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="pixorize" class="hints" style="display: none;">{{edit:Pixorize}}</div>
 </span>
 {{/Pixorize}}
-<!-- /Pixorize -->
 
-
-<!-- #Physeo -->
 {{#Physeo}}
 <span id = "hint-physeo" class="hintBtn" data-name="Physeo">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-physeo')"></a>
@@ -312,10 +281,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="physeo" class="hints" style="display: none;">{{edit:Physeo}}</div>
 </span>
 {{/Physeo}}
-<!-- /Physeo -->
 
-
-<!-- #Bootcamp -->
 {{#Bootcamp}}
 <span id = "hint-bootcamp" class="hintBtn" data-name="Bootcamp">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-bootcamp')"></a>
@@ -325,11 +291,8 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="bootcamp" class="hints" style="display: none;">{{edit:Bootcamp}}</div>
 </span>
 {{/Bootcamp}}
-<!-- /Bootcamp -->
 
-
-<!-- #OME -->
-<!-- (only shows on mobile) -->
+<!-- OME field (only shows on mobile) -->
 {{#OME}}
   <span id="hint-ome" class="hintBtn" data-name="OME">
     <a onclick="toggleHintBtn('hint-ome')"></a>
@@ -339,9 +302,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     <div id="ome" class="hints" style="display: none;">{{edit:OME}}</div>
   </span>
 {{/OME}}
-<!-- /OME -->
 
-<!-- #Additional Resources -->
 {{#Additional Resources}}
 <span id = "hint-ar" class="hintBtn" data-name="Additional Resources">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-ar')"></a>
@@ -351,8 +312,6 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="additional" class="hints" style="display: none;">{{edit:Additional Resources}}</div>
 </span>
 {{/Additional Resources}}
-<!-- /Additional Resources -->
-
 
 
 <!-- ANKING HYPERLINK IMAGE -->
