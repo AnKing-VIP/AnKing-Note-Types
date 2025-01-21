@@ -1,6 +1,9 @@
 if (autoflip && clozeOneByOneEnabled) {
-    // avoid flickering. Must unset this in the back.
-    document.getElementById("qa").style.display = "none";
+
+    if(window.pycmd || window.showAnswer) {
+        // avoid flickering. Must unset this in the back.
+        document.getElementById("qa").style.display = "none";
+    }
 
     if (window.pycmd) {
         pycmd("ans")
