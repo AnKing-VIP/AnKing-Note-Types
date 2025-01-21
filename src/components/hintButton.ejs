@@ -14,7 +14,7 @@ components/hintButtonsSetup
 _%>
 <%_ 
   var noText = noText === undefined ? false : noText
-  var icon = icon === undefined ? "_Anking_v3.png" : icon
+  var icon = icon === undefined ? "_AnKingRound.png" : icon
   
   const containerId = `hint-${short}`
   const btnId = `button-${short}`
@@ -23,7 +23,7 @@ _%>
 <span id = "<%- containerId %>" class="hintBtn" data-name="<%-name%>">
   <a href="#" class="hint" onclick="toggleHintBtn('<%- containerId %>')"></a>
   <button id="<%- btnId %>" class="button-general" onclick="toggleHintBtn('<%- containerId %>')">
-    <img src="<%- icon %>"> <% if (!noText) { %><%- name %><% } %>
+    <img src="<%- icon %>" style="height:12px"> <% if (!noText) { %><%- name %><% } %>
   </button>
   <div dir="auto" id="<%- hintId %>" class="hints" style="display: none;">{{edit:<%- name %>}}</div>
 </span>
