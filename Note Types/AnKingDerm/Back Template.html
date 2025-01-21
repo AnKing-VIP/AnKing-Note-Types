@@ -1,4 +1,4 @@
-<!-- version 60c5d0b -->
+<!-- version 37a50fe -->
 <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -115,6 +115,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
     })()
   </script>
 
+<!-- #Personal Notes -->
 {{#Personal Notes}}
 <span id = "hint-ln" class="hintBtn" data-name="Personal Notes">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-ln')"></a>
@@ -124,37 +125,49 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="notes" class="hints" style="display: none;">{{edit:Personal Notes}}</div>
 </span>
 {{/Personal Notes}}
+<!-- /Personal Notes -->
 
+
+<!-- #Missed Questions -->
 {{#Missed Questions}}
 <span id = "hint-mq" class="hintBtn" data-name="Missed Questions">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-mq')"></a>
   <button id="button-mq" class="button-general" onclick="toggleHintBtn('hint-mq')">
-    <img src="_Anking_v3.png"> Missed Questions
+    <img src="_Anking_v3.png"> Personal Notes
   </button>
   <div dir="auto" id="missed" class="hints" style="display: none;">{{edit:Missed Questions}}</div>
 </span>
 {{/Missed Questions}}
+<!-- /Missed Questions -->
 
+
+<!-- #DermPath -->
 {{#DermPath}}
 <span id = "hint-dp" class="hintBtn" data-name="DermPath">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-dp')"></a>
   <button id="button-dp" class="button-general" onclick="toggleHintBtn('hint-dp')">
-    <img src="_dermki_round.png" style="height:12px;"> DermPath
+    <img src="_dermki_round.png" style="height:12px;"> Personal Notes
   </button>
   <div dir="auto" id="dermpath" class="hints" style="display: none;">{{edit:DermPath}}</div>
 </span>
 {{/DermPath}}
+<!-- /DermPath -->
 
+
+<!-- #Dermoscopy -->
 {{#Dermoscopy}}
 <span id = "hint-ds" class="hintBtn" data-name="Dermoscopy">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-ds')"></a>
   <button id="button-ds" class="button-general" onclick="toggleHintBtn('hint-ds')">
-    <img src="_dermki_round.png" style="height:12px;"> Dermoscopy
+    <img src="_dermki_round.png" style="height:12px;"> Personal Notes
   </button>
   <div dir="auto" id="dermoscopy" class="hints" style="display: none;">{{edit:Dermoscopy}}</div>
 </span>
 {{/Dermoscopy}}
+<!-- /Dermoscopy -->
 
+
+<!-- #Additional Resources -->
 {{#Additional Resources}}
 <span id = "hint-ar" class="hintBtn" data-name="Additional Resources">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-ar')"></a>
@@ -164,43 +177,56 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="additional" class="hints" style="display: none;">{{edit:Additional Resources}}</div>
 </span>
 {{/Additional Resources}}
+<!-- /Additional Resources -->
 
+
+<!-- #VisualDx -->
 {{#VisualDx}}
 <span id = "hint-vd" class="hintBtn" data-name="VisualDx">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-vd')"></a>
   <button id="button-vd" class="button-general" onclick="toggleHintBtn('hint-vd')">
     <img src="_dermki_round.png" style="height:12px;"> DermatoGraphix
   </button>
-  <div dir="auto" id="visualdx" class="hints" style="display: none;"><div id="images">{{edit:VisualDx}}</div></div>
+  <div dir="auto" id="visualdx" class="hints" style="display: none;">{{edit:VisualDx}}</div>
 </span>
 {{/VisualDx}}
+<!-- /VisualDx -->
+
 
 <!-- Extra field -->
 {{#Extra}}<p></p>
 <div id="extra">{{edit:Extra}}</div>
 <br>{{/Extra}}
 
-<!-- DermNet field - images from dermnet.nz -->
-{{#DermNet}}<p></p>
+<!-- #DermNet -->
+<!-- images from dermnet.nz -->
+{{#DermNet}}
+<p></p>
 <div id="dermnet">{{edit:DermNet}}</div>
 <a href="https://dermnetnz.org" style="font-size:8px; font-style:italic;">Above Image(s) provided courtesy of DermNetNZ.org</a>
-<hr>{{/DermNet}}
+<hr>
+{{/DermNet}}
+<!-- /DermNet -->
 
-<!-- Full Spectrum of Dermatology field -->
+<!-- #Full Spectrum of Dermatology -->
 {{#Full Spectrum of Dermatology}}<p></p>
 <div id="fullspectrum">{{edit:Full Spectrum of Dermatology}}</div>
 {{/Full Spectrum of Dermatology}}
+<!-- /Full Spectrum of Dermatology -->
 
 
+<!-- #Textbook -->
 {{#Textbook}}
 <span id = "hint-tx" class="hintBtn" data-name="Textbook">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-tx')"></a>
   <button id="button-tx" class="button-general" onclick="toggleHintBtn('hint-tx')">
-    <img src="_dermki_round.png" style="height:12px;"> Textbook
+    <img src="_dermki_round.png" style="height:12px;"> Personal Notes
   </button>
   <div dir="auto" id="textbook" class="hints" style="display: none;">{{edit:Textbook}}</div>
 </span>
 {{/Textbook}}
+<!-- /Textbook -->
+
 
 <!-- RANDOMIZE IMAGES -->
 <script>

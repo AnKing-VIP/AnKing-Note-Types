@@ -18,12 +18,14 @@ _%>
   
   const containerId = `hint-${short}`
   const btnId = `button-${short}`
+
+  displayName = typeof displayName === 'undefined' ? name : displayName;
 _%> 
 {{#<%- name %>}}
 <span id = "<%- containerId %>" class="hintBtn" data-name="<%-name%>">
   <a href="#" class="hint" onclick="toggleHintBtn('<%- containerId %>')"></a>
   <button id="<%- btnId %>" class="button-general" onclick="toggleHintBtn('<%- containerId %>')">
-    <img src="<%- icon %>"> <% if (!noText) { %><%- name %><% } %>
+    <img src="<%- icon %>"> <% if (!noText) { %><%- displayName %><% } %>
   </button>
   <div dir="auto" id="<%- hintId %>" class="hints" style="display: none;">{{edit:<%- name %>}}</div>
 </span>

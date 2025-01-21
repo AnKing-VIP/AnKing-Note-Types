@@ -1,4 +1,4 @@
-<!-- version 60c5d0b -->
+<!-- version 37a50fe -->
 <script>
   // ##############  HINT REVEAL SHORTCUTS  ##############
   // All shortcuts will also open with "H" if using the Hint Hotkeys add-on
@@ -46,6 +46,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 
 <!-- BUTTON FIELDS -->
+<!-- #Personal Notes -->
 {{#Personal Notes}}
 <span id = "hint-ln" class="hintBtn" data-name="Personal Notes">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-ln')"></a>
@@ -55,16 +56,21 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="notes" class="hints" style="display: none;">{{edit:Personal Notes}}</div>
 </span>
 {{/Personal Notes}}
+<!-- /Personal Notes -->
 
+
+<!-- #Missed Questions -->
 {{#Missed Questions}}
 <span id = "hint-mq" class="hintBtn" data-name="Missed Questions">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-mq')"></a>
   <button id="button-mq" class="button-general" onclick="toggleHintBtn('hint-mq')">
-    <img src="_Anking_v3.png"> Missed Questions
+    <img src="_Anking_v3.png"> Personal Notes
   </button>
   <div dir="auto" id="missed" class="hints" style="display: none;">{{edit:Missed Questions}}</div>
 </span>
 {{/Missed Questions}}
+<!-- /Missed Questions -->
+
 
 <!-- Extra field -->
 {{#Extra}}<p></p>
