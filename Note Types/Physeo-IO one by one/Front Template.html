@@ -1,4 +1,4 @@
-<!-- version 60c5d0b -->
+<!-- version 2037adb -->
 <script>
 // ############## USER CONFIGURATION START ##############
 // Auto flip to back when One by one mode.
@@ -31,8 +31,11 @@ var numTagLevelsToShow = 0;
 <!-- AUTO FLIP FRONT -->
 <script>
    if (autoflip && clozeOneByOneEnabled) {
-    // avoid flickering. Must unset this in the back.
-    document.getElementById("qa").style.display = "none";
+
+    if(window.pycmd || window.showAnswer) {
+        // avoid flickering. Must unset this in the back.
+        document.getElementById("qa").style.display = "none";
+    }
 
     if (window.pycmd) {
         pycmd("ans")

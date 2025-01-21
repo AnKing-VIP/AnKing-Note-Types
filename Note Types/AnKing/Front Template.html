@@ -1,4 +1,4 @@
-<!-- version 60c5d0b -->
+<!-- version 2037adb -->
 <div id="text">{{cloze:Text}}</div>
 
 <br>
@@ -251,8 +251,11 @@ if (typeof(window.Persistence) === 'undefined') {
       }
 
       if (autoflip && clozeOneByOneEnabled) {
-    // avoid flickering. Must unset this in the back.
-    document.getElementById("qa").style.display = "none";
+
+    if(window.pycmd || window.showAnswer) {
+        // avoid flickering. Must unset this in the back.
+        document.getElementById("qa").style.display = "none";
+    }
 
     if (window.pycmd) {
         pycmd("ans")
