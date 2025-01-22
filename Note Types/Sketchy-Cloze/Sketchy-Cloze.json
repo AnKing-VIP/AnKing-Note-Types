@@ -1,0 +1,117 @@
+{
+    "id": 1680300016185,
+    "name": "Sketchy-Cloze",
+    "type": 1,
+    "mod": 1680300016,
+    "usn": -1,
+    "sortf": 0,
+    "did": 1570051884460,
+    "tmpls": [
+        {
+            "name": "Cloze",
+            "ord": 0,
+            "qfmt": "",
+            "afmt": "",
+            "bqfmt": "",
+            "bafmt": "",
+            "did": null,
+            "bfont": "Arial",
+            "bsize": 12
+        }
+    ],
+    "flds": [
+        {
+            "name": "Text",
+            "ord": 0,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "meta": null,
+            "media": [],
+            "collapsibleFieldsCollapseByDefault": false
+        },
+        {
+            "name": "Extra",
+            "ord": 1,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "meta": null,
+            "collapsibleFieldsCollapseByDefault": false,
+            "media": []
+        },
+        {
+            "name": "Personal Notes",
+            "ord": 2,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "meta": null,
+            "collapsibleFieldsCollapseByDefault": false,
+            "media": []
+        },
+        {
+            "name": "Missed Questions",
+            "ord": 3,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "meta": null,
+            "media": [],
+            "collapsibleFieldsCollapseByDefault": false
+        },
+        {
+            "name": "Thumbnail",
+            "ord": 4,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "collapsibleFieldsCollapseByDefault": false,
+            "meta": null
+        },
+        {
+            "name": "Link",
+            "ord": 5,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "collapsibleFieldsCollapseByDefault": false,
+            "meta": null
+        },
+        {
+            "name": "One by one",
+            "ord": 6,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "collapsibleFieldsCollapseByDefault": false,
+            "meta": null,
+            "description": "Type anything here (i.e. \"yes\") to enable one by one clozes or enable only certain clozes by typing numbers separated by commas (i.e. \"1,3\")"
+        }
+    ],
+    "css": "",
+    "latexPre": "\\documentclass[12pt]{article}\n\\special{papersize=3in,5in}\n\\usepackage{amssymb,amsmath}\n\\pagestyle{empty}\n\\setlength{\\parindent}{0in}\n\\begin{document}\n",
+    "latexPost": "\\end{document}",
+    "latexsvg": false,
+    "req": [
+        [
+            0,
+            "any",
+            [
+                0,
+                5
+            ]
+        ]
+    ],
+    "tags": [
+        "%MissedQs::Step2::UWorld"
+    ],
+    "vers": []
+}
