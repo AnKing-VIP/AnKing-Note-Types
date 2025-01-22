@@ -6,6 +6,7 @@
 - hintId: string
 - icon?: string
 - noText?: boolean
+- displayName?: string
 
 # Components
 ## After
@@ -15,11 +16,10 @@ _%>
 <%_ 
   var noText = noText === undefined ? false : noText
   var icon = icon === undefined ? "_AnKingRound.png" : icon
+  var displayName = displayName === undefined ? name : displayName
   
   const containerId = `hint-${short}`
   const btnId = `button-${short}`
-
-  displayName = typeof displayName === 'undefined' ? name : displayName;
 _%> 
 {{#<%- name %>}}
 <span id = "<%- containerId %>" class="hintBtn" data-name="<%-name%>">
