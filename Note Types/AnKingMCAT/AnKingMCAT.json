@@ -1,0 +1,120 @@
+{
+    "id": 1610414929688,
+    "name": "AnKingMCAT",
+    "type": 1,
+    "mod": 1638144691,
+    "usn": -1,
+    "sortf": 0,
+    "did": 1,
+    "tmpls": [
+        {
+            "name": "Cloze",
+            "ord": 0,
+            "qfmt": "",
+            "afmt": "",
+            "bqfmt": "{{cloze:Text}}",
+            "bafmt": "{{cloze:Text}}",
+            "did": null,
+            "bfont": "Arial",
+            "bsize": 12,
+            "scratchPad": false
+        }
+    ],
+    "flds": [
+        {
+            "name": "Text",
+            "ord": 0,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "meta": null,
+            "collapsibleFieldsCollapseByDefault": false,
+            "media": []
+        },
+        {
+            "name": "Extra",
+            "ord": 1,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "media": [],
+            "meta": null
+        },
+        {
+            "name": "Lecture Notes",
+            "ord": 2,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "media": []
+        },
+        {
+            "name": "Missed Questions",
+            "ord": 3,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "meta": null,
+            "media": []
+        },
+        {
+            "name": "Pixorize",
+            "ord": 4,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "meta": null
+        },
+        {
+            "name": "Sketchy",
+            "ord": 5,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "meta": null
+        },
+        {
+            "name": "Additional Resources",
+            "ord": 6,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "meta": null,
+            "media": []
+        },
+        {
+            "name": "One by one",
+            "ord": 7,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "collapsibleFieldsCollapseByDefault": false,
+            "meta": null,
+            "description": "Type anything here (i.e. \"yes\") to enable one by one clozes or enable only certain clozes by typing numbers separated by commas (i.e. \"1,3\")"
+        }
+    ],
+    "css": "",
+    "latexPre": "\\documentclass[12pt]{article}\n\\special{papersize=3in,5in}\n\\usepackage{amssymb,amsmath}\n\\pagestyle{empty}\n\\setlength{\\parindent}{0in}\n\\begin{document}\n",
+    "latexPost": "\\end{document}",
+    "latexsvg": false,
+    "req": [
+        [
+            0,
+            "any",
+            [
+                0,
+                6
+            ]
+        ]
+    ],
+    "tags": [],
+    "vers": []
+}
