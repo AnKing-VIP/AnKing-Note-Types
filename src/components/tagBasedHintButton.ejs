@@ -18,6 +18,7 @@ _%>
   const btnId = `button-${short}`
 _%> 
 
+<span style="display: none">PSEUDO-FIELD #<%- name %></span>
 <span id="<%- containerId %>" class="hintBtn tagBasedHintBtn hidden" 
   data-name="<%-name%>" data-resource-type-tag-part="<%-resourceTypeTagPart%>" data-resource-slug="<%-resourceSlug%>"
   data-link-prefix="<%-linkPrefix%>"
@@ -28,3 +29,4 @@ _%>
   </button>
   <div dir="auto" id="<%- hintId %>" class="hints" style="display: none;"></div>
 </span>
+<span style="display: none">PSEUDO-FIELD /<%- name %></span>

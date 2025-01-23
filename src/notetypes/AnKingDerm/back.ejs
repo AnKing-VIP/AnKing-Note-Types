@@ -61,48 +61,33 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <%- include("src/components/hintButton.ejs", {name: "Missed Questions", short:"mq", hintId: "missed" }) %>
 
-<%- include("src/components/hintButton.ejs", {name: "DermPath", short:"dp", hintId: "dermpath", icon: "_dermki_round.png\" style=\"height:12px;" }) %>
+<%- include("src/components/hintButton.ejs", {name: "DermPath", short:"dp", hintId: "dermpath", icon: "_dermki_round.png"}) %>
 
-<%- include("src/components/hintButton.ejs", {name: "Dermoscopy", short:"ds", hintId: "dermoscopy", icon: "_dermki_round.png\" style=\"height:12px;" }) %>
+<%- include("src/components/hintButton.ejs", {name: "Dermoscopy", short:"ds", hintId: "dermoscopy", icon: "_dermki_round.png" }) %>
 
-{{#Additional Resources}}
-<span id = "hint-ar" class="hintBtn" data-name="Additional Resources">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-ar')"></a>
-  <button id="button-ar" class="button-general" onclick="toggleHintBtn('hint-ar')">
-    <img src="_dermki_round.png" style="height:12px;"> Dermnemonics
-  </button>
-  <div dir="auto" id="additional" class="hints" style="display: none;">{{edit:Additional Resources}}</div>
-</span>
-{{/Additional Resources}}
+<%- include("src/components/hintButton.ejs", {name: "Additional Resources",  displayName: "Dermnemonics", short:"ar", hintId: "additional", icon: "_dermki_round.png" }) %>
 
-{{#VisualDx}}
-<span id = "hint-vd" class="hintBtn" data-name="VisualDx">
-  <a href="#" class="hint" onclick="toggleHintBtn('hint-vd')"></a>
-  <button id="button-vd" class="button-general" onclick="toggleHintBtn('hint-vd')">
-    <img src="_dermki_round.png" style="height:12px;"> DermatoGraphix
-  </button>
-  <div dir="auto" id="visualdx" class="hints" style="display: none;"><div id="images">{{edit:VisualDx}}</div></div>
-</span>
-{{/VisualDx}}
+<%- include("src/components/hintButton.ejs", {name: "VisualDx", displayName: "DermatoGraphix", short:"vd", hintId: "visualdx", icon: "_dermki_round.png" }) %>
 
 <!-- Extra field -->
 {{#Extra}}<p></p>
 <div id="extra">{{edit:Extra}}</div>
 <br>{{/Extra}}
 
-<!-- DermNet field - images from dermnet.nz -->
-{{#DermNet}}<p></p>
+<!-- images from dermnet.nz -->
+{{#DermNet}}
+<p></p>
 <div id="dermnet">{{edit:DermNet}}</div>
 <a href="https://dermnetnz.org" style="font-size:8px; font-style:italic;">Above Image(s) provided courtesy of DermNetNZ.org</a>
-<hr>{{/DermNet}}
+<hr>
+{{/DermNet}}
 
-<!-- Full Spectrum of Dermatology field -->
 {{#Full Spectrum of Dermatology}}<p></p>
 <div id="fullspectrum">{{edit:Full Spectrum of Dermatology}}</div>
 {{/Full Spectrum of Dermatology}}
 
 
-<%- include("src/components/hintButton.ejs", {name: "Textbook", short:"tx", hintId: "textbook", icon: "_dermki_round.png\" style=\"height:12px;" }) %>
+<%- include("src/components/hintButton.ejs", {name: "Textbook", short:"tx", hintId: "textbook", icon: "_dermki_round.png" }) %>
 
 <!-- RANDOMIZE IMAGES -->
 <script>
