@@ -86,16 +86,6 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <%- include("src/components/hintButton.ejs", {name: "Pathoma", short:"pat", hintId: "pathoma", icon:"_pathoma.icon.png", noText: true }) %>
 
-<%- include("src/components/tagBasedHintButton.ejs", {
-  name: "Boards and Beyond Links", 
-  short:"bb-links", 
-  hintId: "bnb-links", 
-  icon:"_b&b.icon.png", 
-  resourceTypeTagPart:"#b&b",  
-  resourceSlug:"bb",
-  linkPrefix: "B&B",
-}) %>
-
 <%- include("src/components/hintButton.ejs", {name: "Boards and Beyond", short:"bb", hintId: "bnb", icon:"_b&b.icon.png" }) %>
 
 
@@ -103,16 +93,6 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 {{#Extra}}<p></p>
 <div id="extra">{{edit:Extra}}</div>
 <br>{{/Extra}}
-
-<%- include("src/components/tagBasedHintButton.ejs", {
-  name: "First Aid Links", 
-  short:"fa-links", 
-  hintId: "firstaid-links", 
-  icon:"_first-aid.icon_v2.1.png", 
-  resourceTypeTagPart:"#firstaid",  
-  resourceSlug:"fa",
-  linkPrefix: "FA4",
-}) %>
 
 <%- include("src/components/hintButton.ejs", {name: "First Aid", short:"fa", hintId: "firstaid", icon: "_first-aid.icon_v2.1.png" }) %>
 
@@ -143,6 +123,25 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <%- include("src/components/hintButton.ejs", {name: "Additional Resources", short:"ar", hintId: "additional" }) %>
 
+<%- include("src/components/tagBasedHintButton.ejs", {
+  name: "Boards and Beyond Links", 
+  short:"bb-links", 
+  hintId: "bnb-links", 
+  icon:"_b&b.icon.png", 
+  resourceTypeTagPart:"#b&b",  
+  resourceSlug:"bb",
+  linkPrefix: "B&B",
+}) %>
+
+<%- include("src/components/tagBasedHintButton.ejs", {
+  name: "First Aid Links", 
+  short:"fa-links", 
+  hintId: "firstaid-links", 
+  icon:"_first-aid.icon_v2.1.png", 
+  resourceTypeTagPart:"#firstaid",  
+  resourceSlug:"fa",
+  linkPrefix: "FA4",
+}) %>
 
 <!-- ANKING HYPERLINK IMAGE -->
 <a href="https://www.ankingmed.com"><img src="_AnKingIcon.png" alt="The AnKing" id="pic"></a>
