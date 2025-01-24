@@ -1,4 +1,4 @@
-<!-- version vW6cFnn7vBWQS -->
+<!-- version xzreXoSNbI8nu -->
 <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -386,7 +386,10 @@ replace the arrows/dashes from the statement below with double curly brackets-->
         var arr = document.getElementsByTagName('a');
         for (var i=0; i<arr.length; i++) {
           var el = arr[i];
-          if (el.style.display === 'none') {
+          if (
+            window.getComputedStyle(el).display === 'none' ||
+            window.getComputedStyle(el.parentElement).display === 'none'
+          ) {
             continue;
           }
           if (el.classList.contains("hint")) {
