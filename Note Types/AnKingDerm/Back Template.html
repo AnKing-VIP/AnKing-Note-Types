@@ -1,4 +1,4 @@
-<!-- version 0075ea5 -->
+<!-- version 00d67e4 -->
 <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -202,34 +202,6 @@ replace the arrows/dashes from the statement below with double curly brackets-->
   <div dir="auto" id="textbook" class="hints" style="display: none;">{{edit:Textbook}}</div>
 </span>
 {{/Textbook}}
-
-<!-- RANDOMIZE IMAGES -->
-<script>
-    function shuffle(array) {
-        let currentIndex = array.length;
-        while (currentIndex != 0) {
-            let randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex--;
-            [array[currentIndex], array[randomIndex]] = [
-                array[randomIndex],
-                array[currentIndex],
-            ];
-        }
-    }
-    (() => {
-        const selectors = ["#dermnet,#dermpath,#dermoscopy,#visualdx,#fullspectrum"];
-        for (const selector of selectors) {
-            const imagesElement = document.querySelector(selector);
-            const images = Array.from(imagesElement.querySelectorAll("img"));
-            const shuffledImages = Array.from(images.map(img => img.cloneNode(true)));
-            shuffle(shuffledImages);
-            for (let i = 0; i < images.length; i++) {
-                images[i].replaceWith(shuffledImages[i]);
-            }            
-        }
-    })();
-</script>
-
 
 <!-- ANKING HYPERLINK IMAGE -->
 <a href="https://www.ankingmed.com"><img src="_AnKingIcon.png" alt="The AnKing" id="pic"></a>
@@ -1094,4 +1066,57 @@ var userJs8 = undefined
         });
     }
 </script>
+
+
+
+<!-- BEGIN WRAPPER CODE shuffle -->
+
+<script>
+    function shuffle(array) {
+        let currentIndex = array.length;
+        while (currentIndex != 0) {
+            let randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex],
+                array[currentIndex],
+            ];
+        }
+    }
+
+    function shuffleElements(elements) {
+        const shuffledElements = Array.from(
+            elements.map((el) => el.cloneNode(true))
+        );
+        shuffle(shuffledElements);
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].replaceWith(shuffledElements[i]);
+        }
+    }
+
+    function shuffleList(listElement) {
+        const items = Array.from(listElement.querySelectorAll("li"));
+        shuffleElements(items);
+    }
+
+    (() => {
+        const selectors = [".shuffle", "#dermnet,#dermpath,#dermoscopy,#visualdx,#fullspectrum"];
+        for (const selector of selectors) {
+            for (const container of document.querySelectorAll(selector)) {
+                if (["UL", "OL"].includes(container.tagName)) {
+                    shuffleList(container);
+                }
+                for (const parentElement of container.querySelectorAll(
+                    "ol, ul"
+                )) {
+                    shuffleList(parentElement);
+                }
+                const images = Array.from(container.querySelectorAll("img"));
+                shuffleElements(images);
+            }
+        }
+    })();
+</script>
+
+<!-- END WRAPPER CODE -->
 
