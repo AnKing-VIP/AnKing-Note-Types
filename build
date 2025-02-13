@@ -5,8 +5,7 @@ shopt -s extglob
 # When no file matches glob, don't treat the pattern as literal string
 shopt -s nullglob
 
-#commit_hash=`git rev-parse --short HEAD`
-commit_hash=`tr -dc A-Za-z0-9 </dev/urandom | head -c 13; echo`
+commit_hash=`git rev-parse --short HEAD`
 
 for dir in ./src/notetypes/*/ ; do
     NOTETYPE_DIR="./Note Types/$(basename "${dir}")"
