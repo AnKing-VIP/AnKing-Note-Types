@@ -1,4 +1,10 @@
-<div class="shuffle">{{Field}}</div>
+<%#
+
+# Parameters
+- selector: string
+_%>
+
+<!-- BEGIN WRAPPER CODE shuffle -->
 
 <script>
     function shuffle(array) {
@@ -29,7 +35,11 @@
     }
 
     (() => {
+        <%_ if (typeof selector !== "undefined") { _%>
+        const selectors = [".shuffle", "<%- selector %>"];
+        <%_ } else { _%>
         const selectors = [".shuffle"];
+        <%_ } _%>
         for (const selector of selectors) {
             for (const container of document.querySelectorAll(selector)) {
                 if (["UL", "OL"].includes(container.tagName)) {
@@ -46,3 +56,5 @@
         }
     })();
 </script>
+
+<!-- END WRAPPER CODE -->
