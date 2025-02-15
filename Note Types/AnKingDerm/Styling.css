@@ -653,3 +653,19 @@ img {
 .blur {
   filter: blur(15px);
 }
+
+/* BEGIN WRAPPER CODE justify */
+.centeredbox {
+  text-align: center;
+}
+
+.centeredbox ul, .centeredbox ol {
+  max-width: 100%;
+}
+
+.leftalign {
+  display: inline-block;
+  text-align: left;
+}
+
+/* END WRAPPER CODE */
