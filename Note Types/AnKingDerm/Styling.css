@@ -399,7 +399,8 @@ ul {
   text-align: left;
 }
 
-ul ul {
+ul ul, table ul {
+  padding-left: 20px;
   max-width: 100%;
   margin-left: 0;
   margin-right: 0;
@@ -413,7 +414,9 @@ ol {
   text-align: left;
 }
 
-ol ol {
+ol ol, table ol {
+  padding-left: 20px;
+  max-width: 100%;
   margin-left: 0;
   margin-right: 0;
 }
@@ -653,19 +656,3 @@ img {
 .blur {
   filter: blur(15px);
 }
-
-/* BEGIN WRAPPER CODE justify */
-.centeredbox {
-  text-align: center;
-}
-
-.centeredbox ul, .centeredbox ol {
-  max-width: 100%;
-}
-
-.leftalign {
-  display: inline-block;
-  text-align: left;
-}
-
-/* END WRAPPER CODE */

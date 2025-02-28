@@ -1,4 +1,4 @@
-<!-- version fe27e6b -->
+<!-- version 6510494 -->
 <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -611,6 +611,9 @@ if (typeof(window.Persistence) === 'undefined') {
           }
         }
       }
+      for(const mnemonic of document.querySelectorAll(".mnemonics")) {
+        mnemonic.style.removeProperty('text-align');
+      }
     }
     
     const revealCloze = function(cloze) {
@@ -731,6 +734,10 @@ if (typeof(window.Persistence) === 'undefined') {
               link.style.display = "none"
             }
           }
+        }
+        // Align mnemonics to the left
+        for(const mnemonic of document.querySelectorAll(".mnemonics")) {
+          mnemonic.style.textAlign = 'left';
         }
       }
     }
