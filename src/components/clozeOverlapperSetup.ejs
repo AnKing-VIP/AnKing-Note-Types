@@ -44,8 +44,12 @@
             else window.setTimeout(render, 0);
         }
 
-        window.onload = delayedRender();
-        if (document.readyState === "complete") delayedRender();
-        else document.addEventListener("DOMContentLoaded", delayedRender);
+        window.onload = delayedRender;
+        if (document.readyState === "complete") {
+            delayedRender();
+        }
+        else {
+            document.addEventListener("DOMContentLoaded", delayedRender);
+        };
     })();
 </script>
