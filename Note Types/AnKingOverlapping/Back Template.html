@@ -1,4 +1,4 @@
-<!-- version 88e17c8 -->
+<!-- version 869ee9d -->
 <script>
   // ##############  HINT REVEAL SHORTCUTS  ##############
   // All shortcuts will also open with "H" if using the Hint Hotkeys add-on
@@ -604,9 +604,13 @@ var userJs8 = undefined
             else window.setTimeout(render, 0);
         }
 
-        window.onload = delayedRender();
-        if (document.readyState === "complete") delayedRender();
-        else document.addEventListener("DOMContentLoaded", delayedRender);
+        window.onload = delayedRender;
+        if (document.readyState === "complete") {
+            delayedRender();
+        }
+        else {
+            document.addEventListener("DOMContentLoaded", delayedRender);
+        };
     })();
 </script>
 

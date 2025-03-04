@@ -1,4 +1,4 @@
-<!-- version 88e17c8 -->
+<!-- version 869ee9d -->
 <div id="text">{{cloze:Text}}</div>
 
 <br>
@@ -182,9 +182,13 @@ var numTagLevelsToShow = 0;
             else window.setTimeout(render, 0);
         }
 
-        window.onload = delayedRender();
-        if (document.readyState === "complete") delayedRender();
-        else document.addEventListener("DOMContentLoaded", delayedRender);
+        window.onload = delayedRender;
+        if (document.readyState === "complete") {
+            delayedRender();
+        }
+        else {
+            document.addEventListener("DOMContentLoaded", delayedRender);
+        };
     })();
 </script>
 

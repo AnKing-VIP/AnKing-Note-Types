@@ -1,4 +1,4 @@
-<!-- version 88e17c8 -->
+<!-- version 869ee9d -->
 <div id="text">{{cloze:Text}}</div>
 
 <br>
@@ -274,9 +274,13 @@ if (typeof(window.Persistence) === 'undefined') {
       else window.setTimeout(processSelective1b1, 0);
     };
 
-    window.onload = delayedProcessSelective1b1();
-    if (document.readyState === "complete") delayedProcessSelective1b1();
-    else document.addEventListener("DOMContentLoaded", delayedProcessSelective1b1);
+    window.onload = delayedProcessSelective1b1;
+    if (document.readyState === "complete") {
+      delayedProcessSelective1b1();
+    }
+    else {
+      document.addEventListener("DOMContentLoaded", delayedProcessSelective1b1);
+    }
 
     // Observe document.body class changes to trigger re-rendering.
     // This is useful, because Anki doesn’t always start with an up-to-date class list:
