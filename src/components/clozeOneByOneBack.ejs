@@ -152,9 +152,6 @@ _%>
           }
         }
       }
-      for(const mnemonic of document.querySelectorAll(".mnemonics")) {
-        mnemonic.style.removeProperty('text-align');
-      }
     }
     
     const revealCloze = function(cloze) {
@@ -275,10 +272,6 @@ _%>
               link.style.display = "none"
             }
           }
-        }
-        // Align mnemonics to the left
-        for(const mnemonic of document.querySelectorAll(".mnemonics")) {
-          mnemonic.style.textAlign = 'left';
         }
       }
     }
