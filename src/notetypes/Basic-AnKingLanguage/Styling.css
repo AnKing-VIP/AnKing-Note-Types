@@ -318,7 +318,7 @@ img:active {
 
 
 /* ~~~~~~~~~ LISTS ~~~~~~~~~ */
-ul {
+ul, ol {
   padding-left: 40px;
   max-width: 50%;
   margin-left: auto;
@@ -326,22 +326,7 @@ ul {
   text-align: left;
 }
 
-ul ul, table ul {
-  padding-left: 20px;
-  max-width: 100%;
-  margin-left: 0;
-  margin-right: 0;
-}
-
-ol {
-  padding-left: 40px;
-  max-width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left;
-}
-
-ol ol, table ol {
+ul ul, table ul, ol ol, table ol {
   padding-left: 20px;
   max-width: 100%;
   margin-left: 0;
