@@ -420,8 +420,7 @@ background-color: #ffffff;
 ul, ol {
   padding-left: 40px;
   max-width: 50%;
-  margin-left: auto;
-  margin-right: auto;
+  display: inline-block;
   text-align: left;
 }
 
