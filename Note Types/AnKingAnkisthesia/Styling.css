@@ -35,10 +35,11 @@
     display: block;
 }
 
-/* 'none' or 'block' */
-/* MNEMONICS CENTER OR LEFT */
+/* ~~~~~~~MNEMONICS LEFT JUSTIFIED~~~~~~~ */
 .mnemonics {
-    text-align: center;
+    display: inline-block;
+    max-width: 50%;
+    text-align: left;
 }
 
 /*FONT SIZE*/
@@ -525,11 +526,6 @@ kbd:nth-of-type(10n + 0) {
 .mobile #tags-container {
     line-height: 0.6rem;
     margin-left: 0px;
-}
-
-/* MNEMONICS CENTER OR LEFT */
-.mnemonics {
-    display: inline-block;
 }
 
 .centerbox {

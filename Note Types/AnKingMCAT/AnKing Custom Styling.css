@@ -21,9 +21,11 @@
 	padding-bottom: 0px; /* 0 normal, 55 to move up */
   }
   
-  /* MNEMONICS CENTER OR LEFT */
+  /* ~~~~~~~MNEMONICS LEFT JUSTIFIED~~~~~~~ */
   .mnemonics {
-	text-align: left;
+    display: inline-block;
+    max-width: 50%;
+    text-align: left;
   }
   
 /*~~~~~~~~~FONT SIZE~~~~~~~~~*/
