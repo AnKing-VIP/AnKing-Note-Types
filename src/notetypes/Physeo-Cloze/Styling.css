@@ -343,6 +343,10 @@ background-color: #ffffff;
   text-align: left;
 }
 
+.mobile .mnemonics {
+  max-width: 90%;
+}
+
 .centerbox {
   text-align: center;
 }
