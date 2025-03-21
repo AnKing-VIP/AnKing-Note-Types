@@ -1,4 +1,4 @@
-<!-- version 9937e6a -->
+<!-- version b5e2f85 -->
 <div id="text">{{cloze:Text}}</div>
 
 <br>
@@ -389,6 +389,7 @@ if (typeof(window.Persistence) === 'undefined') {
     }
 
     function shuffleElements(elements) {
+        elements = elements.filter(e => !e.matches(".no-shuffle *"));
         const shuffledElements = Array.from(
             elements.map((el) => el.cloneNode(true))
         );
