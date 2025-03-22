@@ -1,18 +1,34 @@
 <!-- version 8fcf2bf -->
- <script>
-// ##############  BUTTON REVEAL SHORTCUTS  ##############
+<script>
+// ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
 var ButtonShortcuts = {
     "Personal Notes" : "Alt + 1",
-    "Missed Questions" : "Alt + 2"
+    "Missed Questions" : "Alt + 2",
+    // Clinical Images auto reveals
+    "Dermoscopy": "Alt + 3",
+    "VisualDx" : "Alt + 4",
+    // Alt + 5 skipped to keep in line with AnKingDerm note type
+    // DermNet and Full Spectrum of Dermatology auto reveal
+    "Dermnemonics": "Alt + 6",
+    "Dermatographix": "Alt + 7",
+    "Textbook" : "Alt + 8",
+    "Additional Resources" : "Alt + 9"
 }
-
 var ToggleAllButtonsShortcut = "'"
 var ToggleNextButtonShortcut = "H";
-// ##############  SHOW BUTTON HINTS AUTOMATICALLY  ##############
+// ##############  SHOW HINTS AUTOMATICALLY  ##############
 var ButtonAutoReveal = {
-    "Personal Notes": false,
-    "Missed Questions": false,
+    "Personal Notes" : false,
+    "Missed Questions" : false,
+    "Clinical Images": true,
+    "Dermoscopy": false,
+    "VisualDx" : false,
+    // DermNet and Full Spectrum of Dermatology auto reveal
+    "Dermnemonics": false,
+    "Dermatographix": false,
+    "Textbook" : false,
+    "Additional Resources" : false,
 }
 
 var ScrollToButton = true;
@@ -27,86 +43,25 @@ var tagID = "XXXYYYZZZ"
 
 var numTagLevelsToShow = 0;
 
-
-// ##############  CLOZE ONE BY ONE  ##############
-var revealNextShortcut = "N" 
-var revealNextWordShortcut = "Shift + N"
-var toggleAllShortcut = ","
-
-// Changes how "Reveal Next" and clicking behaves. Either "cloze" or "word".
-// "word" reveals word by word. 
-var revealNextClozeMode = "cloze" 
-
-// What cloze is hidden with
-var clozeHider = (elem) => "👑"
-/* 
-You can replace the above line with below examples. '█' or '_' works well for hiding clozes.
-
-// Fixed length:
-var clozeHider = (elem) => "███"
-// Replace each character with "█":
-var clozeHider = (elem) => "█".repeat(elem.textContent.length)
-// Show whitespaces:
-var clozeHider = (elem) => "[" + elem.textContent.split(" ").map((t) => "█".repeat(t.length)).join(" ") + "]"
-// Color-filled box (doesn't hide images):
-var clozeHider = (elem) => `<span style="background-color: red; color: transparent;">${elem.innerHTML}</span>`
-*/
-
-// enables selective cloze one-by-one (e.g. only c1 and c3)
-// seperate wanted numbers by "," in one-by-one field
-var selectiveOneByOne = false;
-// if selective one-by-one is disabled, set this to select a min number of clozes necessary to activate 1b1
-// can be set to any number to set lower bound, any falsy value (e.g. 0 or null) disables this setting
-var minNumberOfClozes = 0;
-
-
 </script>
 
-<div class="clozefield" id="text">{{cloze:Text}}</div>
 
-<!-- ##############  EDIT CLOZE DURING REVIEW  ##############
-			-change below (not above) to  "edit:cloze:Text" for editable field, 
-				but be sure to have the correct add-on installed-->
 
-<div class="editcloze" id="text">{{edit:cloze:Text}}</div>
+<div id="front">{{edit:Front}}</div>
+  
+  <hr id=answer>
+
+<div id="back">{{Back}}</div>
 
 <br>
 
-<!-- ##############  TEXT-TO-SPEECH ##############
-replace the arrows/dashes from the statement below with double curly brackets-->
-{{^One by one}}
-<!--tts en_US voices=Apple_Samantha,Microsoft_Zira speed=1.4:cloze-only:Text-->
-{{/One by one}}
-
-
-<hr>
 
 <!-- BUTTON FIELDS -->
-<!-- ClOZE ONE BY ONE BUTTONS -->
-
-<div id="one-by-one" style="display: none;">{{One by one}}</div>
-
-<div id="1by1-btns" style="display: none;">
-  <button id="button-reveal-next" class="button-general" onclick="revealNextCloze()">Reveal Next</button>
-  <button id="button-toggle-all" class="button-general" onclick="toggleAllCloze()">Toggle All</button>
-</div>
-
-<script>
-  (() => {
-    let clozeOneByOneEnabled = true;
-      clozeOneByOneEnabled = document.getElementById("one-by-one").textContent !== "";
-    
-    if (clozeOneByOneEnabled) {
-      document.getElementById("1by1-btns").style.display = "block";
-    }
-    })()
-  </script>
-
 {{#Personal Notes}}
 <span id = "hint-ln" class="hintBtn" data-name="Personal Notes">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-ln')"></a>
   <button id="button-ln" class="button-general" onclick="toggleHintBtn('hint-ln')">
-    <img src="_PhyseoRoundSmall.png" style="height:12px"> Personal Notes
+    <img src="_AnKingIcon.png" style="height:12px"> Personal Notes
   </button>
   <div dir="auto" id="notes" class="hints" style="display: none;">{{edit:Personal Notes}}</div>
 </span>
@@ -116,23 +71,97 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <span id = "hint-mq" class="hintBtn" data-name="Missed Questions">
   <a href="#" class="hint" onclick="toggleHintBtn('hint-mq')"></a>
   <button id="button-mq" class="button-general" onclick="toggleHintBtn('hint-mq')">
-    <img src="_PhyseoRoundSmall.png" style="height:12px"> Missed Questions
+    <img src="_AnKingIcon.png" style="height:12px"> Missed Questions
   </button>
   <div dir="auto" id="missed" class="hints" style="display: none;">{{edit:Missed Questions}}</div>
 </span>
 {{/Missed Questions}}
 
-<br></br>
-<!-- Extra field -->
-{{#Extra}}<p></p>
-<div id="extra">{{edit:Extra}}</div>
-<br>{{/Extra}}
+{{#Clinical Images}}
+<span id = "hint-ci" class="hintBtn" data-name="Clinical Images">
+  <a href="#" class="hint" onclick="toggleHintBtn('hint-ci')"></a>
+  <button id="button-ci" class="button-general" onclick="toggleHintBtn('hint-ci')">
+    <img src="_dermki_round.png" style="height:12px"> Clinical Images
+  </button>
+  <div dir="auto" id="clinical" class="hints" style="display: none;">{{edit:Clinical Images}}</div>
+</span>
+{{/Clinical Images}}
 
-{{#Images}}<div id="imagefield">{{edit:Images}}</div>{{/Images}}
+{{#Dermoscopy}}
+<span id = "hint-ds" class="hintBtn" data-name="Dermoscopy">
+  <a href="#" class="hint" onclick="toggleHintBtn('hint-ds')"></a>
+  <button id="button-ds" class="button-general" onclick="toggleHintBtn('hint-ds')">
+    <img src="_dermki_round.png" style="height:12px"> Dermoscopy
+  </button>
+  <div dir="auto" id="dermoscopy" class="hints" style="display: none;">{{edit:Dermoscopy}}</div>
+</span>
+{{/Dermoscopy}}
+
+{{#VisualDx}}
+<span id = "hint-vd" class="hintBtn" data-name="VisualDx">
+  <a href="#" class="hint" onclick="toggleHintBtn('hint-vd')"></a>
+  <button id="button-vd" class="button-general" onclick="toggleHintBtn('hint-vd')">
+    <img src="_dermki_round.png" style="height:12px"> VisualDx
+  </button>
+  <div dir="auto" id="visualdx" class="hints" style="display: none;">{{edit:VisualDx}}</div>
+</span>
+{{/VisualDx}}
+
+{{#Dermnemonics}}
+<span id = "hint-dm" class="hintBtn" data-name="Dermnemonics">
+  <a href="#" class="hint" onclick="toggleHintBtn('hint-dm')"></a>
+  <button id="button-dm" class="button-general" onclick="toggleHintBtn('hint-dm')">
+    <img src="_dermki_round.png" style="height:12px"> Dermnemonics
+  </button>
+  <div dir="auto" id="dermnemonics" class="hints" style="display: none;">{{edit:Dermnemonics}}</div>
+</span>
+{{/Dermnemonics}}
+
+{{#Dermatographix}}
+<span id = "hint-dg" class="hintBtn" data-name="Dermatographix">
+  <a href="#" class="hint" onclick="toggleHintBtn('hint-dg')"></a>
+  <button id="button-dg" class="button-general" onclick="toggleHintBtn('hint-dg')">
+    <img src="_dermki_round.png" style="height:12px"> DermatoGraphix
+  </button>
+  <div dir="auto" id="dermatographix" class="hints" style="display: none;">{{edit:Dermatographix}}</div>
+</span>
+{{/Dermatographix}}
+
+<!-- images from dermnet.nz -->
+{{#DermNet}}
+<p></p>
+<div id="dermnet">{{edit:DermNet}}</div>
+<a href="https://dermnetnz.org" style="font-size:8px; font-style:italic;">Above Image(s) provided courtesy of DermNetNZ.org</a>
+<hr>
+{{/DermNet}}
+
+{{#Full Spectrum of Dermatology}}<p></p>
+<div id="fullspectrum">{{edit:Full Spectrum of Dermatology}}</div>
+{{/Full Spectrum of Dermatology}}
+
+{{#Textbook}}
+<span id = "hint-tx" class="hintBtn" data-name="Textbook">
+  <a href="#" class="hint" onclick="toggleHintBtn('hint-tx')"></a>
+  <button id="button-tx" class="button-general" onclick="toggleHintBtn('hint-tx')">
+    <img src="_dermki_round.png" style="height:12px"> Textbook
+  </button>
+  <div dir="auto" id="textbook" class="hints" style="display: none;">{{edit:Textbook}}</div>
+</span>
+{{/Textbook}}
+
+{{#Additional Resources}}
+<span id = "hint-ar" class="hintBtn" data-name="Additional Resources">
+  <a href="#" class="hint" onclick="toggleHintBtn('hint-ar')"></a>
+  <button id="button-ar" class="button-general" onclick="toggleHintBtn('hint-ar')">
+    <img src="_dermki_round.png" style="height:12px"> Additional Resources
+  </button>
+  <div dir="auto" id="additional" class="hints" style="display: none;">{{edit:Additional Resources}}</div>
+</span>
+{{/Additional Resources}}
 
 
-<!-- PHYSEO HYPERLINK IMAGE -->
-<a href="https://www.physeo.com"><img src="_PhyseoRoundLogo.png" alt="Physeo" id="pic"></a>
+<!-- Dermki HYPERLINK IMAGE -->
+<a href="http://www.dermki.com"><img src="_dermki_text.png" alt="Dermki" id="pic"></a>
 
 <!-- NOT-PERSISTING EVENT LISTENER -->
 <script>
@@ -251,17 +280,6 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 </script>
 {{/Tags}}
-
-<!-- IMAGE BLUR -->
-<script>
-    for (const image of document.querySelectorAll(".blur")) {
-        image.classList.add("tappable");
-        image.addEventListener("click", () => {
-            image.classList.toggle("blur");
-        });
-    }
-</script>
-
 
 <!-- HINT BUTTONS SETUP -->
 <script>
@@ -463,321 +481,6 @@ if (typeof(window.Persistence) === 'undefined') {
     }
   }
 }
-</script>
-
-<!-- AUTOFLIP BACK SCRIPT -->
-<script>
-    // autoflip hides card in front template
-    document.getElementById("qa").style.removeProperty("display")
-</script>
-
-<!-- CLOZE ONE BY ONE SCRIPT -->
-<style>
-  .cloze-replacer:hover {
-    cursor: pointer;
-  }
-  .cloze-hidden {
-    display: none;
-  }
-  .cloze-replacer .hidden {
-    display: none;
-  }
-  #extra.hidden {
-    display: none;
-  }
-</style>
-
-<!-- Credit: Code for selective 1b1 clozes is adapted from the Ankizin project: https://ankiweb.net/shared/info/2058530482 -->
-
-<script>
-  (function() {
-    // enables cloze one-by-one even when one-by-one field is empty
-    // minNumberOfClozes is still considered in this case
-    // overridden in importance by selectiveOneByOne
-    var alwaysOneByOne = false;
-    var clozeOneByOneEnabled = true;
-    var oneByOneFieldNotEmpty = document.getElementById("one-by-one").textContent !== "";
-      clozeOneByOneEnabled = alwaysOneByOne || oneByOneFieldNotEmpty;
-
-    // --- CHECK IF ONE BY ONE SHOULD BE ENABLED FOR THIS SPECIFIC CARD ---
-    /**
-     * Credit for the getCardNumber function goes to foenixx (GitHub) / ollevolle (AnkiWeb Forum)
-     */
-    const getCardNumber = function () {
-      clz = document.body.className;
-      const regex = /card(\d+)/gm;
-      let m;
-
-      if ((m = regex.exec(clz)) !== null) {
-        return m[1];
-      } else {
-        // Should only fire if card is not cloze
-        console.error("Cannot find cardN class of body element!");
-        return "0";
-      }
-    }
-
-    // parse the cloze numbers for which selectiveOneByOne is enabled
-    var clozeNumbers = document.getElementById("one-by-one").textContent.split(',').filter(element => element).map(Number)
-    var cardNumberIsOneByOne = !clozeNumbers.filter(n => !Number.isNaN(n)).length || clozeNumbers.includes(parseInt(getCardNumber()))
-
-    // check the amount of clozes -> disable OneByOne if less than minimum value wanted (minNumberOfClozes)
-    var numClozesForNumber = (minNumberOfClozes) ? document.querySelectorAll('.clozefield .cloze').length : 0
-
-    // stop OneByOne if selectiveOneByOne is not enabled for this specific card OR if OneByOne is disabled some other way
-    // -> show normal backside
-    if (!alwaysOneByOne && ((selectiveOneByOne && !cardNumberIsOneByOne) || (oneByOneFieldNotEmpty && (numClozesForNumber < minNumberOfClozes)))) {
-      clozeOneByOneEnabled = false
-    }
-
-    if (!clozeOneByOneEnabled) {
-      return
-    }
-
-    // Needed for amboss to recognize first word in .cloze-hidden
-    const CLOZE_REPLACER_SEP = "<span class='hidden'> </span>"
-
-    const hideAllCloze = function(initial) {
-      let clozes = document.getElementsByClassName("cloze")
-      let count = 0 // hidden cloze count
-      for (const cloze of clozes) {
-        const existingHidden = cloze.getElementsByClassName("cloze-hidden")[0]
-        if (existingHidden) {
-          revealCloze(cloze);
-        }
-        if (cloze.offsetWidth === 0) {
-          continue
-        }
-        const clozeReplacer = document.createElement("span")
-        const clozeHidden = document.createElement("span")
-        clozeReplacer.classList.add("cloze-replacer")
-        clozeHidden.classList.add("cloze-hidden")
-        while (cloze.childNodes.length > 0) {
-          clozeHidden.appendChild(cloze.childNodes[0])
-        }
-        cloze.appendChild(clozeReplacer)
-        cloze.appendChild(clozeHidden)
-
-        var clozeHints = Persistence.getItem("clozeHints");
-        if (clozeHints && clozeHints[count]) {
-          clozeReplacer.classList.add("cloze-hint")
-          clozeReplacer.innerHTML = clozeHints[count] + CLOZE_REPLACER_SEP
-        } else {
-          clozeReplacer.innerHTML = clozeHider(cloze) + CLOZE_REPLACER_SEP
-        }
-        count += 1
-        if (initial) {
-          cloze.addEventListener("touchend", revealClozeClicked)
-          cloze.addEventListener("click", revealClozeClicked)
-          cloze.classList.add("one-by-one");
-        }
-      }
-      const extra = document.getElementById("extra");
-      if (extra) {
-        extra.classList.add("hidden");
-      }
-      for (const [field, autoReveal] of Object.entries(ButtonAutoReveal)) {
-        const container = document.querySelector(`[data-name="${field}"]`)
-          if (container) {
-            const tag = `autoopen::${field.toLowerCase().replace(' ', '_')}`
-            if (autoReveal || (globalThis.tagList && globalThis.tagList.includes(tag))) {
-              const link = container.getElementsByTagName("a")[0]
-              const button = container.getElementsByTagName("button")[0]
-              const hint = container.getElementsByTagName("div")[0]
-              button.classList.remove("expanded-button")
-              hint.style.display = "none"
-              link.style.display = ""
-          }
-        }
-      }
-    }
-    
-    const revealCloze = function(cloze) {
-      const clozeReplacer = cloze.getElementsByClassName("cloze-replacer")[0]
-      const clozeHidden = cloze.getElementsByClassName("cloze-hidden")[0]
-      if (!clozeReplacer || !clozeHidden) return;
-
-      cloze.removeChild(clozeReplacer)
-      cloze.removeChild(clozeHidden)
-      while (clozeHidden.childNodes.length > 0) {
-        cloze.appendChild(clozeHidden.childNodes[0])
-      }
-      maybeRevealExtraField()
-    }
-
-    const revealClozeWord = function(cloze) {
-      const clozeReplacer = cloze.getElementsByClassName("cloze-replacer")[0]
-      const clozeHidden = cloze.getElementsByClassName("cloze-hidden")[0]
-      if (!clozeReplacer || !clozeHidden) return;
-
-      let range = new Range()
-      range.setStart(clozeHidden, 0)
-      const foundSpace = setRangeEnd(range, clozeHidden, "beforeFirstSpace")
-      if (!foundSpace) {
-        range.setEnd(clozeHidden, clozeHidden.childNodes.length)
-      }
-      let fragment = range.extractContents()
-      cloze.insertBefore(fragment, clozeReplacer)
-      // Extract whitespaces after word
-      range = new Range()
-      range.setStart(clozeHidden, 0)
-      const foundWord = setRangeEnd(range, clozeHidden, "beforeFirstChar")
-      if (!foundWord) {
-        range.setEnd(clozeHidden, clozeHidden.childNodes.length)
-      }    
-      fragment = range.extractContents();
-      cloze.insertBefore(fragment, clozeReplacer)
-      if (!foundWord) {
-        cloze.removeChild(clozeHidden)
-        cloze.removeChild(clozeReplacer)
-        maybeRevealExtraField()
-        return
-      }
-      clozeReplacer.innerHTML = clozeHider(clozeHidden) + CLOZE_REPLACER_SEP
-      if (clozeReplacer.classList.contains("cloze-hint")) [
-        clozeReplacer.classList.remove("cloze-hint")
-      ]
-      maybeRevealExtraField()
-    }
-
-    const revealNextClozeOf = (type) => {
-      const nextHidden = document.querySelector(".cloze-hidden")
-      if(!nextHidden) {
-          return
-      } 
-      const cloze = clozeElOfClozeHidden(nextHidden);
-      if (type === "word") {
-          revealClozeWord(cloze)
-      } else if (type === "cloze") {
-          revealCloze(cloze)
-      } else {
-        console.error("Invalid type: " + type)
-      }
-    }
-
-    const revealClozeClicked = function(ev) {
-      let elem = ev.currentTarget
-      if (!ev.altKey && (revealNextClozeMode !== "word")) {
-        revealCloze(elem)
-      } else {
-        revealClozeWord(elem)
-      }
-      ev.stopPropagation()
-      ev.preventDefault()
-    }
-
-    window.revealNextCloze = function() {
-      revealNextClozeOf(revealNextClozeMode)
-    }
-
-    window.toggleAllCloze = function() {
-      let elems = document.querySelectorAll(".cloze-hidden")
-      if(elems.length > 0) {
-        for (const elem of elems) {
-          const cloze = clozeElOfClozeHidden(elem)
-          revealCloze(cloze)
-        }
-      } else {
-        hideAllCloze(initial=false)
-      }
-    }
-
-    const clozeElOfClozeHidden = (cloze) => {
-      while (!cloze.classList.contains("cloze")) {
-        cloze = cloze.parentElement;
-      }
-      return cloze;
-    }
-
-    const maybeRevealExtraField = () => {
-      let elems = document.querySelectorAll(".cloze-hidden")
-      if (elems.length == 0) {
-        const extra = document.getElementById("extra")
-        if (extra) {
-          extra.classList.remove("hidden")
-        }
-        // Also reveal autoReveal fields
-        for (const [field, autoReveal] of Object.entries(ButtonAutoReveal)) {
-          const container = document.querySelector(`[data-name="${field}"]`)
-          if (container) {
-            const tag = `autoopen::${field.toLowerCase().replace(' ', '_')}`
-            if (autoReveal || (globalThis.tagList && globalThis.tagList.includes(tag))) {
-              const link = container.getElementsByTagName("a")[0]
-              const button = container.getElementsByTagName("button")[0]
-              const hint = container.getElementsByTagName("div")[0]
-              button.classList.add("expanded-button")
-              hint.style.display = "block"
-              link.style.display = "none"
-            }
-          }
-        }
-      }
-    }
-
-    /**
-     * mode: 'beforeFirstSpace' or 'beforeFirstChar'
-     * Return `true` if it exists and setEnd() was called, otherwise `false`
-     */
-    const setRangeEnd = function(range, node, mode) {
-      if (node.nodeType === Node.TEXT_NODE) {
-        const regex = mode === 'beforeFirstSpace' ? /\s/ : /\S/
-        const match = node.textContent.match(regex)
-        if (match) {
-          if (match.index === 0) {
-            while (node.previousSibling === null) {
-              node = node.parentElement
-            }
-            range.setEndBefore(node)
-          } else {
-            range.setEnd(node, match.index);
-          }
-          return true;
-        } else {
-          return false;
-        }
-      } else if (mode === 'beforeFirstChar' && isCharNode(node)) {
-        range.setEndBefore(node)
-        return true
-      } else if (!ignoreSpaceInNode(node)) {
-        for (const child of node.childNodes) {
-          if (setRangeEnd(range, child, mode)) {
-            return true;
-          }
-        }
-        return false;
-      }
-    }
-
-    const ignoreSpaceInNode = function (node) {
-      return node.tagName === "MJX-ASSISTIVE-MML"
-    }
-
-    const isCharNode = function(node) {
-      return ["IMG", "MJX-CONTAINER"].includes(node.tagName)
-    }
-
-    hideAllCloze(initial=true)
-
-    let isShowNextShortcut = shortcutMatcher(window.revealNextShortcut)
-    let isShowWordShortcut = shortcutMatcher(window.revealNextWordShortcut)
-    let isToggleAllShortcut = shortcutMatcher(window.toggleAllShortcut)
-    ankingAddEventListener("keydown", (ev) => {
-      let next = isShowNextShortcut(ev)
-      let word = isShowWordShortcut(ev)
-      let all = isToggleAllShortcut(ev)
-      if (next) {
-        revealNextClozeOf("cloze")
-      } else if (word) {
-        revealNextClozeOf("word")
-      } else if (all) {
-        toggleAllCloze()
-      } else {
-        return;
-      }
-      ev.stopPropagation()
-      ev.preventDefault()
-    });
-  })()
 </script>
 
 <!-- WIKIPEDIA SEARCHES -->
@@ -994,3 +697,84 @@ var userJs6 = undefined
 var userJs7 = undefined
 var userJs8 = undefined
 </script>
+
+
+<!-- IMAGE BLUR -->
+<script>
+    for (const image of document.querySelectorAll(".blur")) {
+        image.classList.add("tappable");
+        image.addEventListener("click", () => {
+            image.classList.toggle("blur");
+        });
+    }
+</script>
+
+
+
+<!-- BEGIN WRAPPER CODE shuffle -->
+
+<script>
+    (() => {
+        const selectors = [".shuffle", "#front,#clinical,#dermoscopy,#visualdx,#dermnet,#fullspectrum,#additional"];
+        const isFront = Persistence.getItem("shuffle") === null;
+        const shuffleMap = Persistence.getItem("shuffle") || {};
+
+        function shuffle(array, indexMap) {
+            let currentIndex = array.length;
+            while (currentIndex != 0) {
+                currentIndex--;
+                let randomIndex = indexMap[currentIndex] !== undefined  ? indexMap[currentIndex] : Math.floor(Math.random() * (currentIndex + 1));
+                indexMap[currentIndex] = randomIndex;
+                [array[currentIndex], array[randomIndex]] = [
+                    array[randomIndex],
+                    array[currentIndex],
+                ];
+            }
+        }
+
+        function shuffleElements(elements) {
+            elements = elements.filter(e => !e.matches(".no-shuffle *"));
+            const shuffledElements = Array.from(
+                elements.map((el) => el.cloneNode(true))
+            );
+            if(shuffledElements.length === 0) {
+                return;
+            }
+            // Assuming elements[0] is not also the first element in a different list to shuffle
+            const indexMap = shuffleMap[elements[0]] || {};
+            shuffle(shuffledElements, indexMap);
+            shuffleMap[elements[0]] = indexMap;
+            for (let i = 0; i < elements.length; i++) {
+                elements[i].replaceWith(shuffledElements[i]);
+            }
+        }
+
+        function shuffleList(listElement) {
+            const items = Array.from(listElement.querySelectorAll("li"));
+            shuffleElements(items);
+        }
+
+        for (const selector of selectors) {
+            for (const container of document.querySelectorAll(selector)) {
+                if (["UL", "OL"].includes(container.tagName)) {
+                    shuffleList(container);
+                }
+                for (const parentElement of container.querySelectorAll(
+                    "ol, ul"
+                )) {
+                    shuffleList(parentElement);
+                }
+                const images = Array.from(container.querySelectorAll("img"));
+                shuffleElements(images);
+            }
+        }
+        if(isFront) {
+            Persistence.setItem("shuffle", shuffleMap);
+        } else {
+            Persistence.removeItem("shuffle");
+        }
+    })();
+</script>
+
+<!-- END WRAPPER CODE -->
+
