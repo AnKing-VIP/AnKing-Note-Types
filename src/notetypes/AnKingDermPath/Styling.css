@@ -280,23 +280,23 @@ background-color: #ffffff;
   max-width: 50% !important;
 }
 
-#dermnet img {
-  max-width: 50%;
+#clinical img, #dermoscopy img, #dermnet img {
+  max-width: 45%;
 }
 
 .ipad #dermnet img {
   max-width: 40%!important;
 }
 
-.ipad #additional img, .ipad #visualdx img, .ipad #dermnemonics img, .ipad #dermatographix img {
-  max-width: 60%!important;
-}
-
 #fullspectrum img {
-  max-width: 40%;
+  max-width: 30%;
 }
 
 #textbook img {
+  max-width: 60%!important;
+}
+
+.ipad #additional img, .ipad #visualdx img, .ipad #dermnemonics img, .ipad #dermatographix img {
   max-width: 60%!important;
 }
 
