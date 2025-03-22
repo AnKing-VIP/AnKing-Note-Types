@@ -38,11 +38,11 @@ var ScrollToButton = true;
 
 
 
-<div class="front shuffle" id="image">{{edit:Front}}</div>
+<div id="front">{{edit:Front}}</div>
   
   <hr id=answer>
 
-<div class="back">{{Back}}</div>
+<div id="back">{{Back}}</div>
 
 <br>
 
@@ -98,4 +98,4 @@ var ScrollToButton = true;
 
 <%- include('src/components/imageBlur.ejs') %>
 
-<%- include('src/components/shuffleItems.ejs', {selector: "#dermnet,#dermpath,#dermoscopy,#visualdx,#fullspectrum"}) %>
+<%- include('src/components/shuffleItems.ejs', {selector: "#front,#clinical,#dermoscopy,#visualdx,#dermnet,#fullspectrum",#additional}) %>

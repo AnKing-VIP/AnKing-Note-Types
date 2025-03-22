@@ -1,4 +1,4 @@
-<div class="front shuffle" id="image">{{edit:Front}}</div>
+<div id="front">{{edit:Front}}</div>
 <div style="font-size:8px; font-style:italic;">Above Image(s) provided courtesy of Tammie Ferringer, MD</div>
 
 <br>
@@ -39,3 +39,5 @@ var autoflip = false
 <%- include('src/components/shortcutMatcher.ejs') %>
 
 <%- include('src/components/colorfulTags.ejs') %>
+
+<%- include('src/components/shuffleItems.ejs', {selector: "#front}) %>
