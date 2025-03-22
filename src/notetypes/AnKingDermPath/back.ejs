@@ -1,0 +1,99 @@
+<script>
+// ##############  HINT REVEAL SHORTCUTS  ##############
+// All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
+var ButtonShortcuts = {
+    "Personal Notes" : "Alt + 1",
+    "Missed Questions" : "Alt + 2",
+    // Clinical Images auto reveals
+    "Dermoscopy": "Alt + 3",
+    "VisualDx" : "Alt + 4",
+    // Alt + 5 skipped to keep in line with AnKingDerm note type
+    // DermNet and Full Spectrum of Dermatology auto reveal
+    "Dermnemonics": "Alt + 6",
+    "Dermatographix": "Alt + 7",
+    "Textbook" : "Alt + 8",
+    "Additional Resources" : "Alt + 9"
+}
+var ToggleAllButtonsShortcut = "'"
+var ToggleNextButtonShortcut = "H";
+// ##############  SHOW HINTS AUTOMATICALLY  ##############
+var ButtonAutoReveal = {
+    "Personal Notes" : false,
+    "Missed Questions" : false,
+    "Clinical Images": true,
+    "Dermoscopy": false,
+    "VisualDx" : false,
+    // DermNet and Full Spectrum of Dermatology auto reveal
+    "Dermnemonics": false,
+    "Dermatographix": false,
+    "Textbook" : false,
+    "Additional Resources" : false,
+}
+
+var ScrollToButton = true;
+
+<%- include('src/configs/colorfulTags.js') %>
+
+</script>
+
+
+
+<div class="front shuffle" id="image">{{edit:Front}}</div>
+  
+  <hr id=answer>
+
+<br>
+
+
+<!-- BUTTON FIELDS -->
+<%- include("src/components/hintButton.ejs", {name: "Personal Notes", short:"ln", hintId: "notes" }) %>
+
+<%- include("src/components/hintButton.ejs", {name: "Missed Questions", short:"mq", hintId: "missed" }) %>
+
+<%- include("src/components/hintButton.ejs", {name: "Clinical Images", short:"ci", hintId: "clinical", icon: "_dermki_round.png" }) %>
+
+<%- include("src/components/hintButton.ejs", {name: "Dermoscopy", short:"ds", hintId: "dermoscopy", icon: "_dermki_round.png" }) %>
+
+<%- include("src/components/hintButton.ejs", {name: "VisualDx", displayName: "VisualDx", short:"vd", hintId: "visualdx", icon: "_dermki_round.png" }) %>
+
+<%- include("src/components/hintButton.ejs", {name: "Dermnemonics", displayName: "Dermnemonics", short:"dm", hintId: "dermnemonics", icon: "_dermki_round.png" }) %>
+
+<%- include("src/components/hintButton.ejs", {name: "Dermatographix", displayName: "DermatoGraphix", short:"dg", hintId: "dermatographix", icon: "_dermki_round.png" }) %>
+
+<!-- images from dermnet.nz -->
+{{#DermNet}}
+<p></p>
+<div id="dermnet">{{edit:DermNet}}</div>
+<a href="https://dermnetnz.org" style="font-size:8px; font-style:italic;">Above Image(s) provided courtesy of DermNetNZ.org</a>
+<hr>
+{{/DermNet}}
+
+{{#Full Spectrum of Dermatology}}<p></p>
+<div id="fullspectrum">{{edit:Full Spectrum of Dermatology}}</div>
+{{/Full Spectrum of Dermatology}}
+
+<%- include("src/components/hintButton.ejs", {name: "Textbook", short:"tx", hintId: "textbook", icon: "_dermki_round.png" }) %>
+
+<%- include("src/components/hintButton.ejs", {name: "Additional Resources",  displayName: "Additional Resources", short:"ar", hintId: "additional", icon: "_dermki_round.png" }) %>
+
+
+<!-- Dermki HYPERLINK IMAGE -->
+<a href="http://www.dermki.com"><img src="_dermki_text.png" alt="Dermki" id="pic"></a>
+
+<%- include('src/components/ankingAddEventListener.ejs') %>
+
+<%- include('src/components/shortcutMatcher.ejs') %>
+
+<%- include('src/components/colorfulTags.ejs') %>
+
+<%- include('src/components/hintButtonsSetup.ejs') %>
+
+<%- include('src/components/ankiPersistence.ejs') %>
+
+<%- include('src/components/wikipediaSearches.ejs') %>
+
+<%- include('src/components/ankiMobileUserActions.ejs') %>
+
+<%- include('src/components/imageBlur.ejs') %>
+
+<%- include('src/components/shuffleItems.ejs', {selector: "#dermnet,#dermpath,#dermoscopy,#visualdx,#fullspectrum"}) %>
