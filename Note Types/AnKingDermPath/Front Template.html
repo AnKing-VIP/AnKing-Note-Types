@@ -1,6 +1,6 @@
-<!-- version 749d42d -->
-<div id="text">{{cloze:Text}}</div>
-
+<!-- version 49baf78 -->
+<div class="front shuffle" id="image">{{edit:Front}}</div>
+<div style="font-size:8px; font-style:italic;">Above Image(s) provided courtesy of Tammie Ferringer, MD</a>
 
 <br>
 
@@ -187,117 +187,6 @@ if (typeof(window.Persistence) === 'undefined') {
 }
 </script>
 
-
-<!-- Credit: Code for selective 1b1 clozes is adapted from the Ankizin project: https://ankiweb.net/shared/info/2058530482 -->
-
-<!-- CLOZE ONE BY ONE FRONT -->
-<div id="one-by-one" style="display: none;">{{One by one}}</div>
-
-<script>
-  // enables cloze one-by-one even when one-by-one field is empty
-  // minNumberOfClozes is still considered in this case
-  // overridden in importance by selectiveOneByOne
-  var alwaysOneByOne = false;
-  var clozeOneByOneEnabled = true;
-  var oneByOneFieldNotEmpty = document.getElementById("one-by-one").textContent !== "";
-    clozeOneByOneEnabled = alwaysOneByOne || oneByOneFieldNotEmpty;
-  
-  var clozeHints = [];
-  if (clozeOneByOneEnabled) {
-    document.getElementById("qa").classList.add('one-by-one');
-    // Save cloze hints to display in the back
-    let clozes = document.getElementsByClassName("cloze")
-    for(var i = 0; i < clozes.length; i++) {
-      clozes[i].classList.add("one-by-one");
-      if (clozes[i].innerHTML === "[...]") {
-        clozeHints.push("")
-      } else {
-        clozeHints.push(clozes[i].innerHTML)
-      }
-    }
-
-    // --- CHECK IF ONE BY ONE SHOULD BE ENABLED FOR THIS SPECIFIC CARD ---
-    /**
-     * Credit for the getCardNumber function goes to foenixx (GitHub) / ollevolle (AnkiWeb Forum)
-     */
-     const getCardNumber = function () {
-      clz = document.body.className;
-      const regex = /card(\d+)/gm;
-      let m;
-
-      if ((m = regex.exec(clz)) !== null) {
-        return m[1];
-      } else {
-        // Should only fire if card is not cloze
-        console.error("Cannot find cardN class of body element!");
-        return "0";
-      }
-    }
-
-    var alreadyRendered = false;
-
-    function processSelective1b1() {
-      if (alreadyRendered) return;
-      // parse the cloze numbers for which selectiveOneByOne is enabled
-      var clozeNumbers = document.getElementById("one-by-one").textContent.split(',').filter(element => element).map(Number)
-      var cardNumberIsOneByOne = !clozeNumbers.filter(n => !Number.isNaN(n)).length || clozeNumbers.includes(parseInt(getCardNumber()))
-
-      // check the amount of clozes -> disable OneByOne if less than minimum value wanted (minNumberOfClozes)
-      var numClozesForNumber = (minNumberOfClozes) ? document.querySelectorAll('.clozefield .cloze').length : 0
-
-      // stop OneByOne if selectiveOneByOne is not enabled for this specific card OR if OneByOne is disabled some other way
-      // -> show normal backside
-      if (!alwaysOneByOne && ((selectiveOneByOne && !cardNumberIsOneByOne) || (oneByOneFieldNotEmpty && (numClozesForNumber < minNumberOfClozes)))) {
-        clozeOneByOneEnabled = false
-      }
-
-      if (autoflip && clozeOneByOneEnabled) {
-
-    if(window.pycmd || window.showAnswer) {
-        // avoid flickering. Must unset this in the back.
-        document.getElementById("qa").style.display = "none";
-    }
-
-    if (window.pycmd) {
-        pycmd("ans")
-    } else if (window.showAnswer) {
-        showAnswer()
-    }
-}
-// AnkiMobile JS API doesn't have one for show answer.
-// Best alternative is to use Taps/Swipes to show answer.
-
-      alreadyRendered = true;
-    }
-
-    function delayedProcessSelective1b1() {
-      if (window.requestAnimationFrame) window.requestAnimationFrame(processSelective1b1); // less flickering
-      else window.setTimeout(processSelective1b1, 0);
-    };
-
-    window.onload = delayedProcessSelective1b1;
-    if (document.readyState === "complete") {
-      delayedProcessSelective1b1();
-    }
-    else {
-      document.addEventListener("DOMContentLoaded", delayedProcessSelective1b1);
-    }
-
-    // Observe document.body class changes to trigger re-rendering.
-    // This is useful, because Anki doesn’t always start with an up-to-date class list:
-    // https://forums.ankiweb.net/t/card-card-classes-only-injected-separately-now/27387.
-    const observer = new MutationObserver(function(mutationsList, observer) {
-      for (let mutation of mutationsList) {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-          delayedProcessSelective1b1();
-        }
-      }
-    });
-    observer.observe(document.body, { attributes: true });
-  }
-  Persistence.setItem("clozeHints", clozeHints);
-</script>
-
 <!-- IMAGE BLUR -->
 <script>
     for (const image of document.querySelectorAll(".blur")) {
@@ -405,8 +294,8 @@ if (typeof(window.Persistence) === 'undefined') {
   countdown("s2", minutes, seconds ); //2nd value is the minute, 3rd is the seconds
 </script>
 
-<!-- ANKING HYPERLINK IMAGE -->
-<a href="https://www.ankingmed.com"><img src="_AnKingIcon.png" alt="The AnKing" id="pic"></a>
+<!-- Dermki HYPERLINK IMAGE -->
+<a href="http://www.dermki.com"><img src="_dermki_text.png" alt="Dermki" id="pic"></a>
 
 <!-- NOT-PERSISTING EVENT LISTENER -->
 <script>
