@@ -1,45 +1,60 @@
 {
-    "id": 1610414929689,
-    "name": "AnKingDerm",
-    "type": 1,
-    "mod": 1638144691,
+    "id": 0,
+    "name": "AnKingDermPath",
+    "type": 0,
+    "mod": 1742589073,
     "usn": -1,
-    "sortf": 0,
-    "did": 1613264378898,
+    "sortf": 1,
+    "did": 1544021588692,
     "tmpls": [
         {
-            "name": "Cloze",
+            "name": "Card 1",
             "ord": 0,
             "qfmt": "",
             "afmt": "",
-            "bqfmt": "{{cloze:Text}}",
-            "bafmt": "{{cloze:Text}}",
+            "bqfmt": "{{Front}}",
+            "bafmt": "",
             "did": null,
-            "bfont": "Arial",
-            "bsize": 12,
-            "scratchPad": false
+            "bfont": "",
+            "bsize": 0,
+            "id": null
         }
     ],
     "flds": [
         {
-            "name": "Text",
+            "name": "Front",
             "ord": 0,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
             "size": 18,
-            "collapsibleFieldsCollapseByDefault": false,
+            "description": "",
+            "plainText": false,
+            "collapsed": false,
+            "excludeFromSearch": false,
+            "id": null,
+            "tag": null,
+            "preventDeletion": false,
             "media": [],
+            "collapsibleFieldsCollapseByDefault": false,
             "meta": null
         },
         {
-            "name": "Extra",
+            "name": "Back",
             "ord": 1,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
             "size": 18,
+            "description": "",
+            "plainText": false,
+            "collapsed": false,
+            "excludeFromSearch": false,
+            "id": null,
+            "tag": null,
+            "preventDeletion": false,
             "media": [],
+            "collapsibleFieldsCollapseByDefault": false,
             "meta": null
         },
         {
@@ -49,8 +64,15 @@
             "rtl": false,
             "font": "Arial",
             "size": 18,
-            "collapsibleFieldsCollapseByDefault": false,
+            "description": "",
+            "plainText": false,
+            "collapsed": false,
+            "excludeFromSearch": false,
+            "id": null,
+            "tag": null,
+            "preventDeletion": false,
             "media": [],
+            "collapsibleFieldsCollapseByDefault": false,
             "meta": null
         },
         {
@@ -60,18 +82,34 @@
             "rtl": false,
             "font": "Arial",
             "size": 18,
-            "meta": null,
-            "media": []
+            "description": "",
+            "plainText": false,
+            "collapsed": false,
+            "excludeFromSearch": false,
+            "id": null,
+            "tag": null,
+            "preventDeletion": false,
+            "media": [],
+            "collapsibleFieldsCollapseByDefault": false,
+            "meta": null
         },
         {
-            "name": "DermPath",
+            "name": "Clinical Images",
             "ord": 4,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
             "size": 18,
-            "meta": null,
-            "media": []
+            "description": "",
+            "plainText": false,
+            "collapsed": false,
+            "excludeFromSearch": false,
+            "id": null,
+            "tag": null,
+            "preventDeletion": false,
+            "media": [],
+            "collapsibleFieldsCollapseByDefault": false,
+            "meta": null
         },
         {
             "name": "Dermoscopy",
@@ -81,7 +119,8 @@
             "font": "Arial",
             "size": 18,
             "meta": null,
-            "media": []
+            "media": [],
+            "collapsibleFieldsCollapseByDefault": false
         },
         {
             "name": "VisualDx",
@@ -154,17 +193,6 @@
             "media": [],
             "collapsibleFieldsCollapseByDefault": true
         },
-        {
-            "name": "One by one",
-            "ord": 13,
-            "sticky": false,
-            "rtl": false,
-            "font": "Arial",
-            "size": 16,
-            "meta": null,
-            "collapsibleFieldsCollapseByDefault": false,
-            "description": "Type anything here (i.e. \"yes\") to enable one by one clozes or enable only certain clozes by typing numbers separated by commas (i.e. \"1,3\")"
-        }
     ],
     "css": "",
     "latexPre": "\\documentclass[12pt]{article}\n\\special{papersize=3in,5in}\n\\usepackage{amssymb,amsmath}\n\\pagestyle{empty}\n\\setlength{\\parindent}{0in}\n\\begin{document}\n",

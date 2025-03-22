@@ -4,9 +4,10 @@
 var ButtonShortcuts = {
     "Personal Notes" : "Alt + 1",
     "Missed Questions" : "Alt + 2",
-    "DermPath": "Alt + 3",
-    "Dermoscopy": "Alt + 4",
-    "VisualDx" : "Alt + 5",
+    // Clinical Images auto reveals
+    "Dermoscopy": "Alt + 3",
+    "VisualDx" : "Alt + 4",
+    // Alt + 5 skipped to keep in line with AnKingDerm note type
     // DermNet and Full Spectrum of Dermatology auto reveal
     "Dermnemonics": "Alt + 6",
     "Dermatographix": "Alt + 7",
@@ -19,55 +20,39 @@ var ToggleNextButtonShortcut = "H";
 var ButtonAutoReveal = {
     "Personal Notes" : false,
     "Missed Questions" : false,
-    "DermPath": false,
+    "Clinical Images": true,
     "Dermoscopy": false,
     "VisualDx" : false,
     // DermNet and Full Spectrum of Dermatology auto reveal
     "Dermnemonics": false,
     "Dermatographix": false,
     "Textbook" : false,
-    "Additional Resources" : false
+    "Additional Resources" : false,
 }
 
 var ScrollToButton = true;
 
 <%- include('src/configs/colorfulTags.js') %>
 
-<%- include('src/configs/clozeOneByOne.js') %>
-
 </script>
 
 
 
+<div id="front">{{edit:Front}}</div>
+  
+  <hr id=answer>
 
-<div class="clozefield" id="text">{{cloze:Text}}</div>
-
-<!-- ##############  EDIT CLOZE DURING REVIEW  ##############
-			-change below (not above) to  "edit:cloze:Text" for editable field, 
-				but be sure to have the correct add-on installed-->
-
-<div class="editcloze" id="text">{{edit:cloze:Text}}</div>
-
+<div id="back">{{Back}}</div>
 
 <br>
 
-<!-- ##############  TEXT-TO-SPEECH ##############
-replace the arrows/dashes from the statement below with double curly brackets-->
-{{^One by one}}
-<!--tts en_US voices=Apple_Samantha,Microsoft_Zira speed=1.4:cloze-only:Text-->
-{{/One by one}}
-
-<hr>
-
 
 <!-- BUTTON FIELDS -->
-<%- include('src/components/clozeOneByOneButtons.ejs', {optional: true}) %>
-
 <%- include("src/components/hintButton.ejs", {name: "Personal Notes", short:"ln", hintId: "notes" }) %>
 
 <%- include("src/components/hintButton.ejs", {name: "Missed Questions", short:"mq", hintId: "missed" }) %>
 
-<%- include("src/components/hintButton.ejs", {name: "DermPath", short:"dp", hintId: "dermpath", icon: "_dermki_round.png"}) %>
+<%- include("src/components/hintButton.ejs", {name: "Clinical Images", short:"ci", hintId: "clinical", icon: "_dermki_round.png" }) %>
 
 <%- include("src/components/hintButton.ejs", {name: "Dermoscopy", short:"ds", hintId: "dermoscopy", icon: "_dermki_round.png" }) %>
 
@@ -76,11 +61,6 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <%- include("src/components/hintButton.ejs", {name: "Dermnemonics", displayName: "Dermnemonics", short:"dm", hintId: "dermnemonics", icon: "_dermki_round.png" }) %>
 
 <%- include("src/components/hintButton.ejs", {name: "Dermatographix", displayName: "DermatoGraphix", short:"dg", hintId: "dermatographix", icon: "_dermki_round.png" }) %>
-
-<!-- Extra field -->
-{{#Extra}}<p></p>
-<div id="extra">{{edit:Extra}}</div>
-<br>{{/Extra}}
 
 <!-- images from dermnet.nz -->
 {{#DermNet}}
@@ -94,10 +74,10 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <div id="fullspectrum">{{edit:Full Spectrum of Dermatology}}</div>
 {{/Full Spectrum of Dermatology}}
 
-
 <%- include("src/components/hintButton.ejs", {name: "Textbook", short:"tx", hintId: "textbook", icon: "_dermki_round.png" }) %>
 
 <%- include("src/components/hintButton.ejs", {name: "Additional Resources",  displayName: "Additional Resources", short:"ar", hintId: "additional", icon: "_dermki_round.png" }) %>
+
 
 <!-- Dermki HYPERLINK IMAGE -->
 <a href="http://www.dermki.com"><img src="_dermki_text.png" alt="Dermki" id="pic"></a>
@@ -112,12 +92,10 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <%- include('src/components/ankiPersistence.ejs') %>
 
-<%- include('src/components/clozeOneByOneBack.ejs', {optional: true}) %>
-
 <%- include('src/components/wikipediaSearches.ejs') %>
 
 <%- include('src/components/ankiMobileUserActions.ejs') %>
 
 <%- include('src/components/imageBlur.ejs') %>
 
-<%- include('src/components/shuffleItems.ejs', {selector: "#dermpath,#dermoscopy,#visualdx,#dermnet,#fullspectrum,#additional"}) %>
+<%- include('src/components/shuffleItems.ejs', {selector: "#front,#clinical,#dermoscopy,#visualdx,#dermnet,#fullspectrum,#additional"}) %>

@@ -1,5 +1,5 @@
-<div id="text">{{cloze:Text}}</div>
-
+<div id="front">{{edit:Front}}</div>
+<div style="font-size:8px; font-style:italic;">Above Image(s) provided courtesy of Tammie Ferringer, MD</div>
 
 <br>
 
@@ -25,8 +25,6 @@ var autoflip = false
 
 <%- include('src/components/ankiPersistence.ejs') %>
 
-<%- include('src/components/clozeOneByOneFront.ejs', {optional: true}) %>
-
 <%- include('src/components/imageBlur.ejs') %>
 
 <%- include('src/components/shuffleItems.ejs') %>
@@ -41,3 +39,5 @@ var autoflip = false
 <%- include('src/components/shortcutMatcher.ejs') %>
 
 <%- include('src/components/colorfulTags.ejs') %>
+
+<%- include('src/components/shuffleItems.ejs', {selector: "#front}) %>

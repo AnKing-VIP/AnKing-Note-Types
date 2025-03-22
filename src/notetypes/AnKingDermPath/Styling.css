@@ -1,8 +1,8 @@
-/*    ANKINGDERM   */
+/*    ANKINGDERMPATH   */
 
 /* The AnKing wishes you the best of luck! Be sure to check out our YouTube channel and Instagram
  for all things Anki and Med School related (including how to customize this card type and use these decks):  
-		www.AnKingMed.com
+		www.TheAnKing.com
 			@ankingmed    			
 */
 
@@ -39,22 +39,17 @@
 'rem' is a fraction of this size above and allows all text to change size with the above setting */
 /* Desktop */
 html {
-  font-size: 28px;
+  font-size: 20px;
 }
 
 /* Mobile */
 .mobile {
-  font-size: 28px;
+  font-size: 16px;
 }
 
-/*IPAD ADJUSTMENTS (currently not applied)
-.ipad .card {
-  font-size: 28px;
+.ipad .mobile {
+  font-size: 20px !important;
 }
-.ipad .hints {
-  font-size: 24px;
-}
-*/
 
 /*Revealed Hints Font Size*/
 .hints {
@@ -70,7 +65,7 @@ html {
 /*Other Fields Font Size on Mobile*/
 .mobile #textbook,
 .mobile #additional {
-  font-size: 20px !important;
+  font-size: 16px !important;
 }
 
 
@@ -84,8 +79,8 @@ kbd {
 
 /*~~~~~~~MAX IMAGE HEIGHT/WIDTH~~~~~~~*/
 img {
-  max-width: 85%;
-  max-height: 100%;
+  max-width: 70%;
+  max-height: 320px !important;
 }
 
 
@@ -100,24 +95,9 @@ img {
   background-color: #D1CFCE;
 }
 
-/* Cloze Color */
-.cloze {
-  color: blue;
-}
-
-/* One by One Cloze Color */
-.cloze.one-by-one {
-  color: #009400;
-}
-
-/* One by One Cloze Hint Color */
-.cloze-hint {
-  color: #009400;
-}
-
-/* "Extra" Field Color */
-#extra {
-  color: navy;
+/* Back side Text Color */
+#back {
+  color: black;
 }
 
 /* Hint Reveal Color */
@@ -156,28 +136,10 @@ a[href^="javascript:"] {
   background-color: #272828 !important;
 }
 
-/* NM Cloze Color */
-.nightMode .cloze,
-.night_mode .cloze {
-  color: #4297F9 !important;
-}
-
-/* NM One by One Cloze Color */
-.nightMode .cloze.one-by-one,
-.night_mode .cloze.one-by-one {
-    color: #009400 !important;
-}
-
-/* NM One by One Cloze Hint Color */
-.nightMode .cloze-hint,
-.night_mode .cloze-hint {
-    color: #009400 !important;
-}
-
-/* NM "Extra" Field Color */
-.nightMode #extra,
-.night_mode #extra {
-  color: magenta;
+/* NM Back Side Text Color */
+.nightMode #back,
+.night_mode #back {
+  color: #FFFAFA !important;
 }
 
 /* NM Hint Reveal Color */
@@ -233,36 +195,10 @@ hr {
 
 
 /* ~~~~~~~~~ FIELDS ~~~~~~~~~ */
-/* Cloze format */
-.cloze {
-  font-weight: bold;
-}
-
-/* Adjustments For Cloze Edit In Review On Mobile */
-.clozefield,
-.mobile .editcloze {
-  display: none;
-}
-
-.editcloze,
-.mobile .clozefield {
-  display: block;
-}
 
 /* Text When Hint Is Shown*/
 .hints {
   font-style: italic;
-}
-
-/*add spacing between hints and extra field*/
-.hints+#extra {
-  margin-top: 1rem;
-}
-
-/* Extra Field */
-#extra {
-  font-style: italic;
-  font-size: 1rem;
 }
 
 
@@ -344,11 +280,7 @@ background-color: #ffffff;
   max-width: 50% !important;
 }
 
-#extra img {
-  min-width: 30%;
-}
-
-#dermoscopy img, #dermnet img {
+#clinical img, #dermoscopy img, #dermnet img {
   max-width: 45%;
 }
 
@@ -382,7 +314,7 @@ img:active {
 .mnemonics {
   display: inline-block;
   max-width: 50%;
-  text-align: left;
+  text-align: left; /* can change to center to 'turn off' this feature */
 }
 
 .mobile .mnemonics {
@@ -643,4 +575,10 @@ img {
 
 .blur {
   filter: blur(15px);
+}
+
+/* Remove padding around headers */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0; /* Removes default margins */
+  padding: 0; /* Removes default padding */
 }

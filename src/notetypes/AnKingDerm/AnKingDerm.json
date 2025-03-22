@@ -114,29 +114,49 @@
             "media": []
         },
         {
-            "name": "Textbook",
+            "name": "Dermnemonics",
             "ord": 9,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
             "size": 18,
-            "collapsibleFieldsCollapseByDefault": false,
+            "collapsibleFieldsCollapseByDefault": true,
+            "meta": null
+        },
+        {
+            "name": "Dermatographix",
+            "ord": 10,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "collapsibleFieldsCollapseByDefault": true,
+            "meta": null
+        },
+        {
+            "name": "Textbook",
+            "ord": 11,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 18,
+            "collapsibleFieldsCollapseByDefault": true,
             "meta": null
         },
         {
             "name": "Additional Resources",
-            "ord": 10,
+            "ord": 12,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
             "size": 18,
             "meta": null,
             "media": [],
-            "collapsibleFieldsCollapseByDefault": false
+            "collapsibleFieldsCollapseByDefault": true
         },
         {
             "name": "One by one",
-            "ord": 11,
+            "ord": 13,
             "sticky": false,
             "rtl": false,
             "font": "Arial",
