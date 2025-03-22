@@ -7,8 +7,11 @@ var ButtonShortcuts = {
     "DermPath": "Alt + 3",
     "Dermoscopy": "Alt + 4",
     "VisualDx" : "Alt + 5",
-    "Textbook" : "Alt + 6",
-    "Additional Resources" : "Alt + 7",
+    // DermNet and Full Spectrum of Dermatology auto reveal
+    "Dermnemonics": "Alt + 6",
+    "Dermatographix": "Alt + 7",
+    "Textbook" : "Alt + 8",
+    "Additional Resources" : "Alt + 9"
 }
 var ToggleAllButtonsShortcut = "'"
 var ToggleNextButtonShortcut = "H";
@@ -19,8 +22,11 @@ var ButtonAutoReveal = {
     "DermPath": false,
     "Dermoscopy": false,
     "VisualDx" : false,
+    // DermNet and Full Spectrum of Dermatology auto reveal
+    "Dermnemonics": false,
+    "Dermatographix": false,
     "Textbook" : false,
-    "Additional Resources" : false,
+    "Additional Resources" : false
 }
 
 var ScrollToButton = true;
@@ -65,9 +71,11 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <%- include("src/components/hintButton.ejs", {name: "Dermoscopy", short:"ds", hintId: "dermoscopy", icon: "_dermki_round.png" }) %>
 
-<%- include("src/components/hintButton.ejs", {name: "Additional Resources",  displayName: "Dermnemonics", short:"ar", hintId: "additional", icon: "_dermki_round.png" }) %>
+<%- include("src/components/hintButton.ejs", {name: "VisualDx", displayName: "VisualDx", short:"vd", hintId: "visualdx", icon: "_dermki_round.png" }) %>
 
-<%- include("src/components/hintButton.ejs", {name: "VisualDx", displayName: "DermatoGraphix", short:"vd", hintId: "visualdx", icon: "_dermki_round.png" }) %>
+<%- include("src/components/hintButton.ejs", {name: "Dermnemonics", displayName: "Dermnemonics", short:"dm", hintId: "dermnemonics", icon: "_dermki_round.png" }) %>
+
+<%- include("src/components/hintButton.ejs", {name: "Dermatographix", displayName: "DermatoGraphix", short:"dg", hintId: "dermatographix", icon: "_dermki_round.png" }) %>
 
 <!-- Extra field -->
 {{#Extra}}<p></p>
@@ -89,8 +97,10 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <%- include("src/components/hintButton.ejs", {name: "Textbook", short:"tx", hintId: "textbook", icon: "_dermki_round.png" }) %>
 
-<!-- ANKING HYPERLINK IMAGE -->
-<a href="https://www.ankingmed.com"><img src="_AnKingIcon.png" alt="The AnKing" id="pic"></a>
+<%- include("src/components/hintButton.ejs", {name: "Additional Resources",  displayName: "Additional Resources", short:"ar", hintId: "additional", icon: "_dermki_round.png" }) %>
+
+<!-- Dermki HYPERLINK IMAGE -->
+<a href="http://www.dermki.com"><img src="_dermki_text.png" alt="Dermki" id="pic"></a>
 
 <%- include('src/components/ankingAddEventListener.ejs') %>
 
