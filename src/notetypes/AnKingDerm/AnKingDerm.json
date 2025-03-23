@@ -129,7 +129,7 @@
             "sticky": false,
             "rtl": false,
             "font": "Arial",
-            "size": 18,
+            "size": 10,
             "collapsibleFieldsCollapseByDefault": true,
             "meta": null
         },
