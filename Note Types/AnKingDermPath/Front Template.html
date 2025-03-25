@@ -1,4 +1,4 @@
-<!-- version 7cc6a46 -->
+<!-- version a69a90f -->
 <div id="front">{{edit:Front}}</div>
 <div style="font-size:8px; font-style:italic;">Above Image(s) provided courtesy of Tammie Ferringer, MD</div>
 
@@ -196,75 +196,6 @@ if (typeof(window.Persistence) === 'undefined') {
         });
     }
 </script>
-
-
-
-<!-- BEGIN WRAPPER CODE shuffle -->
-
-<script>
-    (() => {
-        const selectors = [".shuffle"];
-        const isFront = Persistence.getItem("shuffle") === null;
-        const shuffleMap = Persistence.getItem("shuffle") || {};
-
-        function shuffle(array, indexMap) {
-            let currentIndex = array.length;
-            while (currentIndex != 0) {
-                currentIndex--;
-                let randomIndex = indexMap[currentIndex] !== undefined  ? indexMap[currentIndex] : Math.floor(Math.random() * (currentIndex + 1));
-                indexMap[currentIndex] = randomIndex;
-                [array[currentIndex], array[randomIndex]] = [
-                    array[randomIndex],
-                    array[currentIndex],
-                ];
-            }
-        }
-
-        function shuffleElements(elements) {
-            elements = elements.filter(e => !e.matches(".no-shuffle *"));
-            const shuffledElements = Array.from(
-                elements.map((el) => el.cloneNode(true))
-            );
-            if(shuffledElements.length === 0) {
-                return;
-            }
-            // Assuming elements[0] is not also the first element in a different list to shuffle
-            const indexMap = shuffleMap[elements[0]] || {};
-            shuffle(shuffledElements, indexMap);
-            shuffleMap[elements[0]] = indexMap;
-            for (let i = 0; i < elements.length; i++) {
-                elements[i].replaceWith(shuffledElements[i]);
-            }
-        }
-
-        function shuffleList(listElement) {
-            const items = Array.from(listElement.querySelectorAll("li"));
-            shuffleElements(items);
-        }
-
-        for (const selector of selectors) {
-            for (const container of document.querySelectorAll(selector)) {
-                if (["UL", "OL"].includes(container.tagName)) {
-                    shuffleList(container);
-                }
-                for (const parentElement of container.querySelectorAll(
-                    "ol, ul"
-                )) {
-                    shuffleList(parentElement);
-                }
-                const images = Array.from(container.querySelectorAll("img"));
-                shuffleElements(images);
-            }
-        }
-        if(isFront) {
-            Persistence.setItem("shuffle", shuffleMap);
-        } else {
-            Persistence.removeItem("shuffle");
-        }
-    })();
-</script>
-
-<!-- END WRAPPER CODE -->
 
 
 <!-- COUNTDOWN TIMER -->
