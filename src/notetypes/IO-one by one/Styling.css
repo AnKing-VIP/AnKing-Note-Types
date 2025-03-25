@@ -253,7 +253,8 @@ background-color: #ffffff;
 ul, ol {
   padding-left: 40px;
   max-width: 50%;
-  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
   text-align: left;
 }
 
