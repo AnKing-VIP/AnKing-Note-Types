@@ -404,10 +404,16 @@ img:active {
 /* ~~~~~~~~~ LISTS ~~~~~~~~~ */
 ul, ol {
   padding-left: 40px;
-  max-width: 50%;
   margin-left: auto;
   margin-right: auto;
+  margin-block: 10px;
   text-align: left;
+}
+
+@media (min-width: 1025px) {
+  ul, ol {
+    max-width: 50%;
+  }
 }
 
 ul ul, table ul, ol ol, table ol {
