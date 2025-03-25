@@ -406,6 +406,7 @@ ul, ol {
   padding-left: 40px;
   margin-left: auto;
   margin-right: auto;
+  margin-block: 10px;
   text-align: left;
 }
 
