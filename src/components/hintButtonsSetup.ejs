@@ -72,13 +72,15 @@ _%>
       const setupHintBtn = function(elem) {
         const containerId = elem.id
         const fieldName = elem.dataset.name
+        const container = document.getElementById(containerId)
         const button = elem.getElementsByClassName("button")[0]
         const tag = `autoopen::${fieldName.toLowerCase().replace(' ', '_')}`
         if (ButtonAutoReveal[fieldName] || (globalThis.tagList && globalThis.tagList.includes(tag))) {
           toggleHintBtn(containerId, noScrolling=true)
         }
-    
-        const isShortcut = shortcutMatcher(ButtonShortcuts[fieldName])
+        const shortcut = ButtonShortcuts[fieldName]
+        container.title = shortcut ? `Shortcut: ${shortcut}` : ""
+        const isShortcut = shortcutMatcher(shortcut)
         const isToggleAllShortcut = shortcutMatcher(ToggleAllButtonsShortcut)
         ankingAddEventListener("keydown", (evt) => {
           if (evt.repeat) return

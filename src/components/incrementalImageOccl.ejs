@@ -21,9 +21,13 @@ _%>
 
   function setupIncrementalIO() {
     var observer = new MutationObserver(() => {
-      document.getElementById("button-toggle-all").addEventListener("click", toggleAll)
-      document.getElementById("button-reveal-next").addEventListener("click", toggleNext)
-      
+      const toggleAllButton = document.getElementById("button-toggle-all")
+      const revealNextButton = document.getElementById("button-reveal-next")
+      toggleAllButton.addEventListener("click", toggleAll)
+      revealNextButton.addEventListener("click", toggleNext)
+      toggleAllButton.title = `Shortcut: ${window.toggleAllShortcut}`;
+      revealNextButton.title = `Shortcut: ${window.revealNextShortcut}`;
+
       let rect = document.querySelector(".closet-rect.is-active")
       if (rect) {
         activate(rect)

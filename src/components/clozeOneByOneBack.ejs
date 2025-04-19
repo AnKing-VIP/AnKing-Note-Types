@@ -320,6 +320,10 @@ _%>
 
     hideAllCloze(initial=true)
 
+    const toggleAllButton = document.getElementById("button-toggle-all")
+    const revealNextButton = document.getElementById("button-reveal-next")
+    toggleAllButton.title = `Shortcut: ${window.toggleAllShortcut}`;
+    revealNextButton.title = `Shortcut: ${window.revealNextShortcut}`;
     let isShowNextShortcut = shortcutMatcher(window.revealNextShortcut)
     let isShowWordShortcut = shortcutMatcher(window.revealNextWordShortcut)
     let isToggleAllShortcut = shortcutMatcher(window.toggleAllShortcut)
