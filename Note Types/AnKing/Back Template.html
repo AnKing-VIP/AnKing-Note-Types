@@ -1,4 +1,4 @@
-<!-- version 57f8002 -->
+<!-- version 3f403a5 -->
  <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -309,13 +309,15 @@ replace the arrows/dashes from the statement below with double curly brackets-->
       const setupHintBtn = function(elem) {
         const containerId = elem.id
         const fieldName = elem.dataset.name
+        const container = document.getElementById(containerId)
         const button = elem.getElementsByClassName("button")[0]
         const tag = `autoopen::${fieldName.toLowerCase().replace(' ', '_')}`
         if (ButtonAutoReveal[fieldName] || (globalThis.tagList && globalThis.tagList.includes(tag))) {
           toggleHintBtn(containerId, noScrolling=true)
         }
-    
-        const isShortcut = shortcutMatcher(ButtonShortcuts[fieldName])
+        const shortcut = ButtonShortcuts[fieldName]
+        container.title = shortcut ? `Shortcut: ${shortcut}` : ""
+        const isShortcut = shortcutMatcher(shortcut)
         const isToggleAllShortcut = shortcutMatcher(ToggleAllButtonsShortcut)
         ankingAddEventListener("keydown", (evt) => {
           if (evt.repeat) return
@@ -746,6 +748,10 @@ if (typeof(window.Persistence) === 'undefined') {
 
     hideAllCloze(initial=true)
 
+    const toggleAllButton = document.getElementById("button-toggle-all")
+    const revealNextButton = document.getElementById("button-reveal-next")
+    toggleAllButton.title = `Shortcut: ${window.toggleAllShortcut}`;
+    revealNextButton.title = `Shortcut: ${window.revealNextShortcut}`;
     let isShowNextShortcut = shortcutMatcher(window.revealNextShortcut)
     let isShowWordShortcut = shortcutMatcher(window.revealNextWordShortcut)
     let isToggleAllShortcut = shortcutMatcher(window.toggleAllShortcut)
