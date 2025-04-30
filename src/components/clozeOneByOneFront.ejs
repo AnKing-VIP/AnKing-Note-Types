@@ -62,17 +62,18 @@ _%>
       } else {
         // Should only fire if card is not cloze
         console.error("Cannot find cardN class of body element!");
-        return "0";
+        return null;
       }
     }
 
     var alreadyRendered = false;
 
     function processSelective1b1() {
-      if (alreadyRendered) return;
+      var cardNumber = getCardNumber()
+      if (alreadyRendered || cardNumber === null) return;
       // parse the cloze numbers for which selectiveOneByOne is enabled
       var clozeNumbers = document.getElementById("one-by-one").textContent.split(',').filter(element => element).map(Number)
-      var cardNumberIsOneByOne = !clozeNumbers.filter(n => !Number.isNaN(n)).length || clozeNumbers.includes(parseInt(getCardNumber()))
+      var cardNumberIsOneByOne = !clozeNumbers.filter(n => !Number.isNaN(n)).length || clozeNumbers.includes(parseInt(cardNumber))
 
       // check the amount of clozes -> disable OneByOne if less than minimum value wanted (minNumberOfClozes)
       var numClozesForNumber = (minNumberOfClozes) ? document.querySelectorAll('.clozefield .cloze').length : 0
