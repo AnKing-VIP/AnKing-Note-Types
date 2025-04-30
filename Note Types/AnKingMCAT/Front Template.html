@@ -1,4 +1,4 @@
-<!-- version 0d05107 -->
+<!-- version 749d0b9 -->
 <div id="text">{{cloze:Text}}</div>
 
 
@@ -229,18 +229,14 @@ if (typeof(window.Persistence) === 'undefined') {
       } else {
         // Should only fire if card is not cloze
         console.error("Cannot find cardN class of body element!");
-        return null;
+        return "0";
       }
     }
 
-    var alreadyRendered = false;
-
     function processSelective1b1() {
-      var cardNumber = getCardNumber()
-      if (alreadyRendered || cardNumber === null) return;
       // parse the cloze numbers for which selectiveOneByOne is enabled
       var clozeNumbers = document.getElementById("one-by-one").textContent.split(',').filter(element => element).map(Number)
-      var cardNumberIsOneByOne = !clozeNumbers.filter(n => !Number.isNaN(n)).length || clozeNumbers.includes(parseInt(cardNumber))
+      var cardNumberIsOneByOne = !clozeNumbers.filter(n => !Number.isNaN(n)).length || clozeNumbers.includes(parseInt(getCardNumber()))
 
       // check the amount of clozes -> disable OneByOne if less than minimum value wanted (minNumberOfClozes)
       var numClozesForNumber = (minNumberOfClozes) ? document.querySelectorAll('.clozefield .cloze').length : 0
@@ -266,34 +262,13 @@ if (typeof(window.Persistence) === 'undefined') {
 }
 // AnkiMobile JS API doesn't have one for show answer.
 // Best alternative is to use Taps/Swipes to show answer.
-
-      alreadyRendered = true;
     }
 
     function delayedProcessSelective1b1() {
       if (window.requestAnimationFrame) window.requestAnimationFrame(processSelective1b1); // less flickering
       else window.setTimeout(processSelective1b1, 0);
     };
-
-    window.onload = delayedProcessSelective1b1;
-    if (document.readyState === "complete") {
-      delayedProcessSelective1b1();
-    }
-    else {
-      document.addEventListener("DOMContentLoaded", delayedProcessSelective1b1);
-    }
-
-    // Observe document.body class changes to trigger re-rendering.
-    // This is useful, because Anki doesn’t always start with an up-to-date class list:
-    // https://forums.ankiweb.net/t/card-card-classes-only-injected-separately-now/27387.
-    const observer = new MutationObserver(function(mutationsList, observer) {
-      for (let mutation of mutationsList) {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-          delayedProcessSelective1b1();
-        }
-      }
-    });
-    observer.observe(document.body, { attributes: true });
+    onUpdateHook.push(delayedProcessSelective1b1);
   }
   Persistence.setItem("clozeHints", clozeHints);
 </script>
