@@ -87,7 +87,15 @@ _%>
       if (window.requestAnimationFrame) window.requestAnimationFrame(processSelective1b1); // less flickering
       else window.setTimeout(processSelective1b1, 0);
     };
-    onUpdateHook.push(delayedProcessSelective1b1);
+    if (globalThis.onUpdateHook) {
+      onUpdateHook.push(delayedProcessSelective1b1);
+    }
+    else if (document.readyState === "complete") {
+        delayedProcessSelective1b1();
+    }
+    else {
+      document.addEventListener("DOMContentLoaded", delayedProcessSelective1b1);
+    }
   }
   Persistence.setItem("clozeHints", clozeHints);
 </script>
