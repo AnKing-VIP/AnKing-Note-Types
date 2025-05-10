@@ -1,4 +1,4 @@
-@import url("__closet-0.6.1.css");
+@import url("__ankingio-0.6.2.css");
 
 
 /*#########################################################
@@ -442,18 +442,18 @@ ul ul, table ul, ol ol, table ol {
 
 
 /* ~~~~~~INCREMENTAL REVEAL: Closet rects~~~~~~ */
-.closet-rect.is-active.is-back rect {
+.anking-rect.is-active.is-back rect {
   fill: var(--rect-bg);
   stroke: var(--rect-border);
   cursor: pointer;
 }
 
-.closet-rect.is-active.is-back.is-highlighted rect {
+.anking-rect.is-active.is-back.is-highlighted rect {
   fill: var(--active-rect-bg);
   stroke: var(--active-rect-border);
 }
 
-.closet-rect.revealed rect {
+.anking-rect.revealed rect {
   visibility: hidden;
 }
 
