@@ -1,14 +1,13 @@
 ## Instructions:
-1. Download Closet For Anki addon (272311064), close out of anki, restart anki
-2. Download the latest version of the note type in the [Releases](https://github.com/AnKingMed/AnKing-Note-Types/releases) tab
-3. When creating the new I/O card, make sure you are using the note template called `IO-one by one`. Paste your image into the 'image' field.
-4. Click the icon in the toolbar that looks like a blue/red box in a box. The image should outline with a red dotted border when you click that button.
+1. Download the latest version of the note type in the [Releases](https://github.com/AnKingMed/AnKing-Note-Types/releases) tab
+2. When creating the new I/O card, make sure you are using the note template called `IO-one by one`. Paste your image into the 'image' field.
+3. Click the icon in the toolbar that looks like a blue/red box in a box. The image should outline with a red dotted border when you click that button.
    <img src="/screenshots/Closet button.png" style="width:400px;">
-5. Draw your occlusions in the order you want them revealed. You want each occlusion to say 'rect1' inside of it. **If you need to delete a rectangle**, hold shift while clicking on that box.
-6. Once you have all of your occlusions made, right click on the image (don't right click over an occlusion though) and select 'accept occlusions'
+4. Draw your occlusions in the order you want them revealed. You want each occlusion to say 'rect1' inside of it. **If you need to delete a rectangle**, hold shift while clicking on that box.
+5. Once you have all of your occlusions made, right click on the image (don't right click over an occlusion though) and select 'accept occlusions'
    - You will see the 'I0' field auto populate. At that point you are good to add the card by clicking "Add" at the bottom
-7. When reviewing, you will see all boxes occluded at once, however the first box will be highlighted. Click or use `n` to reveal a box, and the subsequent box will become highlighted. Use `,` to reveal all at once. Continue until all boxes are revealed. You can use `h` (requires the "Hint Hotkeys" add-on installed) or click to reveal the buttons. Use `'` to reveal all buttons at once. _(These shortcuts can all be customized in the Back Template)_
-8. **To edit occlusions in an existing card**, click the icon in the toolbar that looks like a blue/red box in a box.
+6. When reviewing, you will see all boxes occluded at once, however the first box will be highlighted. Click or use `n` to reveal a box, and the subsequent box will become highlighted. Use `,` to reveal all at once. Continue until all boxes are revealed. You can use `h` (requires the "Hint Hotkeys" add-on installed) or click to reveal the buttons. Use `'` to reveal all buttons at once. _(These shortcuts can all be customized in the Back Template)_
+7. **To edit occlusions in an existing card**, click the icon in the toolbar that looks like a blue/red box in a box.
 
 This note type **will** work on Anki iOS and AnkiDroid.
 

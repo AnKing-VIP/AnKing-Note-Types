@@ -1,4 +1,4 @@
-<!-- version b559248 -->
+<!-- version 50c23ad -->
 <script>
 // ##############  OCCLUSION SHORTCUTS  ##############
 var RevealIncrementalShortcut = "N";
@@ -319,11 +319,11 @@ var numTagLevelsToShow = 0;
       toggleAllButton.title = `Shortcut: ${window.toggleAllShortcut}`;
       revealNextButton.title = `Shortcut: ${window.revealNextShortcut}`;
 
-      let rect = document.querySelector(".closet-rect.is-active")
+      let rect = document.querySelector(".anking-rect.is-active")
       if (rect) {
         activate(rect)
         observer.disconnect()
-        globalThis.AnkingIORects = document.querySelectorAll(".closet-rect.is-active")
+        globalThis.AnkingIORects = document.querySelectorAll(".anking-rect.is-active")
         for (let rect of globalThis.AnkingIORects) {
           rect.addEventListener("click", reveal)
         }
@@ -366,7 +366,7 @@ var numTagLevelsToShow = 0;
     
     
     window.toggleNext = function() {
-      let active = document.querySelector(".closet-rect.is-highlighted")
+      let active = document.querySelector(".anking-rect.is-highlighted")
       if (active) incrementalReveal.call(active)
     }
     
@@ -379,7 +379,7 @@ var numTagLevelsToShow = 0;
         for (let rect of globalThis.AnkingIORects) {
           hide.call(rect)
         }
-        let newActiveRect = document.querySelector(".closet-rect.is-active")
+        let newActiveRect = document.querySelector(".anking-rect.is-active")
         activate(newActiveRect)
       } else {
         for (let rect of globalThis.AnkingIORects) {
@@ -421,7 +421,7 @@ var numTagLevelsToShow = 0;
   setupIncrementalIO()
 </script>
 
-<script data-name="Closet Setup" data-version="v0.1">
+<script data-name="AnKing Closet Setup" data-version="v0.1">
   function closetUserLogic(closet, preset, chooseMemory) {
     const elements = closet.template.anki.getQaChildNodes();
     const memory = chooseMemory("closet__1");
@@ -455,13 +455,13 @@ var numTagLevelsToShow = 0;
   
   var getAnkiPrefix = () => globalThis.ankiPlatform === "desktop" ? "" : globalThis.AnkiDroidJS ? "https://appassets.androidplatform.net" : ".";
   
-  var closetFilename = "__closet-0.6.2.js";
+  var closetFilename = "__ankingio-0.6.2.js";
   var closetPromise = import(`${getAnkiPrefix()}/${closetFilename}`);
   closetPromise
   .then(
-    ({ closet }) => closet.template.anki.initialize(closet, closetUserLogic, "{{Card}}", "{{Tags}}", "back"),
-    (error) => console.log("An error occured while loading Closet:", error))
-  .catch((error) => console.log("An error occured while executing Closet:", error));
+    ( closet ) => closet.template.anki.initialize(closet, closetUserLogic, "{{Card}}", "{{Tags}}", "back"),
+    (error) => console.log("An error occured while loading AnKing Closet:", error))
+  .catch((error) => console.log("An error occured while executing AnKing Closet:", error));
   
   if (globalThis.onUpdateHook) {
     onUpdateHook.push(() => closetPromise);
