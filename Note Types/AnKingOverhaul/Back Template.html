@@ -1,4 +1,4 @@
-<!-- version cdc8a44 -->
+<!-- version c84ff46 -->
 <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -1292,8 +1292,13 @@ var userJs8 = undefined
 <script>
     (() => {
         const selectors = [".shuffle"];
-        const isFront = Persistence.getItem("shuffle") === null;
         const shuffleMap = Persistence.getItem("shuffle") || {};
+
+        function isFront() {
+            const hasHrMarker = document.querySelector("hr[id=answer]");
+            const hasClozeFieldClass = document.querySelector(".clozefield");
+            return !hasHrMarker && !hasClozeFieldClass;
+        }
 
         function shuffle(array, indexMap) {
             let currentIndex = array.length;
@@ -1344,7 +1349,7 @@ var userJs8 = undefined
                 shuffleElements(images);
             }
         }
-        if(isFront) {
+        if(isFront()) {
             Persistence.setItem("shuffle", shuffleMap);
         } else {
             Persistence.removeItem("shuffle");
