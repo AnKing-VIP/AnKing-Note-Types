@@ -1,4 +1,4 @@
-<!-- version 91bd5ca -->
+<!-- version a82ea8d -->
 <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -1293,6 +1293,7 @@ var userJs8 = undefined
     (() => {
         const selectors = [".shuffle"];
         const shuffleMap = Persistence.getItem("shuffle") || {};
+        const shuffledWordClass = "shuffled-word";
 
         function isFront() {
             const hasHrMarker = document.querySelector("hr[id=answer]");
@@ -1304,7 +1305,7 @@ var userJs8 = undefined
             let currentIndex = array.length;
             while (currentIndex != 0) {
                 currentIndex--;
-                let randomIndex = indexMap[currentIndex] !== undefined  ? indexMap[currentIndex] : Math.floor(Math.random() * (currentIndex + 1));
+                let randomIndex = indexMap[currentIndex] !== undefined ? indexMap[currentIndex] : Math.floor(Math.random() * (currentIndex + 1));
                 indexMap[currentIndex] = randomIndex;
                 [array[currentIndex], array[randomIndex]] = [
                     array[randomIndex],
@@ -1318,7 +1319,7 @@ var userJs8 = undefined
             const shuffledElements = Array.from(
                 elements.map((el) => el.cloneNode(true))
             );
-            if(shuffledElements.length === 0) {
+            if (shuffledElements.length === 0) {
                 return;
             }
             // Assuming elements[0] is not also the first element in a different list to shuffle
@@ -1335,6 +1336,82 @@ var userJs8 = undefined
             shuffleElements(items);
         }
 
+        /**
+         * Shuffle words connected by "and" or "or".
+         * e.g. "fluoroquinolones, macrolides, and ketoconazole"
+         **/
+        function shuffleSentences(element) {
+            const innerHTML = element.innerHTML;
+
+            const connectorMatch = innerHTML.match(/\s+(and|or)\s+([^,]+)$/i);
+            if (!connectorMatch) {
+                return;
+            }
+
+            const connector = connectorMatch[1];
+            const lastItem = connectorMatch[2].trim();
+            const beforeConnector = innerHTML.substring(0, innerHTML.lastIndexOf(connectorMatch[0]));
+            const items = [];
+            let currentItem = '';
+            let tagDepth = 0;
+            let inTag = false;
+
+            for (let i = 0; i < beforeConnector.length; i++) {
+                const char = beforeConnector[i];
+
+                if (char === '<') {
+                    inTag = true;
+                    if (beforeConnector[i + 1] !== '/') {
+                        tagDepth++;
+                    } else {
+                        tagDepth--;
+                    }
+                } else if (char === '>') {
+                    inTag = false;
+                }
+
+                if (char === ',' && !inTag && tagDepth === 0) {
+                    if (currentItem.trim()) {
+                        items.push(currentItem.trim());
+                    }
+                    currentItem = '';
+                } else {
+                    currentItem += char;
+                }
+            }
+
+            if (currentItem.trim()) {
+                items.push(currentItem.trim());
+            }
+
+            items.push(lastItem);
+
+            if (items.length < 2) {
+                return;
+            }
+
+            const cleanedItems = items.map(item => {
+                return item.replace(/,\s*(?=<\/|$)/g, '');
+            });
+
+            const indexMap = shuffleMap[element] || {};
+
+            const itemsToShuffle = [...cleanedItems];
+            shuffle(itemsToShuffle, indexMap);
+            shuffleMap[element] = indexMap;
+
+            let newHTML;
+            if (itemsToShuffle.length === 2) {
+                newHTML = `${itemsToShuffle[0]} ${connector} ${itemsToShuffle[1]}`;
+            } else {
+                const allButLast = itemsToShuffle.slice(0, -1);
+                const last = itemsToShuffle[itemsToShuffle.length - 1];
+                newHTML = `${allButLast.join(', ')}, ${connector} ${last}`;
+            }
+
+            element.innerHTML = newHTML;
+        }
+
         for (const selector of selectors) {
             for (const container of document.querySelectorAll(selector)) {
                 if (["UL", "OL"].includes(container.tagName)) {
@@ -1349,7 +1426,11 @@ var userJs8 = undefined
                 shuffleElements(images);
             }
         }
-        if(isFront()) {
+        for (const element of document.querySelectorAll(".shuffle-sentence")) {
+            shuffleSentences(element);
+        }
+
+        if (isFront()) {
             Persistence.setItem("shuffle", shuffleMap);
         } else {
             Persistence.removeItem("shuffle");
