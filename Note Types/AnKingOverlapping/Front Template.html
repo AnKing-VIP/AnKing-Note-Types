@@ -1,4 +1,4 @@
-<!-- version 716d71d -->
+<!-- version 9602a34 -->
 <div id="text">{{cloze:Text}}</div>
 
 <br>
@@ -67,29 +67,37 @@ var numTagLevelsToShow = 0;
   function shortcutMatcher(shortcut) {
     let shortcutKeys = shortcut.toLowerCase().split(/[+]/).map(key => key.trim())
     let mainKey = shortcutKeys[shortcutKeys.length - 1]
+    const mainKeyVariants = [];
     if (mainKey.length === 1) {
       if (/\d/.test(mainKey)) {
-        mainKey = "digit" + mainKey
+        // Treat alphanumeric and numpad keys interchangeably
+        mainKeyVariants.push("digit" + mainKey)
+        mainKeyVariants.push("numpad" + mainKey)
       } else if (/[a-zA-Z]/.test(mainKey)) {
-        mainKey = "key" + mainKey
+        mainKeyVariants.push("key" + mainKey)
       } else {
         let code = specialCharCodes[mainKey];
         if (code) {
           mainKey = code
+          mainKeyVariants.push(code)
+        } else {
+          mainKeyVariants.push(mainKey)
         }
       }
+    } else {
+      mainKeyVariants.push(mainKey)
     }
     let ctrl = shortcutKeys.includes("ctrl")
     let shift = shortcutKeys.includes("shift")
     let alt = shortcutKeys.includes("alt")
 
-    let matchShortcut = function (ctrl, shift, alt, mainKey, event) {
-      if (mainKey !== event.code.toLowerCase()) return false
+    let matchShortcut = function (ctrl, shift, alt, mainKeyVariants, event) {
+      if (!mainKeyVariants.includes(event.code.toLowerCase())) return false
       if (ctrl !== (event.ctrlKey || event.metaKey)) return false
       if (shift !== event.shiftKey) return false
       if (alt !== event.altKey) return false
       return true
-    }.bind(window, ctrl, shift, alt, mainKey)
+    }.bind(window, ctrl, shift, alt, mainKeyVariants)
     
     return matchShortcut
   }
