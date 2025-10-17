@@ -1,4 +1,4 @@
-<!-- version 9ef7ff5 -->
+<!-- version 2871f6b -->
  <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -520,7 +520,7 @@ if (typeof(window.Persistence) === 'undefined') {
     var cardNumberIsOneByOne = !clozeNumbers.filter(n => !Number.isNaN(n)).length || clozeNumbers.includes(parseInt(getCardNumber()))
 
     // check the amount of clozes -> disable OneByOne if less than minimum value wanted (minNumberOfClozes)
-    var numClozesForNumber = (minNumberOfClozes) ? document.querySelectorAll('.clozefield .cloze').length : 0
+    var numClozesForNumber = (minNumberOfClozes) ? document.querySelectorAll('.cloze').length : 0
 
     // stop OneByOne if selectiveOneByOne is not enabled for this specific card OR if OneByOne is disabled some other way
     // -> show normal backside
