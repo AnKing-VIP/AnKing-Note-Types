@@ -104,7 +104,7 @@
         "enabled": true,
         "fragments": [
             {
-                "code": "{{#I0}}\n{{#Image}}\n<div id=\"front-info\">\n<a href=\"https://www.ankingmed.com\"><img src=\"_AnkingIconSmall.png\"></a>\n<div>IO-one by one card: Please flip to the backside.</div>\n<div class=\"help\">\n   <p>On the backside, your task is to incrementally reveal an image occlusion.\nClick on the active rectangle to reveal it and activate the next.</p>\n</div>\n</div>\n\n<div hidden>{{Image}}</div>\n{{/Image}}\n{{/I0}}\n",
+                "code": "{{#I0}}\n{{#Image}}\n<div id=\"front-info\">\n<a href=\"https://www.ankingmed.com\"><img src=\"_AnKingIconSmall.png\"></a>\n<div>IO-one by one card: Please flip to the backside.</div>\n<div class=\"help\">\n   <p>On the backside, your task is to incrementally reveal an image occlusion.\nClick on the active rectangle to reveal it and activate the next.</p>\n</div>\n</div>\n\n<div hidden>{{Image}}</div>\n{{/Image}}\n{{/I0}}\n",
                 "conditions": [],
                 "description": "This is the entrance for the front side",
                 "enabled": true,
@@ -113,7 +113,7 @@
                 "version": "v1"
             },
             {
-                "code": "<div id=\"extras\" hidden>{{I0}}</div>\n\n<div class=\"header\">{{Header}}</div>\n<div class=\"io\">{{Image}}</div>\n\n<div class=\"hidden\" id=\"extra-content\">\n    <!-- LECTURE NOTES FIELD -->\n    {{#Personal Notes}}<button class=\"extra-btn\"><img src=\"_AnkingIconSmall.png\"> Lecture Notes</button>\n    <div class=\"hints hidden\">{{edit:Personal Notes}}</div>{{/Personal Notes}}\n\n    <!-- MISSED QUESTIONS FIELD -->\n    {{#Missed Questions}}<button class=\"extra-btn\"><img src=\"_AnkingIconSmall.png\" style=\"height:12px\"> Missed Questions</button>\n    <div class=\"hints hidden\">{{edit:Missed Questions}}</div>{{/Missed Questions}}\n\n    <div id=\"tags\">{{clickable::Tags}}</div>\n</div>\n\n<a class=\"logo\" href=\"https://www.ankingmed.com\">\n   <img src=\"_AnkingIconSmall.png\" alt=\"The AnKing\">\n</a>\n\n{{%scripts}}\n\n",
+                "code": "<div id=\"extras\" hidden>{{I0}}</div>\n\n<div class=\"header\">{{Header}}</div>\n<div class=\"io\">{{Image}}</div>\n\n<div class=\"hidden\" id=\"extra-content\">\n    <!-- LECTURE NOTES FIELD -->\n    {{#Personal Notes}}<button class=\"extra-btn\"><img src=\"_AnKingIconSmall.png\"> Lecture Notes</button>\n    <div class=\"hints hidden\">{{edit:Personal Notes}}</div>{{/Personal Notes}}\n\n    <!-- MISSED QUESTIONS FIELD -->\n    {{#Missed Questions}}<button class=\"extra-btn\"><img src=\"_AnKingIconSmall.png\" style=\"height:12px\"> Missed Questions</button>\n    <div class=\"hints hidden\">{{edit:Missed Questions}}</div>{{/Missed Questions}}\n\n    <div id=\"tags\">{{clickable::Tags}}</div>\n</div>\n\n<a class=\"logo\" href=\"https://www.ankingmed.com\">\n   <img src=\"_AnKingIconSmall.png\" alt=\"The AnKing\">\n</a>\n\n{{%scripts}}\n\n",
                 "conditions": [],
                 "description": "This is the entrance for the back side",
                 "enabled": true,
