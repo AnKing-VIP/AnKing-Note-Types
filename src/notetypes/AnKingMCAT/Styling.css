@@ -93,44 +93,45 @@ img {
 
 
 /*~~~~~~~~~COLORS~~~~~~~~~/
+/* Solarized Light Mode Colors */
 /* Default Text Color */
 .card {
-  color: #1a1a1a;
+  color: #657b83;  /* Solarized base00 */
 }
 
 /* Background Color */
 .card {
-  background-color: #D1CFCE;
+  background-color: #fdf6e3;  /* Solarized base3 */
 }
 
 /* Cloze Color */
 .cloze {
-  color: MediumSeaGreen;
+  color: #268bd2;  /* Solarized blue */
 }
 
 /* One by One Cloze Color */
 .cloze.one-by-one {
-  color: #009400;
+  color: #859900;  /* Solarized green */
 }
 
 /* One by One Cloze Hint Color */
 .cloze-hint {
-  color: #009400;
+  color: #859900;  /* Solarized green */
 }
 
 /* "Extra" Field Color */
 #extra {
-  color: #2C5F7C;
+  color: #93a1a1;  /* Solarized base1 */
 }
 
 /* Hint Reveal Color */
 .hints {
-  color: #6c71c4;
+  color: #6c71c4;  /* Solarized violet */
 }
 
 /* Missed Questions Hint Reveal Color */
 #missed {
-  color: #dc322f;
+  color: #dc322f;  /* Solarized red */
 }
 
 /* Timer Countdown Color */
@@ -147,60 +148,61 @@ a[href^="javascript:"] {
 
 
 /*~~~~~~~~NIGHT MODE COLORS~~~~~~~~*/
+/* Solarized Dark Mode Colors */
 /* NM Default Text Color */
 .nightMode.card,
 .night_mode .card {
-  color: #D7DEE9 !important;
+  color: #839496 !important;  /* Solarized base0 */
 }
 
 /* NM Background Color */
 .nightMode.card,
 .night_mode .card {
-  background-color: #333B45 !important;
+  background-color: #002b36 !important;  /* Solarized base03 */
 }
 
 /* NM Cloze Color */
 .nightMode .cloze,
 .night_mode .cloze {
-  color: MediumSeaGreen !important;
+  color: #268bd2 !important;  /* Solarized blue */
 }
 
 /* NM One by One Cloze Color */
 .nightMode .cloze.one-by-one,
 .night_mode .cloze.one-by-one {
-    color: #009400 !important;
+    color: #859900 !important;  /* Solarized green */
 }
 
 /* NM One by One Cloze Hint Color */
 .nightMode .cloze-hint,
 .night_mode .cloze-hint {
-    color: #009400 !important;
+    color: #859900 !important;  /* Solarized green */
 }
 
 /* NM "Extra" Field Color */
 .nightMode #extra,
 .night_mode #extra {
-  color: #839496;
+  color: #93a1a1;  /* Solarized base1 */
 }
 
 /* NM Hint Reveal Color */
 .nightMode .hints,
 .night_mode .hints {
-  color: #6c71c4;
+  color: #6c71c4;  /* Solarized violet */
 }
 
 
 /* ~~~~~COLOR ACCENTS FOR BOLD-ITALICS-UNDERLINE~~~~~~*/
 b {
-  color: #C695C6 !important;
+  color: #d33682 !important;  /* Solarized magenta */
 }
 
 u {
-  color: #5EB3B3 !important;
+  color: #2aa198 !important;  /* Solarized cyan */
 }
 
 i {
-  color: IndianRed !important;
+  color: #cb4b16 !important;  /* Solarized orange */
 }
 
 /*################  USER CUSTOMIZATION END  ################
@@ -305,12 +307,12 @@ table span {
 font-size: clamp(0.1rem, 1.7vw, 0.9rem) !important;
 }
 
-/* Horizontal Header Style, applies to any row that spans all columns */ 
+/* Horizontal Header Style, applies to any row that spans all columns */
 table tr td:first-child[colspan]:last-child[colspan] {
-background-color: #ffffff;
-color: #367390;
-border-top: 3px solid #367390;
-border-bottom: 3px solid #367390;
+background-color: #eee8d5;  /* Solarized base2 */
+color: #268bd2;  /* Solarized blue */
+border-top: 3px solid #268bd2;
+border-bottom: 3px solid #268bd2;
 text-align: middle;
 padding-top: 1vw;
 padding-bottom: 1vw;
@@ -318,58 +320,58 @@ padding-bottom: 1vw;
 
 /* Alternate Header Style, set in T5 addon settings */
 table th {
-background-color: #ddecf2;
-color: #266988;
-border: 1px solid #ffffff;
+background-color: #eee8d5;  /* Solarized base2 */
+color: #586e75;  /* Solarized base01 */
+border: 1px solid #93a1a1;  /* Solarized base1 */
 font-weight: normal;
 text-align: middle;
 }
 
 /* Alternate grey rows */
 table tr:nth-child(even) {
-color: #000000;
-background-color: #f8f8f8;
+color: #657b83;  /* Solarized base00 */
+background-color: #fdf6e3;  /* Solarized base3 */
 }
 
 /* Default styles if not overridden by above */
 table {
-color: #000000;
-border: 1px solid #a4cde0;
-background-color: #ffffff;
+color: #657b83;  /* Solarized base00 */
+border: 1px solid #93a1a1;  /* Solarized base1 */
+background-color: #eee8d5;  /* Solarized base2 */
 }
 
 /* NM table colors */
 
 .night_mode tr td:first-child[colspan]:last-child[colspan], .nightMode tr td:first-child[colspan]:last-child[colspan] {   /* NM Horizontal Header */
-  background-color: #19181d;
-  color: #4491b6;
-  border-top: 3px solid #393743;
-  border-bottom: 3px solid #393743;
+  background-color: #073642;  /* Solarized base02 */
+  color: #268bd2;  /* Solarized blue */
+  border-top: 3px solid #268bd2;
+  border-bottom: 3px solid #268bd2;
 }
 
 .night_mode table th, .nightMode table th { /* NM Alternate Header Style */
-  background-color: #19181d;
-  color: #3086ae;
-  border: 1px solid #393743;
+  background-color: #073642;  /* Solarized base02 */
+  color: #93a1a1;  /* Solarized base1 */
+  border: 1px solid #586e75;  /* Solarized base01 */
 }
 
 .night_mode table tr:nth-child(even), .nightMode table tr:nth-child(even) {   /* NM Alternate rows */
-  color: #ffffff;
-  background-color: #2e2e36;
+  color: #839496;  /* Solarized base0 */
+  background-color: #002b36;  /* Solarized base03 */
 }
 
 .night_mode table td:first-child, .nightMode table td:first-child { /* Left and right border cleanup */
-  border-left: 1px solid black;
+  border-left: 1px solid #586e75;  /* Solarized base01 */
 }
 
 .night_mode table td:last-child, .nightMode table td:last-child {
-  border-right: 1px solid black;
+  border-right: 1px solid #586e75;  /* Solarized base01 */
 }
 
 .night_mode table, .nightMode table { /* NM Default styles */
-  color: #ffffff;
-  border: 1px solid #393743;
-  background-color: #26252b;
+  color: #839496;  /* Solarized base0 */
+  border: 1px solid #586e75;  /* Solarized base01 */
+  background-color: #073642;  /* Solarized base02 */
 }
 
 /* ~~~~~~~~~DETAILS FOR IMAGES~~~~~~~~~ */
@@ -608,13 +610,13 @@ kbd:nth-of-type(10n+0) {
 .button-general {
   outline: 0;
   border-radius: 0.12em;
-  border: 1px solid #525253 !important;
+  border: 1px solid #93a1a1 !important;  /* Solarized base1 */
   padding: 5px 5px;
   text-align: center;
   display: inline-block;
   font-size: 9.5px;
-  background-color: #424242;
-  color: #AFAFAF !important;
+  background-color: #eee8d5;  /* Solarized base2 */
+  color: #657b83 !important;  /* Solarized base00 */
   margin-top: 8px;
 }
 
@@ -629,35 +631,76 @@ kbd:nth-of-type(10n+0) {
   margin-top: 10px;
   font-weight: bold;
   width: 50% !important;
-  background: #ababab !important;
-  color: black !important;
+  background: #268bd2 !important;  /* Solarized blue */
+  color: #fdf6e3 !important;  /* Solarized base3 */
   font-weight: bold;
   width: 50% !important;
 }
 
 
 #button-mq:not(.expanded-button) {
-  color: #c26165 !important;
+  color: #dc322f !important;  /* Solarized red */
 }
 
 
 html:not(.mobile) .button-general:hover {
   cursor: default;
-  background-color: #E9E9E9 !important;
-  color: #363638 !important;
+  background-color: #93a1a1 !important;  /* Solarized base1 */
+  color: #fdf6e3 !important;  /* Solarized base3 */
 }
 
 html:not(.mobile) #button-mq:hover {
-  background-color: #FA8072 !important;
-  color: black !important;
+  background-color: #dc322f !important;  /* Solarized red */
+  color: #fdf6e3 !important;  /* Solarized base3 */
 }
 
 html:not(.mobile) #button-pixorize:hover {
-  background-color: #ea8eed !important;
+  background-color: #d33682 !important;  /* Solarized magenta */
 }
 
 html:not(.mobile) #button-sketchy:hover {
-  background-color: #7EDEC0 !important;
+  background-color: #2aa198 !important;  /* Solarized cyan */
+}
+
+/* Night Mode Button Styles */
+.nightMode .button-general,
+.night_mode .button-general {
+  background-color: #073642 !important;  /* Solarized base02 */
+  color: #839496 !important;  /* Solarized base0 */
+  border: 1px solid #586e75 !important;  /* Solarized base01 */
+}
+
+.nightMode .expanded-button,
+.night_mode .expanded-button {
+  background: #268bd2 !important;  /* Solarized blue */
+  color: #002b36 !important;  /* Solarized base03 */
+}
+
+.nightMode #button-mq:not(.expanded-button),
+.night_mode #button-mq:not(.expanded-button) {
+  color: #dc322f !important;  /* Solarized red */
+}
+
+.nightMode .pixorize-widget__bkg,
+.night_mode .pixorize-widget__bkg {
+  background-color: #073642;  /* Solarized base02 */
+}
+
+.nightMode .pixorize-widget__title,
+.night_mode .pixorize-widget__title {
+  color: #839496;  /* Solarized base0 */
+  border-bottom: solid 1px #586e75;  /* Solarized base01 */
+}
+
+.nightMode .pixorize-widget__logo .pixorize-widget__logo-circle,
+.night_mode .pixorize-widget__logo .pixorize-widget__logo-circle {
+  background-color: #073642;  /* Solarized base02 */
+}
+
+.nightMode .pixorize-widget__logo:hover .pixorize-widget__logo-circle,
+.night_mode .pixorize-widget__logo:hover .pixorize-widget__logo-circle {
+  background-color: #b58900;  /* Solarized yellow */
+  border: solid 2px #002b36;  /* Solarized base03 */
 }
 
 
@@ -674,18 +717,18 @@ html:not(.mobile) #button-sketchy:hover {
 
 .pixorize-widget__bkg {
   border-radius: 20px;
-  background-color: #EEE;
+  background-color: #eee8d5;  /* Solarized base2 */
   padding-bottom: 40px;
 }
 
 .pixorize-widget__title {
-  color: black;
+  color: #657b83;  /* Solarized base00 */
   font-style: normal;
   padding: 10px;
   text-align: center;
   font-size: 12px;
   border-radius: 20px;
-  border-bottom: solid 1px #CCC;
+  border-bottom: solid 1px #93a1a1;  /* Solarized base1 */
   margin-bottom: 5px;
 }
 
@@ -733,13 +776,12 @@ html:not(.mobile) #button-sketchy:hover {
   border-radius: 50%;
   width: 70px;
   height: 70px;
-  background-color: #EEE;
+  background-color: #eee8d5;  /* Solarized base2 */
 }
 
 .pixorize-widget__logo:hover .pixorize-widget__logo-circle {
-  background-color: #fff5e4;
-  background-color: #f0bc60;
-  border: solid 2px white;
+  background-color: #b58900;  /* Solarized yellow */
+  border: solid 2px #fdf6e3;  /* Solarized base3 */
   box-sizing: border-box;
 }
 
