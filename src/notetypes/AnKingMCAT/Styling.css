@@ -95,12 +95,12 @@ img {
 /*~~~~~~~~~COLORS~~~~~~~~~/
 /* Default Text Color */
 .card {
-  color: #D7DEE9;
+  color: #1a1a1a;
 }
 
 /* Background Color */
 .card {
-  background-color: #333B45;
+  background-color: #D1CFCE;
 }
 
 /* Cloze Color */
@@ -120,7 +120,7 @@ img {
 
 /* "Extra" Field Color */
 #extra {
-  color: #839496;
+  color: #2C5F7C;
 }
 
 /* Hint Reveal Color */
