@@ -18,8 +18,8 @@
 
 /* TAGS ON/OFF DESKTOP & MOBILE*/
 #tags-container {
-  display: block;
-  /* ‘none’ or ‘block’ */
+  display: none;
+  /* 'none' or 'block' */
 }
 
 .mobile #tags-container {
