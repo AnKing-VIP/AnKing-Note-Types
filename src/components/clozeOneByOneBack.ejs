@@ -134,10 +134,11 @@ _%>
           cloze.classList.add("one-by-one");
         }
       }
-      const extra = document.getElementById("extra");
-      if (extra) {
-        extra.classList.add("hidden");
-      }
+      // Don't hide the Extra field - let it display as a margin note
+      // const extra = document.getElementById("extra");
+      // if (extra) {
+      //   extra.classList.add("hidden");
+      // }
       for (const [field, autoReveal] of Object.entries(ButtonAutoReveal)) {
         const container = document.querySelector(`[data-name="${field}"]`)
           if (container) {
@@ -254,10 +255,11 @@ _%>
     const maybeRevealExtraField = () => {
       let elems = document.querySelectorAll(".cloze-hidden")
       if (elems.length == 0) {
-        const extra = document.getElementById("extra")
-        if (extra) {
-          extra.classList.remove("hidden")
-        }
+        // Extra field is always visible as margin note, no need to reveal
+        // const extra = document.getElementById("extra")
+        // if (extra) {
+        //   extra.classList.remove("hidden")
+        // }
         // Also reveal autoReveal fields
         for (const [field, autoReveal] of Object.entries(ButtonAutoReveal)) {
           const container = document.querySelector(`[data-name="${field}"]`)

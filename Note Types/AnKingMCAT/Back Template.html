@@ -1,4 +1,4 @@
-<!-- version ca87415 -->
+<!-- version 3bb49e0 -->
 <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -67,14 +67,18 @@ var minNumberOfClozes = 0;
 </script>
 
 
-<div class="clozefield" id="text">{{cloze:Text}}</div>
+<section>
+<div class="clozefield">
+  <p>{{cloze:Text}}</p>
+</div>
 
 <!-- ##############  EDIT CLOZE DURING REVIEW  ##############
-			-change below (not above) to  "edit:cloze:Text" for editable field, 
+			-change below (not above) to  "edit:cloze:Text" for editable field,
 				but be sure to have the correct add-on installed-->
 
-<div class="editcloze" id="text">{{edit:cloze:Text}}</div>
-
+<div class="editcloze">
+  <p>{{edit:cloze:Text}}</p>
+</div>
 
 <br>
 
@@ -84,8 +88,11 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <!--tts en_US voices=Apple_Samantha,Microsoft_Zira speed=1.4:cloze-only:Text-->
 {{/One by one}}
 
+</section>
+
 <hr>
 
+<section>
 <!-- BUTTON FIELDS -->
 <!-- ClOZE ONE BY ONE BUTTONS -->
 
@@ -127,10 +134,12 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 </span>
 {{/Missed Questions}}
 
-<!-- Extra field -->
-{{#Extra}}<p></p>
-<div id="extra">{{edit:Extra}}</div>
-<br>{{/Extra}}
+<!-- Extra field as margin note -->
+{{#Extra}}
+<label for="mn-extra" class="margin-toggle">&#8853;</label>
+<input type="checkbox" id="mn-extra" class="margin-toggle"/>
+<span class="marginnote" id="extra">{{edit:Extra}}</span>
+{{/Extra}}
 
 {{#Pixorize}}
 <span id = "hint-pixorize" class="hintBtn" data-name="Pixorize">
@@ -162,6 +171,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 </span>
 {{/Additional Resources}}
 
+</section>
 
 <!-- ANKING HYPERLINK IMAGE -->
 <a href="https://www.ankingmed.com"><img src="_AnKingIconSmall.png" alt="The AnKing" id="pic"></a>
@@ -603,10 +613,11 @@ if (typeof(window.Persistence) === 'undefined') {
           cloze.classList.add("one-by-one");
         }
       }
-      const extra = document.getElementById("extra");
-      if (extra) {
-        extra.classList.add("hidden");
-      }
+      // Don't hide the Extra field - let it display as a margin note
+      // const extra = document.getElementById("extra");
+      // if (extra) {
+      //   extra.classList.add("hidden");
+      // }
       for (const [field, autoReveal] of Object.entries(ButtonAutoReveal)) {
         const container = document.querySelector(`[data-name="${field}"]`)
           if (container) {
@@ -723,10 +734,11 @@ if (typeof(window.Persistence) === 'undefined') {
     const maybeRevealExtraField = () => {
       let elems = document.querySelectorAll(".cloze-hidden")
       if (elems.length == 0) {
-        const extra = document.getElementById("extra")
-        if (extra) {
-          extra.classList.remove("hidden")
-        }
+        // Extra field is always visible as margin note, no need to reveal
+        // const extra = document.getElementById("extra")
+        // if (extra) {
+        //   extra.classList.remove("hidden")
+        // }
         // Also reveal autoReveal fields
         for (const [field, autoReveal] of Object.entries(ButtonAutoReveal)) {
           const container = document.querySelector(`[data-name="${field}"]`)

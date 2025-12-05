@@ -27,14 +27,18 @@ var ScrollToButton = true;
 </script>
 
 
-<div class="clozefield" id="text">{{cloze:Text}}</div>
+<section>
+<div class="clozefield">
+  <p>{{cloze:Text}}</p>
+</div>
 
 <!-- ##############  EDIT CLOZE DURING REVIEW  ##############
-			-change below (not above) to  "edit:cloze:Text" for editable field, 
+			-change below (not above) to  "edit:cloze:Text" for editable field,
 				but be sure to have the correct add-on installed-->
 
-<div class="editcloze" id="text">{{edit:cloze:Text}}</div>
-
+<div class="editcloze">
+  <p>{{edit:cloze:Text}}</p>
+</div>
 
 <br>
 
@@ -44,8 +48,11 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <!--tts en_US voices=Apple_Samantha,Microsoft_Zira speed=1.4:cloze-only:Text-->
 {{/One by one}}
 
+</section>
+
 <hr>
 
+<section>
 <!-- BUTTON FIELDS -->
 <%- include('src/components/clozeOneByOneButtons.ejs', {optional: true}) %>
 
@@ -53,10 +60,12 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <%- include("src/components/hintButton.ejs", {name: "Missed Questions", short:"mq", hintId: "missed" }) %>
 
-<!-- Extra field -->
-{{#Extra}}<p></p>
-<div id="extra">{{edit:Extra}}</div>
-<br>{{/Extra}}
+<!-- Extra field as margin note -->
+{{#Extra}}
+<label for="mn-extra" class="margin-toggle">&#8853;</label>
+<input type="checkbox" id="mn-extra" class="margin-toggle"/>
+<span class="marginnote" id="extra">{{edit:Extra}}</span>
+{{/Extra}}
 
 <%- include("src/components/hintButton.ejs", {name: "Pixorize", short:"pixorize", hintId: "pixorize", icon: "_pixorize.png" }) %>
 
@@ -64,6 +73,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 
 <%- include("src/components/hintButton.ejs", {name: "Additional Resources", short:"ar", hintId: "additional" }) %>
 
+</section>
 
 <!-- ANKING HYPERLINK IMAGE -->
 <a href="https://www.ankingmed.com"><img src="_AnKingIconSmall.png" alt="The AnKing" id="pic"></a>
