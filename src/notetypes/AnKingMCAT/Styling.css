@@ -260,27 +260,43 @@ i {
   font-size: 1.4rem;
   line-height: 2rem;
   height: 100%;
-  width: 87.5%;
+  width: 90%;
   max-width: 1400px;
   margin: 2rem auto;
-  padding: 1rem 0;
-  padding-left: 12.5%;
-  flex-grow: 1;
+  padding: 1rem 5%;
+  box-sizing: border-box;
 }
 
 .mobile .card {
-  width: 84%;
-  padding: 1rem 8%;
-  padding-left: 8%;
+  width: 100%;
+  padding: 1rem 5%;
   margin: 1rem auto;
   text-align: left;
 }
 
-/* Section width constraints for Tufte-style narrow column */
+/* Section uses CSS Grid for main content + margin notes layout */
+section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;  /* 3 equal columns: main uses 2, margin uses 1 */
+  gap: 1.5rem;
+}
+
+/* Main content spans first 2 columns */
 section > p,
 section > div,
-section > hr {
-  width: 55%;
+section > hr,
+section > br {
+  grid-column: 1 / 3;
+}
+
+/* Margin notes go in 3rd column */
+section > .marginnote {
+  grid-column: 3;
+  grid-row: 1 / 20;  /* Span many rows to align with content */
+}
+
+.mobile section {
+  display: block;  /* Stack on mobile */
 }
 
 .mobile section > p,
@@ -355,19 +371,13 @@ hr {
   position: relative;
 }
 
-/* Margin notes - Tufte style (visible by default on desktop) */
+/* Margin notes - Tufte style (using CSS Grid positioning) */
 .marginnote {
   font-style: italic;
-  float: right;
-  clear: right;
-  margin-right: -60%;
-  width: 50%;
-  margin-top: 0.3rem;
-  margin-bottom: 0;
   font-size: 1.1rem;
   line-height: 1.3;
-  vertical-align: baseline;
-  position: relative;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /* Extra Field as margin note */
@@ -376,36 +386,7 @@ hr {
   font-size: 1.1rem;
 }
 
-/* Margin toggle styling (the ⊕ symbol) */
-label.margin-toggle {
-  cursor: pointer;
-  font-size: 1.2rem;
-  line-height: 0;
-  vertical-align: baseline;
-  color: #268bd2;
-}
-
-input.margin-toggle {
-  display: none;
-}
-
-/* Mobile: hide margin notes by default, show when checkbox is checked */
-@media (max-width: 760px) {
-  .marginnote {
-    display: none;
-  }
-
-  .margin-toggle:checked + .marginnote {
-    display: block;
-    float: left;
-    left: 1rem;
-    clear: both;
-    width: 95%;
-    margin: 1rem 2.5%;
-    vertical-align: baseline;
-    position: relative;
-  }
-}
+/* Margin toggle removed - margin notes always visible */
 
 
 /* ========================================================================
@@ -546,11 +527,8 @@ table {
 
 /* Mobile: margin notes display inline */
 .mobile .marginnote {
-  float: none;
-  margin-right: 0;
-  width: 95%;
-  margin: 1rem 2.5%;
-  position: relative;
+  width: 100%;
+  margin: 1rem 0;
 }
 
 .mobile #extra img {
@@ -1001,14 +979,25 @@ blockquote {
 
 
 /* ========================================================================
+   TUFTE MARGIN NOTES - Float-based positioning (following tufte.css)
+   ======================================================================== */
+
+/* Margin toggle removed - no longer used */
+
+
+/* ========================================================================
    MOBILE RESPONSIVE ADJUSTMENTS
    ======================================================================== */
 
 @media (max-width: 760px) {
   .card {
-    width: 90%;
-    padding-left: 5%;
-    padding-right: 5%;
+    width: 100%;
+    padding: 1rem 5%;
+  }
+
+  /* Disable grid on mobile - stack everything */
+  section {
+    display: block;
   }
 
   hr,
@@ -1025,21 +1014,17 @@ blockquote {
     width: 100%;
   }
 
-  /* Mobile: hints display inline instead of in margin */
-  .hints {
-    float: none;
-    margin-right: 0;
-    width: 95%;
-    margin: 1rem 2.5%;
-    position: relative;
+  /* Mobile: margin notes display inline (no margin space available) */
+  .sidenote,
+  .marginnote {
+    display: block;
+    width: 100%;
+    margin: 1rem 0;
   }
 
-  /* Mobile: margin notes display inline */
-  .marginnote {
-    float: none;
-    margin-right: 0;
-    width: 95%;
-    margin: 1rem 2.5%;
-    position: relative;
+  /* Mobile: hints display inline instead of in margin */
+  .hints {
+    width: 100%;
+    margin: 1rem 0;
   }
 }
