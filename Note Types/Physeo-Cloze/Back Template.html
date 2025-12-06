@@ -1,4 +1,4 @@
-<!-- version ca87415 -->
+<!-- version b174588 -->
  <script>
 // ##############  BUTTON REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -582,10 +582,11 @@ if (typeof(window.Persistence) === 'undefined') {
           cloze.classList.add("one-by-one");
         }
       }
-      const extra = document.getElementById("extra");
-      if (extra) {
-        extra.classList.add("hidden");
-      }
+      // Don't hide the Extra field - let it display as a margin note
+      // const extra = document.getElementById("extra");
+      // if (extra) {
+      //   extra.classList.add("hidden");
+      // }
       for (const [field, autoReveal] of Object.entries(ButtonAutoReveal)) {
         const container = document.querySelector(`[data-name="${field}"]`)
           if (container) {
@@ -702,10 +703,11 @@ if (typeof(window.Persistence) === 'undefined') {
     const maybeRevealExtraField = () => {
       let elems = document.querySelectorAll(".cloze-hidden")
       if (elems.length == 0) {
-        const extra = document.getElementById("extra")
-        if (extra) {
-          extra.classList.remove("hidden")
-        }
+        // Extra field is always visible as margin note, no need to reveal
+        // const extra = document.getElementById("extra")
+        // if (extra) {
+        //   extra.classList.remove("hidden")
+        // }
         // Also reveal autoReveal fields
         for (const [field, autoReveal] of Object.entries(ButtonAutoReveal)) {
           const container = document.querySelector(`[data-name="${field}"]`)

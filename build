@@ -7,11 +7,26 @@ shopt -s nullglob
 
 commit_hash=`git rev-parse --short HEAD`
 
-for dir in ./src/notetypes/*/ ; do
+# Optional: build only specific note type
+# Usage: ./build [notetype]
+# Example: ./build AnKingMCAT
+SPECIFIC_NOTETYPE="$1"
+
+if [ -n "$SPECIFIC_NOTETYPE" ]; then
+    dirs=("./src/notetypes/${SPECIFIC_NOTETYPE}/")
+else
+    dirs=(./src/notetypes/*/)
+fi
+
+for dir in "${dirs[@]}" ; do
     NOTETYPE_DIR="./Note Types/$(basename "${dir}")"
     
     for file in "${NOTETYPE_DIR}"/* ; do
-        rm "$file"
+        if [ -d "$file" ]; then
+            rm -rf "$file"
+        else
+            rm "$file"
+        fi
     done
 
     front_file="${NOTETYPE_DIR}/Front Template.html"
@@ -24,6 +39,12 @@ for dir in ./src/notetypes/*/ ; do
     echo "<!-- version ${commit_hash} -->" | cat - "${back_file}" > /tmp/out && mv /tmp/out "${back_file}"
 
     for file in "${dir}"!(*.ejs) ; do
-        cp "$file" "${NOTETYPE_DIR}/$(basename "$file")"
+        if [ -d "$file" ]; then
+            # Copy directories recursively (for fonts, images, etc.)
+            cp -r "$file" "${NOTETYPE_DIR}/"
+        else
+            # Copy files
+            cp "$file" "${NOTETYPE_DIR}/$(basename "$file")"
+        fi
     done
 done
