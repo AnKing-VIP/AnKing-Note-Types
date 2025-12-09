@@ -1,0 +1,32 @@
+<%# Add UTM parameters to `<a>` links.
+
+# Notes:
+- `utm_medium=partnership` is added to Sketchy links.
+- `utm_source=ankihub` is added to other links.
+
+_%>
+
+<script>
+    for(const anchor of document.querySelectorAll("a")) {
+        try {
+            const url = new URL(anchor.href);
+            if (!url.protocol.startsWith("http")) {
+                continue;
+            }
+            const params = new Map();
+            if (url.hostname.endsWith("sketchy.com")) {
+                params.set("utm_medium", "partnership");
+            } else {
+                params.set("utm_source", "ankihub");
+            }
+            for(const [key, value] of params.entries()) {
+                if(!url.searchParams.get(key)) {
+                    url.searchParams.set(key, value);
+                }
+            }
+            anchor.href = url.toString();
+        } catch {
+
+        }
+    }
+</script>

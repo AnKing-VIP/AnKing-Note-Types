@@ -1,4 +1,4 @@
-<!-- version ca87415 -->
+<!-- version 52af043 -->
 <div id="text">{{cloze:Text}}</div>
 
 <br>
@@ -613,3 +613,29 @@ if (typeof(window.Persistence) === 'undefined') {
 
 </script>
 {{/Tags}}
+
+
+<script>
+    for(const anchor of document.querySelectorAll("a")) {
+        try {
+            const url = new URL(anchor.href);
+            if (!url.protocol.startsWith("http")) {
+                continue;
+            }
+            const params = new Map();
+            if (url.hostname.endsWith("sketchy.com")) {
+                params.set("utm_medium", "partnership");
+            } else {
+                params.set("utm_source", "ankihub");
+            }
+            for(const [key, value] of params.entries()) {
+                if(!url.searchParams.get(key)) {
+                    url.searchParams.set(key, value);
+                }
+            }
+            anchor.href = url.toString();
+        } catch {
+
+        }
+    }
+</script>
