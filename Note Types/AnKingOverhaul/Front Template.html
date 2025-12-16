@@ -1,4 +1,4 @@
-<!-- version 429dce1 -->
+<!-- version 0816ac5 -->
 <div id="text">{{cloze:Text}}</div>
 
 <br>
@@ -620,6 +620,9 @@ if (typeof(window.Persistence) === 'undefined') {
         try {
             const url = new URL(anchor.href);
             if (!url.protocol.startsWith("http")) {
+                continue;
+            }
+            if(url.hostname === "127.0.0.1") {
                 continue;
             }
             const params = new Map();
