@@ -8,12 +8,15 @@ _%>
 
 <script>
     for(const anchor of document.querySelectorAll("a")) {
+        if (anchor.getAttribute("href").startsWith("#")) {
+            continue;
+        }
         try {
             const url = new URL(anchor.href);
             if (!url.protocol.startsWith("http")) {
                 continue;
             }
-            if(url.hostname === "127.0.0.1") {
+            if (url.hostname === "127.0.0.1") {
                 continue;
             }
             const params = new Map();
