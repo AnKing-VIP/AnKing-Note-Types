@@ -1,4 +1,4 @@
-<!-- version 0816ac5 -->
+<!-- version f505e8e -->
 <div id="text">{{cloze:Text}}</div>
 
 <br>
@@ -617,14 +617,12 @@ if (typeof(window.Persistence) === 'undefined') {
 
 <script>
     for(const anchor of document.querySelectorAll("a")) {
+        const hrefAttr = anchor.getAttribute("href");
+        if (!hrefAttr.startsWith("http://") && !hrefAttr.startsWith("https://")) {
+            continue;
+        }
         try {
             const url = new URL(anchor.href);
-            if (!url.protocol.startsWith("http")) {
-                continue;
-            }
-            if(url.hostname === "127.0.0.1") {
-                continue;
-            }
             const params = new Map();
             if (url.hostname.endsWith("sketchy.com")) {
                 params.set("utm_medium", "partnership");
