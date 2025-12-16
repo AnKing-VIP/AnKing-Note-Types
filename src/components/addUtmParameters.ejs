@@ -13,6 +13,9 @@ _%>
             if (!url.protocol.startsWith("http")) {
                 continue;
             }
+            if(url.hostname === "127.0.0.1") {
+                continue;
+            }
             const params = new Map();
             if (url.hostname.endsWith("sketchy.com")) {
                 params.set("utm_medium", "partnership");
