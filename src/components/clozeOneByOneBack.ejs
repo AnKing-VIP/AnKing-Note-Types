@@ -84,11 +84,11 @@ _%>
     var cardNumberIsOneByOne = !clozeNumbers.filter(n => !Number.isNaN(n)).length || clozeNumbers.includes(parseInt(getCardNumber()))
 
     // check the amount of clozes -> disable OneByOne if less than minimum value wanted (minNumberOfClozes)
-    var numClozesForNumber = (minNumberOfClozes) ? document.querySelectorAll('.clozefield .cloze').length : 0
+    var numClozes = (minNumberOfClozes) ? document.querySelectorAll('.clozefield .cloze').length : 0
 
     // stop OneByOne if selectiveOneByOne is not enabled for this specific card OR if OneByOne is disabled some other way
     // -> show normal backside
-    if (selectiveOneByOne && !cardNumberIsOneByOne || numClozesForNumber < minNumberOfClozes) {
+    if (selectiveOneByOne && !cardNumberIsOneByOne || numClozes < minNumberOfClozes) {
       clozeOneByOneEnabled = false
     }
 
