@@ -1,4 +1,4 @@
-<!-- version d10be55 -->
+<!-- version 3d9b0dd -->
 <div id="text">{{cloze:Text}}</div>
 
 
@@ -243,7 +243,7 @@ if (typeof(window.Persistence) === 'undefined') {
 
       // stop OneByOne if selectiveOneByOne is not enabled for this specific card OR if OneByOne is disabled some other way
       // -> show normal backside
-      if (!alwaysOneByOne && ((selectiveOneByOne && !cardNumberIsOneByOne) || (oneByOneFieldNotEmpty && (numClozesForNumber < minNumberOfClozes)))) {
+      if ((selectiveOneByOne && !cardNumberIsOneByOne || numClozesForNumber < minNumberOfClozes)) {
         clozeOneByOneEnabled = false
       }
 
