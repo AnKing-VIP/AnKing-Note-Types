@@ -76,7 +76,7 @@ _%>
 
       // stop OneByOne if selectiveOneByOne is not enabled for this specific card OR if OneByOne is disabled some other way
       // -> show normal backside
-      if ((selectiveOneByOne && !cardNumberIsOneByOne || numClozesForNumber < minNumberOfClozes)) {
+      if (selectiveOneByOne && !cardNumberIsOneByOne || numClozesForNumber < minNumberOfClozes) {
         clozeOneByOneEnabled = false
       }
 
