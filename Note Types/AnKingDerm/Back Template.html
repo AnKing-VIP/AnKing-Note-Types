@@ -1,4 +1,4 @@
-<!-- version 21d8b64 -->
+<!-- version 52edd71 -->
 <script>
 // ##############  HINT REVEAL SHORTCUTS  ##############
 // All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
@@ -1115,7 +1115,7 @@ var userJs8 = undefined
     (() => {
         const selectors = [".shuffle", "#dermpath,#dermoscopy,#visualdx,#dermnet,#fullspectrum,#additional"];
         const shuffleMap = Persistence.getItem("shuffle") || {};
-        const shuffledWordClass = "shuffled-word";
+        const containerSelector = selectors.join(", ");
 
         function isFront() {
             const hasHrMarker = document.querySelector("hr[id=answer]");
@@ -1136,14 +1136,39 @@ var userJs8 = undefined
             }
         }
 
-        function shuffleElements(elements) {
+        function getNearestIdElement(element) {
+            let current = element;
+            while (current && current !== document.body) {
+                if (current.id) {
+                    return current;
+                }
+                current = current.parentElement;
+            }
+            return null;
+        }
+
+        function getScopedIndex(element, selector) {
+            const scope = getNearestIdElement(element);
+            const candidates = scope
+                ? Array.from(scope.querySelectorAll(selector))
+                : Array.from(document.querySelectorAll(selector));
+            const index = candidates.indexOf(element);
+            return index === -1 ? 0 : index;
+        }
+
+        function shuffleKey(element, groupType, selector) {
+            const scope = getNearestIdElement(element);
+            const scopeKey = scope ? `${scope.tagName.toLowerCase()}#${scope.id}` : "document";
+            const index = selector ? getScopedIndex(element, selector) : 0;
+            return `${scopeKey}:${groupType}:${index}`;
+        }
+
+        function shuffleElements(elements, mapKey) {
             elements = elements.filter(e => !e.matches(".no-shuffle *"));
             if (elements.length === 0) {
                 return;
             }
             const shuffledElements = Array.from(elements);
-            // Assuming elements[0] is not also the first element in a different list to shuffle
-            const mapKey = shuffledElements[0];
             const indexMap = shuffleMap[mapKey] || {};
             elements = elements.map(el => {
                 const placeholder = document.createTextNode('');
@@ -1159,7 +1184,7 @@ var userJs8 = undefined
 
         function shuffleList(listElement) {
             const items = Array.from(listElement.querySelectorAll("li"));
-            shuffleElements(items);
+            shuffleElements(items, shuffleKey(listElement, "list", "ol, ul"));
         }
 
         /**
@@ -1220,11 +1245,12 @@ var userJs8 = undefined
                 return item.replace(/,\s*(?=<\/|$)/g, '');
             });
 
-            const indexMap = shuffleMap[element] || {};
+            const mapKey = shuffleKey(element, "sentence", ".shuffle-sentence");
+            const indexMap = shuffleMap[mapKey] || {};
 
             const itemsToShuffle = [...cleanedItems];
             shuffle(itemsToShuffle, indexMap);
-            shuffleMap[element] = indexMap;
+            shuffleMap[mapKey] = indexMap;
 
             let newHTML;
             if (itemsToShuffle.length === 2) {
@@ -1249,7 +1275,7 @@ var userJs8 = undefined
                     shuffleList(parentElement);
                 }
                 const images = Array.from(container.querySelectorAll("img"));
-                shuffleElements(images);
+                shuffleElements(images, shuffleKey(container, "images", containerSelector));
             }
         }
         for (const element of document.querySelectorAll(".shuffle-sentence")) {
@@ -1265,4 +1291,3 @@ var userJs8 = undefined
 </script>
 
 <!-- END WRAPPER CODE -->
-
