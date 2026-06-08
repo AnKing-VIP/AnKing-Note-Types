@@ -1,0 +1,113 @@
+<script>
+// ##############  HINT REVEAL SHORTCUTS  ##############
+// All shortcuts will also open with "H" if using the Hint Hotkeys add-on 
+var ButtonShortcuts = {
+    "Personal Notes" : "Alt+1",
+    "Algorithm" : "Alt+2",
+    "Additional Resources" : "Alt+3",
+}
+var ToggleAllButtonsShortcut = "'"
+var ToggleNextButtonShortcut = "H";
+// ##############  SHOW HINTS AUTOMATICALLY  ##############
+var ButtonAutoReveal = {
+    "Personal Notes" : false,
+    "Algorithm" : false,
+    "Additional Resources" : false,
+}
+
+var ScrollToButton = true;
+
+<%- include('src/configs/colorfulTags.js') %>
+
+<%- include('src/configs/clozeOneByOne.js', {selective: true}) %>
+
+</script>
+
+
+<div class="clozefield" id="text">{{cloze:Text}}</div>
+
+<!-- ##############  EDIT CLOZE DURING REVIEW  ##############
+			-change below (not above) to  "edit:cloze:Text" for editable field, 
+				but be sure to have the correct add-on installed-->
+
+<div class="editcloze" id="text">{{edit:cloze:Text}}</div>
+
+
+<br>
+
+<!-- ##############  TEXT-TO-SPEECH ##############
+replace the arrows/dashes from the statement below with double curly brackets-->
+
+{{^One by one}}
+<!--tts en_US voices=Apple_Samantha,Microsoft_Zira speed=1.4:cloze-only:Text-->
+{{/One by one}}
+
+<hr>
+
+<!-- BUTTON FIELDS -->
+<!-- ClOZE ONE BY ONE BUTTONS -->
+
+<div id="one-by-one" style="display: none;">{{One by one}}</div>
+
+<div id="1by1-btns" style="display: none;">
+  <button id="button-reveal-next" class="button-general" onclick="revealNextCloze()">Reveal Next</button>
+  <button id="button-toggle-all" class="button-general" onclick="toggleAllCloze()">Toggle All</button>
+</div>
+
+<script>
+  (() => {
+    let clozeOneByOneEnabled = true;
+      clozeOneByOneEnabled = document.getElementById("one-by-one").textContent !== "";
+    
+    if (clozeOneByOneEnabled) {
+      document.getElementById("1by1-btns").style.display = "block";
+    }
+    })()
+  </script>
+
+<!-- OME banner (desktop) -->
+<div class="banner-ome">
+  
+</div>
+
+
+
+<!-- BUTTON FIELDS -->
+
+<!-- Extra field -->
+{{#Extra}}<p></p>
+<div id="extra">{{edit:Extra}}</div>
+<br>{{/Extra}}
+
+<%- include("src/components/hintButton.ejs", {name: "Personal Notes", short:"ln", hintId: "notes" }) %>
+
+<%- include("src/components/hintButton.ejs", {name: "Algorithm", short:"al", hintId: "algorithm" }) %>
+
+<%- include("src/components/hintButton.ejs", {name: "Additional Resources", short:"ar", hintId: "additional" }) %>
+
+
+<!-- ANKING HYPERLINK IMAGE -->
+<a href="https://www.ankingmed.com"><img src="_AnKingIconSmall.png" alt="The AnKing" id="pic"></a>
+
+<%- include('src/components/ankingAddEventListener.ejs') %>
+
+<%- include('src/components/shortcutMatcher.ejs') %>
+
+<%- include('src/components/colorfulTags.ejs') %>
+
+<%- include('src/components/tagBasedHintButtonsSetup.ejs') %>
+
+<%- include('src/components/hintButtonsSetup.ejs') %>
+
+<%- include('src/components/ankiPersistence.ejs') %>
+
+<%- include('src/components/clozeOneByOneBack.ejs', {optional: true}) %>
+
+<%- include('src/components/wikipediaSearches.ejs') %>
+
+<%- include('src/components/ankiMobileUserActions.ejs') %>
+
+<%- include('src/components/imageBlur.ejs') %>
+
+<%- include('src/components/shuffleItems.ejs') %>
+
