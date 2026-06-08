@@ -9,7 +9,8 @@ commit_hash=`git rev-parse --short HEAD`
 
 for dir in ./src/notetypes/*/ ; do
     NOTETYPE_DIR="./Note Types/$(basename "${dir}")"
-    
+    mkdir -p "$NOTETYPE_DIR"
+
     for file in "${NOTETYPE_DIR}"/* ; do
         rm "$file"
     done
