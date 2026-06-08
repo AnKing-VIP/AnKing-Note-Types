@@ -1,0 +1,143 @@
+{
+    "id": 0,
+    "name": "AnKing BLS/ACLS",
+    "type": 1,
+    "mod": 1780889142,
+    "usn": -1,
+    "sortf": 0,
+    "did": 1542938001933,
+    "tmpls": [
+        {
+            "name": "Cloze",
+            "ord": 0,
+            "qfmt": "",
+            "afmt": "",
+            "bqfmt": "{{cloze:Text}}",
+            "bafmt": "{{cloze:Text}}",
+            "did": null,
+            "bfont": "Arial",
+            "bsize": 12,
+            "id": null,
+            "scratchPad": false
+        }
+    ],
+    "flds": [
+        {
+            "name": "Text",
+            "ord": 0,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "description": "",
+            "plainText": false,
+            "collapsed": false,
+            "excludeFromSearch": false,
+            "id": null,
+            "tag": null,
+            "preventDeletion": false,
+            "meta": null,
+            "media": [],
+            "collapsibleFieldsCollapseByDefault": false
+        },
+        {
+            "name": "Extra",
+            "ord": 1,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "description": "",
+            "plainText": false,
+            "collapsed": false,
+            "excludeFromSearch": false,
+            "id": null,
+            "tag": null,
+            "preventDeletion": false,
+            "media": []
+        },
+        {
+            "name": "Personal Notes",
+            "ord": 2,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "description": "",
+            "plainText": false,
+            "collapsed": false,
+            "excludeFromSearch": false,
+            "id": null,
+            "tag": null,
+            "preventDeletion": false,
+            "media": []
+        },
+        {
+            "name": "Algorithm",
+            "ord": 3,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "description": "",
+            "plainText": false,
+            "collapsed": false,
+            "excludeFromSearch": false,
+            "id": 2147286679623287591,
+            "tag": null,
+            "preventDeletion": false
+        },
+        {
+            "name": "Additional Resources",
+            "ord": 4,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "description": "",
+            "plainText": false,
+            "collapsed": false,
+            "excludeFromSearch": false,
+            "id": null,
+            "tag": null,
+            "preventDeletion": false,
+            "meta": null,
+            "media": [],
+            "collapsibleFieldsCollapseByDefault": false
+        },
+        {
+            "name": "One by one",
+            "ord": 5,
+            "sticky": false,
+            "rtl": false,
+            "font": "Arial",
+            "size": 16,
+            "description": "Type anything here (i.e. \"yes\") to enable one by one clozes or enable only certain clozes by typing numbers separated by commas (i.e. \"1,3\")",
+            "plainText": false,
+            "collapsed": false,
+            "excludeFromSearch": false,
+            "id": null,
+            "tag": null,
+            "preventDeletion": false,
+            "meta": null,
+            "collapsibleFieldsCollapseByDefault": false
+        }
+    ],
+    "css": "",
+    "latexPre": "\\documentclass[12pt]{article}\r\n\\special{papersize=3in,5in}\r\n\\usepackage{amssymb,amsmath}\r\n\\pagestyle{empty}\r\n\\setlength{\\parindent}{0in}\r\n\\begin{document}",
+    "latexPost": "\\end{document}",
+    "latexsvg": false,
+    "req": [
+        [
+            0,
+            "any",
+            [
+                0,
+                5,
+                6
+            ]
+        ]
+    ],
+    "vers": [],
+    "tags": []
+}
