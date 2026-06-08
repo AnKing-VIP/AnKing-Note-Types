@@ -12,7 +12,7 @@ replace the arrows/dashes from the statement below with double curly brackets-->
 <script>
 // ############## USER CONFIGURATION START ##############
 // Auto flip to back when One by one mode.
-var autoflip = false 
+var autoflip = true
 
 // Timer config (timer length, timer finished message)
 var minutes = 0
@@ -639,30 +639,3 @@ if (typeof(window.Persistence) === 'undefined') {
 
 </script>
 {{/Tags}}
-
-
-<script>
-    for(const anchor of document.querySelectorAll("a")) {
-        const hrefAttr = anchor.getAttribute("href");
-        if (!hrefAttr.startsWith("http://") && !hrefAttr.startsWith("https://")) {
-            continue;
-        }
-        try {
-            const url = new URL(anchor.href);
-            const params = new Map();
-            if (url.hostname.endsWith("sketchy.com")) {
-                params.set("utm_medium", "partnership");
-            } else {
-                params.set("utm_source", "ankihub");
-            }
-            for(const [key, value] of params.entries()) {
-                if(!url.searchParams.get(key)) {
-                    url.searchParams.set(key, value);
-                }
-            }
-            anchor.href = url.toString();
-        } catch {
-
-        }
-    }
-</script>
