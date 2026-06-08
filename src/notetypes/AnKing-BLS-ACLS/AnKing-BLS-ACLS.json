@@ -121,21 +121,6 @@
             "preventDeletion": false,
             "meta": null,
             "collapsibleFieldsCollapseByDefault": false
-        },
-        {
-            "name": "ankihub_id",
-            "ord": 6,
-            "sticky": false,
-            "rtl": false,
-            "font": "Arial",
-            "size": 20,
-            "description": "",
-            "plainText": false,
-            "collapsed": false,
-            "excludeFromSearch": false,
-            "id": 658095253063355201,
-            "tag": null,
-            "preventDeletion": false
         }
     ],
     "css": "",
